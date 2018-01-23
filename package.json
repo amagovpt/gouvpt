@@ -1,5 +1,5 @@
 {
-  "name": "gouvlu",
+  "name": "gouvpt",
   "version": "0.1.0",
   "description": "Official udata theme and extensions of the Open Data Portal of Luxembourg",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/opendatalu/gouvlu.git"
+    "url": "git+https://github.com/opendatalu/gouvpt.git"
   },
   "author": "data.public.lu",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/opendatalu/gouvlu/issues"
+    "url": "https://github.com/opendatalu/gouvpt/issues"
   },
-  "homepage": "https://github.com/opendatalu/gouvlu#readme",
+  "homepage": "https://github.com/opendatalu/gouvpt#readme",
   "devDependencies": {
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",

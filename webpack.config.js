@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const isProd = process.env.NODE_ENV === 'production';
 
-const static_path = path.resolve('./gouvlu/theme/static');
+const static_path = path.resolve('./gouvpt/theme/static');
 const source_path = path.resolve('./assets');
 
 const less_loader = ExtractTextPlugin.extract({
@@ -23,7 +23,7 @@ module.exports = {
     },
     output: {
         path: static_path,
-        publicPath: "/_themes/gouvlu/",
+        publicPath: "/_themes/gouvpt/",
         filename: "[name].js"
     },
     resolve: {

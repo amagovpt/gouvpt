@@ -9,9 +9,9 @@ from udata.models import db as DB
 
 
 class TestSettings(settings.Testing):
-    MONGODB_HOST_TEST = 'mongodb://localhost:27017/gouvlu-test'
+    MONGODB_HOST_TEST = 'mongodb://localhost:27017/gouvpt-test'
     ELASTICSEARCH_URL = 'http://localhost:9200'
-    THEME = 'gouvlu'
+    THEME = 'gouvpt'
 
 
 @pytest.fixture

@@ -97,9 +97,9 @@ tests_require = pip('test.pip')
 
 
 setup(
-    name='gouvlu',
-    version=__import__('gouvlu').__version__,
-    description=__import__('gouvlu').__description__,
+    name='gouvpt',
+    version=__import__('gouvpt').__version__,
+    description=__import__('gouvpt').__description__,
     long_description=long_description,
     url='https://data.public.lu/en/',
     author='DataPublicLu',
@@ -113,15 +113,15 @@ setup(
     },
     entry_points={
         'udata.themes': [
-            'gouvlu = gouvlu.theme'
+            'gouvpt = gouvpt.theme'
         ],
         'udata.harvesters': [
-            'statec = gouvlu.harvesters.statec:StatecBackend',
+            'statec = gouvpt.harvesters.statec:StatecBackend',
         ]
     },
     license='AGPL',
     zip_safe=False,
-    keywords='udata theme gouvlu',
+    keywords='udata theme gouvpt',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Programming Language :: Python',

@@ -1,11 +1,11 @@
-# French translations for gouvlu.
+# French translations for gouvpt.
 # Copyright (C) 2017 ORGANIZATION
-# This file is distributed under the same license as the gouvlu project.
+# This file is distributed under the same license as the gouvpt project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gouvlu 0.1.0.dev0\n"
+"Project-Id-Version: gouvpt 0.1.0.dev0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-30 17:17+0100\n"
 "PO-Revision-Date: 2017-11-30 17:16+0100\n"

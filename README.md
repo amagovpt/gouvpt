@@ -1,4 +1,4 @@
-# gouvlu
+# gouvpt
 
 Official udata theme of the Open Data Portal of Luxembourg
 
@@ -7,20 +7,20 @@ Official udata theme of the Open Data Portal of Luxembourg
 Install the theme package in you udata environement:
 
 ```bash
-pip install gouvlu
+pip install gouvpt
 ```
 
 Then, define the installed theme as current in you `udata.cfg`:
 
 ```python
-THEME = 'gouvlu'
+THEME = 'gouvpt'
 ```
 
 ### configuration parameters
 
 Some features are optionnal and can be enabled with the following `udata.cfg` parameters
 
-- `GOUVLU_GOVBAR = True/False`: Toggle the govbar
+- `gouvpt_GOVBAR = True/False`: Toggle the govbar
 
 
 ## Development
@@ -80,7 +80,7 @@ inv
 
 ## Releasing
 
-`gouvlu` uses [bumpr][] to perform release.
+`gouvpt` uses [bumpr][] to perform release.
 Simply execute:
 
 ```bash

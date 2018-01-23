@@ -1,8 +1,8 @@
 [run]
-source = gouvlu
+source = gouvpt
 branch = True
 omit =
-    gouvlu/tests.py
+    gouvpt/tests.py
 
 [report]
 # Regexes for lines to exclude from consideration

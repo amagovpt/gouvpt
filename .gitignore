@@ -95,4 +95,4 @@ ENV/
 
 # assets
 /node_modules
-/gouvlu/theme/static/
+/gouvpt/theme/static/

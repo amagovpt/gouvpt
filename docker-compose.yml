@@ -33,7 +33,7 @@ services:
       - elasticsearch:elasticsearch
     volumes:
       - ./udata.cfg:/udata/udata.cfg
-      - .:/src/gouvlu
+      - .:/src/gouvpt
       - ./static:/udata/fs
     ports:
       - "7000:7000"
