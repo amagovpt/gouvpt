@@ -1,6 +1,6 @@
 # gouvpt
 
-Official udata theme of the Open Data Portal of Luxembourg
+Official udata theme of the Open Data Portal of Portugal
 
 ## Usage
 
