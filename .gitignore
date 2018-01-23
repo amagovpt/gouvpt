@@ -96,3 +96,6 @@ ENV/
 # assets
 /node_modules
 /gouvpt/theme/static/
+
+#VSCode Stuff
+/.vscode/
