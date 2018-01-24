@@ -1,6 +1,6 @@
 # gouvpt
 
-Official udata theme of the Open Data Portal of Portugal
+Official udata theme for the Open Data Portal of Portugal, forked from opendatalu/gouvlu on 23-Jan-2018
 
 ## Usage
 
@@ -14,6 +14,7 @@ Then, define the installed theme as current in you `udata.cfg`:
 
 ```python
 THEME = 'gouvpt'
+PLUGINS = ['auth_gouvpt']
 ```
 
 ### configuration parameters
