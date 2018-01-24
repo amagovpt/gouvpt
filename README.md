@@ -7,7 +7,7 @@ Official udata theme of the Open Data Portal of Portugal
 Install the theme package in you udata environement:
 
 ```bash
-pip install gouvpt
+pip install gouvpt/
 ```
 
 Then, define the installed theme as current in you `udata.cfg`:

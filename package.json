@@ -1,7 +1,7 @@
 {
   "name": "gouvpt",
   "version": "0.1.0",
-  "description": "Official udata theme and extensions of the Open Data Portal of Luxembourg",
+  "description": "Official udata theme and extensions of the Open Data Portal of Portugal",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --progress --hide-modules --colors --watch --config  webpack.config.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/opendatalu/gouvpt.git"
+    "url": "git+https://github.com/amagovpt/gouvpt.git"
   },
-  "author": "data.public.lu",
+  "author": "ama.pt",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/opendatalu/gouvpt/issues"
+    "url": "https://github.com/amagovpt/gouvpt/issues"
   },
-  "homepage": "https://github.com/opendatalu/gouvpt#readme",
+  "homepage": "https://github.com/amagovpt/gouvpt#readme",
   "devDependencies": {
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",

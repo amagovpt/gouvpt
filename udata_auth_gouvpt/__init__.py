@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
-Package for Authentication with portuguese Smart ID Cards
+Package for Authentication with portuguese SmartID Cards
+UData Plugin
 '''
 from __future__ import unicode_literals
 
