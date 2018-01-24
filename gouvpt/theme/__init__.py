@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 '''
-gouvlu
+gouvpt
 
-Official udata theme of the Open Data Portal of Luxembourg
+Official udata theme of the Open Data Portal of Portugal
 '''
 from __future__ import unicode_literals
 
@@ -15,7 +15,7 @@ from udata.i18n import lazy_gettext as _
 log = logging.getLogger(__name__)
 
 
-gouvlu_menu = nav.Bar('gouvlu_menu', [
+gouvpt_menu = nav.Bar('gouvpt_menu', [
     nav.Item(_('Data'), 'datasets.list', items=[
         nav.Item(_('Datasets'), 'datasets.list'),
         nav.Item(_('Reuses'), 'reuses.list'),
@@ -27,9 +27,9 @@ gouvlu_menu = nav.Bar('gouvlu_menu', [
     ]),
 ])
 
-theme.menu(gouvlu_menu)
+theme.menu(gouvpt_menu)
 
-nav.Bar('gouvlu_footer', [
+nav.Bar('gouvpt_footer', [
     nav.Item(_('API'), 'apidoc.swaggerui'),
     nav.Item(_('Terms of use'), 'site.terms'),
 ])

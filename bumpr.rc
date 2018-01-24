@@ -1,5 +1,5 @@
 [bumpr]
-file = gouvlu/__init__.py
+file = gouvpt/__init__.py
 vcs = git
 commit = true
 tag = true

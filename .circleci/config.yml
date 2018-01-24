@@ -83,7 +83,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - gouvlu/theme/static
+            - gouvpt/theme/static
 
   dist:
     docker:

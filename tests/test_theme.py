@@ -18,8 +18,8 @@ def unload_theme():
     this fixture ensure theme is reloaded.
     '''
     yield
-    if 'gouvlu.theme' in sys.modules:
-        del sys.modules['gouvlu.theme']
+    if 'gouvpt.theme' in sys.modules:
+        del sys.modules['gouvpt.theme']
 
 
 @pytest.fixture

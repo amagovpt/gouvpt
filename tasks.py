@@ -11,12 +11,12 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 
 LANGUAGES = ['fr']
 
-I18N_ROOT = 'gouvlu/translations'
+I18N_ROOT = 'gouvpt/translations'
 
-I18N_DOMAIN = 'gouvlu'
+I18N_DOMAIN = 'gouvpt'
 
 CLEAN_PATTERNS = [
-    'build', 'dist', '**/*.pyc', '**/*.mo', 'reports', 'gouvlu/theme/static'
+    'build', 'dist', '**/*.pyc', '**/*.mo', 'reports', 'gouvpt/theme/static'
 ]
 
 
@@ -95,7 +95,7 @@ def cover(ctx, report=False, verbose=False):
         'pytest',
         '--cov-config coverage.rc',
         '--cov-report term',
-        '--cov=gouvlu',
+        '--cov=gouvpt',
     ]
     if verbose:
         cmd.append('-v')
@@ -115,7 +115,7 @@ def qa(ctx):
     header(qa.__doc__)
     with ctx.cd(ROOT):
         info('Python Static Analysis')
-        flake8_results = ctx.run('flake8 gouvlu tests', pty=True, warn=True)
+        flake8_results = ctx.run('flake8 gouvpt tests', pty=True, warn=True)
         if flake8_results.failed:
             error('There is some lints to fix')
         else:
