@@ -4,10 +4,24 @@ Official udata theme for the Open Data Portal of Portugal
 
 ## Usage
 
-Install the theme package in you udata environement:
+Install the theme package in your udata environement:
 
 ```bash
 git clone https://github.com/amagovpt/gouvpt.git
+```
+
+Build gouvpt assets on theme directory:
+
+```bash
+cd gouvpt/
+nvm use
+npm install
+inv assets-build
+```
+
+Return to udata directory and run:
+
+```bash
 pip install gouvpt/
 ```
 
@@ -18,12 +32,6 @@ PLUGINS = ['auth_gouvpt']
 THEME = 'gouvpt'
 ```
 
-### configuration parameters
-
-Some features are optionnal and can be enabled with the following `udata.cfg` parameters
-
-- `gouvpt_GOVBAR = True/False`: Toggle the govbar
-
 Portuguese portal provides authentication with SmartId Card and Autenticacao.gov.pt
 Set your `udata.cfg` with the following parameters
 
@@ -31,10 +39,16 @@ Set your `udata.cfg` with the following parameters
 - `SECURITY_SAML_ENTITY_NAME = 'DadosAbertosUdata'` : Entity Name
 - `SECURITY_SAML_KEY_FILE = '...path.../private.pem'` : Private Entity key PEM file path
 - `SECURITY_SAML_CERT_FILE = '...path.../AMA.pem'` : Public Entity Certificate PEM file path
-- `SECURITY_SAML_IDP_METADATA = 'metadata_file1.xml,metadata_file2.xml,....'` : Metadata files path for IDP's
+- `SECURITY_SAML_IDP_METADATA = 'metadata_file1.xml,metadata_file2.xml,..'` : Metadata files path for IDP's
 - `SECURITY_SAML_FAAALEVEL = 1` : : Authentication Level requested to autenticacao.gov.pt
 
 See autenticacao.gov.pt and SAML2 protocol docs for extra information
+
+### configuration parameters
+
+Some features are optionnal and can be enabled with the following `udata.cfg` parameters
+
+- `gouvpt_GOVBAR = True/False`: Toggle the govbar
 
 ## Development
 

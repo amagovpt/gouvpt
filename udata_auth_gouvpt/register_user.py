@@ -3,7 +3,7 @@
 ##    Handle PasswordLess User Registration
 ##    
 
-from flask import Blueprint, url_for, after_this_request, request, session, redirect
+from flask import Blueprint, url_for, request, session, redirect
 
 from flask_security.forms import Form
 from flask_security.confirmable import send_confirmation_instructions
@@ -32,9 +32,6 @@ class UserCustomForm(Form):
         'Last Name', [validators.Required('Last name is required')])
     user_nic = fields.HiddenField('NIC')
 
-def _commit(response=None):
-    datastore.commit()
-    return response
 
 @register_ptuser.route('/saml/register', methods=['POST','GET'])
 @anonymous_user_required
@@ -52,7 +49,7 @@ def register():
             data['extras'] = { 'auth_nic': str(request.values.get('user_nic')) }
 
         userUdata = datastore.create_user(**data)
-        after_this_request(_commit)
+        datastore.commit()
         send_confirmation_instructions(userUdata)
         do_flash(*get_message('CONFIRM_REGISTRATION', email=data['email']))
         return redirect(url_for('security.login'))

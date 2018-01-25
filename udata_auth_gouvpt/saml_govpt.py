@@ -147,7 +147,7 @@ def idp_initiated():
 
     data = { 'email' : user_email }
     extras = { 'extras' : { 'auth_nic' : user_nic }}
-    userUdata = datastore.find_user(**data) or datastore.find_user(**extras)
+    userUdata = datastore.find_user(**extras) or datastore.find_user(**data)
 
     if not userUdata:
         #Redirects to new custom registration form
