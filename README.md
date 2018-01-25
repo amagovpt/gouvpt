@@ -67,7 +67,7 @@ If you want to build assets, you also need node.js. The prefered way is with [nv
 ```bash
 nvm use
 npm install
-inv assets_build
+inv assets-build
 ```
 
 Ok, you are ready, you can now execute some Development commands.
@@ -92,5 +92,5 @@ Available tasks:
 Return to udata directory and run:
 
 ```bash
-inv serve
+udata serve
 ```
