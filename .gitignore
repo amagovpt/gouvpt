@@ -23,6 +23,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+data/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -33,6 +34,7 @@ var/
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+log.txt
 
 # Unit test / coverage reports
 htmlcov/
@@ -95,7 +97,6 @@ ENV/
 
 # assets
 /node_modules
-/gouvpt/theme/static/
 
 #VSCode Stuff
 /.vscode/
