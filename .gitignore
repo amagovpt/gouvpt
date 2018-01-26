@@ -102,5 +102,4 @@ ENV/
 /.vscode/
 AMA.pem
 private.pem
-metadata_*.xml
 

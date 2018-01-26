@@ -1,0 +1,16 @@
+<EntityDescriptor entityID="https://autenticacao.cartaodecidadao.pt" 
+    xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+    <IDPSSODescriptor WantAuthnRequestsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <KeyDescriptor use="signing">
+            <KeyInfo 
+                xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <X509Data>
+                    <X509Certificate>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</X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </KeyDescriptor>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://preprod.autenticacao.gov.pt/fa/"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://preprod.autenticacao.gov.pt/fa/"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://preprod.autenticacao.gov.pt/fa/"/>
+    </IDPSSODescriptor>
+</EntityDescriptor>

@@ -32,14 +32,23 @@ PLUGINS = ['auth_gouvpt']
 THEME = 'gouvpt'
 ```
 
-Portuguese portal provides authentication with SmartId Card and Autenticacao.gov.pt
+### Portuguese Smart Card Authentication
+
+Portuguese uData portal provides authentication with SmartIdCards and Autenticacao.gov.pt
+
+Install dependencies: 
+
+```bash
+apt-get install xmlsec1-openssl
+```
+
 Set your `udata.cfg` with the following parameters
 
 - `SECURITY_SAML_ENTITY_ID = 'www.dadosabertos.gov.pt'` : Entity ID
 - `SECURITY_SAML_ENTITY_NAME = 'DadosAbertosUdata'` : Entity Name
 - `SECURITY_SAML_KEY_FILE = '...path.../private.pem'` : Private Entity key PEM file path
 - `SECURITY_SAML_CERT_FILE = '...path.../AMA.pem'` : Public Entity Certificate PEM file path
-- `SECURITY_SAML_IDP_METADATA = 'metadata_file1.xml,metadata_file2.xml,..'` : Metadata files path for IDP's
+- `SECURITY_SAML_IDP_METADATA = 'metadata_file1.xml,metadata_file2.xml,..'` : Metadata files for IDP's
 - `SECURITY_SAML_FAAALEVEL = 1` : : Authentication Level requested to autenticacao.gov.pt
 
 See autenticacao.gov.pt and SAML2 protocol docs for extra information
