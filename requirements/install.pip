@@ -1,2 +1,2 @@
 udata>=1.2.6
-requirements/pysaml2.zip
+pysaml2==4.5.0
