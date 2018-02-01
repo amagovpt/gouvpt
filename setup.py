@@ -116,7 +116,7 @@ setup(
             'gouvpt = gouvpt.theme'
         ],
         'udata.harvesters': [
-            'statec = gouvpt.harvesters.statec:StatecBackend',
+            'justice = gouvpt.harvesters.justice:JusticeCkanBackend',
         ]
     },
     license='AGPL',
