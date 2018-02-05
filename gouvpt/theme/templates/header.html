@@ -106,58 +106,24 @@
                 <div>
                     <i class="icone-burguer"></i>
                     <ul>
-                        <li class="lfr-nav-item dropdown">
-                            <a class="dropdown-toggle">
-                                <span>Dados Abertos
-                                    <b class="fa fa-caret-down"></b>
+                        {% for item in current_theme.menu %} 
+                        <li class="lfr-nav-item {% if item.items %} dropdown {% endif %}" >
+                            <a {% if item.items %} class="dropdown-toggle" {% endif %} href="{{ item.url }}">
+                                <span>{{ item.label }}
+                                    {% if item.items %}<b class="fa fa-caret-down"></b>{% endif %}
                                 </span>
                             </a>
+                            {% if item.items %}
                             <ul class="sub-menu">
+                                {% for subitem in item.items %}
                                 <li class="lfr-nav-item">
-                                    <a href="./link1.html">Link1</a>
+                                    <a href="{{ subitem.url }}">{{ subitem.label }}</a>
                                 </li>
-                                <li class="lfr-nav-item">
-                                    <a href="./link2.html">Link2</a>
-                                </li>
-                                <li class="lfr-nav-item">
-                                    <a href="./link3.html">Link3</a>
-                                </li>
-                                <li class="lfr-nav-item">
-                                    <a href="./link4.html">Link4</a>
-                                </li>
+                                {% endfor %}
                             </ul>
+                            {% endif %}
                         </li>
-                        <li class="lfr-nav-item dropdown">
-                            <a class="dropdown-toggle">
-                                <span>Recursos
-                                    <b class="fa fa-caret-down"></b>
-                                </span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li class="lfr-nav-item">
-                                    <a href="./link1.html">Link1</a>
-                                </li>
-                                <li class="lfr-nav-item">
-                                    <a href="./link2.html">Link2</a>
-                                </li>
-                                <li class="lfr-nav-item">
-                                    <a href="./link3.html">Link3</a>
-                                </li>
-                                <li class="lfr-nav-item">
-                                    <a href="./link4.html">Link4</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="lfr-nav-item">
-                            <a href="./">
-                                <span>Blog/Eventos</span>
-                            </a>
-                        </li>
-                        <li class="lfr-nav-item">
-                            <a href="./">
-                                <span>Contactos</span>
-                            </a>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </nav>

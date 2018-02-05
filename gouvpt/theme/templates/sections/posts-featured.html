@@ -14,15 +14,15 @@
                 <div class="img" style="background-image: url( {{ post.image|placeholder('post') }} )"></div>
                 <div class="black-home-overlay"></div>
                 <div class="text-area">
-                    <h1></h1>
-                    <h2>{{ post.name }}</h2>
+                    <br>
+                    <h1>{{ post.name }}</h1>
                     <br>
                     <h3>{{(post.headline or post.content)|mdstrip(280)}}</h3>
                     <div class="description">
                         <p> {{ post.content|markdown }} </p>
-                        <div class="verMaisHomeBtn">
+                        <!-- <div class="verMaisHomeBtn">
                             <a href="javascript:void(0);">VER MAIS</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </li>

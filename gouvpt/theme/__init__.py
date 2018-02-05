@@ -16,15 +16,19 @@ log = logging.getLogger(__name__)
 
 
 gouvpt_menu = nav.Bar('gouvpt_menu', [
-    nav.Item(_('Data'), 'datasets.list', items=[
+
+    nav.Item(_('Open Data'), 'datasets.list', items=[
         nav.Item(_('Datasets'), 'datasets.list'),
         nav.Item(_('Reuses'), 'reuses.list'),
         nav.Item(_('Organizations'), 'organizations.list'),
+        nav.Item(_('API'), 'apidoc.swaggerui'),
+        nav.Item(_('Terms of use'), 'site.terms'),
     ]),
     nav.Item(_('Dashboard'), 'site.dashboard'),
-    nav.Item(_('Events'), None, url='#', items=[
+    nav.Item(_('Blog/Events'), None, url='#', items=[
         nav.Item(_('Game of code'), None, url='http://www.gameofcode.eu/'),
     ]),
+    nav.Item(_('Contact'), None, url='#'),
 ])
 
 theme.menu(gouvpt_menu)

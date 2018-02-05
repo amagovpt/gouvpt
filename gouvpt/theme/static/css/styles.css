@@ -375,7 +375,7 @@ body.homepage #breadcrumbs{
 }
 .top-banner .text-area h1 {
     margin-top: 25px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     text-transform: uppercase;
 }
 .top-banner .text-area h3 {
@@ -498,7 +498,7 @@ body.homepage #breadcrumbs{
 .top-banner .bx-wrapper .bx-viewport #homepage-slider li,
 .top-banner .bx-wrapper .bx-viewport{ 
 	min-height: 100vh;
-    min-height: 755px;
+    min-height: 555px;
 }
 
 .top-banner .scrolldown{
@@ -530,11 +530,8 @@ body.homepage #breadcrumbs{
 	position: relative;
 }
 .top-banner #homepage-slider .text-area h1 {
-    font-size: 42px!important;
-    max-width: 500px;
-    margin: 0px auto 25px auto;
-    /*padding-top: 175px;*/
-    padding-top: 15vh;
+    font-size: 34px!important;
+    padding-top: 5vh;
 }
 .top-banner #homepage-slider .text-area h3{
 	font-family: "latolight" !important;
@@ -542,7 +539,7 @@ body.homepage #breadcrumbs{
     text-transform: initial;
 	max-width: 735px;
 	margin: auto;
-	margin-bottom: 80px;
+	margin-bottom: 50px;
 	display: block;
 }
 .top-banner #homepage-slider .text-area .description p{
@@ -2048,4 +2045,8 @@ html #wrapper footer .social-media-wrapper li {
 .site-search .dropdown-menu.suggestion{
     border-radius: 5px !important;
     padding: 15px !important;
+}
+
+ul.search-results .search-result h4 {
+    line-height: initial;
 }
