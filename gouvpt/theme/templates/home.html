@@ -1,13 +1,20 @@
-{% extends "home.html" %}
-
-{% set body_class = 'home' %}
-
+{% extends "home.html" %} 
+{% set body_class = 'homepage' %} 
 {% block content %}
-{% cache cache_duration, 'home', g.lang_code %}
-{% include theme("sections/featured-reuses.html") %}
-{% include theme("sections/featured-datasets.html") %}
-{% include theme("sections/last-post.html") %}
-{% include theme("sections/latest-reuses.html") %}
-{% include theme("sections/latest-datasets.html") %}
-{% endcache %}
-{% endblock %}
+{% cache cache_duration, 'home', g.lang_code%}
+{% include theme("sections/posts-featured.html") %}
+
+<div class="block-wrapper reuses">
+	{% include theme("sections/reuses-featured.html") %}
+</div>
+
+<div class="block-wrapper grey">
+		{% include theme("sections/posts-last.html") %}
+</div>
+
+<div class="block-wrapper">
+		{% include theme("sections/datasets-featured.html") %}
+</div>
+
+</div>
+{% endcache %} {% endblock %}

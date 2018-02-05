@@ -16,7 +16,7 @@ I18N_ROOT = 'gouvpt/translations'
 I18N_DOMAIN = 'gouvpt'
 
 CLEAN_PATTERNS = [
-    'build', 'dist', '**/*.pyc', '**/*.mo', 'reports', 'gouvpt/theme/static'
+    'build', 'dist', '**/*.pyc', '**/*.mo', 'reports'
 ]
 
 

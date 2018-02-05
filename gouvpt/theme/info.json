@@ -2,17 +2,15 @@
     "application": "udata",
     "identifier": "gouvpt",
     "name": "gouvpt",
-    "author": "DataPublicLu",
-    "description": "Official udata theme of the Open Data Portal of Luxembourg",
-    "website": "https://data.public.lu/en/",
+    "author": "AMA.pt",
+    "description": "Official udata theme for the Open Data Portal of Portugal",
+    "website": "https://dados.gov.pt/",
     "license": "AGPL",
     "version": "0.1.0",
     "doctype": "html5",
-    "color": "#ffffff",
-    "safari-pinned-color": "#5bbad5",
     "social": {
-        "twitter": "https://twitter.com/opendatalu",
-        "github": "https://github.com/opendatalu/",
-        "mail": "info%40data.public.lu"
+        "twitter": "https://twitter.com/ama_gov_pt",
+        "github": "https://github.com/amagovpt/",
+        "mail": "ama@ama.pt"
     }
 }

@@ -1,110 +1,132 @@
-{% cache cache_duration, 'footer', g.lang_code|default(config.DEFAULT_LANGUAGE)|string,
-    '-'.join((package_version('udata'), package_version('gouvpt')))
-%}
-<a href @click.prevent="$scrollTo('#top')" title="{{ _('Back to top') }}" class="top-button fa fa-4x fa-angle-up"></a>
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-
-            <section class="col-xs-12 col-sm-4">
-                <h3>{{ _('Open Data Guide') }}</h3>
-                <ul>
-                    {% for item in nav.gouvpt_footer %}
-                    <li>
-                        <a href="{{ '' if item.items else item.url }}">{{ item.label }}</a>
-                        {% if item.items %}
-                        <ul>
-                            {% for subitem in item.items %}
-                            <li><a href="{{ subitem.url }}">{{ subitem.label }}</a></li>
-                            {% endfor %}
-                        </ul>
-                        {% endif %}
-                    </li>
-                    {% endfor %}
-                </ul>
-            </section>
-
-            <section class="col-xs-12 col-sm-4 social">
-                <h3>{{ _('Contact Us') }}</h3>
-                <ul>
-                    <li>
-                        <a href="{{ current_theme.info.social.twitter }}" title="Twitter">
-                            <span class="fa fa-fw fa-twitter"></span>
-                            Twitter
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ current_theme.info.social.github }}" title="Github">
-                            <span class="fa fa-fw fa-github"></span>
-                            Github
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('posts.list') }}" title="{{ _('News') }}">
-                            <span class="fa fa-fw fa-newspaper-o"></span>
-                            {{ _('News') }}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="m&#x61;ilto:{{ config.CONTACT_EMAIL|obfuscate|safe }}">
-                            <span class="fa fa-fw fa-envelope"></span>
-                            {{ config.CONTACT_EMAIL }}
-                        </a>
-                    </li>
-                    <li>
-                        <span tabindex="-1" title="{{ _('Feeds') }}" class="feed-icon" role="button"
-                            v-popover popover-trigger="focus" popover-placement="top" popover-class="rss-popover">
-                            <span class="fa fa-fw fa-rss"></span>
-                            {{ _('Feeds') }}
-                            <span data-popover-content>
-                                <a title="{{ _('Datasets' )}}" href="{{ url_for('datasets.recent_feed') }}">
-                                    <span class="fa fa-rss"></span>
-                                    {{ _('Datasets') }}
-                                </a>
-                                <br/>
-                                <a title="{{ _('Reuses' )}}" href="{{ url_for('reuses.recent_feed') }}">
-                                    <span class="fa fa-rss"></span>
-                                    {{ _('Reuses') }}
-                                </a>
-                            </span>
-                        </span>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="col-xs-12 col-sm-4 text-right">
-                <img class="footer-logo img-responsive" src="{{ theme_static('img/logo-bloc.svg') }}" alt="data.gouv.lu logo" />
-                <ul class="versions">
-                    <li>
-                        <a href="https://github.com/opendatateam/udata/" title="{{ _('Open-source engine') }}">udata</a>
-                        <a href="https://pypi.python.org/pypi/udata/{{ package_version('udata') }}/" title="{{ _('Deployed version') }}">{{ package_version('udata') }}</a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/opendatalu/udata-gouvpt/" title="{{ _('Data.public.lu extension') }}">gouvpt</a>
-                        <a href="https://pypi.python.org/pypi/gouvpt/{{ package_version('gouvpt') }}/" title="{{ _('Deployed version') }}">{{ package_version('gouvpt') }}</a>
-                    </li>
-                </ul>
-            </section>
-        </div>
-
-        <div class="row credits">
-            <div class="col-xs-12">
-                <a href="http://www.digital-luxembourg.public.lu/" class="pull-right">
-                    {% set logo %}
-                    <img src="//cdn.public.lu/pictures/logos/digital-letzebuerg.png"
-                        srcset="//cdn.public.lu/pictures/logos/digital-letzebuerg-hdpi.png 1.5x,
-                                //cdn.public.lu/pictures/logos/digital-letzebuerg-xhdpi.png 2x,
-                                //cdn.public.lu/pictures/logos/digital-letzebuerg-xxhdpi.png 3x"
-                        alt="Digital Lëtzebuerg" />
-                    {% endset %}
-                    {{ _('An initiative by %(company)s', company=logo) }}
-                </a>
-                <a class="renow" href="http://renow.lu" title="Renow, votre guide en matière de qualité web gouvernemental luxembourgeois">
-                    <img src="{{ theme_static('img/renow.svg') }}" alt="Renow" />
-                </a>
-            </div>
-        </div>
-
-    </div>
+{% cache cache_duration, 'footer', g.lang_code|default(config.DEFAULT_LANGUAGE)|string %}
+<div class="toTop">
+    <i class="fa fa-angle-up"></i>
+</div>
+<footer id="footer">
+	<div class="social-media-wrapper">
+		<ul>
+			<li>
+				<a href="http://www.facebook.com/pages/Liferay/45119213107" target="_blank">
+					<i class="icone-facebook"> </i>
+				</a>
+			</li>
+			<li>
+				<a href="https://www.linkedin.com/company/liferay-inc-" target="_blank">
+					<i class="icone-linkedin"> </i>
+				</a>
+			</li>
+			<li>
+				<a href="https://twitter.com/liferay" target="_blank">
+					<i class="icone-twitter"> </i>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div id="sitemap">
+		<div class="nav-menu">
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span2 offset1">
+						<a href="#">&nbsp;</a>
+					</div>
+					<div class="span2">
+						<a href="javascript:void(0);">DADOS ABERTOS</a>
+						<ul class="layouts level-1">
+							<li>
+								<a href="./link4">Cidadãos</a>
+							</li>
+							<li>
+								<a href="./link4">Produtores</a>
+							</li>
+							<li>
+								<a href="./link4">Reutilizadores</a>
+							</li>
+							<li>
+								<a href="./link4">Programadores</a>
+							</li>
+						</ul>
+					</div>
+					<div class="span2">
+						<a href="./pagina-de-texto">RECURSOS</a>
+						<ul class="layouts level-1">
+							<li>
+								<a href="./link4">Conjuntos de dados</a>
+							</li>
+							<li>
+								<a href="./link4">Reutilizações</a>
+							</li>
+							<li>
+								<a href="./link4">Produtores</a>
+							</li>
+							<li>
+								<a href="./link4">API</a>
+							</li>
+							<li>
+								<a href="./link5">Licenças</a>
+							</li>
+						</ul>
+					</div>
+					<div class="span2">
+						<a href="./formulario">BLOG</a>
+						<ul class="layouts level-1">
+							<li>
+								<a href="./link4">Noticias</a>
+							</li>
+							<li>
+								<a href="./link4">Eventos</a>
+							</li>
+					</div>
+					<div class="span2">
+						<a href="{{ url_for('site.dashboard') }}">DASHBOARD</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="sitemapSubMenu">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span3">&nbsp;</div>
+				<div class="span1">
+					<a href="javascript:void(0);">PRÉMIOS</a>
+				</div>
+				<div class="span2">
+					<a href="javascript:void(0);">OUTRO LINK</a>
+				</div>
+				<div class="span2">
+					<a href="javascript:void(0);">POLÍTICA DE PRIVACIDADE</a>
+				</div>
+				<div class="span2">
+					<a href="./contactos">CONTACTOS</a>
+				</div>
+				<div class="span2">&nbsp;</div>
+			</div>
+		</div>
+	</div>
+	<div id="copyright">
+		<div class="container-fluid">
+			<div class="row-fluid footer-images-wrapper">
+				<div class="span2">
+					<img alt="República Portuguesa" src="{{ theme_static('images/republica.png') }}"> </div>
+				<div class="span2">
+					<img alt="AMA" src="{{ theme_static('images/ama.png') }}"> </div>
+				<div class="span2">
+					<img alt="Compete" src="{{ theme_static('images/compete.png') }}"> </div>
+				<div class="span2">
+					<img alt="Portugal 2020" src="{{ theme_static('images/pt2020.png') }}"> </div>
+				<div class="span2">
+					<img alt="União Europeia" src="{{ theme_static('images/ue.png') }}"> </div>
+			</div>
+			<!--footer images -->
+			<div class="row-fluid">
+				<div class="span12">
+					<p>@
+						<span id=footerYear>1991</span>
+						<strong>AMA - Agência Para A Modernização Administrativa, I.P.</strong>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </footer>
 {% endcache %}
