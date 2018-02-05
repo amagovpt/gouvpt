@@ -947,21 +947,21 @@ body.homepage #wrapper #banner .horizontal-menu{
 	font-size: 100% !important;
 }
 .search-box{
-	height: 209px;
 	width: 100%;
 	top: -209px;
 	z-index: 999999;
 }
 .search-box.visible{
-	top: 0px;
+    top: 0px;
+    padding-bottom: 20px;
 }
 .search-box > div{
 	position: relative;
 }
 .search-box i.icon-remove, 
 .search-wrapper i.icone-search{
-    margin-bottom: 50px;
-    margin-top: 60px;
+    margin-bottom: 20px;
+    margin-top: 10px;
     display: inline-block;
 }
 .search-box i.icon-remove {

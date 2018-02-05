@@ -1400,7 +1400,7 @@ h6{
 }
 /*TYPE 2*/
 .horizontal-menu.type2{
-    padding: 17px 28px 19px 28px;
+    padding: 17px 28px 71px 28px;
 }
 .horizontal-menu.type2 > div>ul{
 	height: 71px;
@@ -1481,6 +1481,10 @@ h6{
 .horizontal-menu.type2 > div >ul>li{
 	height: calc(100% - 18px);
     top: 18px;
+}
+.horizontal-menu.type3{
+	padding: 0px 28px 0px 28px;
+	float: right;
 }
 .horizontal-menu.type3 > div >ul{
 	height: auto;

@@ -4,21 +4,20 @@
     <div class="container-fluid" id="wrapper">
         {% include theme("header.html") with context %}
         {% block subnav %}{% endblock %}
-
-        <notification-zone></notification-zone>
-
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-warning alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
         <div id="content">
-        {% block content %}{% endblock %}
+          <notification-zone></notification-zone>
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-warning alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+    
+          {% block content %}{% endblock %}
         </div>
     </div>
     {% include theme('footer.html') %}
