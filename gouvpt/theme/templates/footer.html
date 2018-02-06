@@ -6,17 +6,17 @@
 	<div class="social-media-wrapper">
 		<ul>
 			<li>
-				<a href="http://www.facebook.com/pages/Liferay/45119213107" target="_blank">
+				<a href="http://www.facebook.com/ama.gov.pt/" target="_blank">
 					<i class="icone-facebook"> </i>
 				</a>
 			</li>
 			<li>
-				<a href="https://www.linkedin.com/company/liferay-inc-" target="_blank">
+				<a href="https://www.linkedin.com/company/ama---ag-ncia-para-a-moderniza-o-administrativa-ip/" target="_blank">
 					<i class="icone-linkedin"> </i>
 				</a>
 			</li>
 			<li>
-				<a href="https://twitter.com/liferay" target="_blank">
+				<a href="https://twitter.com/ama_gov_pt" target="_blank">
 					<i class="icone-twitter"> </i>
 				</a>
 			</li>
@@ -29,56 +29,18 @@
 					<div class="span2 offset1">
 						<a href="#">&nbsp;</a>
 					</div>
-					<div class="span2">
-						<a href="javascript:void(0);">DADOS ABERTOS</a>
-						<ul class="layouts level-1">
-							<li>
-								<a href="./link4">Cidadãos</a>
-							</li>
-							<li>
-								<a href="./link4">Produtores</a>
-							</li>
-							<li>
-								<a href="./link4">Reutilizadores</a>
-							</li>
-							<li>
-								<a href="./link4">Programadores</a>
-							</li>
-						</ul>
-					</div>
-					<div class="span2">
-						<a href="./pagina-de-texto">RECURSOS</a>
-						<ul class="layouts level-1">
-							<li>
-								<a href="./link4">Conjuntos de dados</a>
-							</li>
-							<li>
-								<a href="./link4">Reutilizações</a>
-							</li>
-							<li>
-								<a href="./link4">Produtores</a>
-							</li>
-							<li>
-								<a href="./link4">API</a>
-							</li>
-							<li>
-								<a href="./link5">Licenças</a>
-							</li>
-						</ul>
-					</div>
-					<div class="span2">
-						<a href="./formulario">BLOG</a>
-						<ul class="layouts level-1">
-							<li>
-								<a href="./link4">Noticias</a>
-							</li>
-							<li>
-								<a href="./link4">Eventos</a>
-							</li>
-					</div>
-					<div class="span2">
-						<a href="{{ url_for('site.dashboard') }}">DASHBOARD</a>
-					</div>
+                    {% for item in nav.gouvpt_footer %}
+                    <div class="span2">
+                        <a href="{{ 'javascript:void(0)' if item.items else item.url }}">{{ item.label }}</a>
+                        {% if item.items %}
+                        <ul class="layouts level-1">
+                            {% for subitem in item.items %}
+                            <li><a href="{{ subitem.url }}">{{ subitem.label }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
 				</div>
 			</div>
 		</div>
