@@ -9,9 +9,13 @@ import logging
 log = logging.getLogger(__name__)
 
 def init_app(app):
-    #Added Portuguese Single signOn Plugin with PySAML2
+    #Portuguese Single signOn Plugin with PySAML2
     from saml_plugin.saml_govpt import autenticacao_gov
     from saml_plugin.register_user import register_ptuser
     app.register_blueprint(autenticacao_gov)
     app.register_blueprint(register_ptuser)
+
+    #Portuguese FAQ's
+    from faqs_plugin.views import blueprint
+    app.register_blueprint(blueprint)
 
