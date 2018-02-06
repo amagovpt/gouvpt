@@ -28,7 +28,7 @@ pip install gouvpt/
 Then, define the installed theme as current in you `udata.cfg`:
 
 ```python
-PLUGINS = ['auth_gouvpt']
+PLUGINS = ['gouvpt']
 THEME = 'gouvpt'
 ```
 
