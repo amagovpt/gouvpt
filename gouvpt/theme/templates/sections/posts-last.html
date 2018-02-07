@@ -11,7 +11,9 @@
             </div>
 
             <div class="body col-sm-8">
-                <h1 class="title">{{ _('News in data') }}</h1>
+                <h3>
+                    <a href="{{ url_for('posts.list') }}">{{ _('News in data') }}</a>
+                </h3>
                 <h3 class="title">
                     <a href="{{ url_for('posts.show', post=post) }}" title="{{ post.name }}">
                         {{ post.name }}

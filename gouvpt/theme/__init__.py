@@ -34,7 +34,7 @@ gouvpt_menu = nav.Bar('gouvpt_menu', [
     ]),
 
     nav.Item(_('Blog/Events'), None, url='#', items=[
-        nav.Item(_('Game of code'), None, url='http://www.gameofcode.eu/'),
+        nav.Item(_('News'), 'posts.list'),
     ]),
 
     nav.Item(_('Contact'), None, url='#'),

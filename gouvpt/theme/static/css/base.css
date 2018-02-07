@@ -500,7 +500,8 @@ textarea.span1,
 		width: 470px;
 	}
 	.span4 {
-		width: 370px;
+		width: 360px;
+		margin-top: 60px;
 	}
 	.span3 {
 		width: 270px;
@@ -1200,7 +1201,7 @@ h2{
 	letter-spacing: 0.04em !important;
 }
 h3{
-	font-size: 24px !important;
+	font-size: 22px !important;
 	line-height: 38px !important;
 	font-family: 'latoblack' !important;
 	letter-spacing: 0.04em !important;
@@ -1407,7 +1408,8 @@ h6{
 	top: 53px;
 }
 .horizontal-menu.type2 > div >ul>li.search-icon{
-	padding-right: 0px;
+	height: 25px;
+	padding: 0;
 }
 .horizontal-menu.type2 > div >ul>li.search-icon i{
 	color: #fff;
@@ -1599,7 +1601,7 @@ nav.side-menu.menu-icon > ul > li i:first-child{
 button{
     padding: 0px 57px; 
     border-radius: 30px;
-    height: 43px;
+    height: 30px;
     font-size: 14px!important;
     font-family: 'latoregular'!important;    
     text-transform: uppercase;

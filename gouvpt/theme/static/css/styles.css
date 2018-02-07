@@ -2013,7 +2013,7 @@ html #wrapper footer .social-media-wrapper li {
 }
 
 .modal-header {
-    padding: 0px 15px;
+    padding: 5px 15px;
 }
 
 .actions-list .list-group-item{
@@ -2040,6 +2040,7 @@ html #wrapper footer .social-media-wrapper li {
 .site-search .input-group-btn .btn {
     background-color: transparent;
     width: 60px;
+    height: 40px;
 }
 
 .site-search .dropdown-menu.suggestion{
@@ -2053,4 +2054,16 @@ ul.search-results .search-result h4 {
 
 .row .body .title {
     margin: unset;
+}
+
+.close {
+    font-size: 30px !important;
+}
+
+.panel-body h2{
+    text-align: center;
+}
+
+#listNoticiasWrapper a:hover{
+    text-decoration: none !important;
 }
