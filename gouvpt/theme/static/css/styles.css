@@ -2050,3 +2050,7 @@ html #wrapper footer .social-media-wrapper li {
 ul.search-results .search-result h4 {
     line-height: initial;
 }
+
+.row .body .title {
+    margin: unset;
+}

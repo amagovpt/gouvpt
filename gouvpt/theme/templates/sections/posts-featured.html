@@ -1,5 +1,5 @@
 
-{% if last_post %}
+
 {% set posts = [last_post] %}
 <div class="top-banner">
     <div class="initialTopBanner">
@@ -15,11 +15,11 @@
                 <div class="black-home-overlay"></div>
                 <div class="text-area">
                     <br>
-                    <h1>{{ post.name }}</h1>
+                    <h1>{{ post.name|mdstrip(50) }}</h1>
                     <br>
-                    <h3>{{(post.headline or post.content)|mdstrip(280)}}</h3>
+                    <h3>{{(post.headline or post.content)|mdstrip(100)}}</h3>
                     <div class="description">
-                        <p> {{ post.content|markdown }} </p>
+                        <p> {{ post.content|mdstrip(470)|markdown }} </p>
                         <!-- <div class="verMaisHomeBtn">
                             <a href="javascript:void(0);">VER MAIS</a>
                         </div> -->
@@ -32,4 +32,3 @@
         </ul>
     </div>
 </div>
-{% endif %}
