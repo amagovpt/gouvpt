@@ -1,0 +1,47 @@
+{% extends theme('layouts/1-column.html') %}
+{% from theme('macros/paginator.html') import paginator with context %}
+
+{% set meta = {
+    'title': _('Posts'),
+    'description': _("%(site)s posts", site=config['SITE_TITLE']),
+    'keywords': [_('posts')],
+    'robots': 'noindex',
+} %}
+
+{% set bundle = 'search' %}
+
+{% block breadcrumb %}
+    <li class="active">
+        {{ _('Posts') }}
+        <small>{{ _('%(start)s to %(end)s on %(total)s',
+            start=posts.page_start,
+            end=posts.page_end,
+            total=posts.total) }}</small>
+    </li>
+{% endblock %}
+
+{% block main_content %}
+        <div id="listNoticiasWrapper">
+                <div class="row">
+                    {% for post in posts %}
+                    <div class="span4 col-xs-12 col-md-4 col-4">
+                        <a href="{{ post.display_url }}">
+                            <div class="image-wrapper">
+                            <div class="video-icon"><i class="fa fa-newspaper-o"></i></div>
+                            <div class="blue-overlay"></div>
+                            <img alt="{{ post.name }}" src="{{ post.image|placeholder('post') }}"> </div>
+                            <div class="date-wrapper">
+                                <i class="fa fa-calendar fa-fw"></i><span>{{ post.created_at|dateformat(format='long') }}</span>
+                            </div>
+                            <div class="lead3">{{ post.name }}</div>
+                            <div class="p2">{{ post.headline|mdstrip(120) }}</div>
+                        </a>
+                    </div>
+                    {% endfor %}
+
+                </div>
+                <div class="clearfix"></div>
+                {{ paginator(posts) }}
+        </div>
+       
+{% endblock %}

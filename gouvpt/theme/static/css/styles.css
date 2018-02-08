@@ -968,7 +968,8 @@ body.homepage #wrapper #banner .horizontal-menu{
 /* Footer Styles */
 #footer{
 	background: #F1F1F2 !important;
-	padding: 60px 0px 0px 0px !important;
+    padding: 60px 0px 0px 0px !important;
+    margin: unset;
 }
 #footer .social-media-wrapper{
 	margin-bottom: 50px;
@@ -1633,7 +1634,7 @@ html #wrapper footer .social-media-wrapper li {
 }
 #detailsNoticianWrapper img:not(.ratio) {
     display: block;
-    margin: 40px auto 30px auto;
+    margin: 20px auto 30px auto;
 }
 #detailsNoticianWrapper .btnVideo {
     display: block;
@@ -1693,7 +1694,10 @@ html #wrapper footer .social-media-wrapper li {
 #detailsNoticianWrapper .sharedIcons .tooltip-wrapper .tool-tip.tool-tip-top:not(.type2):before {
     border-top: 8px solid #3498db;
 }
-
+#detailsNoticianWrapper .post-body{
+    float: left;
+    margin-bottom: 10px;
+}
 
 #videoOpenScreen {
     background: rgba(0,0,0,0.65);
@@ -2013,7 +2017,7 @@ html #wrapper footer .social-media-wrapper li {
 }
 
 .modal-header {
-    padding: 0px 15px;
+    padding: 5px 15px;
 }
 
 .actions-list .list-group-item{
@@ -2040,6 +2044,7 @@ html #wrapper footer .social-media-wrapper li {
 .site-search .input-group-btn .btn {
     background-color: transparent;
     width: 60px;
+    height: 40px;
 }
 
 .site-search .dropdown-menu.suggestion{
@@ -2049,4 +2054,20 @@ html #wrapper footer .social-media-wrapper li {
 
 ul.search-results .search-result h4 {
     line-height: initial;
+}
+
+.row .body .title {
+    margin: unset;
+}
+
+.close {
+    font-size: 30px !important;
+}
+
+.panel-body h2{
+    text-align: center;
+}
+
+#listNoticiasWrapper a:hover{
+    text-decoration: none !important;
 }

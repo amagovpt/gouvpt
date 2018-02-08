@@ -34,7 +34,7 @@ gouvpt_menu = nav.Bar('gouvpt_menu', [
     ]),
 
     nav.Item(_('Blog/Events'), None, url='#', items=[
-        nav.Item(_('Game of code'), None, url='http://www.gameofcode.eu/'),
+        nav.Item(_('News'), 'posts.list'),
     ]),
 
     nav.Item(_('Contact'), None, url='#'),
@@ -62,7 +62,7 @@ nav.Bar('gouvpt_footer', [
 
     nav.Item(_('Blog'), None, url='#', items=[
         nav.Item(_('News'), 'posts.list'),
-        nav.Item(_('Events'), None, url='http://www.gameofcode.eu/'),
+        nav.Item(_('Events'), None, url='http://www.dados.gov.pt'),
     ]),
 
     nav.Item(_('Dashboard'), 'site.dashboard'),
