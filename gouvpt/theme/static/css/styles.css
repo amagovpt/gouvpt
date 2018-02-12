@@ -209,19 +209,19 @@ html #wrapper footer .social-media-wrapper ul li div {
 	text-align: right;
 	font-size: 12px;
 	font-family: "latoregular";
-	margin-bottom: 10px;
 }
 .lang-wrapper i.icon-globe {
 	height: 19px;
 	font-size: 19px;
     line-height: 19px;
-	color: #3498db;
+	color: #fff;
 	vertical-align: middle;
 	margin-right: 5px;
 	display: inline-block;
 	width: 14px;
 	margin-top: -1px;
 }
+
 #selectLang {
 	display: inline-block;
 	background-color: transparent;
@@ -2025,8 +2025,8 @@ html #wrapper footer .social-media-wrapper li {
 }
 
 .site-logo{
-    padding-top: 10px;
     position: absolute;
+    bottom: 30px;
 }
 
 .carousel{
@@ -2070,4 +2070,31 @@ ul.search-results .search-result h4 {
 
 #listNoticiasWrapper a:hover{
     text-decoration: none !important;
+}
+
+.lang-wrapper .search-icon{
+    cursor: pointer;
+}
+
+.lang-wrapper button{
+    padding: 0px 30px 0px 10px;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.lang-wrapper button i.icon-globe{
+    color: #2980b9;
+}
+
+.lang-wrapper .dropdown-toggle{
+    color: white;
+}
+
+.lang-wrapper .dropdown-toggle:hover{
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.lang-wrapper .dropdown-menu{
+    margin-top: 20px;
 }

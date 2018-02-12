@@ -1399,10 +1399,10 @@ h6{
 }
 /*TYPE 2*/
 .horizontal-menu.type2{
-    padding: 17px 28px 71px 28px;
+    padding: 20px 28px 55px 28px;
 }
 .horizontal-menu.type2 > div>ul{
-	height: 71px;
+	height: unset;
 }
 .horizontal-menu.type2 > div > ul > li > .sub-menu{
 	top: 53px;
@@ -1500,7 +1500,6 @@ h6{
     text-align: right;
     font-size: 12px;
     font-family: "latoregular";
-    margin-bottom: 10px;
 }
 
 .lang-wrapperX{
@@ -3496,10 +3495,12 @@ label.animateInput {
 	.horizontal-menu.type2 > div>ul{
 		height: auto;
     	float: none !important;
-		display: none;	
+		display: none;
+		padding-top: 40px;	
 	}
 	.horizontal-menu{
 		position: relative;
+		top: -10px;
 	}
 	.horizontal-menu i.icone-burguer {
 	    position: absolute;
@@ -3552,7 +3553,9 @@ label.animateInput {
 		display: none;
 	}
 	.horizontal-menu.type2 i.icone-burguer{
-		top: 53px;
+		top: 55px;
+		left: auto;
+		right: auto;
 	}
 	.horizontal-menu.type2 > div>ul>li{
 		top: inherit !important;

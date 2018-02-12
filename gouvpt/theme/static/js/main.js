@@ -31,17 +31,17 @@ $j(document).ready(function($) {
         window.location = "search";
     });
 
-    var enSelected = window.location.href.toUpperCase().indexOf("EN") > -1; 
-    var ptSelected = window.location.href.toUpperCase().indexOf("PT") > -1; 
+    // var enSelected = window.location.href.toUpperCase().indexOf("EN") > -1; 
+    // var ptSelected = window.location.href.toUpperCase().indexOf("FR") > -1; 
     
-    if(!enSelected && !ptSelected) {
-        enSelected = true;
-    }
-    if(enSelected) {
-        $j("#selectLang").val("en");
-    } else if(ptSelected) {
-        $j("#selectLang").val("pt");
-    }
+    // if(!enSelected && !ptSelected) {
+    //     enSelected = true;
+    // }
+    // if(enSelected) {
+    //     $j("#selectLang").val("en");
+    // } else if(ptSelected) {
+    //     $j("#selectLang").val("fr");
+    // }
     
     $j('#selectLang').select2({
         minimumResultsForSearch: -1,
