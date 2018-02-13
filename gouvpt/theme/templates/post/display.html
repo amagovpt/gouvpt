@@ -163,7 +163,7 @@
 {% if previous_post or next_post %}
 <section class="content nav-section">
     <div class="container">
-        <div class="col-sm-4">
+        <div class="col-sm-4 col-xs-4 text-left">
             {% if previous_post %}
             <a href="{{ previous_post.display_url }}" title="{{ _('Previous post') }}" class="btn btn-primary">
                 <span class="fa fa-chevron-left"></span>
@@ -171,13 +171,13 @@
             </a>
             {% endif %}
         </div>
-        <div class="col-sm-4 text-center">
+        <div class="col-sm-4 col-xs-4 text-center">
             <a href="{{ url_for('posts.list') }}" class="btn btn-primary">
                 <span class="fa fa-fw fa-list"></span>
                 {{ _('All posts') }}
             </a>
         </div>
-        <div class="col-sm-4 text-right">
+        <div class="col-sm-4 col-xs-4 text-right">
             {% if next_post %}
             <a href="{{ next_post.display_url }}" title="{{ _('Next post') }}" class="btn btn-primary">
                 {{ _('Next post') }}
