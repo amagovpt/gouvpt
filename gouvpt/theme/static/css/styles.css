@@ -83,8 +83,8 @@ a {
 }
 a:hover {
 	font-family: "karmamedium";
-	font-size: 16px;
-	line-height: 18px;
+	/* font-size: 16px;
+	line-height: 18px; */
 	color: #3498DB;
 	text-decoration: underline;
 }
@@ -247,8 +247,6 @@ html #wrapper footer .social-media-wrapper ul li div {
 }
 .lang-wrapper .select2-container .select2-selection--single .select2-selection__rendered {
     color: #fff !important;
-    font-size: 12px !important;
-    line-height: 12px !important;
     font-family: "latoregular" !important;
     padding: 0 !important;
 }
@@ -294,7 +292,7 @@ html #wrapper footer .social-media-wrapper ul li div {
 	background-color: white;
 }
 body:not(.homepage) #content {
-	padding: 115px 0 0 0!important;	
+	padding: 105px 0 0 0!important;	
 }
 body #wrapper #banner {
     position: fixed!important;
@@ -2013,7 +2011,9 @@ html #wrapper footer .social-media-wrapper li {
 }
 
 .username{
-    margin-left: 5px;
+    text-transform: uppercase;
+    font-family: "latoregular" !important;
+    font-size: 14px;
 }
 
 .modal-header {
