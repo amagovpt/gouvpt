@@ -1405,7 +1405,7 @@ h6{
 	height: unset;
 }
 .horizontal-menu.type2 > div > ul > li > .sub-menu{
-	top: 53px;
+	top: 20px;
 }
 .horizontal-menu.type2 > div >ul>li.search-icon{
 	height: 25px;
@@ -2470,7 +2470,7 @@ label.animateInput {
 	padding-left: 15px !important;
 	padding-right: 15px !important;
 	font-size: 16px;
-	line-hieght: 16px;
+	line-height: 16px;
 	font-family: "karmalight";
     font-weight: normal;
     color: #2A2A2A;
@@ -3479,7 +3479,7 @@ label.animateInput {
 .responsives-wrapper i.icon-eye-open{
 	color: #2980B9;
 }
-@media only screen and (min-width: 1025px) {
+@media only screen and (min-width: 992px) {
 	.horizontal-menu > div>ul{
 		display: block !important;
 	}
@@ -3490,7 +3490,7 @@ label.animateInput {
 		display: block !important;
 	}
 }
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 991px) {
 	.horizontal-menu > div>ul,
 	.horizontal-menu.type2 > div>ul{
 		height: auto;
@@ -3500,7 +3500,10 @@ label.animateInput {
 	}
 	.horizontal-menu{
 		position: relative;
-		top: -10px;
+		margin-top: -10px;
+	}
+	.horizontal-menu.type2{
+		padding: 20px 28px 65px 28px;
 	}
 	.horizontal-menu i.icone-burguer {
 	    position: absolute;

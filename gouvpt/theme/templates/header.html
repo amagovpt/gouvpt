@@ -21,7 +21,7 @@
                             <i class="icone-search icon-globe">&nbsp;</i>
                         </span>
 
-                        <button class="button1" @click.prevent="$refs.publishActionModal.show">
+                        <button class="button1 grey" @click.prevent="$refs.publishActionModal.show">
                             <i class="fa fa-fw fa-cloud-upload icon-globe"></i>
                             <span class="hidden-xs">{{ _('Contribute!') }}</span>
                         </button>
@@ -72,7 +72,7 @@
                         </span>
                         {% else %}
 
-                        <button class="button1" onclick="location.href = '{{ url_for('security.login', next=request.url) }}';">
+                        <button class="button1 white" onclick="location.href = '{{ url_for('security.login', next=request.url) }}';">
                                 <i class="fa fa-fw fa-sign-in icon-globe"></i>
                                 <span class="hidden-xs">{{ _('Sign In / Register') }}</span>
                         </button>
@@ -92,7 +92,7 @@
                         {% endif %}
                     </div>
 
-                    <div class="site-logo hidden-xs hidden-md">
+                    <div class="site-logo hidden-xs hidden-sm">
                         <a href="{{ url_for('site.home') }}">
                             <img src="{{ theme_static('images/logo.png') }}" alt="{{ g.site.title }}" />
                         </a>

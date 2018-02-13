@@ -208,7 +208,7 @@ html #wrapper footer .social-media-wrapper ul li div {
 	width: 100%;
 	text-align: right;
 	font-size: 12px;
-	font-family: "latoregular";
+    font-family: "latoregular";
 }
 .lang-wrapper i.icon-globe {
 	height: 19px;
@@ -1049,7 +1049,7 @@ body.homepage #wrapper #banner .horizontal-menu{
 }
 #copyright{
 	background: #fff;	
-	padding-bottom: 10px;
+	padding-bottom: 50px;
 }
 #copyright .row-fluid{
 	text-align: center;
@@ -2082,10 +2082,6 @@ ul.search-results .search-result h4 {
     margin: 0 10px;
 }
 
-.lang-wrapper button i.icon-globe{
-    color: #2980b9;
-}
-
 .lang-wrapper .dropdown-toggle{
     color: white;
 }
@@ -2097,4 +2093,24 @@ ul.search-results .search-result h4 {
 
 .lang-wrapper .dropdown-menu{
     margin-top: 20px;
+}
+
+.hidden-xs{
+    padding-left: 5px;
+}
+
+.lang-wrapper .grey{
+    border: 0;
+    background: gray;
+    color:white;
+}
+
+.lang-wrapper .white{
+    border: 0;
+    background: white;
+    color:gray;
+}
+
+.lang-wrapper .white i.icon-globe {
+    color:gray;
 }
