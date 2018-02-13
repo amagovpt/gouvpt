@@ -209,6 +209,7 @@ html #wrapper footer .social-media-wrapper ul li div {
 	text-align: right;
 	font-size: 12px;
     font-family: "latoregular";
+    height: 40px;
 }
 .lang-wrapper i.icon-globe {
 	height: 19px;
@@ -292,7 +293,7 @@ html #wrapper footer .social-media-wrapper ul li div {
 	background-color: white;
 }
 body:not(.homepage) #content {
-	padding: 105px 0 0 0!important;	
+	padding: 115px 0 0 0!important;	
 }
 body #wrapper #banner {
     position: fixed!important;

@@ -4,24 +4,10 @@ Official udata theme for the Open Data Portal of Portugal
 
 ## Usage
 
-Install the theme package in your udata environement:
+Clone and install the theme package in your udata environement:
 
 ```bash
 git clone https://github.com/amagovpt/gouvpt.git
-```
-
-Build gouvpt assets on theme directory:
-
-```bash
-cd gouvpt/
-nvm use
-npm install
-inv assets-build
-```
-
-Return to udata directory and run:
-
-```bash
 pip install gouvpt/
 ```
 
@@ -51,13 +37,7 @@ Set your `udata.cfg` with the following parameters
 - `SECURITY_SAML_IDP_METADATA = 'metadata_file1.xml,metadata_file2.xml,..'` : Metadata files for IDP's
 - `SECURITY_SAML_FAAALEVEL = 1` : : Authentication Level requested to autenticacao.gov.pt
 
-See autenticacao.gov.pt and SAML2 protocol docs for extra information
-
-### configuration parameters
-
-Some features are optionnal and can be enabled with the following `udata.cfg` parameters
-
-- `gouvpt_GOVBAR = True/False`: Toggle the govbar
+See autenticacao.gov.pt and SAML2 protocol docs for feature information.
 
 ## Development
 
@@ -69,14 +49,6 @@ If you want to execute some development tasks like extracting the translations o
 virtualenv --python=python2.7 venv 
 source venv/bin/activate
 pip install -r requirements/develop.pip
-```
-
-If you want to build assets, you also need node.js. The prefered way is with [nvm][]:
-
-```bash
-nvm use
-npm install
-inv assets-build
 ```
 
 Ok, you are ready, you can now execute some Development commands.
