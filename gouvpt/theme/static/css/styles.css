@@ -213,15 +213,13 @@ html #wrapper footer .social-media-wrapper ul li div {
 }
 .lang-wrapper i.icon-globe {
 	height: 19px;
-	font-size: 23px;
+	font-size: 25px;
     line-height: 19px;
 	color: #fff;
 	vertical-align: middle;
-	margin-right: 5px;
+	margin-right: 9px;
 	display: inline-block;
 	width: 14px;
-    margin-top: -1px;
-    margin-right: 10px;
 }
 
 #selectLang {
@@ -271,7 +269,6 @@ html #wrapper footer .social-media-wrapper ul li div {
 }
 .select2-container--open .select2-dropdown.select2LangOptions .select2-results__option {
     color: #fff!important;
-    font-size: 12px!important;
     line-height: 12px!important;
     font-family: "latoregular"!important;
     padding: 10px 5px 10px 5px!important;

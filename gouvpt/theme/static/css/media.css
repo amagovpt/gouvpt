@@ -28,8 +28,6 @@
     		float: none;
 		}
 	.search-box i.icon-remove{
-	    margin-bottom: 55px;
-    	margin-top: 55px;
     	margin-right: 5px;
 	}
 	.search-box i.icon-remove:before{
