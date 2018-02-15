@@ -213,14 +213,15 @@ html #wrapper footer .social-media-wrapper ul li div {
 }
 .lang-wrapper i.icon-globe {
 	height: 19px;
-	font-size: 19px;
+	font-size: 23px;
     line-height: 19px;
 	color: #fff;
 	vertical-align: middle;
 	margin-right: 5px;
 	display: inline-block;
 	width: 14px;
-	margin-top: -1px;
+    margin-top: -1px;
+    margin-right: 10px;
 }
 
 #selectLang {
@@ -2010,112 +2011,92 @@ html #wrapper footer .social-media-wrapper li {
 .news-wrapper .span4 .image-wrapper img, #listNoticiasWrapper .span4 .image-wrapper img {
     width: 100%;
 }
-
 .username{
     text-transform: uppercase;
     font-family: "latoregular" !important;
     font-size: 14px;
 }
-
 .modal-header {
     padding: 5px 15px;
 }
-
 .actions-list .list-group-item{
     background-color: transparent;
 }
-
 .site-logo{
     position: absolute;
     bottom: 30px;
 }
-
 .carousel{
     height: 300px !important;
 }
-
 .carousel .carousel-caption {
     height: initial;
 }
-
 .carousel .carousel-caption .pull-left {
     margin-right: 10px;
 }
-
 .site-search .input-group-btn .btn {
     background-color: transparent;
     width: 60px;
     height: 40px;
 }
-
 .site-search .dropdown-menu.suggestion{
     border-radius: 5px !important;
     padding: 15px !important;
 }
-
 ul.search-results .search-result h4 {
     line-height: initial;
 }
-
 .row .body .title {
     margin: unset;
 }
-
 .close {
     font-size: 30px !important;
 }
-
 .panel-body h2{
     text-align: center;
 }
-
 #listNoticiasWrapper a:hover{
     text-decoration: none !important;
 }
-
 .lang-wrapper .search-icon{
     cursor: pointer;
 }
-
 .lang-wrapper button{
     padding: 0px 30px 0px 10px;
     display: inline-block;
     margin: 0 10px;
 }
-
 .lang-wrapper .dropdown-toggle{
     color: white;
 }
-
 .lang-wrapper .dropdown-toggle:hover{
     text-decoration: none;
     font-size: 14px;
 }
-
 .lang-wrapper .dropdown-menu{
     margin-top: 20px;
 }
-
 .hidden-xs{
     padding-left: 5px;
 }
-
 .lang-wrapper .grey{
     border: 0;
     background: gray;
     color:white;
 }
-
 .lang-wrapper .white{
     border: 0;
     background: white;
     color:gray;
 }
-
 .lang-wrapper .white i.icon-globe {
     color:gray;
 }
-
 .span4{
     margin-bottom: 40px;
+}
+
+footer .span12 strong {
+    font-weight: bold;
 }
