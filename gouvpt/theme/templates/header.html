@@ -38,10 +38,10 @@
 
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="{{ url_for('users.show', user=current_user) }}">
-                                        <span class="fa fa-fw fa-user"></span>
-                                        {{ _('My profile') }}
-                                    </a>
+                                    <a href="{{ url_for('users.show', user=current_user) }}">{{ _('Profile') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('security.change_password') }}">{{ _('Change password') }}</a>
                                 </li>
                                 {% if current_user.organizations %}
                                 <li role="presentation" class="dropdown-header">{{ _('Organizations') }}</li>
@@ -52,18 +52,16 @@
                                     </a>
                                 </li>
                                 {% endfor %}
-                                <li class="divider"></li>
                                 {% endif %}
+                                <li class="divider"></li>
                                 <li>
                                     <a href="{{ url_for('admin.index') }}">
-                                        <span class="fa fa-fw fa-wrench"></span>
                                         {{ _('Administration') }}
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{{ url_for('security.logout') }}">
-                                        <span class="fa fa-fw fa-sign-out"></span>
                                         {{ _('Logout') }}
                                     </a>
                                 </li>

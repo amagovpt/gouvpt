@@ -2093,7 +2093,9 @@ ul.search-results .search-result h4 {
 .span4{
     margin-bottom: 40px;
 }
-
 footer .span12 strong {
     font-weight: bold;
+}
+footer .span12 a{
+    color: #777;
 }
