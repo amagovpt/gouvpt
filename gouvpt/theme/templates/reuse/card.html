@@ -21,6 +21,10 @@
             </a>
             <span class="date">{{ reuse.created_at|dateformat('long') }}</span>
         </div>
+        <span class="btn btn-xs maincolor" v-tooltip title="{{ _('Type') }}">
+            <span class="fa fa-file fa-fw"></span>
+            {{ reuse.type_label }}
+        </span>       
     </footer>
 
     <a class="rollover fade in" href="{{url_for('reuses.show', reuse=reuse)}}"

@@ -2099,3 +2099,20 @@ footer .span12 strong {
 footer .span12 a{
     color: #777;
 }
+.card.reuse-card .btn {
+    display: block;
+    font-size: 10px;
+    float: right;
+    margin-right: 5px;
+    position: relative;
+}
+.maincolor {
+    color:white !important;
+    background-color: #3498DB;    
+}
+#content .form, .dataset-container {
+    padding: 10px 0 20px;
+}
+.card h4 {
+    line-height: 11px !important;
+}
