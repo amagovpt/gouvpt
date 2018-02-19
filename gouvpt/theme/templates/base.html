@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 
-{% block body %}
-    <div class="container-fluid" id="wrapper">
-        {% include theme("header.html") with context %}
-        {% block subnav %}{% endblock %}
-        <div id="content">
+{% macro notification_zone() %}
           <notification-zone></notification-zone>
           {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -16,8 +12,17 @@
               {% endfor %}
             {% endif %}
           {% endwith %}
-    
-          {% block content %}{% endblock %}
+{% endmacro %}
+
+{% block body %}
+    <div class="container-fluid" id="wrapper">
+        {% include theme("header.html") with context %}
+        {% block subnav %}{% endblock %}
+        <div id="content">
+            {% if request.endpoint != 'site.home' %}
+              {{ notification_zone() }}
+            {% endif %}
+            {% block content %}{% endblock %}
         </div>
     </div>
     {% include theme('footer.html') %}

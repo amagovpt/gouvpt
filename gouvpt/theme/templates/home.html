@@ -2,7 +2,12 @@
 {% set body_class = 'homepage' %} 
 {% block content %}
 {% cache cache_duration, 'home', g.lang_code%}
-{% include theme("sections/posts-featured.html") %}
+
+<div class="top-banner">
+	{% include theme("sections/posts-featured.html") %}
+</div>
+
+{{ notification_zone() }}
 
 <div class="block-wrapper reuses">
 	{% include theme("sections/reuses-featured.html") %}
