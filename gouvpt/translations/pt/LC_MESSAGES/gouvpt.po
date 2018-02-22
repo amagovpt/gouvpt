@@ -1,0 +1,335 @@
+# Portuguese translations for gouvpt.
+# Copyright (C) 2018 ORGANIZATION
+# This file is distributed under the same license as the gouvpt project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gouvpt 0.5.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2018-02-22 13:30+0000\n"
+"PO-Revision-Date: 2018-02-22 12:54+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: pt\n"
+"Language-Team: pt <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.5.3\n"
+
+#: gouvpt/theme/__init__.py:20 gouvpt/theme/__init__.py:47
+msgid "Open Data"
+msgstr "Dados Abertos"
+
+#: gouvpt/theme/__init__.py:21 gouvpt/theme/__init__.py:48
+msgid "Citizens"
+msgstr "Cidadãos"
+
+#: gouvpt/theme/__init__.py:22 gouvpt/theme/__init__.py:49
+msgid "Producers"
+msgstr "Produtores"
+
+#: gouvpt/theme/__init__.py:23 gouvpt/theme/__init__.py:50
+msgid "Reusers"
+msgstr "Reutilizadores"
+
+#: gouvpt/theme/__init__.py:24 gouvpt/theme/__init__.py:51
+msgid "Developers"
+msgstr ""
+
+#: gouvpt/theme/__init__.py:27 gouvpt/theme/__init__.py:54
+msgid "Resources"
+msgstr "Recursos"
+
+#: gouvpt/theme/__init__.py:28 gouvpt/theme/__init__.py:55
+msgid "Datasets"
+msgstr "Conjuntos de dados"
+
+#: gouvpt/theme/__init__.py:29 gouvpt/theme/__init__.py:56
+#: gouvpt/theme/templates/dataset/card.html:38
+msgid "Reuses"
+msgstr "Reutilizações"
+
+#: gouvpt/theme/__init__.py:30 gouvpt/theme/__init__.py:57
+#: gouvpt/theme/templates/header.html:47
+msgid "Organizations"
+msgstr "Organizações"
+
+#: gouvpt/theme/__init__.py:31 gouvpt/theme/__init__.py:58
+msgid "API"
+msgstr ""
+
+#: gouvpt/theme/__init__.py:32 gouvpt/theme/__init__.py:59
+msgid "Terms of use"
+msgstr "Termos de utilização"
+
+#: gouvpt/theme/__init__.py:33 gouvpt/theme/__init__.py:60
+#: gouvpt/theme/__init__.py:68
+msgid "Dashboard"
+msgstr "Painel de Controle"
+
+#: gouvpt/theme/__init__.py:36
+msgid "Blog/Events"
+msgstr "Blog/Eventos"
+
+#: gouvpt/theme/__init__.py:37 gouvpt/theme/__init__.py:64
+#: gouvpt/theme/templates/post/display.html:18
+msgid "News"
+msgstr "Noticias"
+
+#: gouvpt/theme/__init__.py:40
+msgid "Contact"
+msgstr "Contacto"
+
+#: gouvpt/theme/__init__.py:63
+msgid "Blog"
+msgstr ""
+
+#: gouvpt/theme/__init__.py:65
+msgid "Events"
+msgstr "Eventos"
+
+#: gouvpt/theme/templates/footer.html:86
+msgid "dados.gov.pt uData extension"
+msgstr ""
+
+#: gouvpt/theme/templates/footer.html:88
+msgid "Open-source engine"
+msgstr ""
+
+#: gouvpt/theme/templates/header.html:6
+msgid "Search"
+msgstr "Pesquisa"
+
+#: gouvpt/theme/templates/header.html:26
+msgid "Contribute!"
+msgstr "Contribuir!"
+
+#: gouvpt/theme/templates/header.html:41
+msgid "Profile"
+msgstr "Perfil"
+
+#: gouvpt/theme/templates/header.html:44
+msgid "Change password"
+msgstr "Alterar palavra-passe"
+
+#: gouvpt/theme/templates/header.html:59
+msgid "Administration"
+msgstr "Administração"
+
+#: gouvpt/theme/templates/header.html:65
+msgid "Logout"
+msgstr "Sair"
+
+#: gouvpt/theme/templates/header.html:75
+msgid "Sign In / Register"
+msgstr "Entrar / Registar"
+
+#: gouvpt/theme/templates/dataset/card.html:29
+msgid "Territorial coverage"
+msgstr "Cobertura territorial"
+
+#: gouvpt/theme/templates/dataset/card.html:45
+#: gouvpt/theme/templates/reuse/card.html:47
+msgid "Stars"
+msgstr "Estrelas"
+
+#: gouvpt/theme/templates/dataset/card.html:65
+msgid "Temporal coverage"
+msgstr "Cobertura temporal"
+
+#: gouvpt/theme/templates/dataset/card.html:75
+msgid "Territorial coverage granularity"
+msgstr "Granularidade de cobertura territorial"
+
+#: gouvpt/theme/templates/dataset/card.html:85
+msgid "Frequency"
+msgstr "Frequencia"
+
+#: gouvpt/theme/templates/mail/security/confirmation_instructions.html:7
+#, python-format
+msgid "Welcome to %(site)s!"
+msgstr "Bem vindo ao %(site)s!"
+
+#: gouvpt/theme/templates/mail/security/confirmation_instructions.html:10
+msgid ""
+"To activate your account, please confirm your email address through the "
+"link below:"
+msgstr "Para activar a sua conta, confirme o email através do seguinte endereço :"
+
+#: gouvpt/theme/templates/mail/security/confirmation_instructions.html:18
+msgid "Confirm now"
+msgstr "Confirmar"
+
+#: gouvpt/theme/templates/post/display.html:32
+#: gouvpt/theme/templates/post/display.html:84
+msgid "Photo credit"
+msgstr "Créditos"
+
+#: gouvpt/theme/templates/post/display.html:60
+#: gouvpt/theme/templates/post/display.html:63
+msgid "Private"
+msgstr "Privado"
+
+#: gouvpt/theme/templates/post/display.html:61
+msgid "This post is private and will not be visible by other users"
+msgstr "Esta publicação é privada e não será visivel por outros utilizadores"
+
+#: gouvpt/theme/templates/post/display.html:67
+#: gouvpt/theme/templates/post/display.html:70
+msgid "Deleted"
+msgstr "Apagado"
+
+#: gouvpt/theme/templates/post/display.html:68
+msgid "This post has been deleted. This will be permanent in the next 24 hours"
+msgstr "Esta publicação foi apagada. Será permanente dentro de 24 horas"
+
+#: gouvpt/theme/templates/post/display.html:116
+msgid "Edit"
+msgstr "Editar"
+
+#: gouvpt/theme/templates/post/display.html:133
+msgid "Associated reuses"
+msgstr ""
+
+#: gouvpt/theme/templates/post/display.html:146
+msgid "Associated datasets"
+msgstr "Conjunto de dados associados"
+
+#: gouvpt/theme/templates/post/display.html:168
+#: gouvpt/theme/templates/post/display.html:170
+msgid "Previous post"
+msgstr "Publicação anterior"
+
+#: gouvpt/theme/templates/post/display.html:177
+msgid "All posts"
+msgstr "Todas as publicaçoẽs"
+
+#: gouvpt/theme/templates/post/display.html:182
+#: gouvpt/theme/templates/post/display.html:183
+msgid "Next post"
+msgstr "Proxima publicação"
+
+#: gouvpt/theme/templates/post/display.html:197
+msgid "Discussions"
+msgstr "Discussões"
+
+#: gouvpt/theme/templates/post/display.html:210
+msgid "Comments about this post."
+msgstr "Comentários sobre esta publicação."
+
+#: gouvpt/theme/templates/post/list.html:5
+#: gouvpt/theme/templates/post/list.html:15
+msgid "Posts"
+msgstr "Publicações"
+
+#: gouvpt/theme/templates/post/list.html:6
+#, python-format
+msgid "%(site)s posts"
+msgstr "%(site)s publicações"
+
+#: gouvpt/theme/templates/post/list.html:7
+msgid "posts"
+msgstr "publicações"
+
+#: gouvpt/theme/templates/post/list.html:16
+#, python-format
+msgid "%(start)s to %(end)s on %(total)s"
+msgstr "%(start)s a %(end)s de %(total)s"
+
+#: gouvpt/theme/templates/reuse/card.html:34
+msgid "Type"
+msgstr "Tipo"
+
+#: gouvpt/theme/templates/reuse/card.html:40
+msgid "Number of datasets used"
+msgstr "Conjuntos de dados utilizados"
+
+#: gouvpt/theme/templates/sections/datasets-featured.html:5
+msgid "Featured datasets"
+msgstr "Conjuntos de dados em destaque"
+
+#: gouvpt/theme/templates/sections/datasets-featured.html:6
+msgid "Latest datasets"
+msgstr "Ultimos conjuntos de dados"
+
+#: gouvpt/theme/templates/sections/datasets-featured.html:42
+msgid "See more"
+msgstr "Ver mais"
+
+#: gouvpt/theme/templates/sections/posts-last.html:15
+msgid "News in data"
+msgstr "Novidades"
+
+#: gouvpt/theme/templates/sections/reuses-featured.html:8
+msgid "Best reuse cases"
+msgstr "Melhores reutilizações"
+
+#: gouvpt/theme/templates/sections/reuses-featured.html:40
+#: gouvpt/theme/templates/sections/reuses-featured.html:41
+msgid "Latest reuses"
+msgstr "Ultimas reutilizações"
+
+#: gouvpt/theme/templates/security/login_user.html:15
+msgid "Sign In"
+msgstr "Entrar"
+
+#: gouvpt/theme/templates/security/login_user.html:19
+msgid "Sign in"
+msgstr "Entrar"
+
+#: gouvpt/theme/templates/security/login_user.html:23
+msgid "Forgot your password?"
+msgstr "Esqueceu a plavra-passe?"
+
+#: gouvpt/theme/templates/security/login_user.html:25
+msgid "Recover your password"
+msgstr "Recupere a palavra-passe"
+
+#: gouvpt/theme/templates/security/login_user.html:34
+#: gouvpt/theme/templates/security/login_user.html:49
+#: gouvpt/theme/templates/security/register_saml.html:31
+#: gouvpt/theme/templates/security/register_user.html:30
+msgid "Sign up"
+msgstr "Registar"
+
+#: gouvpt/theme/templates/security/login_user.html:37
+#: gouvpt/theme/templates/security/login_user.html:52
+msgid "Register"
+msgstr "Registar"
+
+#: gouvpt/theme/templates/security/login_user.html:41
+msgid "Create an account"
+msgstr "Criar uma conta"
+
+#: gouvpt/theme/templates/security/register_saml.html:13
+#: gouvpt/theme/templates/security/register_user.html:12
+msgid "Sign Up"
+msgstr "Registar"
+
+#: gouvpt/theme/templates/security/register_saml.html:22
+#: gouvpt/theme/templates/security/register_user.html:21
+#, python-format
+msgid ""
+"I have read and accept <a href=\"%(url)s\" target=\"_blank\"> the terms "
+"and conditions of the service.</a>"
+msgstr ""
+"Li e aceitei <a href=\"%(url)s\" target=\"_blank\"> os termos e condições"
+" do serviço.</a>"
+
+#: gouvpt/theme/templates/security/register_saml.html:24
+#: gouvpt/theme/templates/security/register_user.html:23
+msgid ""
+"In particular, I understand that this site\n"
+"                    values the production and enrichment of datasets over"
+" definitive or partisan interpretations.\n"
+"                    The members of the community are in charge of looking"
+" after the quality of the content it produces."
+msgstr ""
+"Em particular, compreendo que esta página\n"
+"                    valoriza a produção e enrequecimento de conjuntos de "
+"dados .\n"
+"                    Os membros desta comunidade estão encarregados de "
+"promover a qualidade do conteudo promovido."
+

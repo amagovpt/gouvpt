@@ -8,7 +8,7 @@
 <div class="container auth-container">
 </br>
     <form class="form-horizontal validate col-md-offset-2 col-md-8"
-        method="post" action="{{ url_for('register_user.register') }}">
+        method="post" action="{{ url_for('saml.register') }}">
         <fieldset>
             <legend>{{ _('Sign Up') }}</legend>
             {{ forms.render(form, exclude=[form.submit]) }}

@@ -16,7 +16,7 @@ from udata.forms import fields, validators
 from udata.models import datastore
 from udata import theme
 
-register_ptuser = Blueprint('register_user', __name__)
+from saml_govpt import autenticacao_gov
 
 def unique_user_email(form, field):
     if datastore.get_user(field.data) is not None:
@@ -33,7 +33,7 @@ class UserCustomForm(Form):
     user_nic = fields.HiddenField('NIC')
 
 
-@register_ptuser.route('/saml/register', methods=['POST','GET'])
+@autenticacao_gov.route('/saml/register', methods=['POST','GET'])
 @anonymous_user_required
 def register():
     form = UserCustomForm()
