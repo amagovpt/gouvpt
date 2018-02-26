@@ -2250,3 +2250,6 @@ section.breadcrumb-bar .breadcrumb {
 .site-search .form-control{
     border-radius: 20px !important;
 }
+.horizontal-menu.type2 > div > ul > li.active {
+    border-bottom: 10px solid #F08322;
+}

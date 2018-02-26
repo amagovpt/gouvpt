@@ -1404,7 +1404,7 @@ h6{
 	height: unset;
 }
 .horizontal-menu.type2 > div > ul > li > .sub-menu{
-	top: 20px;
+	top: 25px;
 }
 .horizontal-menu.type2 > div >ul>li.search-icon{
 	height: 25px;
@@ -1479,7 +1479,8 @@ h6{
 }
 .horizontal-menu.type2 > div >ul>li{
 	height: calc(100% - 18px);
-    top: 18px;
+	top: 18px;
+	padding-bottom: 5px;
 }
 .horizontal-menu.type3{
 	padding: 0px 28px 0px 28px;
@@ -3567,6 +3568,9 @@ label.animateInput {
 		top: inherit !important;
 		height: inherit;
 	    padding-top: 20px;
+	}
+	.horizontal-menu.type2 > div>ul>li.active{
+		border-bottom: 0 !important;
 	}	
 }
 @media (max-width: 979px) {
