@@ -2119,12 +2119,12 @@ footer .span12 a{
     line-height: 11px !important;
 }
 .navbar-subnav{
-    background-color: #77A845;
-    border-top: 5px solid #F5F5F5;
+    background-color: #F08322;
     padding: 20px 0 20px 0;
+    z-index: 10;
 }
 ul.search-results .search-result .result-infos{
-    margin-top: 20px;
+    margin-top: 22px;
 }
 .tab-content{
     padding-top: 10px;
@@ -2241,6 +2241,12 @@ ul.search-results .search-result .result-infos{
     padding: 6px 11px;
     line-height: 1.4;
 }
-.btn-sorter {
-    max-width: 10px;   
+.btn-toolbar {
+    margin-left: -20px;
+}
+section.breadcrumb-bar .breadcrumb {
+    margin: 5px 0;
+}
+.site-search .form-control{
+    border-radius: 20px !important;
 }

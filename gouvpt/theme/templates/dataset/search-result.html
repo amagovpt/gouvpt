@@ -27,9 +27,9 @@
             {# Temporal coverage #}
             {% if dataset.temporal_coverage %}
             <li>
-                <a class="btn btn-xs" v-tooltip tooltip-placement="top"
+                <a class="btn btn-xs maincolor" v-tooltip tooltip-placement="top"
                     title="{{ _('Temporal coverage') }}">
-                    <span class="fa fa-calendar fa-fw"></span>
+                    <span class="fa fa-calendar fa-fw maincolor"></span>
                     {{ dataset.temporal_coverage|daterange }}
                 </a>
             </li>
@@ -51,9 +51,9 @@
                 {# Avoid listing too many territories otherwise it breaks design. #}
                 {% if dataset.spatial.zones|length > 3 %}
                     <li>
-                        <a class="btn btn-xs" v-tooltip tooltip-placement="top"
+                        <a class="btn btn-xs maincolor" v-tooltip tooltip-placement="top"
                             title="{{ _('Spatial coverage') }}">
-                            <span class="fa fa-map-marker fa-fw"></span>
+                            <span class="fa fa-map-marker fa-fw maincolor"></span>
                             {{ dataset.spatial.top_label }}
                         </a>
                     </li>
@@ -61,20 +61,20 @@
                     {% for territory in dataset.spatial.zones %}
                         <li>
                         {% if territory.handled_zone %}
-                            <a class="btn btn-xs" v-tooltip tooltip-placement="top"
+                            <a class="btn btn-xs maincolor" v-tooltip tooltip-placement="top"
                                 href="{{ territory.url }}" title="{{ _('Spatial coverage') }}">
                                 {% set logo=territory.logo_url(external=True) %}
                                 {% if logo %}
                                     <img src="{{ logo }}" alt="{{ territory.name }}" class="float-left" width="11px" />
                                 {% else %}
-                                    <span class="fa fa-map-marker fa-fw"></span>
+                                    <span class="fa fa-map-marker fa-fw maincolor"></span>
                                 {% endif %}
                                 {{ territory.name }}
                             </a>
                         {% else %}
-                            <a class="btn btn-xs" v-tooltip tooltip-placement="top"
+                            <a class="btn btn-xs maincolor" v-tooltip tooltip-placement="top"
                                 title="{{ _('Spatial coverage') }}">
-                                <span class="fa fa-map-marker fa-fw"></span>
+                                <span class="fa fa-map-marker fa-fw maincolor"></span>
                                 {{ dataset.spatial.top_label }}
                             </a>
                         {% endif %}
@@ -85,9 +85,9 @@
 
             {% if dataset.spatial.granularity %}
             <li>
-                <a class="btn btn-xs" v-tooltip tooltip-placement="top"
+                <a class="btn btn-xs maincolor" v-tooltip tooltip-placement="top"
                     title="{{ _('Territorial coverage granularity') }}">
-                    <span class="fa fa-bullseye fa-fw"></span>
+                    <span class="fa fa-bullseye fa-fw maincolor"></span>
                     {{ dataset.spatial.granularity_label }}
                 </a>
             </li>

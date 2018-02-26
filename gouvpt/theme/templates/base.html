@@ -17,9 +17,9 @@
 {% block body %}
     <div class="container-fluid" id="wrapper">
         {% include theme("header.html") with context %}
-        {% block subnav %}{% endblock %}
-        <div id="content">
+        <div id="content">         
             {% if request.endpoint != 'site.home' %}
+              {#% include theme('sections/subnav-small.html') with context %#}
               {{ notification_zone() }}
             {% endif %}
             {% block content %}{% endblock %}
