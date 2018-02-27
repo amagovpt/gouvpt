@@ -7,8 +7,8 @@ from flask import url_for, redirect, abort
 from jinja2.exceptions import TemplateNotFound
 
 blueprint = I18nBlueprint('gouvpt', __name__,
-                          template_folder='../../gouvpt/theme/templates/custom',
-                          static_folder='../../gouvpt/theme/static')
+                          template_folder='../theme/templates/custom',
+                          static_folder='../theme/static')
 
 
 @blueprint.route('/faq/', defaults={'section': 'home'})
