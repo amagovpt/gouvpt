@@ -75,15 +75,15 @@ p {
 	/* margin: 0 0 15px 0 !important; */
 }
 a {
-	font-family: "karmamedium";
+	font-family: "latoregular";
 	font-size: 16px;
-	line-height: 18px;
+	line-height: 16px;
 	color: #3498DB;
 	text-decoration: none;
 }
 a:hover {
-	font-family: "karmamedium";
-	/* font-size: 16px;
+	/* font-family: "karmamedium";
+	font-size: 16px;
 	line-height: 18px; */
 	color: #3498DB;
 	text-decoration: underline;
@@ -182,7 +182,7 @@ html #wrapper footer .social-media-wrapper ul li div {
 
 /* Horizontal Menu */
 .horizontal-menu {
-	background: #2a2a2a;
+	background: #fff;
 	display: block;
 	padding: 17px 28px 60px 28px;
 	width: 100%;
@@ -199,7 +199,7 @@ html #wrapper footer .social-media-wrapper ul li div {
 .horizontal-menu > div > ul > li .sub-menu li:hover a, 
 .horizontal-menu > div > ul > li.active > a, 
 .horizontal-menu > div > ul > li .sub-menu li.active a {
-    color: #3498db!important;
+    color: #F08322!important;
 }
 
 /* Language */
@@ -215,7 +215,7 @@ html #wrapper footer .social-media-wrapper ul li div {
 	height: 19px;
 	font-size: 25px;
     line-height: 19px;
-	color: #fff;
+	color: #808080;
 	vertical-align: middle;
 	margin-right: 9px;
 	display: inline-block;
@@ -246,7 +246,7 @@ html #wrapper footer .social-media-wrapper ul li div {
     height: 100% !important;
 }
 .lang-wrapper .select2-container .select2-selection--single .select2-selection__rendered {
-    color: #fff !important;
+    color: #808080 !important;
     font-family: "latoregular" !important;
     padding: 0 !important;
 }
@@ -256,7 +256,7 @@ html #wrapper footer .social-media-wrapper ul li div {
     height: 100% !important;
 }
 .lang-wrapper .select2-container .select2-selection--single .select2-selection__arrow b {
-	border-color: #fff transparent transparent transparent !important;
+	border-color: #808080 transparent transparent transparent !important;
 	border-width: 5px 4px 0 4px !important;
 	margin-left: 2px !important;
 	margin-top: -3px !important;
@@ -318,11 +318,11 @@ body.homepage #wrapper #banner:not(.fixed) {
     -ms-transition: all .5s linear;
     -o-transition: all .5s linear;
     transition: all .5s linear;
-    background: transparent
+    background: #fff;
 }
 
 body.homepage #wrapper #banner.fixed,body.homepage #wrapper #banner.open {
-    background: #2a2a2a;
+    background: #fff;
     transition: all .5s;
     -webkit-transition: all .5s linear;
     -moz-transition: all .5s linear;
@@ -431,8 +431,8 @@ body.homepage #breadcrumbs{
 	margin-bottom: 0px;
 }
 .black-home-overlay{
-	opacity: 0.5;
-	background: #231F20;
+	opacity: 0.4;
+	background: #F08322;
 	position: absolute;
 	z-index: 1;
 	width: 100%;
@@ -989,7 +989,7 @@ body.homepage #wrapper #banner .horizontal-menu{
 	font-size: 22px;
 }
 #footer .social-media-wrapper ul li:hover i{
-	color: #3498DB;
+	color: #F08322;
 }
 #footer .nav-menu{
 	text-align: center;
@@ -997,7 +997,7 @@ body.homepage #wrapper #banner .horizontal-menu{
 #footer .nav-menu .container-fluid a{
 	font-size: 12px;
 	font-family: 'latobold';
-	color: #3498DB;
+	color: #F08322;
 	text-transform: uppercase;
 	margin-bottom: 10px;
 	text-decoration: none;
@@ -1016,7 +1016,7 @@ body.homepage #wrapper #banner .horizontal-menu{
 	text-transform: none;
 }
 #footer .nav-menu .container-fluid .layouts li a:hover {
-    color: #3498DB;
+    color: #F08322;
 }
 #sitemap {
 	padding-bottom: 50px;
@@ -1556,7 +1556,7 @@ html #wrapper footer .social-media-wrapper li {
     position: absolute;
     z-index: 1;
     display: none;
-    background: rgba(52,152,219,0.8);
+    background: rgba(240,131,34,0.8);
     text-align: center;
 }
 #listNoticiasWrapper .span4:hover .blue-overlay {
@@ -1591,7 +1591,7 @@ html #wrapper footer .social-media-wrapper li {
     min-height: 45px;
 }
 #listNoticiasWrapper .span4:hover .lead3 {
-    color: #3498db;
+    color: #F08322;
 }
 #listNoticiasWrapper .span4 .p2 {
     color: #2a2a2a;
@@ -1623,10 +1623,10 @@ html #wrapper footer .social-media-wrapper li {
     vertical-align: middle;
 }
 #detailsNoticianWrapper h4 {
-    color: #3498db;
+    color: #F08322;
     padding: 17px 0;
-    border-bottom: 1px solid #2980b9;
-    border-top: 1px solid #2980b9;
+    border-bottom: 1px solid #F08322;
+    border-top: 1px solid #F08322;
     margin: 0;
 }
 #detailsNoticianWrapper img:not(.ratio) {
@@ -1920,7 +1920,7 @@ html #wrapper footer .social-media-wrapper li {
     color: #FFF;
     height: auto;
     padding: 20px 0px;
-
+}
     a.hide-strip-privacy-info-message {
         text-decoration: underline;
     }
@@ -1932,8 +1932,6 @@ html #wrapper footer .social-media-wrapper li {
     .privacy-info-message-journal-article {
         display: inline-block;
     }
-}
-
 .privacy-info-message .layout {
     max-width: 1170px;
     margin: auto;
@@ -2012,6 +2010,7 @@ html #wrapper footer .social-media-wrapper li {
     text-transform: uppercase;
     font-family: "latoregular" !important;
     font-size: 14px;
+    color: #808080;
 }
 .modal-header {
     padding: 5px 15px;
@@ -2082,8 +2081,11 @@ ul.search-results .search-result h4 {
     background: gray;
     color:white;
 }
+.lang-wrapper .grey .icon-globe {
+    color: #fff;
+}
 .lang-wrapper .white{
-    border: 0;
+    border: 2px solid;
     background: white;
     color:gray;
 }
@@ -2098,4 +2100,156 @@ footer .span12 strong {
 }
 footer .span12 a{
     color: #777;
+}
+.card.reuse-card .btn {
+    display: block;
+    font-size: 10px;
+    float: right;
+    margin-right: 5px;
+    position: relative;
+}
+.maincolor {
+    color:white !important;
+    background-color: #F08322;    
+}
+#content .form, .dataset-container {
+    padding: 10px 0 20px;
+}
+.card h4 {
+    line-height: 11px !important;
+}
+.navbar-subnav{
+    background-color: #F08322;
+    padding: 20px 0 20px 0;
+    z-index: 10;
+}
+ul.search-results .search-result .result-infos{
+    margin-top: 22px;
+}
+.tab-content{
+    padding-top: 10px;
+}
+.membership, .btn-warning{
+    height: 30px;
+    font-size: 14px !important;
+    font-family: 'latoregular' !important;
+    text-transform: uppercase;
+}
+.card.dataset-card {
+    border-bottom: 2px solid #F08322;
+}
+.card footer ul {
+    float: right;
+    padding: 0 5px;
+}
+.card footer.rollover ul{
+    float: left;
+}
+.nav-pills {
+    color: #F08322;
+    border-bottom: 2px solid;
+}
+.nav-pills > li > a {
+    color: lightgray;
+    font-weight: bold;
+    border-bottom: 8px solid;
+    border-radius: unset;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover, 
+.nav-pills > li.active > a:focus  {
+    color: #F08322;
+    background-color: unset;
+}
+.card-list .card {
+    border-bottom: 2px solid #F08322;
+}
+.panel-body div.text-center{
+    min-height: 150px;
+    line-height: 150px;
+}
+.breadcrumb .fa-home{
+    color: #F08322;
+}
+.community_container {
+    background-color: #E6E7E8;
+    padding-bottom: 20px;
+}
+.community_container header {
+    background-color: #808080;
+}
+.cover-communaute {
+    width: 140px;
+    height: 80px;
+    left: 20px;
+    position: absolute;
+    background: url(/_themes/gouvpt/images/community_cover.png) no-repeat 0 5px;
+    opacity: .5;
+}
+.community_container .page-header {
+    margin: 20px 0 10px 60px;
+    border-bottom: unset;
+}
+.community_container .page-header h2 {
+    color:#999999;
+}
+.small-badge{
+    border: 2px solid #3498DB;
+    padding: 6px;
+}
+.btn-group-sm > .btn, .btn-sm {
+    line-height: unset;
+}
+.caption p {
+    padding: 10px 0 10px;
+}
+.list-unstyled li{
+    margin: 5px 0;
+}
+.panel-body .tags {
+    padding-bottom: 10px;
+}
+.reuse .btn-group, .btn-group-vertical {
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    right: 25px;
+    top: 10px;
+}
+.reuse .avatar{
+    float:left;
+    padding-right: 2px;
+}
+.panel-transparent {
+    border: 1px solid #ddd;
+    margin-top: 10px;
+}
+.reuse-section header{
+    background-color: #E6E7E8;
+    margin-bottom: 10px;
+}
+.reuse-section .page-header{
+    padding-bottom: 10px;
+    margin: 2px 0 2px;
+    border-bottom: unset;
+}
+.reuse-image{
+    padding: 20px 0 20px;
+    text-align: center;
+}
+.btn-group-xs > .btn, .btn-xs {
+    padding: 6px 11px;
+    line-height: 1.4;
+}
+.btn-toolbar {
+    margin-left: -20px;
+}
+section.breadcrumb-bar .breadcrumb {
+    margin: 5px 0;
+}
+.site-search .form-control{
+    border-radius: 20px !important;
+}
+.horizontal-menu.type2 > div > ul > li.active {
+    border-bottom: 10px solid #F08322;
 }

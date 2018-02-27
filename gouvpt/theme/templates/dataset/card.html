@@ -25,26 +25,34 @@
         <ul>
             {% if dataset.spatial and dataset.spatial.territories %}
             <li>
-                <a class="btn btn-xs" v-tooltip
+                <a class="btn btn-xs maincolor" v-tooltip
                     title="{{ _('Territorial coverage') }}">
-                    <span class="fa fa-map-marker fa-fw"></span>
+                    <span class="fa fa-map-marker fa-fw maincolor"></span>
                     {{ dataset.spatial.top_label }}
                 </a>
             </li>
             {% endif %}
             {% if dataset.metrics %}
             <li>
-                <a class="btn btn-xs" v-tooltip
+                <a class="btn btn-xs maincolor" v-tooltip
                     title="{{ _('Reuses') }}">
-                    <span class="{{ ficon('fa-retweet') }} fa-fw"></span>
+                    <span class="{{ ficon('fa-retweet') }} fa-fw maincolor"></span>
                     {{ dataset.metrics.reuses or 0 }}
                 </a>
             </li>
             <li>
-                <a class="btn btn-xs" v-tooltip
+                <a class="btn btn-xs maincolor" v-tooltip
                     title="{{ _('Stars') }}">
-                    <span class="{{ ficon('fa-star') }} fa-fw"></span>
+                    <span class="{{ ficon('fa-star') }} fa-fw maincolor"></span>
                     {{ dataset.metrics.followers or 0 }}
+                </a>
+            </li>
+            {% endif %}
+            {% if dataset.frequency %}
+            <li>
+                <a class="btn btn-xs maincolor" v-tooltip title="{{ _('Frequency') }}">
+                    <span class="fa fa-clock-o fa-fw maincolor"></span>
+                    {{ dataset.frequency_label }}
                 </a>
             </li>
             {% endif %}

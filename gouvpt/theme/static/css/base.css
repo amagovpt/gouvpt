@@ -267,7 +267,6 @@
 	margin-right: auto;
 	margin-left: auto;
 	*zoom: 1;
-	padding-top: 10px;
 }
 .container:before,
 .container:after {
@@ -453,7 +452,6 @@ textarea.span1,
 
 @media (min-width: 1200px) {
 	.row {
-		margin-left: -30px;
 		*zoom: 1;
 	}
 	.row:before,
@@ -1189,7 +1187,7 @@ textarea.span1,
 	}
 }
 h1{
-	font-size: 38px !important;
+	font-size: 32px !important;
 	line-height: 56px !important;
 	font-family: 'latoblack' !important;
 	letter-spacing: 0.04em !important;
@@ -1338,7 +1336,7 @@ h6{
     line-height: 16px !important;
 }
 .horizontal-menu > div > ul > li a{
-	color: #fff;
+	color: #808080;
 	font-size: 14px;
     font-family: 'latobold';
     text-decoration: none !important;
@@ -1399,13 +1397,14 @@ h6{
 }
 /*TYPE 2*/
 .horizontal-menu.type2{
-    padding: 20px 28px 55px 28px;
+	padding: 20px 28px 50px 28px;
+	border-bottom: 5px solid #F08322;
 }
 .horizontal-menu.type2 > div>ul{
 	height: unset;
 }
 .horizontal-menu.type2 > div > ul > li > .sub-menu{
-	top: 20px;
+	top: 25px;
 }
 .horizontal-menu.type2 > div >ul>li.search-icon{
 	height: 25px;
@@ -1480,7 +1479,8 @@ h6{
 }
 .horizontal-menu.type2 > div >ul>li{
 	height: calc(100% - 18px);
-    top: 18px;
+	top: 18px;
+	padding-bottom: 5px;
 }
 .horizontal-menu.type3{
 	padding: 0px 28px 0px 28px;
@@ -3542,7 +3542,7 @@ label.animateInput {
 	
 	.horizontal-menu > div>ul>li > .sub-menu li a,
 	.horizontal-menu.type2 > div>ul>li .megamenu-wrapper .sub-menu li a{
-		color: #fff !important;
+		color: #808184 !important;
 		padding-bottom: 10px;
 	    padding-top: 10px;
 	    padding-left: 15px;
@@ -3559,11 +3559,18 @@ label.animateInput {
 		top: 55px;
 		left: auto;
 		right: auto;
+		color:#1D1D1B;
+	}
+	.horizontal-menu.type2 img {
+		max-width: 70%;
 	}
 	.horizontal-menu.type2 > div>ul>li{
 		top: inherit !important;
 		height: inherit;
 	    padding-top: 20px;
+	}
+	.horizontal-menu.type2 > div>ul>li.active{
+		border-bottom: 0 !important;
 	}	
 }
 @media (max-width: 979px) {

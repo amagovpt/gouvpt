@@ -103,7 +103,8 @@
 
                     <ul>
                         {% for item in current_theme.menu %}
-                        <li class="lfr-nav-item {% if item.items %} dropdown {% endif %}">
+                        <li class="lfr-nav-item {% if item.items %} dropdown {% endif %} 
+                        {% for subitem in item.items %}{% if subitem.url in request.path or request.path == item.url %} active{% endif %}{% endfor %}">
                             <a {% if item.items %} class="dropdown-toggle" {% endif %} href="{{ item.url }}">
                                 <span>{{ item.label }} {% if item.items %}
                                     <b class="fa fa-caret-down"></b>{% endif %}
@@ -112,7 +113,7 @@
                             {% if item.items %}
                             <ul class="sub-menu">
                                 {% for subitem in item.items %}
-                                <li class="lfr-nav-item">
+                                <li class="lfr-nav-item {% if subitem.url in request.path %} active {% endif %}">
                                     <a href="{{ subitem.url }}">{{ subitem.label }}</a>
                                 </li>
                                 {% endfor %}

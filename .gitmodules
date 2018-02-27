@@ -1,0 +1,3 @@
+[submodule "gouvpt/docs"]
+	path = gouvpt/docs
+	url = https://github.com/amagovpt/docs.dados.gov.pt
