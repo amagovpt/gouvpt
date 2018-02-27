@@ -1,34 +1,30 @@
+ {% set posts = [last_post] %}
+<div class="initialTopBanner">
+    <div class="scrolldown">
+        <img alt="Ver Mais Scroll Image" src="{{ theme_static('images/scrolldown.png')}}" />
+    </div>
+    <ul id="homepage-slider">
 
+        {% for post in posts %}
 
-{% set posts = [last_post] %}
-<div class="top-banner">
-    <div class="initialTopBanner">
-        <div class="scrolldown">
-            <img alt="Ver Mais Scroll Image" src="{{ theme_static('images/scrolldown.png')}}" />
-        </div>
-        <ul id="homepage-slider">
-
-            {% for post in posts %}
-
-            <li>
-                <div class="img" style="background-image: url( {{ post.image|placeholder('post') }} )"></div>
-                <div class="black-home-overlay"></div>
-                <div class="text-area">
-                    <br>
-                    <h1>{{ post.name|mdstrip(50) }}</h1>
-                    <br>
-                    <h3>{{(post.headline or post.content)|mdstrip(100)}}</h3>
-                    <div class="description">
-                        <p> {{ post.content|mdstrip(470)|markdown }} </p>
-                        <!-- <div class="verMaisHomeBtn">
+        <li>
+            <div class="img" style="background-image: url( {{ post.image|placeholder('post') }} )"></div>
+            <div class="black-home-overlay"></div>
+            <div class="text-area">
+                <br>
+                <h1>{{ post.name|mdstrip(50) }}</h1>
+                <br>
+                <h3>{{(post.headline or post.content)|mdstrip(100)}}</h3>
+                <div class="description">
+                    <p> {{ post.content|mdstrip(470)|markdown }} </p>
+                    <!-- <div class="verMaisHomeBtn">
                             <a href="javascript:void(0);">VER MAIS</a>
                         </div> -->
-                    </div>
                 </div>
-            </li>
+            </div>
+        </li>
 
-            {% endfor %}
+        {% endfor %}
 
-        </ul>
-    </div>
+    </ul>
 </div>

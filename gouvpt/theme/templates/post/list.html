@@ -27,11 +27,18 @@
                     <div class="span4 col-xs-12 col-md-4 col-4">
                         <a href="{{ post.display_url }}">
                             <div class="image-wrapper">
-                            <div class="video-icon"><i class="fa fa-newspaper-o"></i></div>
-                            <div class="blue-overlay"></div>
-                            <img alt="{{ post.name }}" src="{{ post.image|placeholder('post') }}"> </div>
+                                <div class="video-icon">
+                                    {% if "event" in post.tags %}
+                                        <i class="fa fa-calendar"></i>
+                                    {% else %}
+                                        <i class="fa fa-newspaper-o"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="blue-overlay"></div>
+                                <img alt="{{ post.name }}" src="{{ post.image|placeholder('post') }}"> 
+                            </div>
                             <div class="date-wrapper">
-                                <i class="fa fa-calendar fa-fw"></i><span>{{ post.created_at|dateformat(format='long') }}</span>
+                                <i class="fa fa-history fa-fw"></i><span>{{ post.created_at|dateformat(format='long') }}</span>
                             </div>
                             <div class="lead3">{{ post.name }}</div>
                             <div class="p2">{{ post.headline|mdstrip(120) }}</div>

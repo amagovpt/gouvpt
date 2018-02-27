@@ -113,10 +113,14 @@ setup(
     },
     entry_points={
         'udata.themes': [
-            'gouvpt = gouvpt.theme'
+            'gouvpt = gouvpt.theme',
         ],
         'udata.harvesters': [
             'justice = gouvpt.harvesters.justice:JusticeCkanBackend',
+        ],
+        'udata.views': [
+            'gouvpt_faqs = gouvpt.faqs_plugin',
+            'gouvpt_saml = gouvpt.saml_plugin',
         ]
     },
     license='AGPL',

@@ -21,6 +21,7 @@ gouvpt_menu = nav.Bar('gouvpt_menu', [
         nav.Item(_('Citizens'), 'gouvpt.faq', {'section': 'citizen'}),
         nav.Item(_('Producers'), 'gouvpt.faq', {'section': 'producer'}),
         nav.Item(_('Reusers'), 'gouvpt.faq', {'section': 'reuser'}),
+        nav.Item(_('Integrator'), 'gouvpt.faq', {'section': 'integrator'}),
         nav.Item(_('Developers'), 'gouvpt.faq', {'section': 'developer'}),
     ]),
 
@@ -48,6 +49,7 @@ nav.Bar('gouvpt_footer', [
         nav.Item(_('Citizens'), 'gouvpt.faq', {'section': 'citizen'}),
         nav.Item(_('Producers'), 'gouvpt.faq', {'section': 'producer'}),
         nav.Item(_('Reusers'), 'gouvpt.faq', {'section': 'reuser'}),
+        nav.Item(_('Integrator'), 'gouvpt.faq', {'section': 'integrator'}),
         nav.Item(_('Developers'), 'gouvpt.faq', {'section': 'developer'}),
     ]),
 
