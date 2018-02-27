@@ -48,7 +48,12 @@
             <div class="maniFluid" id="detailsNoticianWrapper">
                 <div class="{% if post.reuses or post.datasets %}col-sm-8{% endif %}">
                     <div class="date-wrapper">
-                        <i class="fa fa-calendar fa-fw"></i><span>
+                        {% if "event" in post.tags %}
+                            <i class="fa fa-calendar"></i>
+                        {% else %}
+                            <i class="fa fa-newspaper-o"></i>
+                        {% endif %}
+                        <span>
                                 {{ post.created_at|dateformat(format='long')}}
                         </span>
                     </div>
