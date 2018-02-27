@@ -2168,6 +2168,9 @@ ul.search-results .search-result .result-infos{
     min-height: 150px;
     line-height: 150px;
 }
+.panel-body .tab-links .text-center {
+    padding-bottom: 10px;
+}
 .breadcrumb .fa-home{
     color: #F08322;
 }
