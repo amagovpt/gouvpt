@@ -1,0 +1,30 @@
+{% extends theme("base.html") %} {% set meta = { 'title': 'Contact', 'description': "Page Contacts", 'keywords': [ 'contact',
+], } %} {% block content %}
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <script>
+                var map;
+                function initMap() {
+                    map = new google.maps.Map(document.getElementById('mapContact'), {
+                        center: { lat: 38.722291, lng: -9.139302 },
+                        zoom: 14
+                    });
+                }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAa4iCR6dph3gJkFfLsGMLKNHFeTevEI9w&callback=initMap" async
+                defer></script>
+            <div id="locationContactoWrapper">
+                <div class="container-fluid">
+                    <h3>LOCALIZA&Ccedil;&Atilde;O</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+                        laoreet dolore magna aliquam erat volutpat. </p>
+                    <div id="mapContact"></div>
+                    <button class="button1 button-icon btn-login" type="button">
+                        <i class="icon-location-arrow"></i>COMO CHEGAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

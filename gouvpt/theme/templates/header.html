@@ -15,13 +15,13 @@
     <header id="banner">
         <div id="heading">
             <nav class="horizontal-menu type2">
-                <div>
-                    <div class="lang-wrapper">
+                <div class="menu-wrapper">
+                    <div class="lang-wrapper top-section">
                         <span class="search-icon">
                             <i class="icone-search icon-globe">&nbsp;</i>
                         </span>
 
-                        <button class="button1 grey" type="button" @click.prevent="$refs.publishActionModal.show">
+                        <button class="button1 top-button" type="button" @click.prevent="$refs.publishActionModal.show">
                             <i class="fa fa-fw fa-cloud-upload icon-globe"></i>
                             <span class="hidden-xs">{{ _('Contribute!')}}</span>
                         </button>
@@ -29,7 +29,7 @@
                         {% if current_user.is_authenticated %}
                         <span class="dropdown user">
                             <a role="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                                <img src="{{ current_user|avatar_url(30) }}" width="25" height="25" class="img-circle" alt="{{ current_user.fullname }}"
+                                <img src="{{ current_user|avatar_url(40) }}" width="35" height="35" class="img-circle" alt="{{ current_user.fullname }}"
                                 />
                                 <span class="username hidden-xs">{{ current_user.fullname }}
                                     <b class="fa fa-caret-down"></b>
@@ -70,7 +70,7 @@
                         </span>
                         {% else %}
 
-                        <button class="button1 white" onclick="location.href = '{{ url_for('security.login', next=request.url) }}';">
+                        <button class="button1 top-button" onclick="location.href = '{{ url_for('security.login', next=request.url) }}';">
                                 <i class="fa fa-fw fa-sign-in icon-globe"></i>
                                 <span class="hidden-xs">{{ _('Sign In / Register') }}</span>
                         </button>

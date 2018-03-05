@@ -171,8 +171,14 @@
                 {% if dataset.organization %}
                 <div class="panel panel-default text-center">
                     <div class="panel-body">
+                        {% with organization=dataset.organization %}                        
+                        {% if organization.public_service %}
+                            <img src="{{ theme_static('img/certified-stamp.png') }}" alt="certified" class="certified"
+                                v-popover.literal="{{ _('The identity of this public service is certified by %(certifier)s', certifier=config.SITE_AUTHOR) }}"
+                                popover-title="{{ _('Certified public service') }}"
+                                popover-placement="left" popover-trigger="hover"/>
+                        {% endif %}                        
                         <h3 class="text-left">{{ _('Producer') }}</h3>
-                        {% with organization=dataset.organization %}
                             {% include theme('organization/sidebar-producer.html') %}
                         {% endwith %}
                     </div>

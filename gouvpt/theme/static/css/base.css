@@ -1199,7 +1199,7 @@ h2{
 	letter-spacing: 0.04em !important;
 }
 h3{
-	font-size: 22px !important;
+	font-size: 20px !important;
 	line-height: 38px !important;
 	font-family: 'latoblack' !important;
 	letter-spacing: 0.04em !important;
@@ -1368,7 +1368,7 @@ h6{
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
    	-o-transform: translateX(-50%);
-   	min-width: 132px;
+   	min-width: 155px;
    	display: none;
    	list-style: none;
    	z-index: 1;
@@ -1398,7 +1398,6 @@ h6{
 /*TYPE 2*/
 .horizontal-menu.type2{
 	padding: 20px 28px 50px 28px;
-	border-bottom: 5px solid #F08322;
 }
 .horizontal-menu.type2 > div>ul{
 	height: unset;
@@ -3556,7 +3555,7 @@ label.animateInput {
 		display: none;
 	}
 	.horizontal-menu.type2 i.icone-burguer{
-		top: 55px;
+		top: 65px;
 		left: auto;
 		right: auto;
 		color:#1D1D1B;
@@ -3846,5 +3845,8 @@ label.animateInput {
 	}
 	.search-box input:-moz-placeholder {
 		font-size: 24px!important;
+	}
+	#heading .menu-wrapper .top-section .top-button {
+		min-width: unset !important;
 	}
 }
