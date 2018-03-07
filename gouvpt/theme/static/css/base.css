@@ -1714,7 +1714,7 @@ ul.horizontal-breadcrumb li:last-child a{
     box-shadow: none;
     height: 60px !important;
     line-height: 18px !important;
-    color: #808184 !important;
+    color: #F08322 !important;
     font-size: 18px !important;
     font-family: 'latolight';
     padding: 0 !important;
@@ -1727,7 +1727,7 @@ ul.horizontal-breadcrumb li:last-child a{
 }
 .form-wrapper input:focus,
 .form-wrapper textarea:focus{
-	border: 2px solid #2980b9 !important;
+	border: 2px solid #F08322 !important;
 	box-shadow: 0px 0px 7px rgba(0,0,0,0.4) !important;
 }
 .form-wrapper input:not([type="submit"]) {
@@ -1933,7 +1933,7 @@ label.animateInput {
     top: 5px
 }
 .animateInput span {
-    color: #2980b9;
+    color: #F08322;
     font-size: 14px;
     font-family: "latobold";
     position: absolute;
@@ -2374,7 +2374,7 @@ label.animateInput {
 /*Componente Seleccao expansivel*/
 .select-wrapper .select2-container{
 	width: 100% !important;
-	height: 60px;
+	height: 45px;
 	outline: 0px !important;
 	text-align: left;
     margin-bottom: 28px;
@@ -2388,23 +2388,23 @@ label.animateInput {
 }
 .select2-container--default .select2-selection--single .select2-selection__rendered{
 	line-height: 16px !important;
-	color: #2A2A2A !important;
+	color: #9FA2BF !important;
 	font-family: "karmalight" !important;
 	font-size: 16px !important;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow b{
-	border-color: #2980B9 transparent transparent transparent !important;
+	border-color: #9D9D9C transparent  !important;
 	border-width: 7px 6px 0 6px !important;
     margin-left: -10px;
 }
 .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b{
-	border-color: transparent transparent #2980B9 transparent !important;
+	border-color: #9D9D9C transparent !important;
 	border-width: 0px 6px 7px 6px !important;
     margin-left: -10px;
 }
 .select2-container .select2-selection--single .select2-selection__rendered{
 	padding-left: 16px !important;
-    padding: 20px 33.5px !important;
+    padding: 12px 33.5px !important;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow{
     right: 16px !important;
@@ -2455,7 +2455,7 @@ label.animateInput {
 } 
 .select2-container--default.select2-container--focus .select2-selection--multiple,
 .select2-container--default.select2-container--focus .select2-selection--single{
-	border: 2px solid #3498DB!important;
+	border: 2px solid #9D9D9C !important;
 }
 .select2-container .select2-search--inline .select2-search__field{
 	padding-left: 16px!important;

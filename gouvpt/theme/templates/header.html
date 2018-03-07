@@ -10,17 +10,17 @@
     </div>
 </div>
 
-
 <section class="header">
     <header id="banner">
         <div id="heading">
             <nav class="horizontal-menu type2">
                 <div class="menu-wrapper">
                     <div class="lang-wrapper top-section">
+                        {% if request.endpoint == 'site.home' %}
                         <span class="search-icon">
                             <i class="icone-search icon-globe">&nbsp;</i>
                         </span>
-
+                        {% endif %}
                         <button class="button1 top-button" type="button" @click.prevent="$refs.publishActionModal.show">
                             <i class="fa fa-fw fa-cloud-upload icon-globe"></i>
                             <span class="hidden-xs">{{ _('Contribute!')}}</span>
@@ -90,7 +90,7 @@
                         {% endif %}
                     </div>
 
-                    {% cache cache_duration, 'header-menu', g.lang_code|default(config.DEFAULT_LANGUAGE)|string %}
+                    {% cache cache_duration, 'header-menu', request.path, g.lang_code|default(config.DEFAULT_LANGUAGE)|string %}
                     <div class="site-logo hidden-xs hidden-sm">
                         <a href="{{ url_for('site.home') }}">
                             <img src="{{ theme_static('images/logo.png') }}" alt="{{ g.site.title }}" />
@@ -104,7 +104,7 @@
                     <ul>
                         {% for item in current_theme.menu %}
                         <li class="lfr-nav-item {% if item.items %} dropdown {% endif %} 
-                        {% for subitem in item.items %}{% if subitem.url in request.path or request.path == item.url %} active{% endif %}{% endfor %}">
+                        {% for subitem in item.items %}{% if subitem.url in request.path %} active{% endif %} {% endfor %} {% if item.url in request.path %} active{% endif %}">
                             <a {% if item.items %} class="dropdown-toggle" {% endif %} href="{{ item.url }}">
                                 <span>{{ item.label }} {% if item.items %}
                                     <b class="fa fa-caret-down"></b>{% endif %}

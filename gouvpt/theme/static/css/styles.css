@@ -213,7 +213,6 @@ html #wrapper footer .social-media-wrapper ul li div {
 }
 .lang-wrapper i.icon-globe {
 	height: 19px;
-	font-size: 35px;
     line-height: 19px;
 	color: #808080;
 	vertical-align: middle;
@@ -221,7 +220,10 @@ html #wrapper footer .social-media-wrapper ul li div {
 	display: inline-block;
 	width: 14px;
 }
-
+.lang-wrapper i.icone-search {
+    font-size: 29px;
+    margin-right: unset;
+}
 #selectLang {
 	display: inline-block;
 	background-color: transparent;
@@ -237,7 +239,7 @@ html #wrapper footer .social-media-wrapper ul li div {
 .lang-wrapper .select2-container {
     text-align: left;
     min-width: 40px;
-    margin-left: 10px;
+    margin-left: -6px;
 }
 .lang-wrapper .select2-container .select2-selection--single {
     border: 0 !important;
@@ -250,6 +252,7 @@ html #wrapper footer .social-media-wrapper ul li div {
     color: #808080 !important;
     font-family: "latoregular" !important;
     padding: 0 !important;
+    font-size: 15px !important;
 }
 .lang-wrapper .select2-container--default .select2-selection--single .select2-selection__arrow {
     right: 18px !important;
@@ -1364,12 +1367,11 @@ html #wrapper footer .social-media-wrapper li {
 }
 #formServicesWrapper {
     text-align: center;
-    background: #2a2a2a;
     padding: 100px 0 110px 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    color: #fff;
+    color: #2a2a2a;
 }
 #formServicesWrapper .headerForm {
     max-width: 765px;
@@ -2104,7 +2106,7 @@ footer .span12 a{
     line-height: 11px !important;
 }
 .navbar-subnav{
-    background-color: #F08322;
+    background: linear-gradient(45deg,#F08322,#F08322);
     padding: 20px 0 20px 0;
     z-index: 10;
 }
@@ -2181,7 +2183,7 @@ ul.search-results .search-result .result-infos{
     color:#E6E7E8;
 }
 .small-badge{
-    /* border: 2px solid #3498DB; */
+    border: 2px solid #3498DB;
     padding: 6px;
 }
 .btn-group-sm > .btn, .btn-sm {
@@ -2236,9 +2238,6 @@ ul.search-results .search-result .result-infos{
 }
 section.breadcrumb-bar .breadcrumb {
     margin: 5px 0;
-}
-.site-search .form-control{
-    border-radius: 20px !important;
 }
 .horizontal-menu.type2 > div > ul > li.active {
     border-bottom: 7px solid #F08322;
@@ -2576,4 +2575,52 @@ section.breadcrumb-bar .toolbar .btn-toolbar .text {
 }
 section.default {
     padding: 20px 0;
+}
+.panel-title {
+    font-size: 13px !important;
+    font-weight: initial;
+}
+.header_big, .header_big a, .header_big a:hover {
+    font-size: 18px !important;
+    color: #4c4c4c !important; 
+}
+.header_small {
+    font-size: 14px !important;
+}
+.advanced-search-panel .list-group .list-group-item:not(.more) {
+    font-size: 90%;
+}
+.container .site-search .input-group-btn .btn {
+    width: 60px;
+    height: 45px;
+    color: white;
+    font-size: 30px !important;
+    margin-top: -10px;
+}
+.container .site-search .form-control {
+    border-radius: 0px !important;
+    height: 45px;
+    box-shadow: unset;
+}
+.container .site-search .form-control:focus {
+    border-color: rgb(245, 126, 46);
+}
+.select-wrapper{
+    height: 40px;
+}
+.btn-submit{
+    height: 43px;
+    line-height: 43px;
+    border: 1px solid #9d9d9c;
+    padding: 0 25px;
+    display: inline-block;
+    min-width: 162px;
+    color: #9d9d9c;
+    text-align: center;
+    border-radius: 30px;
+    box-sizing: border-box;  
+}
+.list-group-item.active, .list-group-item.active:hover {
+    background-color: #F08322;
+    border-color: #F08322;
 }

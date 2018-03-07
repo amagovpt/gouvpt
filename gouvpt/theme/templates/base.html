@@ -19,7 +19,7 @@
         {% include theme("header.html") with context %}
         <div id="content">         
             {% if request.endpoint != 'site.home' %}
-              {#% include theme('sections/subnav-small.html') with context %#}
+              {% include theme('sections/subnav-small.html') with context %}
               {{ notification_zone() }}
             {% endif %}
             {% block content %}{% endblock %}

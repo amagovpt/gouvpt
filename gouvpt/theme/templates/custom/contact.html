@@ -1,27 +1,53 @@
 {% extends theme("base.html") %} {% set meta = { 'title': 'Contact', 'description': "Page Contacts", 'keywords': [ 'contact',
 ], } %} {% block content %}
 <section class="content">
-    <div class="container">
+    <div class="container block-wrapper grey">
         <div class="row">
-            <script>
-                var map;
-                function initMap() {
-                    map = new google.maps.Map(document.getElementById('mapContact'), {
-                        center: { lat: 38.722291, lng: -9.139302 },
-                        zoom: 14
-                    });
-                }
-            </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAa4iCR6dph3gJkFfLsGMLKNHFeTevEI9w&callback=initMap" async
-                defer></script>
-            <div id="locationContactoWrapper">
-                <div class="container-fluid">
-                    <h3>LOCALIZA&Ccedil;&Atilde;O</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                        laoreet dolore magna aliquam erat volutpat. </p>
-                    <div id="mapContact"></div>
-                    <button class="button1 button-icon btn-login" type="button">
-                        <i class="icon-location-arrow"></i>COMO CHEGAR</button>
+            <div class="maniFluid" id="formServicesWrapper">
+                <div class="headerForm">
+                    <h2>{{_('Contact')|upper}}</h2>
+                    <p>Para otimizar a interação do cidadão com os organismos públicos, na disponibilização de serviços em formato
+                        digital, pode recorrer-se ao uso de formulários sequenciais.</p>
+                </div>
+                <div class="form-wrapper">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <label class="animateInput">
+                                <input id="nome" placeholder="Nome*" type="text">
+                                <span>Nome*</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <label class="animateInput">
+                                <input id="email" placeholder="Email*" type="text">
+                                <span>Email*</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <label class="animateInput">
+                                <input id="morada" placeholder="Assunto*" type="text">
+                                <span>Assunto*</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <label class="animateInput">
+                                <textarea id="mensagem" name="mensagem" placeholder="Mensagem*" class=""></textarea>
+                                <span>Mensagem*</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="labelInfoObrig"><br> *Campo de preenchimento obrigatório </div>
+                    <div class="btnWrapper">
+                        <button id="submit" class="btn btn-submit">
+                            Submeter
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
