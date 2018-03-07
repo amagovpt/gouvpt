@@ -16,10 +16,7 @@
                 <br>
                 <h3>{{(post.headline or post.content)|mdstrip(100)}}</h3>
                 <div class="description">
-                    <p> {{ post.content|mdstrip(470)|markdown }} </p>
-                    <!-- <div class="verMaisHomeBtn">
-                            <a href="javascript:void(0);">VER MAIS</a>
-                        </div> -->
+                    <p> {{ post.content| truncate(450) | markdown }} </p>
                 </div>
             </div>
         </li>

@@ -57,6 +57,7 @@ $j(document).ready(function($) {
         preventDefaultSwipeX: true,
         preventDetaultSwipeY: false,
         oneToOneTouch: false,
+        pager: ($("#homepage-slider > li").length > 1) ? true: false,
         nextText: '<i class="fa fa-angle-right"></i>',
         prevText: '<i class="fa fa-angle-left"></i>'
     });

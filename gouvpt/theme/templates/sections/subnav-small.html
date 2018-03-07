@@ -22,19 +22,14 @@
             {% cache cache_duration, 'subnav-small-featured-topics', g.lang_code|default(config.DEFAULT_LANGUAGE)|string %}
             {# Topic chooser #}
             <div class="col-sm-4 col-md-3 col-lg-3 col-xs-12">
-                <button class="dropdown-toggle btn-block button1" data-toggle="dropdown">
-                    {{ _('Topics') }}
-                    <span class="fa fa-chevron-down pull-right hidden-sm"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="topics">
-                    {% for topic in g.featured_topics %}
-                    <li role="presentation">
-                        <a role="menuitem" tabindex="-1" href="{{ url_for('topics.display', topic=topic) }}">
-                            {{ topic.name }}
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
+                <div class="select-wrapper">
+                        <select onchange="if (this.value) window.location.href=this.value">
+                            <option selected disabled hidden>{{ _('Topics') }}</option>
+                            {% for topic in g.featured_topics %}
+                                <option value="{{ url_for('topics.display', topic=topic) }}">{{ topic.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
             </div>
             {% endcache %}
 

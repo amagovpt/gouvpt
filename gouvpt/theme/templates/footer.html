@@ -29,7 +29,7 @@
 					<div class="span2 offset1">
 						<a href="#">&nbsp;</a>
 					</div>
-                    {% for item in nav.gouvpt_footer %}
+                    {% for item in nav.gouvpt_menu %}
                     <div class="span2">
                         <a href="{{ 'javascript:void(0)' if item.items else item.url }}">{{ item.label }}</a>
                         {% if item.items %}
@@ -50,16 +50,16 @@
 			<div class="row-fluid">
 				<div class="span3">&nbsp;</div>
 				<div class="span1">
-					<a href="javascript:void(0);">PRÉMIOS</a>
+					<a href="{{ url_for('apidoc.swaggerui') }}">{{ _('API')|upper }}</a>
 				</div>
 				<div class="span2">
-					<a href="javascript:void(0);">OUTRO LINK</a>
+					<a href="{{ url_for('site.terms') }}">{{ _('Terms of use')|upper }}</a>
 				</div>
 				<div class="span2">
-					<a href="javascript:void(0);">POLÍTICA DE PRIVACIDADE</a>
+					<a href="{{ url_for('gouvpt.faq', section='publish') }}">{{ _('Publish data')|upper }}</a>
 				</div>
 				<div class="span2">
-					<a href="./contactos">CONTACTOS</a>
+					<a href="{{ url_for('gouvpt.faq', section='licenses') }}">{{ _('Licenses')|upper }}</a>
 				</div>
 				<div class="span2">&nbsp;</div>
 			</div>

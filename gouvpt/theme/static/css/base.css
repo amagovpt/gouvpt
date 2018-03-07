@@ -1199,7 +1199,7 @@ h2{
 	letter-spacing: 0.04em !important;
 }
 h3{
-	font-size: 22px !important;
+	font-size: 20px !important;
 	line-height: 38px !important;
 	font-family: 'latoblack' !important;
 	letter-spacing: 0.04em !important;
@@ -1368,7 +1368,7 @@ h6{
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
    	-o-transform: translateX(-50%);
-   	min-width: 132px;
+   	min-width: 155px;
    	display: none;
    	list-style: none;
    	z-index: 1;
@@ -1398,7 +1398,6 @@ h6{
 /*TYPE 2*/
 .horizontal-menu.type2{
 	padding: 20px 28px 50px 28px;
-	border-bottom: 5px solid #F08322;
 }
 .horizontal-menu.type2 > div>ul{
 	height: unset;
@@ -1715,7 +1714,7 @@ ul.horizontal-breadcrumb li:last-child a{
     box-shadow: none;
     height: 60px !important;
     line-height: 18px !important;
-    color: #808184 !important;
+    color: #F08322 !important;
     font-size: 18px !important;
     font-family: 'latolight';
     padding: 0 !important;
@@ -1728,7 +1727,7 @@ ul.horizontal-breadcrumb li:last-child a{
 }
 .form-wrapper input:focus,
 .form-wrapper textarea:focus{
-	border: 2px solid #2980b9 !important;
+	border: 2px solid #F08322 !important;
 	box-shadow: 0px 0px 7px rgba(0,0,0,0.4) !important;
 }
 .form-wrapper input:not([type="submit"]) {
@@ -1934,7 +1933,7 @@ label.animateInput {
     top: 5px
 }
 .animateInput span {
-    color: #2980b9;
+    color: #F08322;
     font-size: 14px;
     font-family: "latobold";
     position: absolute;
@@ -2375,7 +2374,7 @@ label.animateInput {
 /*Componente Seleccao expansivel*/
 .select-wrapper .select2-container{
 	width: 100% !important;
-	height: 60px;
+	height: 45px;
 	outline: 0px !important;
 	text-align: left;
     margin-bottom: 28px;
@@ -2389,23 +2388,23 @@ label.animateInput {
 }
 .select2-container--default .select2-selection--single .select2-selection__rendered{
 	line-height: 16px !important;
-	color: #2A2A2A !important;
+	color: #9FA2BF !important;
 	font-family: "karmalight" !important;
 	font-size: 16px !important;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow b{
-	border-color: #2980B9 transparent transparent transparent !important;
+	border-color: #9D9D9C transparent  !important;
 	border-width: 7px 6px 0 6px !important;
     margin-left: -10px;
 }
 .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b{
-	border-color: transparent transparent #2980B9 transparent !important;
+	border-color: #9D9D9C transparent !important;
 	border-width: 0px 6px 7px 6px !important;
     margin-left: -10px;
 }
 .select2-container .select2-selection--single .select2-selection__rendered{
 	padding-left: 16px !important;
-    padding: 20px 33.5px !important;
+    padding: 12px 33.5px !important;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow{
     right: 16px !important;
@@ -2456,7 +2455,7 @@ label.animateInput {
 } 
 .select2-container--default.select2-container--focus .select2-selection--multiple,
 .select2-container--default.select2-container--focus .select2-selection--single{
-	border: 2px solid #3498DB!important;
+	border: 2px solid #9D9D9C !important;
 }
 .select2-container .select2-search--inline .select2-search__field{
 	padding-left: 16px!important;
@@ -3556,7 +3555,7 @@ label.animateInput {
 		display: none;
 	}
 	.horizontal-menu.type2 i.icone-burguer{
-		top: 55px;
+		top: 65px;
 		left: auto;
 		right: auto;
 		color:#1D1D1B;
@@ -3846,5 +3845,8 @@ label.animateInput {
 	}
 	.search-box input:-moz-placeholder {
 		font-size: 24px!important;
+	}
+	#heading .menu-wrapper .top-section .top-button {
+		min-width: unset !important;
 	}
 }
