@@ -2388,17 +2388,17 @@ label.animateInput {
 }
 .select2-container--default .select2-selection--single .select2-selection__rendered{
 	line-height: 16px !important;
-	color: #9FA2BF !important;
+	color: #FFF !important;
 	font-family: "karmalight" !important;
 	font-size: 16px !important;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow b{
-	border-color: #9D9D9C transparent  !important;
+	border-color: #fff transparent  !important;
 	border-width: 7px 6px 0 6px !important;
     margin-left: -10px;
 }
 .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b{
-	border-color: #9D9D9C transparent !important;
+	border-color: #fff transparent !important;
 	border-width: 0px 6px 7px 6px !important;
     margin-left: -10px;
 }
@@ -2455,7 +2455,7 @@ label.animateInput {
 } 
 .select2-container--default.select2-container--focus .select2-selection--multiple,
 .select2-container--default.select2-container--focus .select2-selection--single{
-	border: 2px solid #9D9D9C !important;
+	border: 2px solid #fff!important;
 }
 .select2-container .select2-search--inline .select2-search__field{
 	padding-left: 16px!important;

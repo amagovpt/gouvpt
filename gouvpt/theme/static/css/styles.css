@@ -436,8 +436,8 @@ body.homepage #breadcrumbs{
 	margin-bottom: 0px;
 }
 .black-home-overlay{
-	opacity: 0.4;
-	background: #F08322;
+	opacity: 0.75;
+	background: #803f06;
 	position: absolute;
 	z-index: 1;
 	width: 100%;
@@ -2186,6 +2186,7 @@ ul.search-results .search-result .result-infos{
 .small-badge{
     border: 2px solid #3498DB;
     padding: 6px;
+    font-size: 10px;
 }
 .btn-group-sm > .btn, .btn-sm {
     line-height: unset;
@@ -2624,4 +2625,8 @@ section.default {
 .list-group-item.active, .list-group-item.active:hover {
     background-color: #F08322;
     border-color: #F08322;
+}
+.select2-container--default .select2-selection--single {
+    background-color: transparent;
+
 }
