@@ -15,6 +15,7 @@ import requests
 import csv
 import sys
 import os
+import errno
 import paramiko
 import json
 
@@ -22,12 +23,15 @@ sys.path.append('/home/udata')
 from ftpCreds import ftpCredsObj
 
 REPORT_FILE_PATH = '/home/udata/report.csv'
+dadosGovPath = 'dadosGovFiles'
+downloadFilePath = '/home/udata/fs/%s' % (dadosGovPath)
+
 class DGBackend(BaseBackend):
     display_name = 'Dados Gov'
 
     def initialize(self):
         '''Get the datasets and corresponding organization ids'''
-        global REPORT_FILE_PATH
+        global REPORT_FILE_PATH, downloadFilePath
 
         print '------------------------------------'
         print 'Initializing dados gov harvester'
@@ -141,12 +145,18 @@ class DGBackend(BaseBackend):
                         )
 
                         # print 'Added dataset "%s"' % datasetName
-        # ******************************************************************************
 
+        if not os.path.exists(downloadFilePath):
+            try:
+                os.makedirs(downloadFilePath)
+            except OSError as exc: # Guard against race condition
+                if exc.errno != errno.EEXIST:
+                    raise
+        # ******************************************************************************
 
     def process(self, item):
         '''Return the DadosGov datasets with the corresponding original and xml file'''
-        global REPORT_FILE_PATH, ftpCredsObj
+        global REPORT_FILE_PATH, ftpCredsObj, dadosGovPath, downloadFilePath
 
         # Get or create a harvested dataset with this identifier.
         dataset = self.get_dataset(item.remote_id)
@@ -165,9 +175,6 @@ class DGBackend(BaseBackend):
         dataset.resources = []
         
         # print item.kwargs['orgId']
-        dadosGovPath = 'dadosGovFiles'
-        downloadFilePath = '/home/udata/fs/%s' % (dadosGovPath)
-
         # *********************************************
         # go through the DB dataset information
         dataset.created_at = item.kwargs['createdOn']
