@@ -19,16 +19,16 @@ msgstr ""
 "Generated-By: Babel 2.5.3\n"
 
 #: gouvpt/theme/__init__.py:20
-msgid "Init"
+msgid "Documentation"
 msgstr "Documentação"
 
 #: gouvpt/theme/__init__.py:21
 msgid "About Open Data"
-msgstr "Sobre os dados abertos"
+msgstr "Sobre dados abertos"
 
 #: gouvpt/theme/__init__.py:22
 msgid "About Dados.gov"
-msgstr "Sobre o Dados.gov"
+msgstr "Sobre o dados.gov"
 
 #: gouvpt/theme/__init__.py:23 gouvpt/theme/templates/footer.html:59
 msgid "Publish data"
@@ -85,14 +85,6 @@ msgstr ""
 #: gouvpt/theme/templates/footer.html:56
 msgid "Terms of use"
 msgstr "Termos de utilização"
-
-#: gouvpt/theme/templates/footer.html:86
-msgid "dados.gov.pt uData extension"
-msgstr ""
-
-#: gouvpt/theme/templates/footer.html:88
-msgid "Open-source engine"
-msgstr ""
 
 #: gouvpt/theme/templates/header.html:6
 #: gouvpt/theme/templates/sections/subnav-small.html:16
@@ -159,22 +151,6 @@ msgstr "Granularidade de cobertura territorial"
 msgid "dataset"
 msgstr "Conjuntos de dados"
 
-#: gouvpt/theme/templates/dataset/display.html:44
-msgid "This dataset comes from a certified public service"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:49
-#, python-format
-msgid ""
-"This dataset has been published on %(date)s and updated on %(update)s on "
-"the initiative and under the responsibility of <a href=\"%(url)s\" "
-"title=\"%(author)s\">%(author)s</a>"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:60
-msgid "See all datasets with that badge."
-msgstr ""
-
 #: gouvpt/theme/templates/dataset/display.html:67
 #, fuzzy
 msgid "This dataset is private and will not be visible by other users"
@@ -208,11 +184,6 @@ msgstr "Recursos"
 msgid "No resources"
 msgstr "Recursos"
 
-#: gouvpt/theme/templates/dataset/display.html:108
-#, python-format
-msgid "See the %(nb)d resources"
-msgstr ""
-
 #: gouvpt/theme/templates/dataset/display.html:118
 #, fuzzy
 msgid "Add a resource"
@@ -224,20 +195,6 @@ msgstr "Recursos"
 msgid "Edit"
 msgstr "Editar"
 
-#: gouvpt/theme/templates/dataset/display.html:145
-#: gouvpt/theme/templates/organization/sidebar-producer.html:23
-msgid "Contact the producer"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:177
-#, python-format
-msgid "The identity of this public service is certified by %(certifier)s"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:178
-msgid "Certified public service"
-msgstr ""
-
 #: gouvpt/theme/templates/dataset/display.html:181
 #, fuzzy
 msgid "Producer"
@@ -248,39 +205,6 @@ msgstr "Produtores"
 msgid "Informations"
 msgstr "Administração"
 
-#: gouvpt/theme/templates/dataset/display.html:198
-msgid "Badges"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:209
-msgid "License"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:236
-msgid "Creation date"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:243
-msgid "Modification date"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:250
-msgid "Latest resource update"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:290
-msgid "Suggest a tag with a new discussion thread"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:292
-msgid "Suggest a tag"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:299
-#: gouvpt/theme/templates/dataset/display.html:301
-msgid "Details"
-msgstr ""
-
 #: gouvpt/theme/templates/dataset/display.html:311
 #: gouvpt/theme/templates/dataset/search-result.html:55
 #: gouvpt/theme/templates/dataset/search-result.html:65
@@ -289,49 +213,10 @@ msgstr ""
 msgid "Spatial coverage"
 msgstr "Cobertura temporal"
 
-#: gouvpt/theme/templates/dataset/display.html:329
-msgid "Territories"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:347
-msgid "Community contributions"
-msgstr ""
-
 #: gouvpt/theme/templates/dataset/display.html:355
 #: gouvpt/theme/templates/post/display.html:202
 msgid "Discussions"
 msgstr "Discussões"
-
-#: gouvpt/theme/templates/dataset/display.html:364
-msgid "Discussion between the organization and the community about this dataset."
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:368
-msgid "Community resources"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:379
-msgid "New community resource"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:386
-msgid ""
-"You have built a more comprehensive database than those presented here? "
-"This is the time to share it!"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:408
-msgid "Add a reuse"
-msgstr ""
-
-#: gouvpt/theme/templates/dataset/display.html:416
-msgid ""
-"You reused these data and published an article, a computer graphics, or "
-"an application?\n"
-"                It's time to let you know!\n"
-"                Reference your work in just a few clicks and increase "
-"your visibility."
-msgstr ""
 
 #: gouvpt/theme/templates/dataset/reuse-card.html:23
 msgid "Open in a new window"
@@ -516,31 +401,6 @@ msgstr "Criar uma conta"
 msgid "Sign Up"
 msgstr "Registar"
 
-#: gouvpt/theme/templates/security/register_saml.html:22
-#: gouvpt/theme/templates/security/register_user.html:21
-#, python-format
-msgid ""
-"I have read and accept <a href=\"%(url)s\" target=\"_blank\"> the terms "
-"and conditions of the service.</a>"
-msgstr ""
-"Li e aceitei <a href=\"%(url)s\" target=\"_blank\"> os termos e condições"
-" do serviço.</a>"
-
-#: gouvpt/theme/templates/security/register_saml.html:24
-#: gouvpt/theme/templates/security/register_user.html:23
-msgid ""
-"In particular, I understand that this site\n"
-"                    values the production and enrichment of datasets over"
-" definitive or partisan interpretations.\n"
-"                    The members of the community are in charge of looking"
-" after the quality of the content it produces."
-msgstr ""
-"Em particular, compreendo que esta página\n"
-"                    valoriza a produção e enrequecimento de conjuntos de "
-"dados .\n"
-"                    Os membros desta comunidade estão encarregados de "
-"promover a qualidade do conteudo promovido."
-
 #: gouvpt/theme/templates/topic/display_base.html:7
 msgid "topic"
 msgstr "tópico"
@@ -556,14 +416,8 @@ msgstr "Conjuntos de dados em destaque"
 #~ msgid "Reusers"
 #~ msgstr "Reutilizadores"
 
-#~ msgid "Developers"
-#~ msgstr ""
-
 #~ msgid "Blog/Events"
 #~ msgstr "Blog/Eventos"
-
-#~ msgid "Blog"
-#~ msgstr ""
 
 #~ msgid "Documents"
 #~ msgstr "Documentação"

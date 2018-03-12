@@ -26,7 +26,7 @@
                         <select onchange="if (this.value) window.location.href=this.value">
                             <option selected disabled hidden>{{ _('Topics') }}</option>
                             {% for topic in g.featured_topics %}
-                                <option value="{{ url_for('topics.display', topic=topic) }}">{{ topic.name }}</option>
+                                <option {% if url_for('topics.display', topic=topic) in request.path %} selected {% endif %}  value="{{ url_for('topics.display', topic=topic) }}">{{ topic.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
