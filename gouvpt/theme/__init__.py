@@ -17,7 +17,7 @@ log = logging.getLogger(__name__)
 
 gouvpt_menu = nav.Bar('gouvpt_menu', [
 
-    nav.Item(_('Init'),  None, url='#', items=[
+    nav.Item(_('Documentation'),  None, url='#', items=[
         nav.Item(_('About Open Data'), 'gouvpt.faq', {'section': 'about_opendata'}),
         nav.Item(_('About Dados.gov'), 'gouvpt.faq', {'section': 'about_dadosgov'}),
         nav.Item(_('Publish data'), 'gouvpt.faq', {'section': 'publish'}),

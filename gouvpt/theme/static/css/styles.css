@@ -69,7 +69,7 @@ i[class^="icon-"] {
     background: transparent!important;
 }
 p {
-	font-family: "karmalight";
+	font-family: "latoregular";
 	font-size: 16px;
 	line-height: 22px;
 	/* margin: 0 0 15px 0 !important; */
@@ -252,12 +252,13 @@ html #wrapper footer .social-media-wrapper ul li div {
     color: #808080 !important;
     font-family: "latoregular" !important;
     padding: 0 !important;
-    font-size: 15px !important;
+    font-size: 12px !important;
 }
 .lang-wrapper .select2-container--default .select2-selection--single .select2-selection__arrow {
     right: 18px !important;
     width: auto !important;
     height: 100% !important;
+    left: 10px;
 }
 .lang-wrapper .select2-container .select2-selection--single .select2-selection__arrow b {
 	border-color: #808080 transparent transparent transparent !important;
@@ -277,6 +278,7 @@ html #wrapper footer .social-media-wrapper ul li div {
     font-family: "latoregular"!important;
     padding: 10px 5px 10px 5px!important;
     height: auto;
+    font-size: 12px;
 }
 .select2-container--open .select2-dropdown.select2LangOptions .select2-results__option--highlighted[aria-selected], .select2LangOptions .select2-results__option[aria-selected=true] {
     background: #2a2a2a!important;
@@ -559,7 +561,7 @@ body.homepage #breadcrumbs{
     font-size: 13px!important;
     font-family: "latoregular"!important;
     text-transform: uppercase;
-	color: #2980b9;
+	color: #F08322;
     background: #fff;
     border: 0px;
     display: inline-block;
@@ -571,7 +573,7 @@ body.homepage #breadcrumbs{
 }
 .top-banner #homepage-slider .verMaisHomeBtn a:hover{
     color: #fff;
-    background: #2980b9;
+    background: #F08322;
     border: 0px;    
 }
 .bx-wrapper .bx-pager{
@@ -1469,7 +1471,7 @@ html #wrapper footer .social-media-wrapper li {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     box-shadow: none;
-    font-family: "karmalight";
+    font-family: "latoregular";
     font-size: 16px;
     line-height: 16px;
 }
@@ -1478,7 +1480,7 @@ html #wrapper footer .social-media-wrapper li {
     padding: 17px 33.5px;
 }
 #formServicesWrapper .form-wrapper .generoBox>span {
-    font-family: "karmalight";
+    font-family: "latoregular";
     font-size: 16px;
     line-height: 16px;
     margin-right: 10px;
@@ -1502,7 +1504,7 @@ html #wrapper footer .social-media-wrapper li {
     color: #9d9d9c;
     font-size: 16px;
     line-height: 22px;
-    font-family: "karmalight";
+    font-family: "latoregular";
     margin-bottom: 40px;
 }
 #formServicesWrapper .form-wrapper .btnWrapper .button1 {
@@ -1807,7 +1809,7 @@ html #wrapper footer .social-media-wrapper li {
 #contactFormWrapper .infoSedes > div {
     font-size: 18px; 
     line-height: 22px;
-    font-family: "karmalight";
+    font-family: "latoregular";
     color: #808184;
 }
 #contactFormWrapper .infoSedes > div > span {
@@ -1830,12 +1832,12 @@ html #wrapper footer .social-media-wrapper li {
     color: #9D9D9C;
     font-size: 16px;
     line-height: 22px;
-    font-family: "karmalight";
+    font-family: "latoregular";
     margin-bottom: 10px;
 }
 #contactFormWrapper .form-wrapper input, #contactFormWrapper .form-wrapper textarea {
     background-color: #F1F1F2;
-    font-family: "karmalight" !important;
+    font-family: "latoregular" !important;
     font-size: 16px !important;
     line-height: 16px !important;
     -webkit-box-shadow: none;
@@ -2185,7 +2187,7 @@ ul.search-results .search-result .result-infos{
 }
 .small-badge{
     border: 2px solid #3498DB;
-    padding: 6px;
+    padding: 5px;
     font-size: 10px;
 }
 .btn-group-sm > .btn, .btn-sm {
@@ -2585,6 +2587,7 @@ section.default {
 .header_big, .header_big a, .header_big a:hover {
     font-size: 18px !important;
     color: #4c4c4c !important; 
+    font-family: "latoregular" !important;
 }
 .header_small {
     font-size: 14px !important;
@@ -2628,5 +2631,39 @@ section.default {
 }
 .select2-container--default .select2-selection--single {
     background-color: transparent;
-
+}
+.markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    margin: 0 auto;
+    padding: 45px;
+}
+@media (max-width: 767px) {
+    .markdown-body {
+        padding: 15px;
+    }
+}
+.pagination > .active > a, 
+.pagination > .active > a:focus, 
+.pagination > .active > a:hover, 
+.pagination > .active > span, 
+.pagination > .active > span:focus, 
+.pagination > .active > span:hover {
+    color: #fff;
+    background-color: #F08322;
+    border-color: #F08322;
+}
+.pagination > li > a:focus, 
+.pagination > li > a:hover, 
+.pagination > li > span:focus, 
+.pagination > li > span:hover,
+.pagination > li > a, 
+.pagination > li > span {
+    color: #F08322;
+}
+.btn.btn-sorter{
+    text-transform: None;
+}
+.footer-version{
+    font-family: "latoregular" !important;
 }
