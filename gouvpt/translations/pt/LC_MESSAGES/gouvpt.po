@@ -38,72 +38,23 @@ msgstr "Publicar dados"
 msgid "Reuse data"
 msgstr "Reutilizar dados"
 
-#: gouvpt/theme/__init__.py:25 gouvpt/theme/templates/footer.html:62
-msgid "Licenses"
-msgstr "Licenças"
-
 #: gouvpt/theme/__init__.py:28
 msgid "Open Data"
 msgstr "Dados Abertos"
-
-#: gouvpt/theme/__init__.py:29 gouvpt/theme/templates/dataset/display.html:24
-msgid "Datasets"
-msgstr "Conjuntos de dados"
-
-#: gouvpt/theme/__init__.py:30 gouvpt/theme/templates/dataset/card.html:38
-#: gouvpt/theme/templates/dataset/display.html:391
-msgid "Reuses"
-msgstr "Reutilizações"
-
-#: gouvpt/theme/__init__.py:31 gouvpt/theme/templates/header.html:47
-msgid "Organizations"
-msgstr "Organizações"
-
-#: gouvpt/theme/__init__.py:32
-msgid "Dashboard"
-msgstr "Painel de Controle"
-
-#: gouvpt/theme/__init__.py:35 gouvpt/theme/__init__.py:36
-#: gouvpt/theme/templates/post/display.html:18
-msgid "News"
-msgstr "Noticias"
 
 #: gouvpt/theme/__init__.py:37
 msgid "Events"
 msgstr "Eventos"
 
-#. This is an action (present indicative).
-#: gouvpt/theme/__init__.py:40 gouvpt/theme/templates/custom/contact.html:8
-#: gouvpt/theme/templates/organization/sidebar-producer.html:26
-msgid "Contact"
-msgstr "Contacto"
-
-#: gouvpt/theme/templates/footer.html:53
-msgid "API"
-msgstr ""
-
 #: gouvpt/theme/templates/footer.html:56
 msgid "Terms of use"
 msgstr "Termos de utilização"
-
-#: gouvpt/theme/templates/header.html:6
-#: gouvpt/theme/templates/sections/subnav-small.html:16
-msgid "Search"
-msgstr "Pesquisa"
 
 #: gouvpt/theme/templates/header.html:26
 #: gouvpt/theme/templates/sections/subnav-small.html:39
 #: gouvpt/theme/templates/sections/subnav-small.html:42
 msgid "Contribute!"
 msgstr "Contribuir!"
-
-#: gouvpt/theme/templates/header.html:41
-msgid "Profile"
-msgstr "Perfil"
-
-#: gouvpt/theme/templates/header.html:44
-msgid "Change password"
-msgstr "Alterar palavra-passe"
 
 #: gouvpt/theme/templates/header.html:59
 msgid "Administration"
@@ -117,317 +68,18 @@ msgstr "Sair"
 msgid "Sign In / Register"
 msgstr "Entrar / Registar"
 
-#: gouvpt/theme/templates/dataset/card.html:29
-#: gouvpt/theme/templates/dataset/display.html:268
-msgid "Territorial coverage"
-msgstr "Cobertura territorial"
-
-#: gouvpt/theme/templates/dataset/card.html:45
-#: gouvpt/theme/templates/reuse/card.html:58
-msgid "Stars"
-msgstr "Estrelas"
-
-#: gouvpt/theme/templates/dataset/card.html:53
-#: gouvpt/theme/templates/dataset/card.html:93
-#: gouvpt/theme/templates/dataset/display.html:228
-#: gouvpt/theme/templates/dataset/search-result.html:42
-msgid "Frequency"
-msgstr "Frequencia"
-
-#: gouvpt/theme/templates/dataset/card.html:73
-#: gouvpt/theme/templates/dataset/display.html:219
-#: gouvpt/theme/templates/dataset/search-result.html:31
-msgid "Temporal coverage"
-msgstr "Cobertura temporal"
-
-#: gouvpt/theme/templates/dataset/card.html:83
-#: gouvpt/theme/templates/dataset/display.html:260
-#: gouvpt/theme/templates/dataset/search-result.html:89
-msgid "Territorial coverage granularity"
-msgstr "Granularidade de cobertura territorial"
-
-#: gouvpt/theme/templates/dataset/display.html:11
-#, fuzzy
-msgid "dataset"
-msgstr "Conjuntos de dados"
-
-#: gouvpt/theme/templates/dataset/display.html:67
-#, fuzzy
-msgid "This dataset is private and will not be visible by other users"
-msgstr "Esta publicação é privada e não será visivel por outros utilizadores"
-
-#: gouvpt/theme/templates/dataset/display.html:68
-#: gouvpt/theme/templates/dataset/display.html:69
-#: gouvpt/theme/templates/post/display.html:65
-#: gouvpt/theme/templates/post/display.html:68
-msgid "Private"
-msgstr "Privado"
-
-#: gouvpt/theme/templates/dataset/display.html:73
-#, fuzzy
-msgid "This dataset has been deleted. This will be permanent in the next 24 hours"
-msgstr "Esta publicação foi apagada. Será permanente dentro de 24 horas"
-
-#: gouvpt/theme/templates/dataset/display.html:74
-#: gouvpt/theme/templates/dataset/display.html:75
-#: gouvpt/theme/templates/post/display.html:72
-#: gouvpt/theme/templates/post/display.html:75
-msgid "Deleted"
-msgstr "Apagado"
-
-#: gouvpt/theme/templates/dataset/display.html:88
-msgid "Resources"
-msgstr "Recursos"
-
-#: gouvpt/theme/templates/dataset/display.html:97
-#, fuzzy
-msgid "No resources"
-msgstr "Recursos"
-
-#: gouvpt/theme/templates/dataset/display.html:118
-#, fuzzy
-msgid "Add a resource"
-msgstr "Recursos"
-
-#: gouvpt/theme/templates/dataset/display.html:133
-#: gouvpt/theme/templates/dataset/reuse-card.html:27
-#: gouvpt/theme/templates/post/display.html:121
-msgid "Edit"
-msgstr "Editar"
-
-#: gouvpt/theme/templates/dataset/display.html:181
-#, fuzzy
-msgid "Producer"
-msgstr "Produtores"
-
-#: gouvpt/theme/templates/dataset/display.html:191
-#, fuzzy
-msgid "Informations"
-msgstr "Administração"
-
-#: gouvpt/theme/templates/dataset/display.html:311
-#: gouvpt/theme/templates/dataset/search-result.html:55
-#: gouvpt/theme/templates/dataset/search-result.html:65
-#: gouvpt/theme/templates/dataset/search-result.html:76
-#, fuzzy
-msgid "Spatial coverage"
-msgstr "Cobertura temporal"
-
-#: gouvpt/theme/templates/dataset/display.html:355
-#: gouvpt/theme/templates/post/display.html:202
-msgid "Discussions"
-msgstr "Discussões"
-
-#: gouvpt/theme/templates/dataset/reuse-card.html:23
-msgid "Open in a new window"
-msgstr "Abrir numa nova janela"
-
-#: gouvpt/theme/templates/dataset/search-result.html:98
-msgid "Reuse number"
-msgstr "Número de reutilizações"
-
-#: gouvpt/theme/templates/dataset/search-result.html:106
-msgid "Followers"
-msgstr "Seguidores"
-
-#: gouvpt/theme/templates/mail/security/confirmation_instructions.html:7
-#, python-format
-msgid "Welcome to %(site)s!"
-msgstr "Bem vindo ao %(site)s!"
-
-#: gouvpt/theme/templates/mail/security/confirmation_instructions.html:10
-msgid ""
-"To activate your account, please confirm your email address through the "
-"link below:"
-msgstr "Para activar a sua conta, confirme o email através do seguinte endereço :"
-
-#: gouvpt/theme/templates/mail/security/confirmation_instructions.html:18
-msgid "Confirm now"
-msgstr "Confirmar"
-
-#: gouvpt/theme/templates/organization/sidebar-producer.html:20
-#, fuzzy
-msgid "View Profile"
-msgstr "Ver Perfil"
-
-#: gouvpt/theme/templates/organization/sidebar-producer.html:31
-msgid "I'll be informed about this organization news"
-msgstr "Serei informado sobre novidades desta organização"
-
-#: gouvpt/theme/templates/post/display.html:32
-#: gouvpt/theme/templates/post/display.html:89
-msgid "Photo credit"
-msgstr "Créditos"
-
-#: gouvpt/theme/templates/post/display.html:66
-msgid "This post is private and will not be visible by other users"
-msgstr "Esta publicação é privada e não será visivel por outros utilizadores"
-
-#: gouvpt/theme/templates/post/display.html:73
-msgid "This post has been deleted. This will be permanent in the next 24 hours"
-msgstr "Esta publicação foi apagada. Será permanente dentro de 24 horas"
-
-#: gouvpt/theme/templates/post/display.html:138
-msgid "Associated reuses"
-msgstr "Reutilizações associadas"
-
-#: gouvpt/theme/templates/post/display.html:151
-msgid "Associated datasets"
-msgstr "Conjunto de dados associados"
-
-#: gouvpt/theme/templates/post/display.html:173
-#: gouvpt/theme/templates/post/display.html:175
-msgid "Previous post"
-msgstr "Publicação anterior"
-
-#: gouvpt/theme/templates/post/display.html:182
-msgid "All posts"
-msgstr "Todas as publicaçoẽs"
-
-#: gouvpt/theme/templates/post/display.html:187
-#: gouvpt/theme/templates/post/display.html:188
-msgid "Next post"
-msgstr "Proxima publicação"
-
-#: gouvpt/theme/templates/post/display.html:215
-msgid "Comments about this post."
-msgstr "Comentários sobre esta publicação."
-
-#: gouvpt/theme/templates/post/list.html:5
-#: gouvpt/theme/templates/post/list.html:15
-msgid "Posts"
-msgstr "Publicações"
-
-#: gouvpt/theme/templates/post/list.html:6
-#, python-format
-msgid "%(site)s posts"
-msgstr "%(site)s publicações"
-
-#: gouvpt/theme/templates/post/list.html:7
-msgid "posts"
-msgstr "publicações"
-
-#: gouvpt/theme/templates/post/list.html:16
-#, python-format
-msgid "%(start)s to %(end)s on %(total)s"
-msgstr "%(start)s a %(end)s de %(total)s"
-
-#: gouvpt/theme/templates/reuse/card.html:32
-#: gouvpt/theme/templates/reuse/card.html:45
-msgid "Type"
-msgstr "Tipo"
-
-#: gouvpt/theme/templates/reuse/card.html:51
-msgid "Number of datasets used"
-msgstr "Conjuntos de dados utilizados"
-
-#: gouvpt/theme/templates/sections/datasets-featured.html:5
-#: gouvpt/theme/templates/topic/display.html:79
-msgid "Featured datasets"
-msgstr "Conjuntos de dados em destaque"
-
-#: gouvpt/theme/templates/sections/datasets-featured.html:6
-#: gouvpt/theme/templates/topic/display.html:80
-msgid "Latest datasets"
-msgstr "Ultimos conjuntos de dados"
-
-#: gouvpt/theme/templates/sections/datasets-featured.html:42
-#: gouvpt/theme/templates/topic/display.html:116
-msgid "See more"
-msgstr "Ver mais"
 
 #: gouvpt/theme/templates/sections/posts-last.html:15
 msgid "News in data"
 msgstr "Novidades"
 
-#: gouvpt/theme/templates/sections/reuses-featured.html:8
-#: gouvpt/theme/templates/topic/display.html:17
-msgid "Best reuse cases"
-msgstr "Melhores reutilizações"
-
-#: gouvpt/theme/templates/sections/reuses-featured.html:40
-#: gouvpt/theme/templates/sections/reuses-featured.html:41
-msgid "Latest reuses"
-msgstr "Ultimas reutilizações"
-
 #: gouvpt/theme/templates/sections/subnav-small.html:10
 #, fuzzy
 msgid "Search in datasets"
-msgstr "Conjuntos de dados em destaque"
+msgstr "Perquisar em conjuntos de dados"
 
 #: gouvpt/theme/templates/sections/subnav-small.html:13
 msgid "Search in this "
-msgstr "Pesquisar"
+msgstr "Pesquisar aqui"
 
-#: gouvpt/theme/templates/sections/subnav-small.html:27
-#: gouvpt/theme/templates/topic/display.html:5
-msgid "Topics"
-msgstr "Tópicos"
-
-#: gouvpt/theme/templates/security/login_user.html:15
-msgid "Sign In"
-msgstr "Entrar"
-
-#: gouvpt/theme/templates/security/login_user.html:19
-msgid "Sign in"
-msgstr "Entrar"
-
-#: gouvpt/theme/templates/security/login_user.html:23
-msgid "Forgot your password?"
-msgstr "Esqueceu a plavra-passe?"
-
-#: gouvpt/theme/templates/security/login_user.html:25
-msgid "Recover your password"
-msgstr "Recupere a palavra-passe"
-
-#: gouvpt/theme/templates/security/login_user.html:34
-#: gouvpt/theme/templates/security/login_user.html:49
-#: gouvpt/theme/templates/security/register_saml.html:31
-#: gouvpt/theme/templates/security/register_user.html:30
-msgid "Sign up"
-msgstr "Registar"
-
-#: gouvpt/theme/templates/security/login_user.html:37
-#: gouvpt/theme/templates/security/login_user.html:52
-msgid "Register"
-msgstr "Registar"
-
-#: gouvpt/theme/templates/security/login_user.html:41
-msgid "Create an account"
-msgstr "Criar uma conta"
-
-#: gouvpt/theme/templates/security/register_saml.html:13
-#: gouvpt/theme/templates/security/register_user.html:12
-msgid "Sign Up"
-msgstr "Registar"
-
-#: gouvpt/theme/templates/topic/display_base.html:7
-msgid "topic"
-msgstr "tópico"
-
-#: gouvpt/theme/templates/topic/display_base.html:31
-#, fuzzy
-msgid "Related tags"
-msgstr "Conjuntos de dados em destaque"
-
-#~ msgid "Citizens"
-#~ msgstr "Cidadãos"
-
-#~ msgid "Reusers"
-#~ msgstr "Reutilizadores"
-
-#~ msgid "Blog/Events"
-#~ msgstr "Blog/Eventos"
-
-#~ msgid "Documents"
-#~ msgstr "Documentação"
-
-#~ msgid "About"
-#~ msgstr "Sobre"
-
-#~ msgid "Reuse"
-#~ msgstr "Reutilizar"
-
-#~ msgid "Data"
-#~ msgstr "Dados"
 
