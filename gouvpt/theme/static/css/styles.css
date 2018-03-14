@@ -2187,7 +2187,7 @@ ul.search-results .search-result .result-infos{
 }
 .small-badge{
     border: 2px solid #3498DB;
-    padding: 5px;
+    padding: 10px;
     font-size: 10px;
 }
 .btn-group-sm > .btn, .btn-sm {
@@ -2666,4 +2666,11 @@ section.default {
 }
 .footer-version{
     font-family: "latoregular" !important;
+}
+.alert{
+    margin-bottom: 0px;
+}
+.edit-button {
+    border: 2px solid;
+    padding: 10px;
 }

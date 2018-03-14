@@ -7,6 +7,11 @@
             <article class="markdown-body">
             {% cache cache_duration, 'faqs', page_name %}
                 {{ content }}
+                <p class="text-center">
+                    <a class="edit-button" href="https://github.com/amagovpt/docs.dados.gov.pt/edit/master/faqs/{{page_name}}.md" target="_blank">
+                        ✎ {{_("Edit this page") }}
+                    </a>
+                </p>
             {% endcache %}
             </article>
         </div>

@@ -1,3 +1,4 @@
-udata>=1.3.0.dev
+udata>=1.3.0
 pysaml2>=4.5.0
 markdown>=2.6.11
+flask-debugtoolbar==0.10.1

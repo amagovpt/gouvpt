@@ -82,4 +82,18 @@ msgstr "Perquisar em conjuntos de dados"
 msgid "Search in this "
 msgstr "Pesquisar aqui"
 
+#: gouvpt/theme/templates/custom/contact.html:18
+msgid "Message"
+msgstr "Mensagem"
 
+msgid "Submit"
+msgstr "Submeter"
+
+msgid "Thank you for your message. We'll get back to you shortly."
+msgstr "Obrigado pela sua mensagem. Vamos responder assim que possivel."
+
+msgid "The response parameter is missing."
+msgstr "Validação reCAPTCHA em falta."
+
+msgid "Edit this page"
+msgstr "Editar esta página"

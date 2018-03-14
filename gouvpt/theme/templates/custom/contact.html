@@ -1,56 +1,46 @@
-{% extends theme("base.html") %} {% set meta = { 'title': 'Contact', 'description': "Page Contacts", 'keywords': [ 'contact',
-], } %} {% block content %}
+{% extends theme("base.html") %} 
+{% set meta = { 'title': 'Contact', 'description': "Page Contacts", 'keywords': [ 'contact']} %} 
+{% block content %}
 <section class="content">
     <div class="container block-wrapper grey">
         <div class="row">
             <div class="maniFluid" id="formServicesWrapper">
                 <div class="headerForm">
                     <h2>{{_('Contact')|upper}}</h2>
-                    <p>Para otimizar a interação do cidadão com os organismos públicos, na disponibilização de serviços em formato
-                        digital, pode recorrer-se ao uso de formulários sequenciais.</p>
+                    <p>A Agência para a Modernização Administrativa, I.P. disponibiliza um serviço de esclarecimento de dúvidas acerca do Dados.gov, através do preenchimento do seguinte formulário:</p>
                 </div>
                 <div class="form-wrapper">
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <label class="animateInput">
-                                <input id="nome" placeholder="Nome*" type="text">
-                                <span>Nome*</span>
-                            </label>
+                    <form action="{{ url_for('gouvpt.contact') }}" method=post>
+                        {{ form.hidden_tag() }} 
+                        {{ form.name(placeholder='*'+_("Name")) }} 
+                        {{ form.email(placeholder='*'+_("Email")) }} 
+                        {{ form.subject(placeholder='*'+_("Subject"))}} 
+                        {{ form.message(placeholder='*'+_("Message")) }}
+                        <div class="labelInfoObrig">
+                            <br> *{{ _("required fields")|title }} </div>
+                        <center>
+                            {% for error in form.recaptcha.errors %}
+                                <p style="color:red">
+                                    {{ _(error) }}
+                                </p>
+                            {% endfor %} 
+                            {{ form.recaptcha }}
+                        </center>
+                        <br>
+                        <div class="btnWrapper">
+                            <button id="submit" type="submit" class="btn btn-submit" disabled>
+                                {{ _("Submit") }}
+                            </button>
                         </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <label class="animateInput">
-                                <input id="email" placeholder="Email*" type="text">
-                                <span>Email*</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <label class="animateInput">
-                                <input id="morada" placeholder="Assunto*" type="text">
-                                <span>Assunto*</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <label class="animateInput">
-                                <textarea id="mensagem" name="mensagem" placeholder="Mensagem*" class=""></textarea>
-                                <span>Mensagem*</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="labelInfoObrig"><br> *Campo de preenchimento obrigatório </div>
-                    <div class="btnWrapper">
-                        <button id="submit" class="btn btn-submit">
-                            Submeter
-                        </button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<script>
+    function enableBtn(){
+        document.getElementById("submit").disabled = false;
+    }
+</script>
 {% endblock %}
