@@ -253,8 +253,8 @@ class DGBackend(BaseBackend):
             # print '----------------------'
             # print filename
 
-            filenameXml = '%s.xml' % (filename[0])
-            # filenameXml = '%s.xml' % (item.remote_id)
+            # filenameXml = '%s.xml' % (filename[0])
+            filenameXml = '%s.xml' % (item.remote_id)
             u = urllib2.urlopen("http://servico.dados.gov.pt/v1/%s/%s" % (item.kwargs['orgAcronym'], item.remote_id))
 
             # create/open the local file to be written
@@ -265,8 +265,7 @@ class DGBackend(BaseBackend):
                 # get file size info
                 meta = u.info()
                 fileSize = int(meta.getheaders("Content-Length")[0])
-                urlSafe = urllib.quote(filename[0])
-                fullPath = '%s/%s.xml' % (fixedUrl, urlSafe)
+                fullPath = '%s/%s' % (fixedUrl, filenameXml)
                 print fullPath
 
                 # set the resource data for the dataset
@@ -297,20 +296,20 @@ class DGBackend(BaseBackend):
                     u = urllib2.urlopen("https://dadosgovstorage.blob.core.windows.net/datasetsfiles/%s" % (urlSafe))
 
                     # create/open the local file to be written
-                    with open('%s/%s' % (downloadFilePath, item.kwargs['filePath']), 'wb') as f:
+                    with open('%s/%s%s' % (downloadFilePath, item.remote_id, filename[1]), 'wb') as f:
                         # write file data
                         f.write(u.read())
 
                         # get file size info
                         meta = u.info()
                         fileSize = int(meta.getheaders("Content-Length")[0])
-                        fullPath = '%s/%s' % (fixedUrl, urlSafe)
+                        fullPath = '%s/%s%s' % (fixedUrl, item.remote_id, filename[1])
                         print fullPath
 
                         # set the resource data for the dataset
                         dataset.resources.append(Resource(
                             title = dataset.title
-                            , description = 'Ficheiro original'
+                            , description = 'Ficheiro original (%s)' % (item.kwargs['filePath'])
                             # http://localhost/s/resources/aiiidm2010-8/20180226-215249/NomeCompleto.png
                             , url = fullPath
                             # this is the default
