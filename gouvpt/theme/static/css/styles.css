@@ -2452,6 +2452,7 @@ section.breadcrumb-bar .breadcrumb {
 }
 .card-list-footer .dropdown{
     display:inline-block;
+    padding-top: 10px;
 }
 .card.selected, .card:hover{
     border-color: #F08322;
