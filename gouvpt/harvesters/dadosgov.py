@@ -11,12 +11,12 @@ from flask import url_for
 
 from xml.dom import minidom, Node
 import urllib2
+import urllib
 import requests
 import csv
 import sys
 import os
 import errno
-import paramiko
 import json
 
 sys.path.append('/home/udata')
@@ -253,8 +253,8 @@ class DGBackend(BaseBackend):
             # print '----------------------'
             # print filename
 
-            # filenameXml = '%s.xml' % (filename[0])
-            filenameXml = '%s.xml' % (item.remote_id)
+            filenameXml = '%s.xml' % (filename[0])
+            # filenameXml = '%s.xml' % (item.remote_id)
             u = urllib2.urlopen("http://servico.dados.gov.pt/v1/%s/%s" % (item.kwargs['orgAcronym'], item.remote_id))
 
             # create/open the local file to be written
@@ -265,7 +265,8 @@ class DGBackend(BaseBackend):
                 # get file size info
                 meta = u.info()
                 fileSize = int(meta.getheaders("Content-Length")[0])
-                fullPath = '%s/%s' % (fixedUrl, filenameXml)
+                urlSafe = urllib.quote(filename[0])
+                fullPath = '%s/%s.xml' % (fixedUrl, urlSafe)
                 print fullPath
 
                 # set the resource data for the dataset
@@ -288,6 +289,44 @@ class DGBackend(BaseBackend):
             # ********************************************************
             # get original files using static path and ftp and set the dataset resource field
 
+            if item.kwargs['filePath']:
+                try:
+                    # https://dadosgovstorage.blob.core.windows.net/datasetsfiles/Acesso%20a%20Consultas%20M%C3%A9dicas%20pela%20Popula%C3%A7%C3%A3o%20Inscrita_636046701023924396.xlsx
+                    urlSafe = urllib.quote(item.kwargs['filePath'])
+                    print "https://dadosgovstorage.blob.core.windows.net/datasetsfiles/%s" % (urlSafe)
+                    u = urllib2.urlopen("https://dadosgovstorage.blob.core.windows.net/datasetsfiles/%s" % (urlSafe))
+
+                    # create/open the local file to be written
+                    with open('%s/%s' % (downloadFilePath, item.kwargs['filePath']), 'wb') as f:
+                        # write file data
+                        f.write(u.read())
+
+                        # get file size info
+                        meta = u.info()
+                        fileSize = int(meta.getheaders("Content-Length")[0])
+                        fullPath = '%s/%s' % (fixedUrl, urlSafe)
+                        print fullPath
+
+                        # set the resource data for the dataset
+                        dataset.resources.append(Resource(
+                            title = dataset.title
+                            , description = 'Ficheiro original'
+                            # http://localhost/s/resources/aiiidm2010-8/20180226-215249/NomeCompleto.png
+                            , url = fullPath
+                            # this is the default
+                            # , filetype = 'file'
+                            , mime = 'application/vnd.ms-excel'
+                            , format = filename[1][1:]
+                            , filesize = fileSize
+                            , created_at = item.kwargs['createdOn']
+                        ))
+
+                # file not found exception
+                except IOError as ex:
+                    print 'Original file not found:'
+                    print ex
+            
+            # import paramiko
             # with paramiko.Transport((ftpCredsObj['host'], ftpCredsObj['port'])) as transport:
             #     transport.connect(username = ftpCredsObj['username'], password = ftpCredsObj['password'])
 
