@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="list-group resources-list">
-                    <h3>{{ _('Resources') }}</h3>
+                    <h3 class="header_small">{{ _('Resources') }}</h3>
 
                     {% set max_resources = config.DATASET_MAX_RESOURCES_UNCOLLAPSED %}
                     {% for resource in dataset.resources %}
@@ -171,8 +171,14 @@
                 {% if dataset.organization %}
                 <div class="panel panel-default text-center">
                     <div class="panel-body">
-                        <h3 class="text-left">{{ _('Producer') }}</h3>
-                        {% with organization=dataset.organization %}
+                        {% with organization=dataset.organization %}                        
+                        {% if organization.public_service %}
+                            <img src="{{ theme_static('img/certified-stamp.png') }}" alt="certified" class="certified"
+                                v-popover.literal="{{ _('The identity of this public service is certified by %(certifier)s', certifier=config.SITE_AUTHOR) }}"
+                                popover-title="{{ _('Certified public service') }}"
+                                popover-placement="left" popover-trigger="hover"/>
+                        {% endif %}                        
+                        <h3 class="header_small text-left">{{ _('Producer') }}</h3>
                             {% include theme('organization/sidebar-producer.html') %}
                         {% endwith %}
                     </div>
@@ -182,7 +188,7 @@
                 {# Information panel #}
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h3>{{ _('Informations') }}</h3>
+                        <h3 class="header_small">{{ _('Informations') }}</h3>
 
                         <ul class="list-unstyled infos-list">
 

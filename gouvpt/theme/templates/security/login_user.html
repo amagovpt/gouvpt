@@ -16,7 +16,7 @@
                     {{ forms.render(login_user_form, exclude=[login_user_form.submit]) }}
                     <div class="form-group">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-block">{{ _('Sign in') }}</button>
+                            <button type="submit" class="btn btn-primary btn-login btn-block">{{ _('Sign in') }}</button>
                         </div>
                     </div>
                     <p>
@@ -36,7 +36,7 @@
                     <div class="col-md-12">
                         <a title="{{ _('Register') }}"
                             href="{{ url_for('security.register', next=request.url) }}"
-                            class="btn btn-primary btn-block btn-lg"
+                            class="btn btn-primary btn-login btn-block btn-lg"
                             >
                             {{ _('Create an account') }}
                         </a>

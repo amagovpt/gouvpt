@@ -117,6 +117,7 @@ setup(
         ],
         'udata.harvesters': [
             'justice = gouvpt.harvesters.justice:JusticeCkanBackend',
+            'dadosGov = gouvpt.harvesters.dadosgov:DGBackend',
         ],
         'udata.views': [
             'gouvpt_faqs = gouvpt.faqs_plugin',

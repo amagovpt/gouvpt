@@ -5,7 +5,7 @@
         <div class="row first-row">
             {# Carousel #}
             <div class="col-md-8">
-                <h3>{{ _('Best reuse cases') }}</h3>
+                <h3 class="header_big">{{ _('Best reuse cases') }}</h3>
                 <div id="home-carousel" class="carousel slide" data-ride="carousel" data-interval="6000">
                      <!-- Wrapper for slides  -->
                     <div class="carousel-inner">
@@ -36,7 +36,7 @@
             
             {# Last reuses #}
             <div class="col-md-4 single-column">
-                <h3>
+                <h3 class="header_big">
                     <a href="{{ url_for('reuses.list', sort='-created') }}" title="{{ _('Latest reuses') }}">
                         {{ _('Latest reuses') }}
                     </a>

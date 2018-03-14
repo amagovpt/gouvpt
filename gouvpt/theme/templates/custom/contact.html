@@ -1,0 +1,46 @@
+{% extends theme("base.html") %} 
+{% set meta = { 'title': 'Contact', 'description': "Page Contacts", 'keywords': [ 'contact']} %} 
+{% block content %}
+<section class="content">
+    <div class="container block-wrapper grey">
+        <div class="row">
+            <div class="maniFluid" id="formServicesWrapper">
+                <div class="headerForm">
+                    <h2>{{_('Contact')|upper}}</h2>
+                    <p>A Agência para a Modernização Administrativa, I.P. disponibiliza um serviço de esclarecimento de dúvidas acerca do Dados.gov, através do preenchimento do seguinte formulário:</p>
+                </div>
+                <div class="form-wrapper">
+                    <form action="{{ url_for('gouvpt.contact') }}" method=post>
+                        {{ form.hidden_tag() }} 
+                        {{ form.name(placeholder='*'+_("Name")) }} 
+                        {{ form.email(placeholder='*'+_("Email")) }} 
+                        {{ form.subject(placeholder='*'+_("Subject"))}} 
+                        {{ form.message(placeholder='*'+_("Message")) }}
+                        <div class="labelInfoObrig">
+                            <br> *{{ _("required fields")|title }} </div>
+                        <center>
+                            {% for error in form.recaptcha.errors %}
+                                <p style="color:red">
+                                    {{ _(error) }}
+                                </p>
+                            {% endfor %} 
+                            {{ form.recaptcha }}
+                        </center>
+                        <br>
+                        <div class="btnWrapper">
+                            <button id="submit" type="submit" class="btn btn-submit" disabled>
+                                {{ _("Submit") }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function enableBtn(){
+        document.getElementById("submit").disabled = false;
+    }
+</script>
+{% endblock %}
