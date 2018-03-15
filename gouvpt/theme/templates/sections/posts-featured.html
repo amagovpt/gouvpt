@@ -1,4 +1,8 @@
- {% set posts = banner_posts %}
+{% if banner_posts %}
+    {% set posts = banner_posts %}
+{% else %}
+    {% set posts = [last_post] %}
+{% endif %}
 <div class="initialTopBanner">
     <!-- <div class="scrolldown">
         <img alt="Ver Mais Scroll Image" src="{{ theme_static('images/scrolldown.png')}}" />

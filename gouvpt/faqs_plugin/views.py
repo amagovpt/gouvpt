@@ -12,6 +12,8 @@ from udata.forms import fields, validators
 from flask_mail import Message
 from flask_security.utils import do_flash
 
+from udata.models import Dataset
+
 class ContactForm(FlaskForm):
     name = fields.StringField("Name", [validators.Required()])
     email = fields.html5.EmailField("Email", [validators.Required(), validators.Email()])
@@ -64,3 +66,17 @@ def contact():
             else:
                 do_flash(i18n.gettext(u"Thank you for your message. We'll get back to you shortly."), 'success')
     return theme.render('contact.html', form=form)
+
+#Keep old API online
+@blueprint.route('/v1/<string:org_slug>/<string:file_id>/', subdomain="servico")
+def old_API(org_slug, file_id):
+    format = request.args.get('format') or 'xml'
+    dataset = Dataset.objects(__raw__={'extras.harvest:remote_id': file_id}).first()
+    if dataset:
+        for resource in dataset.resources:
+            if resource.format == "xml":
+                file_redirect = resource.url
+                break
+        return redirect(file_redirect)       
+    else:
+        return abort(404)
