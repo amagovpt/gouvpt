@@ -1,6 +1,6 @@
 # gouvpt
 
-Official udata theme for the Open Data Portal of Portugal
+Official uData 1.3 theme for the Open Data Portal of Portugal
 
 ## Usage
 
@@ -14,8 +14,9 @@ pip install gouvpt/
 Then, define the installed theme as current in you `udata.cfg`:
 
 ```python
-PLUGINS = ['gouvpt']
+PLUGINS = ['gouvpt_saml','gouvpt_faqs']
 THEME = 'gouvpt'
+DEFAULT_LANGUAGE = 'pt'
 ```
 
 ### Portuguese Smart Card Authentication
