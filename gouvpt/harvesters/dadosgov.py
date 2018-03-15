@@ -20,9 +20,6 @@ import errno
 import json
 import traceback
 
-sys.path.append('/home/udata')
-from ftpCreds import ftpCredsObj
-
 REPORT_FILE_PATH = '/home/udata/report.csv'
 dadosGovPath = 'dadosGovFiles'
 downloadFilePath = '/home/udata/fs/%s' % (dadosGovPath)
@@ -157,7 +154,7 @@ class DGBackend(DGBaseBackend):
 
     def process(self, item):
         '''Return the DadosGov datasets with the corresponding original and xml file'''
-        global REPORT_FILE_PATH, ftpCredsObj, dadosGovPath, downloadFilePath
+        global REPORT_FILE_PATH, dadosGovPath, downloadFilePath
         reload(sys)
         sys.setdefaultencoding('utf8')
 
