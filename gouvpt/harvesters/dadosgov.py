@@ -21,15 +21,16 @@ import json
 import traceback
 
 REPORT_FILE_PATH = '/home/udata/report.csv'
-dadosGovPath = 'dadosGovFiles'
-downloadFilePath = '/home/udata/fs/%s' % (dadosGovPath)
+DADOSGOVPATH = 'dadosGovFiles'
+DOWNLOADFILEPATH = '/home/udata/fs/%s' % (DADOSGOVPATH)
+DADOSGOVURL = 'servico.dados.gov.pt'
 
 class DGBackend(DGBaseBackend):
     display_name = 'Dados Gov'
 
     def initialize(self):
         '''Get the datasets and corresponding organization ids'''
-        global REPORT_FILE_PATH, downloadFilePath
+        global REPORT_FILE_PATH, DOWNLOADFILEPATH, DADOSGOVURL
 
         print '------------------------------------'
         print 'Initializing dados gov harvester'
@@ -90,14 +91,14 @@ class DGBackend(DGBaseBackend):
 
         # ******************************************************************************
         # associate api datasets and organizations with its organization
-        rootUrl = "http://servico.dados.gov.pt/v1/"
+        rootUrl = "http://%s/v1/" % (DADOSGOVURL)
         xmlRootData = urllib2.urlopen(rootUrl).read()
         organizationDoc = minidom.parseString(xmlRootData)
         organizationElements = organizationDoc.getElementsByTagName('collection')
 
         for orgElement in organizationElements:
             orgName = orgElement.attributes['href'].value
-            datasetUrl = "http://servico.dados.gov.pt/v1/%s" % orgName
+            datasetUrl = "http://%s/v1/%s" % (DADOSGOVURL, orgName)
             xmlDatasetData = urllib2.urlopen(datasetUrl).read()
             datasetDoc = minidom.parseString(xmlDatasetData)
             datasetElements = datasetDoc.getElementsByTagName('collection')
@@ -144,9 +145,9 @@ class DGBackend(DGBaseBackend):
 
                         # print 'Added dataset "%s"' % datasetName
 
-        if not os.path.exists(downloadFilePath):
+        if not os.path.exists(DOWNLOADFILEPATH):
             try:
-                os.makedirs(downloadFilePath)
+                os.makedirs(DOWNLOADFILEPATH)
             except OSError as exc: # Guard against race condition
                 if exc.errno != errno.EEXIST:
                     raise
@@ -154,7 +155,7 @@ class DGBackend(DGBaseBackend):
 
     def process(self, item):
         '''Return the DadosGov datasets with the corresponding original and xml file'''
-        global REPORT_FILE_PATH, dadosGovPath, downloadFilePath
+        global REPORT_FILE_PATH, DADOSGOVPATH, DOWNLOADFILEPATH, DADOSGOVURL
         reload(sys)
         sys.setdefaultencoding('utf8')
 
@@ -182,7 +183,7 @@ class DGBackend(DGBaseBackend):
 
         # ********************************************************
         req = requests.get(
-            "http://servico.dados.gov.pt/v1/%s/TableMetadata" % item.kwargs['orgAcronym']
+            "http://%s/v1/%s/TableMetadata" % (DADOSGOVURL, item.kwargs['orgAcronym'])
             , params={ '$filter': "partitionkey eq '%s'" % item.remote_id }
             , headers={'charset': 'utf8'})
 
@@ -226,7 +227,7 @@ class DGBackend(DGBaseBackend):
                 'site.home'
                 , _external=True
             )
-            fixedUrl = '%s/s/%s' % (fixedUrl[: fixedUrl.rfind('/', 0, -1)], dadosGovPath)
+            fixedUrl = '%s/s/%s' % (fixedUrl[: fixedUrl.rfind('/', 0, -1)], DADOSGOVPATH)
             # empty previous dataset resources
             dataset.resources = []
 
@@ -238,10 +239,9 @@ class DGBackend(DGBaseBackend):
 
             # filenameXml = '%s.xml' % (filename[0])
             filenameXml = '%s.xml' % (item.remote_id)
-            u = urllib2.urlopen("http://servico.dados.gov.pt/v1/%s/%s" % (item.kwargs['orgAcronym'], item.remote_id))
-
+            u = urllib2.urlopen("http://%s/v1/%s/%s" % (DADOSGOVURL, item.kwargs['orgAcronym'], item.remote_id))
             # create/open the local file to be written
-            with open('%s/%s' % (downloadFilePath, filenameXml), 'wb') as f:
+            with open('%s/%s' % (DOWNLOADFILEPATH, filenameXml), 'wb') as f:
                 # write file data
                 f.write(u.read())
 
@@ -264,6 +264,34 @@ class DGBackend(DGBaseBackend):
             # ********************************************************
 
             # ********************************************************
+            # get json by api and set the dataset resource field:
+
+            filenameJson = '%s.json' % (item.remote_id)
+            u = urllib2.urlopen("http://%s/v1/%s/%s?format=json" % (DADOSGOVURL, item.kwargs['orgAcronym'], item.remote_id))
+            # create/open the local file to be written
+            with open('%s/%s' % (DOWNLOADFILEPATH, filenameJson), 'wb') as f:
+                # write file data
+                f.write(u.read())
+
+                # get file size info
+                meta = u.info()
+                fileSize = int(meta.getheaders("Content-Length")[0])
+                fullPath = '%s/%s' % (fixedUrl, filenameJson)
+                print fullPath
+
+                # set the resource data for the dataset
+                dataset.resources.append(Resource(
+                    title = dataset.title
+                    , description = 'Dados em formato json'
+                    , url = fullPath
+                    , mime = 'application/json '
+                    , format = 'json'
+                    , filesize = fileSize
+                    , created_at = item.kwargs['createdOn']
+                ))
+            # ********************************************************
+
+            # ********************************************************
             # get original files using static path and ftp and set the dataset resource field
 
             if item.kwargs['filePath']:
@@ -276,7 +304,7 @@ class DGBackend(DGBaseBackend):
                         u = urllib2.urlopen("https://dadosgovstorage.blob.core.windows.net/datasetsfiles/%s" % (urlSafe))
 
                         # create/open the local file to be written
-                        with open('%s/%s%s' % (downloadFilePath, item.remote_id, filename[1]), 'wb') as f:
+                        with open('%s/%s%s' % (DOWNLOADFILEPATH, item.remote_id, filename[1]), 'wb') as f:
                             # write file data
                             f.write(u.read())
 
