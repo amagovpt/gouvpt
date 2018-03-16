@@ -69,12 +69,12 @@ def contact():
 
 #Keep old API online
 @blueprint.route('/v1/<string:org_slug>/<string:file_id>/', subdomain="servico")
-def old_API(org_slug, file_id):
-    format = request.args.get('format') or 'xml'
+def dadosGovOld_API(org_slug, file_id):
+    format = 'json' if request.args.get('format') == 'json' else 'xml'
     dataset = Dataset.objects(__raw__={'extras.harvest:remote_id': file_id}).first()
     if dataset:
         for resource in dataset.resources:
-            if resource.format == "xml":
+            if resource.format == format:
                 file_redirect = resource.url
                 break
         return redirect(file_redirect)       
