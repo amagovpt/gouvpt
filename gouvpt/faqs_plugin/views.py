@@ -75,8 +75,6 @@ def dadosGovOld_API(org_slug, file_id):
     if dataset:
         for resource in dataset.resources:
             if resource.format == format:
-                file_redirect = resource.url
-                break
-        return redirect(file_redirect)       
-    else:
-        return abort(404)
+                return redirect(resource.url)
+    #Everything else return 404               
+    return abort(404)
