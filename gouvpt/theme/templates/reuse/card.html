@@ -25,7 +25,7 @@
         <div class="author">
             {{ reuse|owner_avatar(20) }}
             <a class="user" href="{{ reuse|owner_url }}" title="{{ reuse|owner_name }}">
-                {{ reuse|owner_name }}
+                {{ reuse|owner_name|truncate(20) }}
             </a>
             <span class="date">{{ reuse.created_at|dateformat('long') }}</span>
         </div>
