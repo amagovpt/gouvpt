@@ -1,71 +1,39 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from udata.models import db, Resource
-from udata.utils import faker
+from udata.models import db, Resource, License
 
 from udata.harvest.backends.base import BaseBackend
-from udata.core.organization.models import Organization
 
-from flask import url_for
-
+from datetime import datetime
 from xml.dom import minidom, Node
-import urllib2
-import urllib
 import requests
-import csv
-import sys
-import os
-import errno
-import json
-import traceback
 
 
 class INEBackend(BaseBackend):
     display_name = 'Instituto nacional de estatística'
 
     def initialize(self):
-        '''Get the datasets and corresponding organization ids'''
-
         try:
             from ineDatasets import datasetIds
         except :
             datasetIds = set([])
 
-        print '-------------------------------------'
-        print 'using url %s' % self.source.url
         req = requests.get(self.source.url)
         doc = minidom.parseString(req.content)
 
         properties = doc.getElementsByTagName('indicator')
-        # go through the API dataset information
+
         for propNode in properties:
             currentId = propNode.attributes['id'].value
             datasetIds.add(currentId)
 
-        numberSets = 0
-        # **************************************
-        # common code starts here
         for dsId in datasetIds:
-            self.add_item(
-                dsId
-            )
-            numberSets += 1
-        # **************************************
-        print '-------------------------------------'
-        print 'Total sets => %s' % numberSets
-        print '-------------------------------------'
+            self.add_item(dsId)
 
     def process(self, item):
         '''Return the INE datasets'''
 
-        # **************************************
-        # ugly fix for encoding problems
-        reload(sys)
-        sys.setdefaultencoding('utf8')
-        # **************************************
-
-         # Get or create a harvested dataset with this identifier.
         dataset = self.get_dataset(item.remote_id)
 
        # get remote data for dataset
@@ -83,6 +51,7 @@ class INEBackend(BaseBackend):
         print 'Get metadata for %s' % (item.remote_id)
 
         keywordSet = set()
+        dataset.license = License.guess('cc-by')
         dataset.resources = []
         doc = minidom.parseString(returnedData)
         properties = doc.getElementsByTagName('indicator')
@@ -149,11 +118,4 @@ class INEBackend(BaseBackend):
                                     , filetype='remote'
                                     , format = 'xml'
                                 ))
-
-        # unused
-        # dataset.organization = orgObj.id
-        # dataset.created_at = item.kwargs['createdOn']
-        # dataset.extras = {}
-        # dataset.extras['contact'] = fc.nodeValue
-        # dataset.extras['links'] = '%s, %s' % (dataset.extras['links'], fc.nodeValue)
         return dataset

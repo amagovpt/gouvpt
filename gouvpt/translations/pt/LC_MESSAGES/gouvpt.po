@@ -97,3 +97,6 @@ msgstr "Validação reCAPTCHA em falta."
 
 msgid "Edit this page"
 msgstr "Editar esta página"
+
+msgid "Credits"
+msgstr "Créditos"

@@ -1,0 +1,101 @@
+[
+    {
+       "flags":[
+  
+       ],
+       "id":"notspecified",
+       "maintainer":null,
+       "title":"Licença não especificada",
+       "url":null
+    },
+    {
+       "flags":[
+  
+       ],
+       "id":"unknown",
+       "maintainer":null,
+       "title":"Desconhecida - conferir na fonte dos dados",
+       "url":null
+    },
+    {
+       "flags":[
+  
+       ],
+       "id":"odc-pddl",
+       "maintainer":null,
+       "title":"Open Data Commons Public Domain Dedication and Licence (PDDL)",
+       "url":"http://opendatacommons.org/licenses/pddl/summary/"
+    },
+    {
+       "flags":[
+  
+       ],
+       "id":"odc-odbl",
+       "maintainer":null,
+       "title":"Open Data Commons Open Database License (ODbL)",
+       "url":"http://opendatacommons.org/licenses/odbl/summary/"
+    },
+    {
+       "flags":[
+  
+       ],
+       "id":"odc-by",
+       "maintainer":null,
+       "title":"Open Data Commons Attribution License",
+       "url":"http://opendatacommons.org/licenses/by/summary/"
+    },
+    {
+       "flags":[
+  
+       ],
+       "id":"cc-zero",
+       "maintainer":null,
+       "title":"Creative Commons CCZero",
+       "url":"http://www.opendefinition.org/licenses/cc-zero"
+    },
+    {
+       "flags":[
+  
+       ],
+       "id":"cc-by",
+       "maintainer":null,
+       "title":"Creative Commons Attribution 4.0 - CC BY 4.0",
+       "url":"https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+       "flags":[
+  
+       ],
+       "id":"cc-by-sa",
+       "maintainer":null,
+       "title":"Creative Commons Attribution Share-Alike",
+       "url":"http://www.opendefinition.org/licenses/cc-by-sa"
+    },
+    {
+       "flags":[
+  
+       ],
+       "id":"other-open",
+       "maintainer":null,
+       "title":"Outra (Para fins comerciais e não-comerciais)",
+       "url":null
+    },
+    {
+       "flags":[
+  
+       ],
+       "id":"other-pd",
+       "maintainer":null,
+       "title":"Outra (Domínio Público)",
+       "url":null
+    },
+    {
+       "flags":[
+  
+       ],
+       "id":"other-at",
+       "maintainer":null,
+       "title":"Outra (Atribuição)",
+       "url":null
+    }
+  ]

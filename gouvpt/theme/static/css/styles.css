@@ -76,7 +76,7 @@ p {
 }
 a {
 	font-family: "latoregular";
-	font-size: 16px;
+	font-size: 15px;
 	line-height: 16px;
 	color: #3498DB;
 	text-decoration: none;
@@ -2189,8 +2189,12 @@ ul.search-results .search-result .result-infos{
 }
 .small-badge{
     border: 2px solid #3498DB;
-    padding: 10px;
-    font-size: 10px;
+    padding: 5px;
+    font-size: 9px;
+    text-transform: uppercase;
+}
+.small-badge a{
+    font-size: 12px;
 }
 .btn-group-sm > .btn, .btn-sm {
     line-height: unset;

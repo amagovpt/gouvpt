@@ -23,7 +23,7 @@ class PortalAmbienteBackend(BaseBackend):
                 continue
                 
             try:
-                dataset_lastdate = self.get_modifiedDate(item['id']).last_modified
+                dataset_lastdate = self.get_modifiedDate(item['id']).created_at
             except AttributeError:
                 self.add_item(item['id'], title=item['title'], date=item_datetime, item=item)
             else:
@@ -50,12 +50,11 @@ class PortalAmbienteBackend(BaseBackend):
 
         kwargs = item.kwargs
         dataset.title = kwargs['title']
-        dataset.tags = ["portal-ambiente-harvesting"]
+        dataset.tags = ["portal-ambiente"]
         item = kwargs['item']
 
         dataset.description = item['summary']
         dataset.created_at = kwargs['date']
-        dataset.last_modified = kwargs['date']
 
         # Force recreation of all resources
         dataset.resources = []
@@ -70,12 +69,12 @@ class PortalAmbienteBackend(BaseBackend):
             if type == 'open':
                 url_parts = list(urlparse.urlparse(url))
                 parts = url_parts[2].split('.')
-                format = parts[-1] if len(parts)>1 else 'web'
+                format = parts[-1] if len(parts)>1 else 'wms'
                 new_resource = Resource(
                     title = dataset.title,
                     url = url,
                     filetype = 'remote',
-                    format = url_parts[2].split('.')[-1]
+                    format = format.lower()
                 )
                 dataset.resources.append(new_resource)
 

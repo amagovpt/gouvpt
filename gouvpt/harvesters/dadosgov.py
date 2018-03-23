@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from udata.models import db, Resource
+from udata.models import db, Resource, License
 from udata.utils import faker
 
 from dadosgovBackend import DGBaseBackend
@@ -173,6 +173,7 @@ class DGBackend(DGBaseBackend):
         dataset.tags = ['migrado']
         dataset.extras = {}
         dataset.organization = orgObj.id
+        dataset.license = License.guess('cc-by')
         dataset.resources = []
         
         # *********************************************
