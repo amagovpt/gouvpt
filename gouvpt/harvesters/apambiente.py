@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from udata.harvest.backends.base import BaseBackend
-from udata.models import Resource, Dataset
+from udata.models import Resource, Dataset, License
 from urllib import urlencode
 from datetime import datetime
 import requests
@@ -22,15 +22,15 @@ class PortalAmbienteBackend(BaseBackend):
             except ValueError:
                 continue
                 
-            try:
-                dataset_lastdate = self.get_modifiedDate(item['id']).created_at
-            except AttributeError:
-                self.add_item(item['id'], title=item['title'], date=item_datetime, item=item)
-            else:
-                if item_datetime > dataset_lastdate:
-                    self.add_item(item['id'], title=item['title'], date=item_datetime, item=item)
-                else:
-                    continue
+            # try:
+            #     dataset_lastdate = self.get_modifiedDate(item['id']).created_at
+            # except AttributeError:
+            self.add_item(item['id'], title=item['title'], date=item_datetime, item=item)
+            # else:
+            #     if item_datetime > dataset_lastdate:
+            #         self.add_item(item['id'], title=item['title'], date=item_datetime, item=item)
+            #     else:
+            #         continue
 
 
     def get_modifiedDate(self, remote_id):
@@ -50,6 +50,7 @@ class PortalAmbienteBackend(BaseBackend):
 
         kwargs = item.kwargs
         dataset.title = kwargs['title']
+        dataset.license = License.guess('cc-by')
         dataset.tags = ["portal-ambiente"]
         item = kwargs['item']
 

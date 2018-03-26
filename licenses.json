@@ -64,7 +64,7 @@
     },
     {
        "flags":[
-  
+         "cc0-1.0"
        ],
        "id":"cc-by-sa",
        "maintainer":null,
