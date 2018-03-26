@@ -12,11 +12,13 @@
     <div class="container">
 
         {# First row #}
-        <div class="row first-row">
-            <div class="col-xs-12">
-                <h3>{{ _('Best reuse cases') }}</h3>
+        {% if featured_reuses|length > 0 or topic.reuses|length > 0  %}
+            <div class="row first-row">
+                <div class="col-xs-12">
+                    <h3>{{ _('Best reuse cases') }}</h3>
+                </div>
             </div>
-        </div>
+        {% endif %}
 
         <div class="row">
             {# Carousel #}

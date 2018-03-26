@@ -2,6 +2,17 @@
 
 ## Current (in progress)
 
+## Version 1.0.0 (2018-03-26)
+- Theme v1.0
+- Fixed issue with migration, preview is used to force migrate
+- Removed unused file (origin/feature-migrationHarvest, feature-migrationHarvest)
+- Added Old API support (feature-theme1.0)
+- Added JSON support for old API
+- Added a new harvester for INE . ineDatasets.py cant be changed or removed (feature-harvester_INE)
+- Added Harvester do Ambiente
+- Minor fixes for GoLive (origin/develop)
+- Closing 1.0 sprint
+
 ## Version 0.9.0 (2018-03-14)
 - Official uData 1.3.0 support
 - Theme v0.9 - HTML/CSS changes

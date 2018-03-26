@@ -41,7 +41,6 @@
                             {% if org.badges %}
                             <p class="text-center">
                                 {% for badge in org.badges %}
-                                    <br>
                                     <span class="small-badge">
                                         <a href="{{ url_for('search.index', badge=badge) }}"
                                             title="{{ _('See all organizations with that badge.') }}">

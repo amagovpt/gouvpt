@@ -1,9 +1,13 @@
- {% set posts = [last_post] %}
+{% if banner_posts %}
+    {% set posts = banner_posts %}
+{% else %}
+    {% set posts = [last_post] %}
+{% endif %}
 <div class="initialTopBanner">
     <!-- <div class="scrolldown">
         <img alt="Ver Mais Scroll Image" src="{{ theme_static('images/scrolldown.png')}}" />
     </div> -->
-    <ul id="homepage-slider">
+    <ul id="homepage-slider" {%  if posts|length > 1 %} style="display:none;" {% endif %}>
 
         {% for post in posts %}
 

@@ -8,6 +8,8 @@ $j(document).ready(function($) {
         e.stopPropagation();   
     })
 
+    $("#homepage-slider").show();
+
     if ($(this).scrollTop() > 5) {
         $("header#banner").addClass("fixed");       
     } 

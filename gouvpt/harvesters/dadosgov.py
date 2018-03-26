@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from udata.models import db, Resource
+from udata.models import db, Resource, License
 from udata.utils import faker
 
-from udata.harvest.backends.base import BaseBackend
+from dadosgovBackend import DGBaseBackend
 from udata.core.organization.models import Organization
 
 from flask import url_for
@@ -18,20 +18,19 @@ import sys
 import os
 import errno
 import json
-
-sys.path.append('/home/udata')
-from ftpCreds import ftpCredsObj
+import traceback
 
 REPORT_FILE_PATH = '/home/udata/report.csv'
-dadosGovPath = 'dadosGovFiles'
-downloadFilePath = '/home/udata/fs/%s' % (dadosGovPath)
+DADOSGOVPATH = 'dadosGovFiles'
+DOWNLOADFILEPATH = '/home/udata/fs/%s' % (DADOSGOVPATH)
+DADOSGOVURL = 'servico.dados.gov.pt'
 
-class DGBackend(BaseBackend):
+class DGBackend(DGBaseBackend):
     display_name = 'Dados Gov'
 
     def initialize(self):
         '''Get the datasets and corresponding organization ids'''
-        global REPORT_FILE_PATH, downloadFilePath
+        global REPORT_FILE_PATH, DOWNLOADFILEPATH, DADOSGOVURL
 
         print '------------------------------------'
         print 'Initializing dados gov harvester'
@@ -92,14 +91,14 @@ class DGBackend(BaseBackend):
 
         # ******************************************************************************
         # associate api datasets and organizations with its organization
-        rootUrl = "http://servico.dados.gov.pt/v1/"
+        rootUrl = "http://%s/v1/" % (DADOSGOVURL)
         xmlRootData = urllib2.urlopen(rootUrl).read()
         organizationDoc = minidom.parseString(xmlRootData)
         organizationElements = organizationDoc.getElementsByTagName('collection')
 
         for orgElement in organizationElements:
             orgName = orgElement.attributes['href'].value
-            datasetUrl = "http://servico.dados.gov.pt/v1/%s" % orgName
+            datasetUrl = "http://%s/v1/%s" % (DADOSGOVURL, orgName)
             xmlDatasetData = urllib2.urlopen(datasetUrl).read()
             datasetDoc = minidom.parseString(xmlDatasetData)
             datasetElements = datasetDoc.getElementsByTagName('collection')
@@ -146,9 +145,9 @@ class DGBackend(BaseBackend):
 
                         # print 'Added dataset "%s"' % datasetName
 
-        if not os.path.exists(downloadFilePath):
+        if not os.path.exists(DOWNLOADFILEPATH):
             try:
-                os.makedirs(downloadFilePath)
+                os.makedirs(DOWNLOADFILEPATH)
             except OSError as exc: # Guard against race condition
                 if exc.errno != errno.EEXIST:
                     raise
@@ -156,7 +155,9 @@ class DGBackend(BaseBackend):
 
     def process(self, item):
         '''Return the DadosGov datasets with the corresponding original and xml file'''
-        global REPORT_FILE_PATH, ftpCredsObj, dadosGovPath, downloadFilePath
+        global REPORT_FILE_PATH, DADOSGOVPATH, DOWNLOADFILEPATH, DADOSGOVURL
+        reload(sys)
+        sys.setdefaultencoding('utf8')
 
         # Get or create a harvested dataset with this identifier.
         dataset = self.get_dataset(item.remote_id)
@@ -172,9 +173,9 @@ class DGBackend(BaseBackend):
         dataset.tags = ['migrado']
         dataset.extras = {}
         dataset.organization = orgObj.id
+        dataset.license = License.guess('cc-by')
         dataset.resources = []
         
-        # print item.kwargs['orgId']
         # *********************************************
         # go through the DB dataset information
         dataset.created_at = item.kwargs['createdOn']
@@ -182,21 +183,11 @@ class DGBackend(BaseBackend):
         # ********************************************************
 
         # ********************************************************
-        # API metadata(nameexternal, description, contact, category, links, keywords):
-        # http://servico.dados.gov.pt/v1/dgal/TableMetadata/?$filter=partitionkey%20eq%20%27AIIIDM2013%27
-        # rootUrl = "http://servico.dados.gov.pt/v1/%s/TableMetadata/?$filter=partitionkey eq '%s'" % (item.kwargs['orgAcronym'], item.remote_id)
-        # rootUrl = 'http://servico.dados.gov.pt/v1/%s/TableMetadata/?$filter=partitionkey%20eq%20%27%s%27' % (item.kwargs['orgAcronym'], item.remote_id)
-        # rootUrl = 'http://servico.dados.gov.pt/v1/%s/TableMetadata/?$filter=partitionkey%20eq%20%27' + item.remote_id + '%27' % (item.kwargs['orgAcronym'])
-
-
-        # xmlRootData = urllib2.urlopen(rootUrl).read()
         req = requests.get(
-            "http://servico.dados.gov.pt/v1/%s/TableMetadata" % item.kwargs['orgAcronym']
+            "http://%s/v1/%s/TableMetadata" % (DADOSGOVURL, item.kwargs['orgAcronym'])
             , params={ '$filter': "partitionkey eq '%s'" % item.remote_id }
             , headers={'charset': 'utf8'})
 
-        # print req.url
-        # print '--'
         xmlRootData = req.content
 
         propertiesDoc = minidom.parseString(xmlRootData)
@@ -233,14 +224,11 @@ class DGBackend(BaseBackend):
                             dataset.extras['links'] = '%s, %s' % (dataset.extras['links'], fc.nodeValue)
             # ********************************************************
 
-            reload(sys)
-            sys.setdefaultencoding('utf8')
-
             fixedUrl = url_for(
                 'site.home'
                 , _external=True
             )
-            fixedUrl = '%s/s/%s' % (fixedUrl[: fixedUrl.rfind('/', 0, -1)], dadosGovPath)
+            fixedUrl = '%s/s/%s' % (fixedUrl[: fixedUrl.rfind('/', 0, -1)], DADOSGOVPATH)
             # empty previous dataset resources
             dataset.resources = []
 
@@ -249,16 +237,12 @@ class DGBackend(BaseBackend):
 
             # ********************************************************
             # get xml by api and set the dataset resource field:
-            # http://servico.dados.gov.pt/v1/dgal/AIIIDM2013
-            # print '----------------------'
-            # print filename
 
             # filenameXml = '%s.xml' % (filename[0])
             filenameXml = '%s.xml' % (item.remote_id)
-            u = urllib2.urlopen("http://servico.dados.gov.pt/v1/%s/%s" % (item.kwargs['orgAcronym'], item.remote_id))
-
+            u = urllib2.urlopen("http://%s/v1/%s/%s" % (DADOSGOVURL, item.kwargs['orgAcronym'], item.remote_id))
             # create/open the local file to be written
-            with open('%s/%s' % (downloadFilePath, filenameXml), 'wb') as f:
+            with open('%s/%s' % (DOWNLOADFILEPATH, filenameXml), 'wb') as f:
                 # write file data
                 f.write(u.read())
 
@@ -272,14 +256,37 @@ class DGBackend(BaseBackend):
                 dataset.resources.append(Resource(
                     title = dataset.title
                     , description = 'Dados em formato xml'
-                    # , url = '/s/%s/%s' % (dadosGovPath, filenameXml)
-                    # http://localhost/s/resources/aiiidm2010-8/20180226-215249/NomeCompleto.png
-                    # , url = 'http://google.com'
                     , url = fullPath
-                    # this is the default
-                    # , filetype = 'file'
                     , mime = 'text/xml '
                     , format = 'xml'
+                    , filesize = fileSize
+                    , created_at = item.kwargs['createdOn']
+                ))
+            # ********************************************************
+
+            # ********************************************************
+            # get json by api and set the dataset resource field:
+
+            filenameJson = '%s.json' % (item.remote_id)
+            u = urllib2.urlopen("http://%s/v1/%s/%s?format=json" % (DADOSGOVURL, item.kwargs['orgAcronym'], item.remote_id))
+            # create/open the local file to be written
+            with open('%s/%s' % (DOWNLOADFILEPATH, filenameJson), 'wb') as f:
+                # write file data
+                f.write(u.read())
+
+                # get file size info
+                meta = u.info()
+                fileSize = int(meta.getheaders("Content-Length")[0])
+                fullPath = '%s/%s' % (fixedUrl, filenameJson)
+                print fullPath
+
+                # set the resource data for the dataset
+                dataset.resources.append(Resource(
+                    title = dataset.title
+                    , description = 'Dados em formato json'
+                    , url = fullPath
+                    , mime = 'application/json '
+                    , format = 'json'
                     , filesize = fileSize
                     , created_at = item.kwargs['createdOn']
                 ))
@@ -291,74 +298,43 @@ class DGBackend(BaseBackend):
             if item.kwargs['filePath']:
                 try:
                     # https://dadosgovstorage.blob.core.windows.net/datasetsfiles/Acesso%20a%20Consultas%20M%C3%A9dicas%20pela%20Popula%C3%A7%C3%A3o%20Inscrita_636046701023924396.xlsx
-                    urlSafe = urllib.quote(item.kwargs['filePath'])
-                    print "https://dadosgovstorage.blob.core.windows.net/datasetsfiles/%s" % (urlSafe)
-                    u = urllib2.urlopen("https://dadosgovstorage.blob.core.windows.net/datasetsfiles/%s" % (urlSafe))
+                    print '-- ** filePath ** --> %s' % item.kwargs['filePath']
+                    try:
+                        urlSafe = urllib.quote(item.kwargs['filePath'])
+                        print "https://dadosgovstorage.blob.core.windows.net/datasetsfiles/%s" % (urlSafe)
+                        u = urllib2.urlopen("https://dadosgovstorage.blob.core.windows.net/datasetsfiles/%s" % (urlSafe))
 
-                    # create/open the local file to be written
-                    with open('%s/%s%s' % (downloadFilePath, item.remote_id, filename[1]), 'wb') as f:
-                        # write file data
-                        f.write(u.read())
+                        # create/open the local file to be written
+                        with open('%s/%s%s' % (DOWNLOADFILEPATH, item.remote_id, filename[1]), 'wb') as f:
+                            # write file data
+                            f.write(u.read())
 
-                        # get file size info
-                        meta = u.info()
-                        fileSize = int(meta.getheaders("Content-Length")[0])
-                        fullPath = '%s/%s%s' % (fixedUrl, item.remote_id, filename[1])
-                        print fullPath
+                            # get file size info
+                            meta = u.info()
+                            fileSize = int(meta.getheaders("Content-Length")[0])
+                            fullPath = '%s/%s%s' % (fixedUrl, item.remote_id, filename[1])
+                            print fullPath
 
-                        # set the resource data for the dataset
-                        dataset.resources.append(Resource(
-                            title = dataset.title
-                            , description = 'Ficheiro original (%s)' % (item.kwargs['filePath'])
-                            # http://localhost/s/resources/aiiidm2010-8/20180226-215249/NomeCompleto.png
-                            , url = fullPath
-                            # this is the default
-                            # , filetype = 'file'
-                            , mime = 'application/vnd.ms-excel'
-                            , format = filename[1][1:]
-                            , filesize = fileSize
-                            , created_at = item.kwargs['createdOn']
-                        ))
+                            # set the resource data for the dataset
+                            dataset.resources.append(Resource(
+                                title = dataset.title
+                                , description = 'Ficheiro original (%s)' % (item.kwargs['filePath'])
+                                , url = fullPath
+                                , mime = 'application/vnd.ms-excel'
+                                , format = filename[1][1:]
+                                , filesize = fileSize
+                                , created_at = item.kwargs['createdOn']
+                            ))
+                    except KeyError:
+                        print '************ Error ************'
+                        print traceback.format_exc()
+                        print '*******************************'
 
                 # file not found exception
                 except IOError as ex:
                     print 'Original file not found:'
                     print ex
             
-            # import paramiko
-            # with paramiko.Transport((ftpCredsObj['host'], ftpCredsObj['port'])) as transport:
-            #     transport.connect(username = ftpCredsObj['username'], password = ftpCredsObj['password'])
-
-            #     with paramiko.SFTPClient.from_transport(transport) as sftp:
-            #         if item.kwargs['filePath']:
-            #             try:
-            #                 # get file information
-            #                 fileAttributes = sftp.stat('/%s' % item.kwargs['filePath'])
-
-            #                 # download the original file
-            #                 fullPath = '%s/%s%s' % (fixedUrl, item.remote_id, filename[1])
-            #                 sftp.get('/%s' % item.kwargs['filePath'], '%s/%s%s' % (downloadFilePath, item.remote_id, filename[1]))
-            #                 print fullPath
-
-            #                 # set the resource data for the dataset
-            #                 dataset.resources.append(Resource(
-            #                     title = dataset.title
-            #                     , description = 'Ficheiro original (%s)' % (item.kwargs['filePath'])
-            #                     # , url = 'http://google.com'
-            #                     # , url = '%s/%s' % (fixedUrl, item.kwargs['filePath'])
-            #                     , url = fullPath
-            #                     , filetype = 'file'
-            #                     , mime = 'application/vnd.ms-excel'
-            #                     , format = filename[1][1:]
-            #                     , filesize = fileAttributes.st_size
-            #                     , created_at = item.kwargs['createdOn']
-            #                 ))
-
-            #             # file not found exception
-            #             except IOError as ex:
-            #                 print 'Original file not found:'
-            #                 print ex
-
             # ********************************************************
 
             print '--'

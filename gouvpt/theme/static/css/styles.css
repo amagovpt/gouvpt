@@ -76,7 +76,7 @@ p {
 }
 a {
 	font-family: "latoregular";
-	font-size: 16px;
+	font-size: 15px;
 	line-height: 16px;
 	color: #3498DB;
 	text-decoration: none;
@@ -476,7 +476,7 @@ body.homepage #breadcrumbs{
     color: #fff;
 }
 .bx-wrapper .bx-controls-direction a:hover i{
-	color: #3498DB !important;
+	color: #f08322 !important;
 }
 .bx-wrapper .bx-prev {
     left: 3%;
@@ -491,6 +491,7 @@ body.homepage #breadcrumbs{
     z-index: 2;
     padding: 85px 0;
     height: 100%;
+    max-height: 520px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -577,7 +578,7 @@ body.homepage #breadcrumbs{
     border: 0px;    
 }
 .bx-wrapper .bx-pager{
-	bottom: 124px;
+	bottom: 24px;
     height: 21px;
 }
 .bx-wrapper .bx-pager.bx-default-pager a{
@@ -2010,6 +2011,7 @@ html #wrapper footer .social-media-wrapper li {
 
 .news-wrapper .span4 .image-wrapper img, #listNoticiasWrapper .span4 .image-wrapper img {
     width: 100%;
+    height: 180px;
 }
 .username{
     text-transform: uppercase;
@@ -2187,8 +2189,12 @@ ul.search-results .search-result .result-infos{
 }
 .small-badge{
     border: 2px solid #3498DB;
-    padding: 10px;
-    font-size: 10px;
+    padding: 5px;
+    font-size: 9px;
+    text-transform: uppercase;
+}
+.small-badge a{
+    font-size: 12px;
 }
 .btn-group-sm > .btn, .btn-sm {
     line-height: unset;
