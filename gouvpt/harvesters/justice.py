@@ -12,7 +12,7 @@ from voluptuous import (
 )
 
 
-from udata.models import db, Resource, License, SpatialCoverage
+from udata.models import db, Resource, License, SpatialCoverage, Organization
 from udata.utils import get_by, daterange_start, daterange_end
 
 from udata.harvest.backends.base import BaseBackend
@@ -161,6 +161,12 @@ class JusticeCkanBackend(BaseBackend):
         dataset.title = data['title']
         dataset.description = data['notes']
 
+        # Detect Org
+        organization_acronym = data['organization']['title'].lower()
+        orgObj = Organization.objects(acronym=organization_acronym).first()
+        if orgObj:
+            dataset.organization = orgObj.id
+
         # Detect license
         default_license = dataset.license or License.default()
         dataset.license = License.guess(data['license_id'],
@@ -184,26 +190,20 @@ class JusticeCkanBackend(BaseBackend):
             #  Textual representation of the extent / location
             elif extra['key'] == 'spatial-text':
                 log.debug('spatial-text value not handled')
-                print 'spatial-text', extra['value']
             # Linked Data URI representing the place name
             elif extra['key'] == 'spatial-uri':
                 log.debug('spatial-uri value not handled')
-                print 'spatial-uri', extra['value']
             # Update frequency
             elif extra['key'] == 'frequency':
                 print 'frequency', extra['value']
             # Temporal coverage start
             elif extra['key'] == 'temporal_start':
-                print 'temporal_start', extra['value']
                 temporal_start = daterange_start(extra['value'])
                 continue
             # Temporal coverage end
             elif extra['key'] == 'temporal_end':
-                print 'temporal_end', extra['value']
                 temporal_end = daterange_end(extra['value'])
                 continue
-            # else:
-            #     print extra['key'], extra['value']
             dataset.extras[extra['key']] = extra['value']
 
         if spatial_geom:
@@ -244,7 +244,6 @@ class JusticeCkanBackend(BaseBackend):
             resource.title = res.get('name', '') or ''
             resource.description = res.get('description')
             resource.url = res['url']
-            print
             resource.filetype = ('api' if res['resource_type'] == 'api'
                                  else 'remote')
             resource.format = res.get('format')
