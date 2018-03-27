@@ -162,7 +162,7 @@ class JusticeCkanBackend(BaseBackend):
         dataset.description = data['notes']
 
         # Detect Org
-        organization_acronym = data['organization']['title'].lower()
+        organization_acronym = data['organization']['title'].upper()
         orgObj = Organization.objects(acronym=organization_acronym).first()
         if orgObj:
             dataset.organization = orgObj.id

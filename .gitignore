@@ -102,4 +102,5 @@ ENV/
 /.vscode/
 AMA.pem
 private.pem
+udata.cfg
 

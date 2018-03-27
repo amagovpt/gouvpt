@@ -22,16 +22,15 @@ class PortalAmbienteBackend(BaseBackend):
             except ValueError:
                 continue
                 
-            # try:
-            #     dataset_lastdate = self.get_modifiedDate(item['id']).created_at
-            # except AttributeError:
-            self.add_item(item['id'], title=item['title'], date=item_datetime, item=item)
-            # else:
-            #     if item_datetime > dataset_lastdate:
-            #         self.add_item(item['id'], title=item['title'], date=item_datetime, item=item)
-            #     else:
-            #         continue
-
+            try:
+                dataset_lastdate = self.get_modifiedDate(item['id']).last_modified
+            except AttributeError:
+                self.add_item(item['id'], title=item['title'], date=item_datetime, item=item)
+            else:
+                if item_datetime > dataset_lastdate:
+                    self.add_item(item['id'], title=item['title'], date=None, item=item)
+                else:
+                    continue
 
     def get_modifiedDate(self, remote_id):
         return Dataset.objects(__raw__={
@@ -55,7 +54,9 @@ class PortalAmbienteBackend(BaseBackend):
         item = kwargs['item']
 
         dataset.description = item['summary']
-        dataset.created_at = kwargs['date']
+
+        if kwargs['date']:
+            dataset.created_at = kwargs['date']
 
         # Force recreation of all resources
         dataset.resources = []
