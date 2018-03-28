@@ -155,7 +155,7 @@ def idp_initiated():
         session['user_nic'] = user_nic
         session['first_name'] = first_name
         session['last_name'] = last_name
-        return redirect(url_for('register_user.register'))
+        return redirect(url_for('saml.register'))
 
     elif requires_confirmation(userUdata):
         do_flash(*get_message('CONFIRMATION_REQUIRED'))

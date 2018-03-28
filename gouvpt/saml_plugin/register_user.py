@@ -40,9 +40,9 @@ def register():
     #Create a new user
     if request.method == 'POST' and form.validate():
         data = {
-            'first_name': str(request.values.get('first_name')).title(),
-            'last_name': str(request.values.get('last_name')).title(),
-            'email': str(request.values.get('email')),
+            'first_name': str(request.values.get('first_name').encode('utf-8')).title(),
+            'last_name': str(request.values.get('last_name').encode('utf-8')).title(),
+            'email': str(request.values.get('email').encode('utf-8')),
         }
 
         if(request.values.get('user_nic')):
