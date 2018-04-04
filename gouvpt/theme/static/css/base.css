@@ -1520,11 +1520,12 @@ h6{
 /*Componente Menu Lateral*/
 nav.side-menu{
 	max-width: 321px;
+	margin: 50px 0;
 }
 nav.side-menu > ul {
 	list-style: none;
-	padding: 0;
-	margin: 0;
+	background: #f1f1f2;
+	padding: 12px 20px !important;
 }
 nav.side-menu > ul > li{
 	padding: 6px 0px;
@@ -1537,13 +1538,15 @@ nav.side-menu > ul > li > a,
 nav.side-menu > ul > li{
 	font-size: 14px;
 	font-family: "latobold";
-	color: #2A2A2A;
+	color: #808080;
 	text-decoration: none;
 }
-nav.side-menu > ul > li:hover > a,
+nav.side-menu > ul > li:hover > a{
+	color: #f08322;
+}
 nav.side-menu > ul > li.active > a{
 	color: #fff;
-	background: #2980b9;
+	background: #f08322;
 	text-decoration: none;
 }
 nav.side-menu > ul > li.active i.icone-more {

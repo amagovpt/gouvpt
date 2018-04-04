@@ -63,8 +63,7 @@
     {% if datasets %}
     <tab id="{{tab_id}}" header="{{label}}">
         <ul class="card-list card-list--columned">
-
-            {% for dataset in datasets %}
+            {% for dataset in (datasets|list)[:9] %}
             <li class="col-sm-4">
                 {% include theme('dataset/card.html') %}
             </li>
