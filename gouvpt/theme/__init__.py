@@ -23,6 +23,7 @@ gouvpt_menu = nav.Bar('gouvpt_menu', [
         nav.Item(_('Publish data'), 'gouvpt.faq', {'section': 'publish'}),
         nav.Item(_('Reuse data'), 'gouvpt.faq', {'section': 'reuse'}),
         nav.Item(_('Licenses'), 'gouvpt.faq', {'section': 'licenses'}),
+        nav.Item(_('API'), 'apidoc.swaggerui'),
     ]),
 
     nav.Item(_('Open Data'), None, url='#', items=[

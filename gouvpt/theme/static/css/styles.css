@@ -297,7 +297,7 @@ html #wrapper footer .social-media-wrapper ul li div {
 	background-color: white;
 }
 body:not(.homepage) #content {
-	padding: 110px 0 0 0!important;	
+	padding: 140px 0 0 0!important;	
 }
 body #wrapper #banner {
     position: fixed!important;
@@ -955,7 +955,7 @@ body.homepage #wrapper #banner .horizontal-menu{
 }
 .search-box.visible{
     top: 0px;
-    padding-bottom: 20px;
+    padding-bottom: 50px;
 }
 .search-box > div{
 	position: relative;
@@ -2027,7 +2027,11 @@ html #wrapper footer .social-media-wrapper li {
 }
 .site-logo{
     position: absolute;
-    bottom: 30px;
+    bottom: 0px;
+    height: 145px;
+}
+.site-logo img{
+    height: 100%;
 }
 .carousel{
     height: 300px !important;

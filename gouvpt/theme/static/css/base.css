@@ -1394,7 +1394,7 @@ h6{
 }
 /*TYPE 2*/
 .horizontal-menu.type2{
-	padding: 20px 28px 50px 28px;
+	padding: 30px 28px 70px 28px;
 }
 .horizontal-menu.type2 > div>ul{
 	height: 50px;
@@ -3477,6 +3477,7 @@ label.animateInput {
 @media only screen and (min-width: 992px) {
 	.horizontal-menu > div>ul{
 		display: block !important;
+		margin-top: 20px;
 	}
 	.horizontal-menu i.icone-burguer{
 		display: none !important;
@@ -3491,14 +3492,14 @@ label.animateInput {
 		height: auto;
     	float: none !important;
 		display: none;
-		padding-top: 40px;	
+		padding-top: 70px;	
 	}
 	.horizontal-menu{
 		position: relative;
 		margin-top: -10px;
 	}
 	.horizontal-menu.type2{
-		padding: 20px 28px 65px 28px;
+		padding: 20px 28px 90px 28px;
 	}
 	.horizontal-menu i.icone-burguer {
 	    position: absolute;

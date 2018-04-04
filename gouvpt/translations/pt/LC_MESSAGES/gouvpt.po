@@ -100,3 +100,6 @@ msgstr "Editar esta página"
 
 msgid "Credits"
 msgstr "Créditos"
+
+msgid "See data"
+msgstr "Ver dados"

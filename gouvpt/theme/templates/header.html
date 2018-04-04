@@ -93,12 +93,12 @@
                     {% cache cache_duration, 'header-menu', request.path, g.lang_code|default(config.DEFAULT_LANGUAGE)|string %}
                     <div class="site-logo hidden-xs hidden-sm">
                         <a href="{{ url_for('site.home') }}">
-                            <img src="{{ theme_static('images/logo.png') }}" alt="{{ g.site.title }}" />
+                            <img src="{{ theme_static('images/new_logo.png') }}" alt="{{ g.site.title }}" />
                         </a>
                     </div>
 
                     <i class="icone-burguer">
-                            <img src="{{ theme_static('images/logo.png') }}" alt="{{ g.site.title }}" />
+                            <img src="{{ theme_static('images/new_logo.png') }}" alt="{{ g.site.title }}" />
                     </i>
 
                     <ul>
