@@ -1,6 +1,7 @@
 {% extends theme("base.html") %}
-{% set side_menu = (nav.gouvpt_menu|list)[0] %}
+
 {% block content %}
+{% set side_menu = (nav.gouvpt_menu|list)|first %}
 <section class="content">
     <div class="container">
         <div class="row">

@@ -2353,7 +2353,7 @@ section.breadcrumb-bar .breadcrumb {
     left:0;
     right:0;
     position:absolute;
-    z-index:100
+    z-index:98;
 }
 .card footer.rollover ul{
     line-height:18px

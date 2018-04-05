@@ -3,6 +3,7 @@
 {% else %}
     {% set posts = [last_post] %}
 {% endif %}
+{% cache cache_duration, 'posts-featured', g.lang_code %}
 <div class="initialTopBanner">
     <!-- <div class="scrolldown">
         <img alt="Ver Mais Scroll Image" src="{{ theme_static('images/scrolldown.png')}}" />
@@ -32,3 +33,4 @@
 
     </ul>
 </div>
+{% endcache %}

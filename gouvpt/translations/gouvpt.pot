@@ -1,0 +1,105 @@
+# Portuguese translations for gouvpt.
+# Copyright (C) 2018 ORGANIZATION
+# This file is distributed under the same license as the gouvpt project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gouvpt 0.5.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2018-03-07 16:57+0000\n"
+"PO-Revision-Date: 2018-02-22 12:54+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: pt\n"
+"Language-Team: pt <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.5.3\n"
+
+#: gouvpt/theme/__init__.py:20
+msgid "Documentation"
+msgstr ""
+
+#: gouvpt/theme/__init__.py:21
+msgid "About Open Data"
+msgstr ""
+
+#: gouvpt/theme/__init__.py:22
+msgid "About Dados.gov"
+msgstr ""
+
+#: gouvpt/theme/__init__.py:23 gouvpt/theme/templates/footer.html:59
+msgid "Publish data"
+msgstr ""
+
+#: gouvpt/theme/__init__.py:24
+msgid "Reuse data"
+msgstr ""
+
+#: gouvpt/theme/__init__.py:28
+msgid "Open Data"
+msgstr ""
+
+#: gouvpt/theme/__init__.py:37
+msgid "Events"
+msgstr ""
+
+#: gouvpt/theme/templates/footer.html:56
+msgid "Terms of use"
+msgstr ""
+
+#: gouvpt/theme/templates/header.html:26
+#: gouvpt/theme/templates/sections/subnav-small.html:39
+#: gouvpt/theme/templates/sections/subnav-small.html:42
+msgid "Contribute!"
+msgstr ""
+
+#: gouvpt/theme/templates/header.html:59
+msgid "Administration"
+msgstr ""
+
+#: gouvpt/theme/templates/header.html:65
+msgid "Logout"
+msgstr ""
+
+#: gouvpt/theme/templates/header.html:75
+msgid "Sign In / Register"
+msgstr ""
+
+
+#: gouvpt/theme/templates/sections/posts-last.html:15
+msgid "News in data"
+msgstr ""
+
+#: gouvpt/theme/templates/sections/subnav-small.html:10
+#, fuzzy
+msgid "Search in datasets"
+msgstr ""
+
+#: gouvpt/theme/templates/sections/subnav-small.html:13
+msgid "Search in this "
+msgstr ""
+
+#: gouvpt/theme/templates/custom/contact.html:18
+msgid "Message"
+msgstr ""
+
+msgid "Submit"
+msgstr ""
+
+msgid "Thank you for your message. We'll get back to you shortly."
+msgstr ""
+
+msgid "The response parameter is missing."
+msgstr ""
+
+msgid "Edit this page"
+msgstr ""
+
+msgid "Credits"
+msgstr ""
+
+msgid "See data"
+msgstr ""

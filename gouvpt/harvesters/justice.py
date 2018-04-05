@@ -174,7 +174,7 @@ class JusticeCkanBackend(BaseBackend):
                                         default=default_license)
 
         dataset.tags = [t['name'] for t in data['tags'] if t['name']]
-        dataset.tags.append('harvest-justica')
+        dataset.tags.append('partilha.justica.gov.pt')
 
         dataset.created_at = data['metadata_created']
         dataset.last_modified = data['metadata_modified']
