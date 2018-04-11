@@ -50,7 +50,7 @@ class PortalAmbienteBackend(BaseBackend):
         kwargs = item.kwargs
         dataset.title = kwargs['title']
         dataset.license = License.guess('cc-by')
-        dataset.tags = ["portal-ambiente"]
+        dataset.tags = ["apambiente.pt"]
         item = kwargs['item']
 
         dataset.description = item['summary']

@@ -6,6 +6,7 @@
     ('recent-datasets', _('Latest datasets'), recent_datasets[:nb_datasets], {'sort': '-created'}),
 ) %}
 
+{% cache cache_duration, 'datasets-featured', g.lang_code %}
 <section class="default spaced">
       <div class="container">
             {# Dataset tabs #}
@@ -50,4 +51,5 @@
             {# end Dataset tabs #}
       </div>
 </section>
+{% endcache %}
 {# End datasets section #}

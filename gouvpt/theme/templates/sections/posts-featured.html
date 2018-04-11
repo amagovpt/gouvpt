@@ -3,6 +3,7 @@
 {% else %}
     {% set posts = [last_post] %}
 {% endif %}
+{% cache cache_duration, 'posts-featured', g.lang_code %}
 <div class="initialTopBanner">
     <!-- <div class="scrolldown">
         <img alt="Ver Mais Scroll Image" src="{{ theme_static('images/scrolldown.png')}}" />
@@ -15,14 +16,13 @@
             <div class="img" style="background-image: url( {{ post.image|placeholder('post') }} )"></div>
             <div class="black-home-overlay"></div>
             <div class="text-area">
-                <h1>{{ post.name|mdstrip(50) }}</h1>
-                <br>
-                <h3>{{(post.headline or post.content)|mdstrip(100)}}</h3>
-                <br>
+                <h1>{{ post.name|mdstrip(40) }}</h1>
+                <h3>{{(post.headline or post.content)|mdstrip(55)}}</h3>
                 <div class="description">
-                    <p> {{ post.content| truncate(450) | markdown }} </p>
+                    <br>
+                    <p> {{ post.content| truncate(330) | markdown }} </p>
                     <div class="verMaisHomeBtn">
-                            <a href="{{ url_for('datasets.list') }}">{{_("See more")}}</a>
+                            <a href="{{ url_for('datasets.list') }}">{{_("See data")}}</a>
                     </div>
                 </div>
             </div>
@@ -32,3 +32,4 @@
 
     </ul>
 </div>
+{% endcache %}

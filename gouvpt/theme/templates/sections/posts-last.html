@@ -1,5 +1,6 @@
 {% if featured_post %}
 {% set post = featured_post %}
+{% cache cache_duration, 'posts-last', g.lang_code %}
 <section class="highlight-bar">
 
     <div class="color-overlay"></div>
@@ -24,4 +25,5 @@
         </div>
     </div>
 </section>
+{% endcache %}
 {% endif %}

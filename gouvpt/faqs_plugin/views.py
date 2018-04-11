@@ -27,8 +27,8 @@ blueprint = I18nBlueprint('gouvpt', __name__,
 
 
 #Dynamic FAQ's pages
-@blueprint.route('/faq/', defaults={'section': 'index'})
-@blueprint.route('/faq/<string:section>/')
+@blueprint.route('/docs/', defaults={'section': 'index'})
+@blueprint.route('/docs/<string:section>/')
 def faq(section):
     try:
         giturl = "https://raw.githubusercontent.com/amagovpt/docs.dados.gov.pt/master/faqs/{0}.md".format(section)

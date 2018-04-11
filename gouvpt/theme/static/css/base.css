@@ -1394,7 +1394,7 @@ h6{
 }
 /*TYPE 2*/
 .horizontal-menu.type2{
-	padding: 20px 28px 50px 28px;
+	padding: 30px 28px 70px 28px;
 }
 .horizontal-menu.type2 > div>ul{
 	height: 50px;
@@ -1520,11 +1520,12 @@ h6{
 /*Componente Menu Lateral*/
 nav.side-menu{
 	max-width: 321px;
+	margin: 50px 0;
 }
 nav.side-menu > ul {
 	list-style: none;
-	padding: 0;
-	margin: 0;
+	background: #f1f1f2;
+	padding: 12px 20px !important;
 }
 nav.side-menu > ul > li{
 	padding: 6px 0px;
@@ -1537,13 +1538,15 @@ nav.side-menu > ul > li > a,
 nav.side-menu > ul > li{
 	font-size: 14px;
 	font-family: "latobold";
-	color: #2A2A2A;
+	color: #808080;
 	text-decoration: none;
 }
-nav.side-menu > ul > li:hover > a,
+nav.side-menu > ul > li:hover > a{
+	color: #f08322;
+}
 nav.side-menu > ul > li.active > a{
 	color: #fff;
-	background: #2980b9;
+	background: #f08322;
 	text-decoration: none;
 }
 nav.side-menu > ul > li.active i.icone-more {
@@ -2433,9 +2436,6 @@ label.animateInput {
 }
 .select2-dropdown{
 	border-radius: 0px !important;
-}
-.select2-results{
-	padding-bottom: 10px !important;
 }
 .select2-container--default .select2-search--inline .select2-search__field{
 	border: 0px !important;
@@ -3477,6 +3477,7 @@ label.animateInput {
 @media only screen and (min-width: 992px) {
 	.horizontal-menu > div>ul{
 		display: block !important;
+		margin-top: 20px;
 	}
 	.horizontal-menu i.icone-burguer{
 		display: none !important;
@@ -3491,14 +3492,14 @@ label.animateInput {
 		height: auto;
     	float: none !important;
 		display: none;
-		padding-top: 40px;	
+		padding-top: 70px;	
 	}
 	.horizontal-menu{
 		position: relative;
 		margin-top: -10px;
 	}
 	.horizontal-menu.type2{
-		padding: 20px 28px 65px 28px;
+		padding: 20px 28px 90px 28px;
 	}
 	.horizontal-menu i.icone-burguer {
 	    position: absolute;

@@ -1,7 +1,6 @@
 {% extends "home.html" %} 
 {% set body_class = 'homepage' %} 
 {% block content %}
-{% cache cache_duration, 'home', g.lang_code%}
 
 <div class="top-banner">
 	{% include theme("sections/posts-featured.html") %}
@@ -22,4 +21,4 @@
 </div>
 
 </div>
-{% endcache %} {% endblock %}
+{% endblock %}

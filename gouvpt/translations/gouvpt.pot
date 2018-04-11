@@ -20,86 +20,86 @@ msgstr ""
 
 #: gouvpt/theme/__init__.py:20
 msgid "Documentation"
-msgstr "Documentação"
+msgstr ""
 
 #: gouvpt/theme/__init__.py:21
 msgid "About Open Data"
-msgstr "Sobre dados abertos"
+msgstr ""
 
 #: gouvpt/theme/__init__.py:22
 msgid "About Dados.gov"
-msgstr "Sobre o dados.gov"
+msgstr ""
 
 #: gouvpt/theme/__init__.py:23 gouvpt/theme/templates/footer.html:59
 msgid "Publish data"
-msgstr "Publicar dados"
+msgstr ""
 
 #: gouvpt/theme/__init__.py:24
 msgid "Reuse data"
-msgstr "Reutilizar dados"
+msgstr ""
 
 #: gouvpt/theme/__init__.py:28
 msgid "Open Data"
-msgstr "Dados Abertos"
+msgstr ""
 
 #: gouvpt/theme/__init__.py:37
 msgid "Events"
-msgstr "Eventos"
+msgstr ""
 
 #: gouvpt/theme/templates/footer.html:56
 msgid "Terms of use"
-msgstr "Termos de utilização"
+msgstr ""
 
 #: gouvpt/theme/templates/header.html:26
 #: gouvpt/theme/templates/sections/subnav-small.html:39
 #: gouvpt/theme/templates/sections/subnav-small.html:42
 msgid "Contribute!"
-msgstr "Contribuir!"
+msgstr ""
 
 #: gouvpt/theme/templates/header.html:59
 msgid "Administration"
-msgstr "Administração"
+msgstr ""
 
 #: gouvpt/theme/templates/header.html:65
 msgid "Logout"
-msgstr "Sair"
+msgstr ""
 
 #: gouvpt/theme/templates/header.html:75
 msgid "Sign In / Register"
-msgstr "Entrar / Registar"
+msgstr ""
 
 
 #: gouvpt/theme/templates/sections/posts-last.html:15
 msgid "News in data"
-msgstr "Novidades"
+msgstr ""
 
 #: gouvpt/theme/templates/sections/subnav-small.html:10
 #, fuzzy
 msgid "Search in datasets"
-msgstr "Perquisar em conjuntos de dados"
+msgstr ""
 
 #: gouvpt/theme/templates/sections/subnav-small.html:13
 msgid "Search in this "
-msgstr "Pesquisar aqui"
+msgstr ""
 
 #: gouvpt/theme/templates/custom/contact.html:18
 msgid "Message"
-msgstr "Mensagem"
+msgstr ""
 
 msgid "Submit"
-msgstr "Submeter"
+msgstr ""
 
 msgid "Thank you for your message. We'll get back to you shortly."
-msgstr "Obrigado pela sua mensagem. Vamos responder assim que possivel."
+msgstr ""
 
 msgid "The response parameter is missing."
-msgstr "Validação reCAPTCHA em falta."
+msgstr ""
 
 msgid "Edit this page"
-msgstr "Editar esta página"
+msgstr ""
 
 msgid "Credits"
-msgstr "Créditos"
+msgstr ""
 
 msgid "See data"
-msgstr "Ver dados"
+msgstr ""

@@ -74,6 +74,7 @@ class INEBackend(BaseBackend):
                                 keywordSet.add(valueData.lower())
 
                         dataset.tags = list(keywordSet)
+                        dataset.tags.append('ine.pt')
 
                     elif childNode.nodeName == 'title':
                         dataset.title = fc.nodeValue
