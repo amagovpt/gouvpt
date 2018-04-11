@@ -440,13 +440,17 @@ body.homepage #breadcrumbs{
 .black-home-overlay{
 	opacity: 0.90;
 	background: #fff;
-	position: absolute;
+    position: absolute;
+    display: block;
 	z-index: 1;
-	width: 70%;
+    width: 66%;
+    max-width: 1050px;
 	height: 55%;
     top: 35%;
-    left: 15%;
-    margin: auto;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 20px;
 }
 .top-banner #homepage-slider li .img{

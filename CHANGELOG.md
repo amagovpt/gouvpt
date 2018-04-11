@@ -2,6 +2,13 @@
 
 ## Current (in progress)
 
+## Version 1.1.0 (2018-04-11)
+- Update to Harvest da Justica
+- Fixes to authentication module (master)
+- Theme v1.1 Added side menu on docs
+- Theme v1.1 Improvements in cache and harvester tags
+- Open external links in a new tab
+
 ## Version 1.0.0 (2018-03-26)
 - Theme v1.0
 - Fixed issue with migration, preview is used to force migrate
