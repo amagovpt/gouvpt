@@ -2437,9 +2437,6 @@ label.animateInput {
 .select2-dropdown{
 	border-radius: 0px !important;
 }
-.select2-results{
-	padding-bottom: 10px !important;
-}
 .select2-container--default .select2-search--inline .select2-search__field{
 	border: 0px !important;
 	margin: 0px !important;
