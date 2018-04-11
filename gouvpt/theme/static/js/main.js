@@ -185,6 +185,15 @@ $j(document).ready(function($) {
     scrollMenuFixed();
 
     $("#footerYear").text(new Date().getFullYear());
+
+    $("a").each(function () {
+        if(this.hostname == "" || this.hostname == null)
+            this.target = "";
+        else{
+            if (this.hostname != document.location.hostname) this.target = "_blank";
+        }
+    });
+
 });
 
 function scrollBannerTop() {
