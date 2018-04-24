@@ -5,7 +5,7 @@ from udata import theme, mail, i18n
 from udata.i18n import I18nBlueprint
 from flask import url_for, redirect, abort, Markup, render_template, request, current_app
 from jinja2.exceptions import TemplateNotFound
-import markdown, os, urllib2
+import markdown, urllib2
 
 from flask_wtf import FlaskForm, recaptcha
 from udata.forms import fields, validators
@@ -26,17 +26,26 @@ blueprint = I18nBlueprint('gouvpt', __name__,
                           static_folder='../theme/static')
 
 
-#Dynamic FAQ's pages
+#Dynamic FAQ's pages with local storage
 @blueprint.route('/docs/', defaults={'section': 'index'})
 @blueprint.route('/docs/<string:section>/')
 def faq(section):
     try:
         giturl = "https://raw.githubusercontent.com/amagovpt/docs.dados.gov.pt/master/faqs/{0}.md".format(section)
-        response = urllib2.urlopen(giturl, timeout = 5).read().decode('utf8')
+        response = urllib2.urlopen(giturl, timeout = 2).read().decode('utf-8')
         content = Markup(markdown.markdown(response))
-        return theme.render('faqs.html', page_name=section, content=content)
     except urllib2.URLError:
-        abort(404)
+        try:
+            with open('gouvpt/docs/{0}.md'.format(section), 'r') as f:
+                response = f.read().decode('utf-8')
+                content = Markup(markdown.markdown(response))
+                return theme.render('faqs.html', page_name=section, content=content)
+        except (IOError):
+            abort(404)
+    else:
+        with open('gouvpt/docs/{0}.md'.format(section), 'w+') as f:
+            f.write(response.encode('utf-8'))
+        return theme.render('faqs.html', page_name=section, content=content)
 
 #Credits page
 @blueprint.route('/credits/')

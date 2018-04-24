@@ -5,7 +5,7 @@ import json
 import logging
 
 from uuid import UUID
-from urlparse import urljoin
+from urlparse import urljoin, urlparse
 
 from voluptuous import (
     Schema, All, Any, Lower, Coerce, DefaultTo
@@ -99,11 +99,11 @@ schema = Schema({
 }, required=True, extra=True)
 
 
-class JusticeCkanBackend(BaseBackend):
-    display_name = 'Portal da Justiça'
+class CkanPTBackend(BaseBackend):
+    display_name = 'CKAN PT'
 
     def get_headers(self):
-        headers = super(JusticeCkanBackend, self).get_headers()
+        headers = super(CkanPTBackend, self).get_headers()
         headers['content-type'] = 'application/json'
         if self.config.get('apikey'):
             headers['Authorization'] = self.config['apikey']
@@ -162,10 +162,21 @@ class JusticeCkanBackend(BaseBackend):
         dataset.description = data['notes']
 
         # Detect Org
-        organization_acronym = data['organization']['title'].upper()
+        organization_acronym = data['organization']['name']
         orgObj = Organization.objects(acronym=organization_acronym).first()
         if orgObj:
+            #print 'Found %s' % orgObj.acronym
             dataset.organization = orgObj.id
+        else:
+            orgObj = Organization()
+            orgObj.acronym = organization_acronym
+            orgObj.name = data['organization']['title']
+            orgObj.description = data['organization']['description']
+            orgObj.save()
+            #print 'Created %s' % orgObj.acronym
+
+            dataset.organization = orgObj.id
+
 
         # Detect license
         default_license = dataset.license or License.default()
@@ -174,7 +185,10 @@ class JusticeCkanBackend(BaseBackend):
                                         default=default_license)
 
         dataset.tags = [t['name'] for t in data['tags'] if t['name']]
-        dataset.tags.append('partilha.justica.gov.pt')
+
+
+        dataset.tags.append(urlparse(self.source.url).hostname)
+        
 
         dataset.created_at = data['metadata_created']
         dataset.last_modified = data['metadata_modified']
