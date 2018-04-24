@@ -116,7 +116,7 @@ setup(
             'gouvpt = gouvpt.theme',
         ],
         'udata.harvesters': [
-            'justice = gouvpt.harvesters.justice:JusticeCkanBackend',
+            'ckanpt = gouvpt.harvesters.ckanpt:CkanPTBackend',
             'dadosGov = gouvpt.harvesters.dadosgov:DGBackend',
             'apambiente = gouvpt.harvesters.apambiente:PortalAmbienteBackend',
             'ine = gouvpt.harvesters.ine:INEBackend',

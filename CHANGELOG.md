@@ -2,6 +2,11 @@
 
 ## Current (in progress)
 
+## Version 1.1.1
+- Added dynamic local docs
+- Added new translations
+- Adaption to Ckan PT (origin/feature-ckan_pt)
+
 ## Version 1.1.0 (2018-04-11)
 - Update to Harvest da Justica
 - Fixes to authentication module (master)

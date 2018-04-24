@@ -2696,3 +2696,6 @@ section.default {
 .links-content{
     margin-bottom: 30px;
 }
+.block-wrapper .photo img {
+    max-height: 175px;
+}

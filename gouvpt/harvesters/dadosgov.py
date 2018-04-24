@@ -7,7 +7,7 @@ from udata.utils import faker
 from dadosgovBackend import DGBaseBackend
 from udata.core.organization.models import Organization
 
-from flask import url_for
+from flask import url_for, current_app
 
 from xml.dom import minidom, Node
 import urllib2
@@ -224,10 +224,12 @@ class DGBackend(DGBaseBackend):
                             dataset.extras['links'] = '%s, %s' % (dataset.extras['links'], fc.nodeValue)
             # ********************************************************
 
-            fixedUrl = url_for(
-                'site.home'
-                , _external=True
-            )
+            env = current_app.config.get('MIGRATION_URL')
+            if env:
+                fixedUrl = env
+            else:
+                fixedUrl = url_for('site.home', _external=True)
+
             fixedUrl = '%s/s/%s' % (fixedUrl[: fixedUrl.rfind('/', 0, -1)], DADOSGOVPATH)
             # empty previous dataset resources
             dataset.resources = []
