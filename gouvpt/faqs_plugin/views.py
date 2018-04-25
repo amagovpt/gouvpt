@@ -6,7 +6,9 @@ from udata.i18n import I18nBlueprint
 from flask import url_for, redirect, abort, Markup, render_template, request, current_app
 from jinja2.exceptions import TemplateNotFound
 import markdown, urllib2
+import redis
 
+from urlparse import urlparse
 from flask_wtf import FlaskForm, recaptcha
 from udata.forms import fields, validators
 from flask_mail import Message
@@ -21,30 +23,37 @@ class ContactForm(FlaskForm):
     message = fields.TextAreaField("Message", [validators.Required()])
     recaptcha = recaptcha.RecaptchaField()
 
+def get_redis_connection():
+    parsed_url = urlparse(current_app.config['CELERY_BROKER_URL'])
+    db = parsed_url.path[1:] if parsed_url.path else 0
+    return redis.StrictRedis(host=parsed_url.hostname, port=parsed_url.port,
+                             db=db)
+
 blueprint = I18nBlueprint('gouvpt', __name__,
                           template_folder='../theme/templates/custom',
                           static_folder='../theme/static')
 
 
-#Dynamic FAQ's pages with local storage
+#Dynamic FAQ's pages cached in redis
 @blueprint.route('/docs/', defaults={'section': 'index'})
 @blueprint.route('/docs/<string:section>/')
 def faq(section):
+    r = get_redis_connection()
     try:
         giturl = "https://raw.githubusercontent.com/amagovpt/docs.dados.gov.pt/master/faqs/{0}.md".format(section)
         response = urllib2.urlopen(giturl, timeout = 2).read().decode('utf-8')
         content = Markup(markdown.markdown(response))
     except urllib2.URLError:
-        try:
-            with open('gouvpt/docs/{0}.md'.format(section), 'r') as f:
-                response = f.read().decode('utf-8')
-                content = Markup(markdown.markdown(response))
-                return theme.render('faqs.html', page_name=section, content=content)
-        except (IOError):
+        cached_page = r.get(section)
+        if cached_page:
+            response = cached_page.decode('utf-8')
+            content = Markup(markdown.markdown(response))
+            do_flash("Viewing cached content.", 'info')
+            return theme.render('faqs.html', page_name=section, content=content)
+        else:
             abort(404)
     else:
-        with open('gouvpt/docs/{0}.md'.format(section), 'w+') as f:
-            f.write(response.encode('utf-8'))
+        r.set(section, response.encode('utf-8'))
         return theme.render('faqs.html', page_name=section, content=content)
 
 #Credits page
