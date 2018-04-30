@@ -103,3 +103,9 @@ msgstr ""
 
 msgid "See data"
 msgstr ""
+
+msgid "I have read and accept <a href=\"%(url)s\" target=\"_blank\"> the terms and conditions of the service.</a>"
+msgstr ""
+
+msgid "Email/Password"
+msgstr ""
