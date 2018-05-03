@@ -557,7 +557,11 @@ body.homepage #breadcrumbs{
 }
 .top-banner #homepage-slider .text-area .description p{
 	font-family: "latobold" !important;
-	line-height: normal;
+    line-height: normal;
+    max-height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 10px;
 }
 .top-banner #homepage-slider .verMaisHomeBtn{
 	margin-top: 25px;
@@ -2710,7 +2714,7 @@ section.default {
 }
 
 .form-horizontal .btn-primary {
-    margin-top: 15px;
+    margin-top: 10px;
     margin-bottom: 2px;
     height: 50px;
 }
@@ -2718,4 +2722,16 @@ section.default {
 .form-horizontal .btn-primary img{
     margin: -5px;
 } 
+.auth-container .col-md-3, 
+.auth-container .col-lg-3  {
+    width: 35%;
+}
+.auth-container .col-md-9, 
+.auth-container .col-lg-9 {
+    width: 65%;
+}
+.checkbox-inline input[type="checkbox"]{
+	position: unset;
+}
+
 

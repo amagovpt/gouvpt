@@ -20,7 +20,7 @@
                 <h3>{{(post.headline or post.content)|mdstrip(55)}}</h3>
                 <div class="description">
                     <br>
-                    <p> {{ post.content| truncate(330) | markdown }} </p>
+                    <p> {{ post.content| truncate(700) | markdown }} </p>
                     <div class="verMaisHomeBtn">
                             <a href="{{ url_for('datasets.list') }}">{{_("See data")}}</a>
                     </div>
