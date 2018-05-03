@@ -2719,3 +2719,6 @@ section.default {
     margin: -5px;
 } 
 
+.select2-results__option[aria-disabled="true"] {
+    display: none;
+}
