@@ -2699,3 +2699,23 @@ section.default {
 .block-wrapper .photo img {
     max-height: 175px;
 }
+
+.info {
+    font-size: 82%;
+    padding-left: 20px;
+}
+
+.form-group-create {
+    margin-bottom: 0px;
+}
+
+.form-horizontal .btn-primary {
+    margin-top: 15px;
+    margin-bottom: 2px;
+    height: 50px;
+}
+
+.form-horizontal .btn-primary img{
+    margin: -5px;
+} 
+

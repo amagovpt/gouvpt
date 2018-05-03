@@ -103,3 +103,9 @@ msgstr "Créditos"
 
 msgid "See data"
 msgstr "Ver dados"
+
+msgid "I have read and accept <a href=\"%(url)s\" target=\"_blank\"> the terms and conditions of the service.</a>"
+msgstr "Li e aceito <a href=\"%(url)s\"> os termos e condições do serviço.</a>"
+
+msgid "Email/Password"
+msgstr "Email/Palavra-passe"
