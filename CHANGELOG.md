@@ -2,6 +2,13 @@
 
 ## Current (in progress)
 
+## Version 1.2.1
+- Cache doc pages in redis
+- Rework login page
+- Rework topic pages
+- New Harvest Ods PT
+- Rework featured content
+
 ## Version 1.1.1
 - Added dynamic local docs
 - Added new translations
