@@ -561,7 +561,7 @@ body.homepage #breadcrumbs{
     max-height: 60px;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 0 10px;
+    padding: 0 15px;
 }
 .top-banner #homepage-slider .verMaisHomeBtn{
 	margin-top: 25px;
