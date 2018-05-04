@@ -21,7 +21,7 @@
 
             {% cache cache_duration, 'subnav-small-featured-topics', request.path, g.lang_code|default(config.DEFAULT_LANGUAGE)|string %}
             {# Topic chooser #}
-            <div class="col-sm-4 col-md-3 col-lg-3 col-xs-12">
+            <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
                 <div class="select-wrapper">
                         <select onchange="if (this.value) window.location.href=this.value">
                             <option selected disabled hidden>{{ _('Topics') }}</option>
