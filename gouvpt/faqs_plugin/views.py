@@ -96,3 +96,9 @@ def dadosGovOld_API(org_slug, file_id):
                 return redirect(resource.url)
     #Everything else return 404               
     return abort(404)
+
+
+@blueprint.route('/organization/<org>/')
+def redirect_organizations(org):
+    '''Route legacy CKAN organizations'''
+    return redirect(url_for('organizations.show', org=org))
