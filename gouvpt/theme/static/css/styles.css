@@ -2722,3 +2722,8 @@ section.default {
 .select2-results__option[aria-disabled="true"] {
     display: none;
 }
+
+.lang-wrapper i.fa.fa-home {
+	font-size: 29px;
+	margin-right:18px;
+}

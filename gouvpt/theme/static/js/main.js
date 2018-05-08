@@ -33,6 +33,10 @@ $j(document).ready(function($) {
         window.location = "search";
     });
 
+    $(document).on("click", ".icon-home i.fa.fa-home", function(){
+        window.location.replace(location.origin);
+    });
+
     // var enSelected = window.location.href.toUpperCase().indexOf("EN") > -1; 
     // var ptSelected = window.location.href.toUpperCase().indexOf("FR") > -1; 
     
