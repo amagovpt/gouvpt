@@ -437,7 +437,10 @@ textarea.span1,
 		display: none !important;
 	}
 	.search-icon.icon-home {
-		display: inline-block !important
+		display: inline-block !important;
+	}
+	.highlighted {
+		display: none !important;
 	}
 }
 
@@ -1188,6 +1191,27 @@ textarea.span1,
 	}
 	.row-fluid [class*="offset"]:first-child {
 		margin-left: 0;
+	}
+	.dataset-title, .markdown, .list-group.resources-list {
+		margin-left: 15px;
+	}
+	.list-group.resources-list {
+		margin-right: 15px;
+	}
+	.markdown {
+		margin-right: 15px;
+	}
+	.btn-toolbar.pull-right {
+		margin-right: 15px;
+	}
+	.panel.panel-default {
+		margin: 15px;
+	}
+	.input-group-btn.btn.fa.fa-search {
+		margin-left: -10px;
+	}
+	.select2.select2-container.select2-container--default {
+		margin-top: 5px;
 	}
 }
 h1{

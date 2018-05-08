@@ -34,7 +34,7 @@
 
             <div class="col-md-9 col-sm-9">
                 <div class="page-header">
-                    <h2>{{ dataset.title }}</h2>
+                    <h2 class="dataset-title">{{ dataset.title }}</h2>
 
                     <div class="row">
                         <p class="col-md-12">
@@ -80,7 +80,7 @@
 
                 <div class="row">
                     <div class="col-xs-12">
-                    {{ dataset.description|markdown }}
+                            {{ dataset.description|markdown }}
                     </div>
                 </div>
 
@@ -130,19 +130,19 @@
                         <div class="btn-group btn-group-sm">
                             <a href="{{ url_for('admin.index', path='dataset/{id}/'.format(id=dataset.id)) }}" class="btn btn-success">
                                 <span class="fa fa-pencil"></span>
-                                {{ _('Edit') }}
+                                <span class="hidden-xs">{{ _('Edit') }}</span>
                             </a>
                         </div>
                         {% endif %}
                         {% if sysadmin %}
-                        <div class="btn-group btn-group-sm">
+                        <div class="btn-group btn-group-sm highlighted">
                             <featured-button subject-id="{{ dataset.id }}" subject-type="dataset" :featured="{{ dataset.featured|to_json }}"></featured-button>
-                        </div>
+                        </div> 
                         {% endif %}
                         <div class="btn-group btn-group-sm">
                             <button type="button" class="btn btn-warning" @click="$refs.discussions.start('')">
                                 <span class="fa fa-envelope-o"></span>
-                                {{ _('Contact the producer') }}
+                                <span class="hidden-xs">{{ _('Contact the producer') }}</span>
                             </button>
                         </div>
                         <div class="btn-group btn-group-sm">
