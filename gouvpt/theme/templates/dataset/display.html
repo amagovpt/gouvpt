@@ -16,8 +16,11 @@
 
 {% set body_class = 'dataset-display' %}
 
-{% block extra_head %}
+{% block after_head %}
 <link rel="canonical" href="{{ url_for('datasets.show', dataset=dataset) }}" />
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/xlsx/0.12.12/xlsx.full.min.js"></script>
+<script type="text/javascript" src="//unpkg.com/canvas-datagrid/dist/canvas-datagrid.js"></script>
+<script type="text/javascript" src="{{ theme_static('js/datasets.js') }}"></script>
 {% endblock %}
 
 {% block breadcrumb %}
@@ -84,42 +87,80 @@
                     </div>
                 </div>
 
+                {# Resources section #}
+                {% set resource_tabs = (
+                    ('resources', _('Resources'), dataset.resources, {}),
+                    ('preview', _('Preview'),
+                        dataset.resources|selectattr('format', 'equalto', 'csv')|list or
+                        dataset.resources|selectattr('format', 'equalto', 'xlsx')|list,
+                        {}),
+                ) %}
+                
                 <div class="list-group resources-list">
-                    <h3 class="header_small">{{ _('Resources') }}</h3>
+                    <ul class="nav nav-pills" data-tabs="tabs">
+                        {% for tab_id, label, resources, kwargs in resource_tabs %}
+                            {% if tab_id == 'resources' %}
+                            <li class="active">
+                                <a href="#{{tab_id}}" class="header_small" data-toggle="tab">{{ label }}</a>
+                            </li>
+                            {% elif resources %}
+                                {% set file_domain = (resources|first).url.rpartition("//")[-1].partition("/")[0] %}
+                                {% if file_domain == config.SERVER_NAME %}
+                                <li>
+                                    <a href="#{{tab_id}}" class="header_small" data-toggle="tab" onclick="showCanvas(event)">{{ label }}</a>
+                                </li>
+                                {% endif %}                          
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
 
-                    {% set max_resources = config.DATASET_MAX_RESOURCES_UNCOLLAPSED %}
-                    {% for resource in dataset.resources %}
-                        {% if loop.index0 == max_resources %}
-                        <div id="collapsed-resources" class="collapse">
-                        {% endif %}
-                        {% include theme('dataset/resource/list-item.html') %}
-                    {% else %}
-                    <p class="text-center">{{ _('No resources') }}</p>
-                    {% endfor %}
+                    <div class="tab-content">
+                        {% for tab_id, label, resources, kwargs in resource_tabs %}
+                            {% if tab_id == 'resources' %}
+                            <div class="tab-pane active" id="{{tab_id}}">
+                                {% set max_resources = config.DATASET_MAX_RESOURCES_UNCOLLAPSED %}
+                                {% for resource in dataset.resources %}
+                                    {% if loop.index0 == max_resources %}
+                                        <div id="collapsed-resources" class="collapse">
+                                    {% endif %}
+                                    {% include theme('dataset/resource/list-item.html') %}
+                                {% else %}
+                                <p class="text-center">{{ _('No resources') }}</p>
+                                {% endfor %}
 
-                    {% if dataset.resources|length > max_resources %}
-                        </div>
+                                {% if dataset.resources|length > max_resources %}
+                                </div>
 
-                        <p class="text-center expander">
-                            <button id="more-resources" type="button" class="btn btn-default"
-                                data-toggle="collapse" href="#collapsed-resources"
-                                @click.prevent="expandResources($event)">
-                                <span class="fa fa-list" ></span>
-                                {{ _('See the %(nb)d resources', nb=dataset.resources|length) }}
-                            </button>
-                        </p>
-                    {% endif %}
+                                <p class="text-center expander">
+                                    <button id="more-resources" type="button" class="btn btn-default"
+                                        data-toggle="collapse" href="#collapsed-resources"
+                                        @click.prevent="expandResources($event)">
+                                        <span class="fa fa-list" ></span>
+                                        {{ _('See the %(nb)d resources', nb=dataset.resources|length) }}
+                                    </button>
+                                </p>
+                                {% endif %}
 
-                    {% if can_edit %}
-                    <a class="list-group-item add"
-                        href="{{ url_for('admin.index', path='dataset/{id}/'.format(id=dataset.id), **{'new_resource': ''}) }}">
-                        <div class="format-label pull-left">+</div>
-                        <h4 class="list-group-item-heading">
-                            {{ _('Add a resource') }}
-                        </h4>
-                    </a>
-                    {% endif %}
-
+                                {% if can_edit %}
+                                <a class="list-group-item add"
+                                    href="{{ url_for('admin.index', path='dataset/{id}/'.format(id=dataset.id), **{'new_resource': ''}) }}">
+                                    <div class="format-label pull-left">+</div>
+                                    <h4 class="list-group-item-heading">
+                                        {{ _('Add a resource') }}
+                                    </h4>
+                                </a>
+                                {% endif %}
+                            </div>
+                            {% elif resources %}
+                                <div class="tab-pane" id="{{tab_id}}">
+                                    <h3>{{ (resources|first).title }}</h3>
+                                    <div id="grid"></div>
+                                    <div id="fileurl" style="display:none">{{ (resources|first).url }}</div>
+                                </div>
+                                <br>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
                 {# end resources #}
 
