@@ -91,7 +91,7 @@
                 {% set resource_tabs = (
                     ('resources', _('Resources'), dataset.resources, {}),
                     ('preview', _('Preview'),
-                        dataset.resources|selectattr('format', 'equalto', 'csv')|list or
+                        dataset.resources|selectattr('format', 'equalto', 'csv')|list +
                         dataset.resources|selectattr('format', 'equalto', 'xlsx')|list,
                         {}),
                 ) %}
@@ -119,7 +119,7 @@
                             {% if tab_id == 'resources' %}
                             <div class="tab-pane active" id="{{tab_id}}">
                                 {% set max_resources = config.DATASET_MAX_RESOURCES_UNCOLLAPSED %}
-                                {% for resource in dataset.resources %}
+                                {% for resource in resources %}
                                     {% if loop.index0 == max_resources %}
                                         <div id="collapsed-resources" class="collapse">
                                     {% endif %}
@@ -153,9 +153,11 @@
                             </div>
                             {% elif resources %}
                                 <div class="tab-pane" id="{{tab_id}}">
-                                    <h3>{{ (resources|first).title }}</h3>
+                                    {% for resource in resources %}
+                                    <h3>{{ resource.title }}</h3>
                                     <div id="grid"></div>
                                     <div id="fileurl" style="display:none">{{ (resources|first).url }}</div>
+                                    {% endfor %}
                                 </div>
                                 <br>
                             {% endif %}
