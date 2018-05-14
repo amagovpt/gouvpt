@@ -558,10 +558,12 @@ body.homepage #breadcrumbs{
 .top-banner #homepage-slider .text-area .description p{
 	font-family: "latobold" !important;
     line-height: normal;
+    padding: 0 15px;
+}
+.top-banner #homepage-slider .text-area .markdown{
     max-height: 60px;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 0 15px;
 }
 .top-banner #homepage-slider .verMaisHomeBtn{
 	margin-top: 25px;
