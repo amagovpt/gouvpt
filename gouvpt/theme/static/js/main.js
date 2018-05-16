@@ -74,7 +74,9 @@ $j(document).ready(function($) {
     
     $(document).on("click", ".search-icon i.icone-search", function(){
         $('.search-box').addClass('visible');
+        $('.form-control').focus();
     });
+    
     $(document).on("click", ".horizontal-menu>div>ul>li a", function(e){
         if($('.horizontal-menu .icone-burguer:visible').length > 0 && $(this).next('ul.sub-menu').length > 0){
             e.preventDefault();
@@ -238,3 +240,21 @@ $w.scroll(function() {
         jQuery('.top-banner .scrolldown').removeClass('scrollhidden');
     }
 });
+
+function scrollDown(e) {
+    e.preventDefault();
+    var scrollTo=jQuery('div.container:nth-child(2) > div:nth-child(2) > div:nth-child(1)');
+    jQuery('html,body').animate({
+    scrollTop: scrollTo.offset().top - jQuery('#banner').height() - 50},'slow');
+    jQuery('.new-discussion')[0].click();
+};
+
+function scrollDownTag(e) {
+    e.preventDefault();
+    var scrollTo=jQuery('div.container:nth-child(2) > div:nth-child(2) > div:nth-child(1)');
+    jQuery('html,body').animate({
+    scrollTop: scrollTo.offset().top - jQuery('#banner').height() - 50},'slow');
+    jQuery('.new-discussion')[0].click();
+    jQuery('#title-new-discussion').val('Nova sugestão de tag para melhorar metadados');
+    jQuery('#comment-new-discussion').val('Olá,\n\nEu proponho esta nova etiqueta:'); 
+};

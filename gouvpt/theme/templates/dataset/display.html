@@ -140,7 +140,7 @@
                         </div>
                         {% endif %}
                         <div class="btn-group btn-group-sm">
-                            <button type="button" class="btn btn-warning" @click="$refs.discussions.start('')">
+                            <button type="button" class="btn btn-warning" onclick="scrollDown(event)">
                                 <span class="fa fa-envelope-o"></span>
                                 {{ _('Contact the producer') }}
                             </button>
@@ -285,7 +285,7 @@
                             </li>
                             {% endfor %}
                             <li>
-                                <a @click="suggestTag"
+                                <a onclick="scrollDownTag(event)"
                                     class="label label-primary suggest-tag"
                                     title="{{ _('Suggest a tag with a new discussion thread') }}"
                                     v-tooltip tooltip-placement="right">
