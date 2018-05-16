@@ -2742,3 +2742,9 @@ section.default {
 .markdown-body.no-padding{
     padding: 0px;
 }
+.leaflet-bottom, .leaflet-top {
+    z-index: 50;
+}
+.leaflet-container .leaflet-control-attribution a{
+    font-size: 10px;
+}
