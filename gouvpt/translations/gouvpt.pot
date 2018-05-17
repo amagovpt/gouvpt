@@ -130,3 +130,6 @@ msgstr ""
 
 msgid "County"
 msgstr ""
+
+msgid "Parish"
+msgstr ""

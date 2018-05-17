@@ -2742,9 +2742,12 @@ section.default {
 .markdown-body.no-padding{
     padding: 0px;
 }
-.leaflet-bottom, .leaflet-top {
-    z-index: 50;
+.leaflet-bottom, .leaflet-top, .spinner {
+    z-index: 50 !important;
 }
 .leaflet-container .leaflet-control-attribution a{
     font-size: 10px;
+}
+.calendar button{
+    padding: unset;
 }

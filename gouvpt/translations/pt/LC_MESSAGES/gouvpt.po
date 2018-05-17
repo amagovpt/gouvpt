@@ -130,3 +130,6 @@ msgstr "Distritos"
 
 msgid "County"
 msgstr "Concelhos"
+
+msgid "Parish"
+msgstr "Freguesias"
