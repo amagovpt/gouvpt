@@ -1213,6 +1213,25 @@ textarea.span1,
 	.select2.select2-container.select2-container--default {
 		margin-top: 5px;
 	}
+	.form-group-create > div:nth-child(2), .form-group-create > div:nth-child(1) {
+		width: 109%;
+		margin-left: -15px;
+	}
+	.info {
+		margin-left: -15px;
+	}
+	div.col-md-4 {
+		margin-top: 30px;
+	}
+	.side-menu {
+		padding-left: 15px;
+	}
+	.text {
+		padding-left: 70px;
+	}
+	span.dropdown.ul.dropdown-menu:nth-child(3){
+		padding-right: 50px;
+	}
 }
 h1{
 	font-size: 32px !important;
