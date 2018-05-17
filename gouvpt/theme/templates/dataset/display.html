@@ -18,7 +18,7 @@
 
 {% block after_head %}
 <link rel="canonical" href="{{ url_for('datasets.show', dataset=dataset) }}" />
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/xlsx/0.12.12/xlsx.full.min.js"></script>
+<script type="text/javascript" src="//unpkg.com/xlsx@0.12.12/dist/xlsx.full.min.js"></script>
 <script type="text/javascript" src="//unpkg.com/canvas-datagrid/dist/canvas-datagrid.js"></script>
 <script type="text/javascript" src="{{ theme_static('js/datasets.js') }}"></script>
 {% endblock %}
@@ -153,11 +153,30 @@
                             </div>
                             {% elif resources %}
                                 <div class="tab-pane" id="{{tab_id}}">
-                                    {% for resource in resources %}
-                                    <h3>{{ resource.title }}</h3>
+                                <div class="row opinion">
+                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                        <select id="select-resource" onchange="changeFile()">
+                                        {% for resource in resources %}
+                                        <option value="{{ resource.url }}" {% if loop.first %}selected="selected"{% endif %} >{{ resource.title }}</option>
+                                        {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                        <div class="btn-toolbar pull-right">
+                                                <button class="btn btn-success" onclick="exportFile('')"><i class="fa fa-download"></i></button>
+                                                <button class="btn btn-success" onclick="exportFile('JSON')"><i class="fa fa-download"></i> JSON</button>
+                                                <button class="btn btn-success" onclick="exportFile('XML')"><i class="fa fa-download"></i> XML</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="grid-loader"></div>
                                     <div id="grid"></div>
-                                    <div id="fileurl" style="display:none">{{ (resources|first).url }}</div>
-                                    {% endfor %}
+                                    <div class="leaflet-right">
+                                        <div class="leaflet-control-attribution leaflet-control">
+                                            <a href="https://sheetjs.com/" title="Spreadsheets simplified in browser" target="_blank">SheetJS</a> |
+                                            <a href="https://github.com/TonyGermaneri/canvas-datagrid" target="_blank">Canvas Datagrid</a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <br>
                             {% endif %}

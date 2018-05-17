@@ -2733,8 +2733,27 @@ section.default {
 .checkbox-inline input[type="checkbox"]{
 	position: unset;
 }
-
-
 .select2-results__option[aria-disabled="true"] {
     display: none;
+}
+.resources-list .row {
+    margin: 10px -15px;
+}
+.resources-list .leaflet-right{
+    padding-bottom: 10px;
+}
+.grid-loader {
+    border: 16px solid #d3d3d3; /* Light grey */
+    border-top: 16px solid #F08322; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    margin: 150px auto;
+    position: absolute;
+    left: 45%;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
