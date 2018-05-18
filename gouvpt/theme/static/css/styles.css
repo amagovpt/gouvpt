@@ -2742,3 +2742,6 @@ section.default {
 .markdown-body.no-padding{
     padding: 0px;
 }
+.user-email {
+    text-align: center;
+}
