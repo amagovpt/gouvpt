@@ -2775,3 +2775,8 @@ section.default {
 .user-email {
     text-align: center;
 }
+
+.lang-wrapper i.fa.fa-home {
+	font-size: 29px;
+	margin-right:18px;
+}
