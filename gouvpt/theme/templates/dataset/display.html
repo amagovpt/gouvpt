@@ -154,7 +154,7 @@
                             {% elif resources %}
                                 <div class="tab-pane" id="{{tab_id}}">
                                 <div class="row opinion">
-                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
                                         <select id="select-resource" onchange="changeFile()">
                                         {% for resource in resources %}
                                         <option value="{{ resource.url }}" {% if loop.first %}selected="selected"{% endif %} >{{ resource.title }}</option>

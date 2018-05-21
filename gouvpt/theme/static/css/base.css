@@ -1203,6 +1203,7 @@ textarea.span1,
 	}
 	.btn-toolbar.pull-right {
 		margin-right: 15px;
+		margin-top: 5px;
 	}
 	.panel.panel-default {
 		margin: 15px;
@@ -1232,6 +1233,10 @@ textarea.span1,
 	span.dropdown.ul.dropdown-menu:nth-child(3){
 		padding-right: 50px;
 	}
+	.nav-pills > li {
+		width: 100%;
+		text-align: center;
+	}	
 }
 h1{
 	font-size: 32px !important;
