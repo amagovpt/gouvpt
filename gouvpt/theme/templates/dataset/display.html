@@ -16,8 +16,11 @@
 
 {% set body_class = 'dataset-display' %}
 
-{% block extra_head %}
+{% block after_head %}
 <link rel="canonical" href="{{ url_for('datasets.show', dataset=dataset) }}" />
+<script type="text/javascript" src="//unpkg.com/xlsx@0.12.12/dist/xlsx.full.min.js"></script>
+<script type="text/javascript" src="//unpkg.com/canvas-datagrid/dist/canvas-datagrid.js"></script>
+<script type="text/javascript" src="{{ theme_static('js/datasets.js') }}"></script>
 {% endblock %}
 
 {% block breadcrumb %}
@@ -80,46 +83,105 @@
 
                 <div class="row">
                     <div class="col-xs-12">
-                            {{ dataset.description|markdown }}
+                    <div class="markdown-body no-padding">{{ dataset.description|markdown }}</div>
                     </div>
                 </div>
 
+                {# Resources section #}
+                {% set resource_tabs = (
+                    ('resources', _('Resources'), dataset.resources, {}),
+                    ('preview', _('Preview'),
+                        dataset.resources|selectattr('format', 'equalto', 'csv')|list +
+                        dataset.resources|selectattr('format', 'equalto', 'xlsx')|list,
+                        {}),
+                ) %}
+                
                 <div class="list-group resources-list">
-                    <h3 class="header_small">{{ _('Resources') }}</h3>
+                    <ul class="nav nav-pills" data-tabs="tabs">
+                        {% for tab_id, label, resources, kwargs in resource_tabs %}
+                            {% if tab_id == 'resources' %}
+                            <li class="active">
+                                <a href="#{{tab_id}}" class="header_small" data-toggle="tab">{{ label }}</a>
+                            </li>
+                            {% elif resources %}
+                                {% set file_domain = (resources|first).url.rpartition("//")[-1].partition("/")[0] %}
+                                {% if file_domain == config.SERVER_NAME %}
+                                <li>
+                                    <a href="#{{tab_id}}" class="header_small" data-toggle="tab" onclick="showCanvas(event)">{{ label }}</a>
+                                </li>
+                                {% endif %}                          
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
 
-                    {% set max_resources = config.DATASET_MAX_RESOURCES_UNCOLLAPSED %}
-                    {% for resource in dataset.resources %}
-                        {% if loop.index0 == max_resources %}
-                        <div id="collapsed-resources" class="collapse">
-                        {% endif %}
-                        {% include theme('dataset/resource/list-item.html') %}
-                    {% else %}
-                    <p class="text-center">{{ _('No resources') }}</p>
-                    {% endfor %}
+                    <div class="tab-content">
+                        {% for tab_id, label, resources, kwargs in resource_tabs %}
+                            {% if tab_id == 'resources' %}
+                            <div class="tab-pane active" id="{{tab_id}}">
+                                {% set max_resources = config.DATASET_MAX_RESOURCES_UNCOLLAPSED %}
+                                {% for resource in resources %}
+                                    {% if loop.index0 == max_resources %}
+                                        <div id="collapsed-resources" class="collapse">
+                                    {% endif %}
+                                    {% include theme('dataset/resource/list-item.html') %}
+                                {% else %}
+                                <p class="text-center">{{ _('No resources') }}</p>
+                                {% endfor %}
 
-                    {% if dataset.resources|length > max_resources %}
-                        </div>
+                                {% if dataset.resources|length > max_resources %}
+                                </div>
 
-                        <p class="text-center expander">
-                            <button id="more-resources" type="button" class="btn btn-default"
-                                data-toggle="collapse" href="#collapsed-resources"
-                                @click.prevent="expandResources($event)">
-                                <span class="fa fa-list" ></span>
-                                {{ _('See the %(nb)d resources', nb=dataset.resources|length) }}
-                            </button>
-                        </p>
-                    {% endif %}
+                                <p class="text-center expander">
+                                    <button id="more-resources" type="button" class="btn btn-default"
+                                        data-toggle="collapse" href="#collapsed-resources"
+                                        @click.prevent="expandResources($event)">
+                                        <span class="fa fa-list" ></span>
+                                        {{ _('See the %(nb)d resources', nb=dataset.resources|length) }}
+                                    </button>
+                                </p>
+                                {% endif %}
 
-                    {% if can_edit %}
-                    <a class="list-group-item add"
-                        href="{{ url_for('admin.index', path='dataset/{id}/'.format(id=dataset.id), **{'new_resource': ''}) }}">
-                        <div class="format-label pull-left">+</div>
-                        <h4 class="list-group-item-heading">
-                            {{ _('Add a resource') }}
-                        </h4>
-                    </a>
-                    {% endif %}
-
+                                {% if can_edit %}
+                                <a class="list-group-item add"
+                                    href="{{ url_for('admin.index', path='dataset/{id}/'.format(id=dataset.id), **{'new_resource': ''}) }}">
+                                    <div class="format-label pull-left">+</div>
+                                    <h4 class="list-group-item-heading">
+                                        {{ _('Add a resource') }}
+                                    </h4>
+                                </a>
+                                {% endif %}
+                            </div>
+                            {% elif resources %}
+                                <div class="tab-pane" id="{{tab_id}}">
+                                <div class="row opinion">
+                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                        <select id="select-resource" onchange="changeFile()">
+                                        {% for resource in resources %}
+                                        <option value="{{ resource.url }}" {% if loop.first %}selected="selected"{% endif %} >{{ resource.title }}</option>
+                                        {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                        <div class="btn-toolbar pull-right">
+                                                <button class="btn btn-success" onclick="exportFile('')"><i class="fa fa-download"></i></button>
+                                                <button class="btn btn-success" onclick="exportFile('JSON')"><i class="fa fa-download"></i> JSON</button>
+                                                <button class="btn btn-success" onclick="exportFile('XML')"><i class="fa fa-download"></i> XML</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="grid-loader"></div>
+                                    <div id="grid"></div>
+                                    <div class="leaflet-right">
+                                        <div class="leaflet-control-attribution leaflet-control">
+                                            <a href="https://sheetjs.com/" title="Spreadsheets simplified in browser" target="_blank">SheetJS</a> |
+                                            <a href="https://github.com/TonyGermaneri/canvas-datagrid" target="_blank">Canvas Datagrid</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
                 {# end resources #}
 
@@ -140,7 +202,7 @@
                         </div> 
                         {% endif %}
                         <div class="btn-group btn-group-sm">
-                            <button type="button" class="btn btn-warning" @click="$refs.discussions.start('')">
+                            <button type="button" class="btn btn-warning" onclick="scrollDown(event)">
                                 <span class="fa fa-envelope-o"></span>
                                 <span class="hidden-xs">{{ _('Contact the producer') }}</span>
                             </button>
@@ -285,7 +347,7 @@
                             </li>
                             {% endfor %}
                             <li>
-                                <a @click="suggestTag"
+                                <a onclick="scrollDownTag(event)"
                                     class="label label-primary suggest-tag"
                                     title="{{ _('Suggest a tag with a new discussion thread') }}"
                                     v-tooltip tooltip-placement="right">

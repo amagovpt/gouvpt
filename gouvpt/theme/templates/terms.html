@@ -9,15 +9,17 @@
 } %}
 
 {% block content %}
-<section class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="markdown-body">
-                        {{ terms|markdown }}
+    {% cache cache_duration*3, 'terms' %}
+    <section class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="markdown-body">
+                            {{ terms|markdown }}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    {% endcache %}
 {% endblock %}

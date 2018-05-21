@@ -1,10 +1,10 @@
 # gouvpt
 
-Official uData 1.3 theme for the Open Data Portal of Portugal
+Official uData 1.3.5 theme for the Open Data Portal of Portugal
 
 ## Usage
 
-Clone and install the theme package in your udata environement:
+Clone and install the theme package in your udata environment:
 
 ```bash
 git clone https://github.com/amagovpt/gouvpt.git

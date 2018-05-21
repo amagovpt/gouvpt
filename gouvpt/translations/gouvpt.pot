@@ -104,8 +104,32 @@ msgstr ""
 msgid "See data"
 msgstr ""
 
+msgid "Export to {format}"
+msgstr ""
+
 msgid "I have read and accept <a href=\"%(url)s\" target=\"_blank\"> the terms and conditions of the service.</a>"
 msgstr ""
 
 msgid "Email/Password"
+msgstr ""
+
+msgid "World"
+msgstr ""
+
+msgid "European Union"
+msgstr ""
+
+msgid "Country group"
+msgstr ""
+
+msgid "Country"
+msgstr ""
+
+msgid "District"
+msgstr ""
+
+msgid "County"
+msgstr ""
+
+msgid "Parish"
 msgstr ""
