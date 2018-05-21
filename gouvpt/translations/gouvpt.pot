@@ -112,3 +112,24 @@ msgstr ""
 
 msgid "Email/Password"
 msgstr ""
+
+msgid "World"
+msgstr ""
+
+msgid "European Union"
+msgstr ""
+
+msgid "Country group"
+msgstr ""
+
+msgid "Country"
+msgstr ""
+
+msgid "District"
+msgstr ""
+
+msgid "County"
+msgstr ""
+
+msgid "Parish"
+msgstr ""

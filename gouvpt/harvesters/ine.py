@@ -85,21 +85,7 @@ class INEBackend(BaseBackend):
                     elif childNode.nodeName == 'html':
                         for obj in childNode.childNodes:
                             if obj.nodeName == 'bdd_url':
-                                dataset.resources.append(Resource(
-                                    title = 'Dataset html url'
-                                    , description = 'Dataset em formato user friendly'
-                                    , url = obj.firstChild.nodeValue
-                                    , filetype='remote'
-                                    , format = 'xml'
-                                ))
-                            elif obj.nodeName == 'metainfo_url':
-                                dataset.resources.append(Resource(
-                                    title = 'Dataset metainfo url'
-                                    , description = 'Metainfo em formato user friendly'
-                                    , url = obj.firstChild.nodeValue
-                                    , filetype='remote'
-                                    , format = 'xml'
-                                ))
+                                dataset.description += "\n " + obj.firstChild.nodeValue
 
                     elif childNode.nodeName == 'json':
                         for obj in childNode.childNodes:
@@ -109,7 +95,7 @@ class INEBackend(BaseBackend):
                                     , description = 'Dataset em formato json'
                                     , url = obj.firstChild.nodeValue
                                     , filetype='remote'
-                                    , format = 'xml'
+                                    , format = 'json'
                                 ))
                             elif obj.nodeName == 'json_metainfo':
                                 dataset.resources.append(Resource(
@@ -117,6 +103,6 @@ class INEBackend(BaseBackend):
                                     , description = 'Metainfo em formato json'
                                     , url = obj.firstChild.nodeValue
                                     , filetype='remote'
-                                    , format = 'xml'
+                                    , format = 'json'
                                 ))
         return dataset
