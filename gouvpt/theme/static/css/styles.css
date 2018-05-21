@@ -2775,6 +2775,10 @@ section.default {
 .user-email {
     text-align: center;
 }
+.advanced-search-panel .list-group .list-group-item.more {
+    margin-bottom: 10px;
+    border-bottom: 0px; 
+}
 
 .lang-wrapper i.fa.fa-home {
 	font-size: 29px;
