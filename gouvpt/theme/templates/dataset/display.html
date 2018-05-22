@@ -90,10 +90,10 @@
                 {# Resources section #}
                 {% set resource_tabs = (
                     ('resources', _('Resources'), dataset.resources, {}),
-                    ('preview', _('Preview'),
+                    ('preview', _('Preview'), (
                         dataset.resources|selectattr('format', 'equalto', 'csv')|list +
-                        dataset.resources|selectattr('format', 'equalto', 'xlsx')|list,
-                        {}),
+                        dataset.resources|selectattr('format', 'equalto', 'xlsx')|list 
+                        )|selectattr('filetype', 'equalto', 'file')|list,{}),
                 ) %}
                 
                 <div class="list-group resources-list">
@@ -104,12 +104,9 @@
                                 <a href="#{{tab_id}}" class="header_small" data-toggle="tab">{{ label }}</a>
                             </li>
                             {% elif resources %}
-                                {% set file_domain = (resources|first).url.rpartition("//")[-1].partition("/")[0] %}
-                                {% if file_domain == config.SERVER_NAME %}
                                 <li>
                                     <a href="#{{tab_id}}" class="header_small" data-toggle="tab" onclick="showCanvas(event)">{{ label }}</a>
-                                </li>
-                                {% endif %}                          
+                                </li>                        
                             {% endif %}
                         {% endfor %}
                     </ul>
