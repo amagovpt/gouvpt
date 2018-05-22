@@ -2586,7 +2586,8 @@ code {
 }
 .card.user-card  .card-footer {
     padding: inherit;
-    position: absolute; 
+    position: absolute;
+    background: transparent;
 }
 .timeline .card {
     max-width: unset !important;
@@ -2779,8 +2780,10 @@ section.default {
     margin-bottom: 10px;
     border-bottom: 0px; 
 }
-
 .lang-wrapper i.fa.fa-home {
 	font-size: 25px;
 	margin-right:50px;
+}
+.toolbar .btn-toolbar .btn-group{
+    margin-top: 7px;
 }
