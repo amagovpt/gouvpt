@@ -2507,6 +2507,7 @@ section.breadcrumb-bar .breadcrumb {
     padding: 8px 8px 1px;
     right: 8px;
     bottom: 0.5px;
+    background: transparent;
 }
 code {
     color: #333;
