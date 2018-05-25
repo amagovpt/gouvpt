@@ -134,5 +134,5 @@ msgstr "Concelhos"
 msgid "Parish"
 msgstr "Freguesias"
 
-msgid "See more"
-msgstr "Ver mais"
+msgid "INSEE code:"
+msgstr "Código Dicofre:"

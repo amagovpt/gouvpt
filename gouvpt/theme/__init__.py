@@ -31,6 +31,7 @@ gouvpt_menu = nav.Bar('gouvpt_menu', [
         nav.Item(_('Reuses'), 'reuses.list'),
         nav.Item(_('Organizations'), 'organizations.list'),
         nav.Item(_('Dashboard'), 'site.dashboard'),
+        nav.Item(_('Territories'), 'site.map'),
     ]),
 
     nav.Item(_('News'), None, url='#', items=[

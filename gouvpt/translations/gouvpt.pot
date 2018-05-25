@@ -134,5 +134,5 @@ msgstr ""
 msgid "Parish"
 msgstr ""
 
-msgid "See more"
+msgid "INSEE code:"
 msgstr ""

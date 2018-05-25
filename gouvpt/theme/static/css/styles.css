@@ -2788,3 +2788,6 @@ section.default {
 .toolbar .btn-toolbar .btn-group{
     margin-top: 7px;
 }
+.leaflet-control-layers-base > label:nth-child(5){
+    display: none;
+}
