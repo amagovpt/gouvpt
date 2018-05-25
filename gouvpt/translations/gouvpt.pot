@@ -133,3 +133,6 @@ msgstr ""
 
 msgid "Parish"
 msgstr ""
+
+msgid "See more"
+msgstr ""

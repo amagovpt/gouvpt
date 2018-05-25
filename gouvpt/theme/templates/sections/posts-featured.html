@@ -21,9 +21,15 @@
                 <div class="description">
                     <br>
                     <p> {{ post.content| truncate(700) | markdown }} </p>
+                    {% if "vernoticia" in post.tags %}
+                    <div class="verMaisHomeBtn">
+                            <a href="{{ post.display_url }}">{{_("See more")}}</a>
+                    </div>
+                    {% else %}
                     <div class="verMaisHomeBtn">
                             <a href="{{ url_for('datasets.list') }}">{{_("See data")}}</a>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </li>
