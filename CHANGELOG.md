@@ -2,6 +2,12 @@
 
 ## Current (in progress)
 
+## Version 1.2.2
+- Upgrade theme to uData 1.3.10
+- Territorial configuration
+- Resource preview (xlsx and csv)
+
+
 ## Version 1.2.1
 - Cache doc pages in redis
 - Rework login page
