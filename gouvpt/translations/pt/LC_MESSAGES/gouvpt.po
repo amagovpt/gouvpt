@@ -112,3 +112,27 @@ msgstr "Li e aceito <a href=\"%(url)s\"> os termos e condições do serviço.</a
 
 msgid "Email/Password"
 msgstr "Email/Palavra-passe"
+
+msgid "World"
+msgstr "Mundo"
+
+msgid "European Union"
+msgstr "União Europeia"
+
+msgid "Country group"
+msgstr "Mundo"
+
+msgid "Country"
+msgstr "Países"
+
+msgid "District"
+msgstr "Distritos"
+
+msgid "County"
+msgstr "Concelhos"
+
+msgid "Parish"
+msgstr "Freguesias"
+
+msgid "INSEE code:"
+msgstr "Código Dicofre:"

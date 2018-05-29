@@ -136,7 +136,10 @@
         line-height: 38px!important
     }
     .top-banner #homepage-slider .text-area h1{
-	    padding-top: 100px; 
+		padding-top: 50px;
+		max-height: 160px; 
+		overflow: hidden;
+		text-overflow: ellipsis;		
 	}
     h2 {
         font-size: 28px!important;
@@ -146,13 +149,17 @@
     h3,
     .top-banner #homepage-slider .text-area h3{
         font-size: 24px!important;
-        line-height: 28px!important
+		line-height: 28px!important;
+		max-height: 30px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
     }
 	.top-banner #homepage-slider .text-area .description p{
 		font-size: 22px !important;
 	}
     h4 {
-        font-size: 22px!important;
+        font-size: 15px!important;
         line-height: 26px!important
     }	
     .block-wrapper .button1,
@@ -168,7 +175,10 @@
 		margin-top: 30px !important;
 	}
 	.top-banner #homepage-slider .text-area .description{
-		margin-top: 100px;
+		margin-top: -40px;
+	}
+	.top-banner #homepage-slider .text-area .description .markdown{
+		display: none;
 	}
 	#newsletterWrapper .newsletter-wrapper{
 		padding: 33px 5%!important;
@@ -186,7 +196,10 @@
 	}
 	.newsletter-box{
 		text-align: center;
-	}	
+	}
+	.form-group label, .form-group .field-wrapper {
+		width: 100% !important;
+	}
 }
 @media only screen and (max-width: 480px) {	
 	.block-wrapper.contact-wrapper .span6 .button-wrapper button,

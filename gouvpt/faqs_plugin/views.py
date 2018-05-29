@@ -10,6 +10,7 @@ import redis
 
 from urlparse import urlparse
 from flask_wtf import FlaskForm, recaptcha
+from wtforms.fields.html5 import EmailField
 from udata.forms import fields, validators
 from flask_mail import Message
 from flask_security.utils import do_flash
@@ -18,7 +19,7 @@ from udata.models import Dataset
 
 class ContactForm(FlaskForm):
     name = fields.StringField("Name", [validators.Required()])
-    email = fields.html5.EmailField("Email", [validators.Required(), validators.Email()])
+    email = EmailField("Email", [validators.Required(), validators.Email()])
     subject = fields.StringField("Subject", [validators.Required()])
     message = fields.TextAreaField("Message", [validators.Required()])
     recaptcha = recaptcha.RecaptchaField()

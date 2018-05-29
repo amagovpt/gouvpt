@@ -16,6 +16,11 @@
             <nav class="horizontal-menu type2">
                 <div class="menu-wrapper">
                     <div class="lang-wrapper top-section">
+                        {% if request.endpoint != 'site.home'%}
+                        <span class="search-icon icon-home">
+                            <i class="fa fa-home icon-globe">&nbsp;</i>
+                        </span>
+                        {% endif %}
                         {% if request.endpoint == 'site.home' %}
                         <span class="search-icon">
                             <i class="icone-search icon-globe">&nbsp;</i>
