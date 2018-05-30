@@ -2788,3 +2788,11 @@ section.default {
 .toolbar .btn-toolbar .btn-group{
     margin-top: 7px;
 }
+
+.card .card-body .clamp-3 {
+    height: 2.9em;
+}
+
+.card-list.card-list--columned .card-footer {
+    background: transparent;
+}
