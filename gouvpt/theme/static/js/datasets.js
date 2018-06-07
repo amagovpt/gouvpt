@@ -84,17 +84,17 @@ function showCanvas(event) {
 
 var to_json = function to_json(workbook) {
     var file = {};
-    var result = {};
+    var result = [];
     workbook.SheetNames.forEach(function (sheetName) {
         var roa = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
         var headers = roa[0];
         for (i = 1; i < roa.length; i++) {
             line = {}
+            line['PartitionKey'] = sheetName;
             for (j = 0; j < headers.length; j++) {
-                line['PartitionKey'] = sheetName;
                 line[headers[j]] = roa[i][j];
             }
-            result[i - 1] = line;
+            result.push(line);
         }
     });
     file['d'] = result;
