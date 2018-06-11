@@ -125,6 +125,9 @@
 	    margin-top: 15px;
 	    margin-bottom: 15px;
 	}
+	.col-md-12 {
+		margin-left: 15px;
+	}
 	.top-banner .text-area .description {
     	font-size: 16px;
     	line-height: 24px;
