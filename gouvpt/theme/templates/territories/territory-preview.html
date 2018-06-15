@@ -1,0 +1,39 @@
+
+{% set territory = request.args.get('geozone')  %}
+{% if territory %}
+    {% cache cache_duration, 'territory-preview', territory %}
+    <div class="panel panel-default">
+            <div class="panel-body text-center" style="display:none">
+                <h3><span class="fa fa-map-marker fa-fw"></span>
+                    <span id="zone-title"></span>
+                </h3>
+                <img id="zone-blazon" src="" />
+            </div>
+    </div>
+
+    {% block extra_js %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var theUrl = "/api/1/spatial/zone/{{ territory }}";
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", theUrl, true );
+            
+            xmlHttp.onload = function (e) {  
+                if ( xmlHttp.status === 200){
+                    data = JSON.parse(xmlHttp.responseText);
+                    document.getElementById('zone-title').textContent = data.properties.name+" ("+data.properties.code+")";
+                    if (data.properties.logo)
+                        document.getElementById('zone-blazon').src = data.properties.logo;
+                    else
+                        document.getElementById('zone-blazon').src = "{{ theme_static('img/placeholder_territory_medium.png') }}";
+                    document.getElementById('zone-blazon').parentElement.style.display = "block";
+                } else {
+                    console.log(xmlHttp.statusText);
+                }
+            };
+            xmlHttp.send(null);
+        });
+    </script> 
+    {% endblock %}
+    {% endcache %}    
+{% endif %}

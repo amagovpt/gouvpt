@@ -388,7 +388,7 @@
                         <h3>{{ _('Territories')}}</h3>
                         {% for territory in dataset.spatial.handled_zones %}
                             {% if territory.dbpedia %}
-                            <a href="/datasets/?geozone={{ territory.id }}" title="{{ territory.name }}"><img src="{{ territory.dbpedia }}" alt="{{ territory.name }}" class="float-left" width="100px" /></a>
+                            <a href="/datasets/?geozone={{ territory.id }}" title="{{ territory.name }}"><img src="{{ territory.dbpedia }}" alt="{{ territory.name }}" class="float-left" width="85px" /></a>
                             {% else %}
                             <br><img src="{{ theme_static('img/placeholders/placeholder_territory_mini.png') }}" alt="{{ territory.name }}" class="float-left" width="15px" /> <a href="/datasets/?geozone={{ territory.id }}" title="{{ territory.name }}">{{ territory.name }}</a>
                             {% endif %}
