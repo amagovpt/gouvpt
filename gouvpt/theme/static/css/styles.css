@@ -2804,3 +2804,63 @@ section.default {
     background-color: #f0ad4e;
     border-color: #f0ad4e;
 }
+
+.resources-list .format-label {
+    width: 60px;
+    height: 60px;
+    background-color: #eeeeee;
+    margin: 0;
+    
+}
+.resources-list .format-label span {
+    line-height: 60px;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    width: 60px;
+    height: 60px;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: ellipsis;
+    margin-top: -7px;
+}
+
+.card {
+    height: 75px;
+}
+
+.resource-card-description {
+    overflow: hidden;
+    max-width: 70%;
+    max-height: 50%;
+}
+
+.resource-card.add .card-body h4 {
+    margin-bottom: 15px;
+}
+
+.card .card-footer ul {
+    margin-right: 10px;
+}
+
+.card-top-right {
+    position: absolute;
+    top: 3px;
+    right: 7px;
+}
+
+.card-bottom-left {
+    position: absolute;
+    bottom: -8px;
+    font-size: 9px;
+}
+
+.btn-group .btn.btn-sm.btn-primary {
+    background-color: #5cb85c;
+    border-color: #5cb85c; 
+}
+
