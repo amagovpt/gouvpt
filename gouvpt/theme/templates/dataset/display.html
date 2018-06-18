@@ -5,7 +5,7 @@
 {% from theme('macros/issues.html') import issues_btn with context %}
 
 {% set meta = {
-    'title': dataset.title,
+    'title': dataset.full_title,
     'description': dataset.description|mdstrip(60)|forceescape,
     'image': dataset.organization and dataset.organization.logo(external=True) or '',
     'keywords': [_('dataset')] + dataset.tags,
@@ -16,16 +16,16 @@
 
 {% set body_class = 'dataset-display' %}
 
-{% block after_head %}
+{% block extra_head %}
 <link rel="canonical" href="{{ url_for('datasets.show', dataset=dataset) }}" />
-<script type="text/javascript" src="//unpkg.com/xlsx@0.12.12/dist/xlsx.full.min.js"></script>
-<script type="text/javascript" src="//unpkg.com/canvas-datagrid/dist/canvas-datagrid.js"></script>
-<script type="text/javascript" src="{{ theme_static('js/datasets.js') }}"></script>
+<link rel="alternate" type="application/json+oembed"
+    href="{{ url_for('api.oembed', url=dataset.external_url) }}"
+    title="{{ dataset.title | urlencode }}" />
 {% endblock %}
 
 {% block breadcrumb %}
     <li><a href="{{ url_for('datasets.list') }}">{{ _('Datasets') }}</a></li>
-    <li class="active">{{ dataset.title|truncate(128) }}</li>
+    <li class="active">{{ dataset.acronym or dataset.title|truncate(128) }}</li>
 {% endblock %}
 
 {% block content %}
@@ -37,7 +37,9 @@
 
             <div class="col-md-9 col-sm-9">
                 <div class="page-header">
-                    <h2 class="dataset-title">{{ dataset.title }}</h2>
+                    <h2>{{ dataset.title }}
+                        {% if dataset.acronym %}<small>{{ dataset.acronym }}</small>{% endif %}
+                    </h2>
 
                     <div class="row">
                         <p class="col-md-12">
@@ -83,102 +85,56 @@
 
                 <div class="row">
                     <div class="col-xs-12">
-                    <div class="markdown-body no-padding">{{ dataset.description|markdown }}</div>
+                    {{ dataset.description|markdown }}
                     </div>
                 </div>
 
-                {# Resources section #}
-                {% set resource_tabs = (
-                    ('resources', _('Resources'), dataset.resources, {}),
-                    ('preview', _('Preview'), (
-                        dataset.resources|selectattr('format', 'equalto', 'csv')|list +
-                        dataset.resources|selectattr('format', 'equalto', 'xlsx')|list 
-                        )|selectattr('filetype', 'equalto', 'file')|list,{}),
-                ) %}
-                
-                <div class="list-group resources-list">
-                    <ul class="nav nav-pills" data-tabs="tabs">
-                        {% for tab_id, label, resources, kwargs in resource_tabs %}
-                            {% if tab_id == 'resources' %}
-                            <li class="active">
-                                <a href="#{{tab_id}}" class="header_small" data-toggle="tab">{{ label }}</a>
-                            </li>
-                            {% elif resources %}
-                                <li>
-                                    <a href="#{{tab_id}}" class="header_small" data-toggle="tab" onclick="showCanvas(event)">{{ label }}</a>
-                                </li>                        
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-
-                    <div class="tab-content">
-                        {% for tab_id, label, resources, kwargs in resource_tabs %}
-                            {% if tab_id == 'resources' %}
-                            <div class="tab-pane active" id="{{tab_id}}">
-                                {% set max_resources = config.DATASET_MAX_RESOURCES_UNCOLLAPSED %}
-                                {% for resource in resources %}
-                                    {% if loop.index0 == max_resources %}
-                                        <div id="collapsed-resources" class="collapse">
-                                    {% endif %}
-                                    {% include theme('dataset/resource/list-item.html') %}
-                                {% else %}
-                                <p class="text-center">{{ _('No resources') }}</p>
-                                {% endfor %}
-
-                                {% if dataset.resources|length > max_resources %}
-                                </div>
-
-                                <p class="text-center expander">
-                                    <button id="more-resources" type="button" class="btn btn-default"
-                                        data-toggle="collapse" href="#collapsed-resources"
-                                        @click.prevent="expandResources($event)">
-                                        <span class="fa fa-list" ></span>
-                                        {{ _('See the %(nb)d resources', nb=dataset.resources|length) }}
-                                    </button>
-                                </p>
-                                {% endif %}
-
-                                {% if can_edit %}
-                                <a class="list-group-item add"
-                                    href="{{ url_for('admin.index', path='dataset/{id}/'.format(id=dataset.id), **{'new_resource': ''}) }}">
-                                    <div class="format-label pull-left">+</div>
-                                    <h4 class="list-group-item-heading">
-                                        {{ _('Add a resource') }}
-                                    </h4>
-                                </a>
-                                {% endif %}
-                            </div>
-                            {% elif resources %}
-                                <div class="tab-pane" id="{{tab_id}}">
-                                <div class="row opinion">
-                                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
-                                        <select id="select-resource" onchange="changeFile()">
-                                        {% for resource in resources %}
-                                        <option value="{{ resource.url }}" {% if loop.first %}selected="selected"{% endif %} >{{ resource.title }}</option>
-                                        {% endfor %}
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-6 col-md-6 col-lg-6">
-                                        <div class="btn-toolbar pull-right">
-                                                <button class="btn btn-success" onclick="exportFile('')"><i class="fa fa-download"></i></button>
-                                                <button class="btn btn-success" onclick="exportFile('JSON')"><i class="fa fa-download"></i> JSON</button>
-                                                <button class="btn btn-success" onclick="exportFile('XML')"><i class="fa fa-download"></i> XML</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                    <div class="grid-loader"></div>
-                                    <div id="grid"></div>
-                                    <div class="leaflet-right">
-                                        <div class="leaflet-control-attribution leaflet-control">
-                                            <a href="https://sheetjs.com/" title="Spreadsheets simplified in browser" target="_blank">SheetJS</a> |
-                                            <a href="https://github.com/TonyGermaneri/canvas-datagrid" target="_blank">Canvas Datagrid</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                            {% endif %}
-                        {% endfor %}
+                <div class="resources-list">
+                    <div class="resources-list-header">
+                        <h3>{{ _('Resources') }}</h3>
+                        {% if dataset.community_resources|length %}
+                        <span class="community-resources-anchor">
+                            <small><a href="#community-resources">{{ _('See also: community resources') }}</a></small>
+                        </span>
+                        {% endif %}
                     </div>
+
+                    {% set grouped_resources = dataset.resources|group_resources_by_type %}
+                    {% set nb_groups = grouped_resources.keys()|length %}
+                    {% set max_resources = config.DATASET_MAX_RESOURCES_UNCOLLAPSED %}
+                    {% for (type, type_label), resources in grouped_resources.items() %}
+                        {% if nb_groups > 1 %}<h4 class="resource-type">{{ type_label }}</h4>{% endif %}
+                        {% for resource in resources %}
+                            {% if loop.index0 == max_resources %}
+                            <div v-if="isTypeListVisible('{{ type }}')" id="collapsed-resources-{{ type }}" class="collapse">
+                            {% endif %}
+                            {% include theme('dataset/resource/card.html') %}
+                        {% endfor %}
+                        {% if resources|length > max_resources %}
+                            </div>
+                            <p class="text-center expander">
+                                <button type="button" class="btn btn-default"
+                                    data-toggle="collapse" href="#collapsed-resources-{{ type }}"
+                                    @click.prevent="expandResources($event, '{{ type }}')">
+                                    <span class="fa fa-list" ></span>
+                                    {{ _('See the %(nb)d resources of type %(type)s', nb=resources|length, type=type_label) }}
+                                </button>
+                            </p>
+                        {% endif %}
+                    {% else %}
+                    <p class="text-center">{{ _('No resources') }}</p>
+                    {% endfor %}
+
+                    {% if can_edit %}
+                    <a class="card resource-card add"
+                        href="{{ url_for('admin.index', path='dataset/{id}/'.format(id=dataset.id), **{'new_resource': ''}) }}">
+                        <div class="card-logo"><span>+</span></div>
+                        <div class="card-body">
+                            <h4>{{ _('Add a resource') }}</h4>
+                        </div>
+                    </a>
+                    {% endif %}
+
                 </div>
                 {# end resources #}
 
@@ -196,7 +152,7 @@
                         {% if sysadmin %}
                         <div class="btn-group btn-group-sm">
                             <featured-button subject-id="{{ dataset.id }}" subject-type="dataset" :featured="{{ dataset.featured|to_json }}"></featured-button>
-                        </div> 
+                        </div>
                         {% endif %}
                         <div class="btn-group btn-group-sm">
                             <button type="button" class="btn btn-warning" onclick="scrollDown(event)">
@@ -219,7 +175,9 @@
                     </div>
                 </div></div>
                 {# end button bar #}
-                {% block left_column_bottom %}{% endblock %}
+                {% if hook_dataset_recommendations and dataset.extras.recommendations %}
+                    {{ hook_dataset_recommendations(dataset.extras.recommendations)|safe }}
+                {% endif %}
             </div>
             {# end left column #}
 
@@ -230,14 +188,8 @@
                 {% if dataset.organization %}
                 <div class="panel panel-default text-center">
                     <div class="panel-body">
-                        {% with organization=dataset.organization %}                        
-                        {% if organization.public_service %}
-                            <img src="{{ theme_static('img/certified-stamp.png') }}" alt="certified" class="certified"
-                                v-popover.literal="{{ _('The identity of this public service is certified by %(certifier)s', certifier=config.SITE_AUTHOR) }}"
-                                popover-title="{{ _('Certified public service') }}"
-                                popover-placement="left" popover-trigger="hover"/>
-                        {% endif %}                        
-                        <h3 class="header_small text-left">{{ _('Producer') }}</h3>
+                        <h3 class="text-left">{{ _('Producer') }}</h3>
+                        {% with organization=dataset.organization %}
                             {% include theme('organization/sidebar-producer.html') %}
                         {% endwith %}
                     </div>
@@ -247,7 +199,7 @@
                 {# Information panel #}
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h3 class="header_small">{{ _('Informations') }}</h3>
+                        <h3>{{ _('Informations') }}</h3>
 
                         <ul class="list-unstyled infos-list">
 
@@ -431,17 +383,17 @@
         <h3 id="community-resources">{{ _('Community resources') }}</h3>
         <div class="row">
             <div class="col-sm-9">
-                <div class="list-group community-resources-list resources-list smaller">
+                <div class="resources-list">
                 {% for resource in dataset.community_resources %}
-                    {% include theme('dataset/resource/list-item.html') %}
+                    {% include theme('dataset/resource/card.html') %}
                 {% endfor %}
-                    <a class="list-group-item add"
-                        href="{{ url_for('admin.index', path='community-resource/new/', **{'dataset_id': dataset.id}) }}">
-                        <div class="format-label pull-left">+</div>
-                        <h4 class="list-group-item-heading">
-                            {{ _('New community resource') }}
-                        </h4>
-                    </a>
+                <a class="card resource-card add"
+                    href="{{ url_for('admin.index', path='community-resource/new/', **{'dataset_id': dataset.id}) }}">
+                    <div class="card-logo"><span>+</span></div>
+                    <div class="card-body">
+                        <h4>{{ _('New community resource') }}</h4>
+                    </div>
+                </a>
                 </div>
             </div>
 
@@ -461,18 +413,11 @@
                         {% include theme('reuse/card.html') %}
                     </div>
                     {% endfor %}
-                
+
                     <div class="col-sm-6">
-                        <a class="card reuse-card card--with-cover add" v-el:add-reuse
-                        href="{{ url_for('admin.index', path='reuse/new/', **{'dataset_id': dataset.id}) }}"
-                        @click="addReuse($event)">
-                        <div class="card-cover">
-                            <h3>+</h3><br>
-                            <h3>{{ _('Add a reuse') }}</h3>
-                        </div>
-                    </a>
+                         {% include theme('dataset/add-reuse-card.html') %}
 					</div>
- 
+
                 </div>
             </div>
             <div class="col-sm-3 note">

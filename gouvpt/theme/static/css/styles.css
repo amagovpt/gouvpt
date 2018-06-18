@@ -2791,3 +2791,16 @@ section.default {
 .leaflet-control-layers-base > label:nth-child(5){
     display: none;
 }
+
+.card .card-body .clamp-3 {
+    height: 2.9em;
+}
+
+.card-list.card-list--columned .card-footer {
+    background: transparent;
+}
+
+.discussion-thread.panel.panel-default > div:nth-child(3) > button:nth-child(1) {
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+}
