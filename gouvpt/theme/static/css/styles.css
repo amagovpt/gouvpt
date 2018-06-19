@@ -2312,7 +2312,7 @@ section.breadcrumb-bar .breadcrumb {
     color:#4f4f4f;
     font-size:14px;
     line-height:1.3em;
-    height:70px;
+    height:60px;
     max-width: unset;
     min-height: unset;
     margin-left: unset;    
@@ -2753,9 +2753,6 @@ section.default {
 .calendar button{
     padding: unset;
 }
-.resources-list .row {
-    margin: 10px -15px;
-}
 .resources-list .leaflet-right{
     padding-bottom: 10px;
 }
@@ -2803,4 +2800,20 @@ section.default {
 .discussion-thread.panel.panel-default .btn-primary {
     background-color: #F08322;
     border-color: #F08322;
+}
+.row.opinion .note{
+    padding: 0 0 10px 20px;
+}
+.styled-select .select2-selection.select2-selection--single {
+        border: 2px solid #4f4f4f !important;
+ }
+.styled-select .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #4f4f4f !important;
+    padding: 6px 10px !important;
+}
+.styled-select .select2-container--default .select2-selection--single .select2-selection__arrow b{
+    border-color: #4f4f4f transparent !important;
+}
+.styled-select .select2-container{
+    height: 30px;
 }

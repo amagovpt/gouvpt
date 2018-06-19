@@ -101,7 +101,8 @@
                     ('resources', _('Resources'), dataset.resources, {}), 
                     ('preview', _('Preview'), ( 
                         dataset.resources|selectattr('format', 'equalto', 'csv')|list + 
-                        dataset.resources|selectattr('format', 'equalto', 'xlsx')|list  
+                        dataset.resources|selectattr('format', 'equalto', 'xlsx')|list +
+                        dataset.resources|selectattr('format', 'equalto', 'xls')|list
                         )|selectattr('filetype', 'equalto', 'file')|list,{}), 
                 ) %} 
                 <div class="list-group resources-list">
@@ -168,20 +169,30 @@
                         {% elif resources %}
                         <div class="tab-pane" id="{{tab_id}}"> 
                             <div class="row opinion"> 
-                                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12"> 
-                                    <select id="select-resource" onchange="changeFile()"> 
-                                    {% for resource in resources %} 
-                                    <option value="{{ resource.url }}" {% if loop.first %}selected="selected"{% endif %} >{{ resource.title }}</option> 
-                                    {% endfor %} 
-                                    </select> 
+                                <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
+                                    <div class="select-wrapper styled-select">
+                                        <select id="select-resource" onchange="changeFile()"> 
+                                        {% for resource in resources %} 
+                                        <option value="{{ resource.url }}" label="{{ resource.title }}" {% if loop.first %}selected="selected"{% endif %} >( {{ resource.format|upper() }} ) {{ resource.title }}</option> 
+                                        {% endfor %} 
+                                        </select>
+                                    </div>
                                 </div> 
-                                <div class="col-sm-6 col-md-6 col-lg-6"> 
+                                <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12"> 
                                     <div class="btn-toolbar pull-right"> 
                                             <button class="btn btn-success" onclick="exportFile('')"><i class="fa fa-download"></i></button> 
                                             <button class="btn btn-success" onclick="exportFile('JSON')"><i class="fa fa-download"></i> JSON</button> 
                                             <button class="btn btn-success" onclick="exportFile('XML')"><i class="fa fa-download"></i> XML</button> 
                                     </div> 
-                                </div> 
+                                </div>
+                                <div class="note pull-left">
+                                    <ul class="list-unstyled infos-list">  
+                                        <li>
+                                            <span class="fa fa-fw fa-info-circle"></span>
+                                            <i>Os ficheiros JSON e XML descarregados a partir deste painel de pré-visualização são gerados a partir do ficheiro CSV, XLSX ou XLS selecionado e podem não corresponder aos recursos originais alojados na plataforma com o mesmo formato.</i>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div> 
                             <div class="grid-loader"></div> 
                             <div id="grid"></div> 
