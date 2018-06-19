@@ -407,10 +407,11 @@
                     <div class="panel-body">
                         <h3>{{ _('Territories')}}</h3>
                         {% for territory in dataset.spatial.handled_zones %}
+                            {% set level = " ("+territory.level.split(':')[1].title()+")" %}
                             {% if territory.dbpedia %}
-                            <a href="/datasets/?geozone={{ territory.id }}" title="{{ territory.name }}"><img src="{{ territory.dbpedia }}" alt="{{ territory.name }}" class="float-left" width="85px" /></a>
+                            <a href="/datasets/?geozone={{ territory.id }}" title="{{ territory.name + level }}"><img src="{{ territory.dbpedia }}" alt="{{ territory.name + level }}" class="float-left" width="85px" /></a>
                             {% else %}
-                            <br><img src="{{ theme_static('img/placeholders/placeholder_territory_mini.png') }}" alt="{{ territory.name }}" class="float-left" width="15px" /> <a href="/datasets/?geozone={{ territory.id }}" title="{{ territory.name }}">{{ territory.name }}</a>
+                            <br><img src="{{ theme_static('img/placeholders/placeholder_territory_mini.png') }}" alt="{{ territory.name }}" class="float-left" width="15px" /> <a href="/datasets/?geozone={{ territory.id }}" title="{{ territory.name + level }}">{{ territory.name + level }}</a>
                             {% endif %}
                         {% endfor %}
                     </div>
@@ -477,12 +478,12 @@
                 <div class="card-list card-list--columned">
                     {% for reuse in reuses %}
                     {% set features = ['preview'] %}
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 col-xs-12">
                         {% include theme('reuse/card.html') %}
                     </div>
                     {% endfor %}
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 col-xs-12">
                         <a class="card reuse-card card--with-cover add" v-el:add-reuse 
                         href="{{ url_for('admin.index', path='reuse/new/', **{'dataset_id': dataset.id}) }}" 
                         @click="addReuse($event)"> 
