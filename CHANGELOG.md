@@ -2,20 +2,24 @@
 
 ## Current (in progress)
 
-## Version 1.2.2
+## Version 1.2.3 (2018-06-20)
+- Small HTML/CSS fix
+- Resource preview improve
+- Improve resource display and design
+
+## Version 1.2.2 (2018-05-24)
 - Upgrade theme to uData 1.3.10
 - Territorial configuration
 - Resource preview (xlsx and csv)
 
-
-## Version 1.2.1
+## Version 1.2.1 (2018-05-10)
 - Cache doc pages in redis
 - Rework login page
 - Rework topic pages
 - New Harvest Ods PT
 - Rework featured content
 
-## Version 1.1.1
+## Version 1.1.1 (2018-04-24)
 - Added dynamic local docs
 - Added new translations
 - Adaption to Ckan PT (origin/feature-ckan_pt)
