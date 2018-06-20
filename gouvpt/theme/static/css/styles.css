@@ -2125,9 +2125,6 @@ footer .span12 a{
 #content .form, .dataset-container {
     padding: 10px 0 20px;
 }
-.card h4 {
-    line-height: 11px !important;
-}
 .navbar-subnav{
     background: linear-gradient(45deg,#F08322,#F08322);
     padding: 20px 0 20px 0;
@@ -2288,9 +2285,9 @@ section.breadcrumb-bar .breadcrumb {
     float:left;
     text-align:center;
     display:table;
-    line-height:67px;
-    width:70px;
-    height:70px;
+    line-height:60px;
+    width:60px;
+    height:60px;
     border:1px solid #eee;
     background-color:#fff
 }
@@ -2312,10 +2309,12 @@ section.breadcrumb-bar .breadcrumb {
     color:#4f4f4f;
     font-size:14px;
     line-height:1.3em;
-    height:70px;
+    height:60px;
+    width: 100%;
     max-width: unset;
     min-height: unset;
-    margin-left: unset;    
+    margin-left: unset;
+    flex: unset !important;    
 }
 .card footer{
     width:100%;
@@ -2382,8 +2381,8 @@ section.breadcrumb-bar .breadcrumb {
     color:ligthen(#595959,2%)
 }
 .card h4{
-    margin:0 0 8px;
-    line-height:11px
+    margin:0 0 5px;
+    line-height:16px !important;
 }
 .card h4 a{
     font-size:13px;
@@ -2753,9 +2752,6 @@ section.default {
 .calendar button{
     padding: unset;
 }
-.resources-list .row {
-    margin: 10px -15px;
-}
 .resources-list .leaflet-right{
     padding-bottom: 10px;
 }
@@ -2790,4 +2786,94 @@ section.default {
 }
 .leaflet-control-layers-base > label:nth-child(5){
     display: none;
+}
+
+.card .card-body .clamp-3 {
+    height: 2.9em;
+}
+
+.card-list.card-list--columned .card-footer {
+    background: transparent;
+}
+
+.discussion-thread.panel.panel-default .btn-primary {
+    background-color: #F08322;
+    border-color: #F08322;
+}
+.row.opinion .note{
+    padding: 10px 10px 10px 20px;
+}
+.row.opinion .btn-toolbar.pull-right{
+    padding-top: 20px;
+}
+.styled-select .select2-selection.select2-selection--single {
+        border: 2px solid #4f4f4f !important;
+ }
+.styled-select .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #4f4f4f !important;
+    padding: 6px 10px !important;
+}
+.styled-select .select2-container--default .select2-selection--single .select2-selection__arrow b{
+    border-color: #4f4f4f transparent !important;
+}
+.styled-select .select2-container{
+    height: 30px;
+}
+
+
+.resources-list .format-label {
+    width: 60px;
+    height: 60px;
+    background-color: #eeeeee;
+    margin: 0;
+    
+}
+.resources-list .format-label span {
+    line-height: 60px;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    width: 60px;
+    height: 60px;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: -7px;
+}
+
+.card {
+    height: 75px;
+}
+
+.resource-card-description {
+    overflow: hidden;
+    max-width: 75%;
+    max-height: 60%;
+}
+
+.resource-card.add .card-body h4 {
+    margin-bottom: 15px;
+}
+
+.card .card-footer ul {
+    margin-right: 10px;
+}
+
+.card-top-right {
+    position: absolute;
+    top: 3px;
+    right: 7px;
+}
+
+.card-bottom-left {
+    position: absolute;
+    bottom: -8px;
+    font-size: 9px;
+}
+.format-label .filesize{
+    color: #777;
 }
