@@ -171,6 +171,7 @@
                             <div class="row opinion"> 
                                 <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
                                     <div class="select-wrapper styled-select">
+                                        <label for="select-resource">Em pré-visualização:</label>
                                         <select id="select-resource" onchange="changeFile()"> 
                                         {% for resource in resources %} 
                                         <option value="{{ resource.url }}" label="{{ resource.title }}" {% if loop.first %}selected="selected"{% endif %} >( {{ resource.format|upper() }} ) {{ resource.title }}</option> 
@@ -189,7 +190,7 @@
                                     <ul class="list-unstyled infos-list">  
                                         <li>
                                             <span class="fa fa-fw fa-info-circle"></span>
-                                            <i>Os ficheiros JSON e XML descarregados a partir deste painel de pré-visualização são gerados a partir do ficheiro CSV, XLSX ou XLS selecionado e podem não corresponder aos recursos originais alojados na plataforma com o mesmo formato.</i>
+                                            <i>Os ficheiros JSON e XML descarregados a partir deste painel de pré-visualização são gerados a partir do ficheiro selecionado e podem não corresponder aos recursos originais alojados na plataforma com o mesmo formato.</i>
                                         </li>
                                     </ul>
                                 </div>
@@ -419,11 +420,7 @@
                         <h3>{{ _('Territories')}}</h3>
                         {% for territory in dataset.spatial.handled_zones %}
                             {% set level = " ("+territory.level.split(':')[1].title()+")" %}
-                            {% if territory.dbpedia %}
-                            <a href="/datasets/?geozone={{ territory.id }}" title="{{ territory.name + level }}"><img src="{{ territory.dbpedia }}" alt="{{ territory.name + level }}" class="float-left" width="85px" /></a>
-                            {% else %}
-                            <br><img src="{{ theme_static('img/placeholders/placeholder_territory_mini.png') }}" alt="{{ territory.name }}" class="float-left" width="15px" /> <a href="/datasets/?geozone={{ territory.id }}" title="{{ territory.name + level }}">{{ territory.name + level }}</a>
-                            {% endif %}
+                            <a href="/datasets/?geozone={{ territory.id }}" title="{{ territory.name + level }}"><img src="{{ territory.dbpedia or theme_static('img/placeholders/placeholder_territory_mini.png')  }}" alt="{{ territory.name }}" class="float-left" width="25px" /> {{ territory.name + level }}</a><br>
                         {% endfor %}
                     </div>
                 </div>
@@ -462,7 +459,7 @@
 
         <h3 id="community-resources">{{ _('Community resources') }}</h3>
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-9 col-xs-12">
                 <div class="list-group community-resources-list resources-list smaller"> 
                 {% for resource in dataset.community_resources %}
                     {% include theme('dataset/resource/card.html') %}
