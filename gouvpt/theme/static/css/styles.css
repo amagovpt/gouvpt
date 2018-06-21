@@ -2285,9 +2285,9 @@ section.breadcrumb-bar .breadcrumb {
     float:left;
     text-align:center;
     display:table;
-    line-height:60px;
-    width:60px;
-    height:60px;
+    line-height:67px;
+    width:70px;
+    height:70px;
     border:1px solid #eee;
     background-color:#fff
 }
@@ -2821,11 +2821,7 @@ section.default {
     height: 30px;
 }
 .resources-list .format-label {
-    width: 60px;
-    height: 60px;
     background-color: #eeeeee;
-    margin: 0;
-    
 }
 .resources-list .format-label span {
     line-height: 60px;
@@ -2842,9 +2838,6 @@ section.default {
     overflow: hidden;
     text-overflow: ellipsis;
     margin-top: -7px;
-}
-.resource-card {
-    height: 75px;
 }
 .resource-card-description {
     overflow: hidden;
