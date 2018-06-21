@@ -2309,7 +2309,7 @@ section.breadcrumb-bar .breadcrumb {
     color:#4f4f4f;
     font-size:14px;
     line-height:1.3em;
-    height:60px;
+    height:70px;
     width: 100%;
     max-width: unset;
     min-height: unset;
@@ -2832,6 +2832,9 @@ section.default {
     width: 60px;
     height: 60px;
     font-family: "latoregular";
+}
+.card.resource-card  .card-body{
+    height: 60px;
 }
 .ellipsis {
     white-space: nowrap;
