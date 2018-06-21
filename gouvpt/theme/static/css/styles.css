@@ -2383,6 +2383,7 @@ section.breadcrumb-bar .breadcrumb {
 .card h4{
     margin:0 0 5px;
     line-height:16px !important;
+    font-weight: unset;
 }
 .card h4 a{
     font-size:13px;
@@ -2819,8 +2820,6 @@ section.default {
 .styled-select .select2-container{
     height: 30px;
 }
-
-
 .resources-list .format-label {
     width: 60px;
     height: 60px;
@@ -2836,39 +2835,34 @@ section.default {
     display: block;
     width: 60px;
     height: 60px;
+    font-family: "latoregular";
 }
-
 .ellipsis {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     margin-top: -7px;
 }
-
-.card {
+.resource-card {
     height: 75px;
 }
-
 .resource-card-description {
     overflow: hidden;
     max-width: 75%;
     max-height: 60%;
+    font-family: "latoregular";
 }
-
 .resource-card.add .card-body h4 {
     margin-bottom: 15px;
 }
-
 .card .card-footer ul {
     margin-right: 10px;
 }
-
 .card-top-right {
     position: absolute;
     top: 3px;
     right: 7px;
 }
-
 .card-bottom-left {
     position: absolute;
     bottom: -8px;
@@ -2876,4 +2870,7 @@ section.default {
 }
 .format-label .filesize{
     color: #777;
+}
+.card-body .hidden-xs{
+    padding-left: 0;
 }
