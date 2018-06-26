@@ -2600,7 +2600,7 @@ a:focus {
     text-decoration: none;
 }
 section.breadcrumb-bar .toolbar .btn-toolbar .text {
-    padding-top: 5px;
+    padding-top: 11px;
 }
 .site-search .dropdown-menu.suggestion ul li.active {
     background-color: #949494 !important;
@@ -2869,4 +2869,8 @@ section.default {
 }
 .card-body .hidden-xs{
     padding-left: 0;
+}
+
+.btn.btn-default.btn-xs{
+    margin-top: 8px;
 }
