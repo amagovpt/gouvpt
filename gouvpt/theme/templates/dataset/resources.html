@@ -1,0 +1,40 @@
+{% set grouped_resources = dataset.resources|group_resources_by_type %}
+{% set nb_groups = grouped_resources.keys()|length %}
+{% set max_resources = config.DATASET_MAX_RESOURCES_UNCOLLAPSED %}
+{% for (type, type_label), resources in grouped_resources.items() %}
+    {% if nb_groups > 1 %}<h4 class="resource-type">{{ type_label }}</h4>{% endif %}
+    {% for resource in resources %}
+        {% if loop.index0 == max_resources %}
+        <div v-if="isTypeListVisible('{{ type }}')" id="collapsed-resources-{{ type }}" class="collapse">
+        {% endif %}
+        {% include theme('dataset/resource/card.html') %}
+    {% endfor %}
+    {% if resources|length > max_resources %}
+        </div>
+        <p class="text-center expander">
+            <button type="button" class="btn btn-default"
+                data-toggle="collapse" href="#collapsed-resources-{{ type }}"
+                @click.prevent="expandResources($event, '{{ type }}')">
+                <span class="fa fa-list" ></span>
+                {{ _('See the %(nb)d resources of type %(type)s', nb=resources|length, type=type_label) }}
+            </button>
+        </p>
+    {% endif %}
+{% else %}
+<p class="text-center">{{ _('No resources') }}</p>
+{% endfor %}
+
+{% if can_edit %}
+<a class="card resource-card add"
+    href="{{ url_for('admin.index', path='dataset/{id}/'.format(id=dataset.id), **{'new_resource': ''}) }}">
+    <div class="card-logo"><span>+</span></div>
+    <div class="card-body">
+        <h4>{{ _('Add a resource') }}</h4>
+    </div>
+</a>
+{% endif %}
+{% if dataset.community_resources|length %}
+<span class="community-resources-anchor">
+        <small><a href="#community-resources">{{ _('See also: community resources') }}</a></small> 
+</span>
+{% endif %}

@@ -2,3 +2,4 @@ udata>=1.4.1
 pysaml2>=4.5.0
 markdown>=2.6.11
 wtforms>=2.2.1
+udata-ods>=1.1.0
