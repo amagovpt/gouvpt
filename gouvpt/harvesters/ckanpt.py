@@ -242,7 +242,7 @@ class CkanPTBackend(BaseBackend):
 
         # Remote URL
         if data.get('url'):
-            dataset.extras['remote_url'] = data['url']
+            dataset.extras['remote'] = data['url']
 
         # Resources
         for res in data['resources']:
