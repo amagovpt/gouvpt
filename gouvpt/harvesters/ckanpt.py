@@ -193,6 +193,7 @@ class CkanPTBackend(BaseBackend):
         dataset.created_at = data['metadata_created']
         dataset.last_modified = data['metadata_modified']
 
+        dataset.frequency = 'unknown'
         dataset.extras['ckan:name'] = data['name']
 
         temporal_start, temporal_end = None, None
