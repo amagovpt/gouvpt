@@ -1,6 +1,12 @@
+
 # Changelog
 
 ## Current (in progress)
+
+## Version 1.2.4 (2018-07-10)
+- Move home context to theme
+- Added os preview and map
+- Fix ckanpt issue
 
 ## Version 1.2.3 (2018-06-20)
 - Small HTML/CSS fix

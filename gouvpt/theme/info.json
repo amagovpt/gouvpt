@@ -6,7 +6,7 @@
     "description": "Official udata theme for the Open Data Portal of Portugal",
     "website": "https://dados.gov.pt/",
     "license": "AGPL",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "doctype": "html5",
     "social": {
         "twitter": "https://twitter.com/ama_gov_pt",
