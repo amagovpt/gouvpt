@@ -193,6 +193,7 @@ class CkanPTBackend(BaseBackend):
         dataset.created_at = data['metadata_created']
         dataset.last_modified = data['metadata_modified']
 
+        dataset.frequency = 'unknown'
         dataset.extras['ckan:name'] = data['name']
 
         temporal_start, temporal_end = None, None
@@ -242,7 +243,9 @@ class CkanPTBackend(BaseBackend):
 
         # Remote URL
         if data.get('url'):
-            dataset.extras['remote_url'] = data['url']
+            dataset.extras['remote'] = data['url']
+        
+        dataset.extras['remote_url'] = self.source.url
 
         # Resources
         for res in data['resources']:

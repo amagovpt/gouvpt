@@ -136,3 +136,6 @@ msgstr ""
 
 msgid "INSEE code:"
 msgstr ""
+
+msgid "Use this form to get in touch with us in case of doubts or need of assistance. You can also contact us to request for additional datasets or info that you’d like to see available on this portal. To interact with data suppliers, i.e. ask for more data or specific improvements, use the \"Contact\" option on each dataset page, to start a new discussion thread."
+msgstr ""

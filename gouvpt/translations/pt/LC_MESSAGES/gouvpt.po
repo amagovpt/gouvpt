@@ -136,3 +136,6 @@ msgstr "Freguesias"
 
 msgid "INSEE code:"
 msgstr "Código Dicofre:"
+
+msgid "Use this form to get in touch with us in case of doubts or need of assistance. You can also contact us to request for additional datasets or info that you’d like to see available on this portal. To interact with data suppliers, i.e. ask for more data or specific improvements, use the \"Contact\" option on each dataset page, to start a new discussion thread."
+msgstr "Utilize este formulário para esclarecer dúvidas ou pedir assistência na utilização do dados.gov. Pode também efetuar sugestões sobre conjuntos de dados ou informação que gostaria de ver disponibilizada no portal. Para interagir com as entidades fornecedoras, solicitando mais dados ou melhorias específicas, por exemplo, utilize a funcionalidade de \"contacto\" disponível em cada dataset, para iniciar uma troca de comentários."

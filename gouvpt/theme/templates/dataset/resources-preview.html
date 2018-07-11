@@ -1,0 +1,40 @@
+<div class="row opinion">
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
+        <div class="select-wrapper styled-select">
+            <label for="select-resource">Em pré-visualização:</label>
+            <select id="select-resource" onchange="changeFile()">
+                {% for resource in resources %}
+                <option value="{{ resource.url }}" label="{{ resource.title }}" {% if loop.first %}selected="selected" {% endif %}>( {{ resource.format|upper() }} ) {{ resource.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
+        <div class="btn-toolbar pull-right">
+            <button class="btn btn-success" onclick="exportFile('')">
+                <i class="fa fa-download"></i>
+            </button>
+            <button class="btn btn-success" onclick="exportFile('JSON')">
+                <i class="fa fa-download"></i> JSON</button>
+            <button class="btn btn-success" onclick="exportFile('XML')">
+                <i class="fa fa-download"></i> XML</button>
+        </div>
+    </div>
+    <div class="note pull-left">
+        <ul class="list-unstyled infos-list">
+            <li>
+                <span class="fa fa-fw fa-info-circle"></span>
+                <i>Os ficheiros JSON e XML descarregados a partir deste painel de pré-visualização são gerados a partir do ficheiro
+                    selecionado e podem não corresponder aos recursos originais alojados na plataforma com o mesmo formato.</i>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="grid-loader"></div>
+<div id="grid"></div>
+<div class="leaflet-right">
+    <div class="leaflet-control-attribution leaflet-control">
+        <a href="https://sheetjs.com/" title="Spreadsheets simplified in browser" target="_blank">SheetJS</a> |
+        <a href="https://github.com/TonyGermaneri/canvas-datagrid" target="_blank">Canvas Datagrid</a>
+    </div>
+</div>

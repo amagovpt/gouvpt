@@ -103,20 +103,29 @@
                         dataset.resources|selectattr('format', 'equalto', 'csv')|list + 
                         dataset.resources|selectattr('format', 'equalto', 'xlsx')|list +
                         dataset.resources|selectattr('format', 'equalto', 'xls')|list
-                        )|selectattr('filetype', 'equalto', 'file')|list,{}), 
-                ) %} 
+                        )|selectattr('filetype', 'equalto', 'file')|list,{}),   
+                    ('preview-ods', _('Preview'), dataset.resources|selectattr('preview_url')|first,{}),
+                )%} 
                 <div class="list-group resources-list">
-
                     <ul class="nav nav-pills" data-tabs="tabs"> 
                         {% for tab_id, label, resources, kwargs in resource_tabs %} 
                             {% if tab_id == 'resources' %} 
                             <li class="active"> 
                                 <a href="#{{tab_id}}" class="header_small" data-toggle="tab">{{ label }}</a> 
                             </li> 
-                            {% elif resources %} 
+                            {% elif tab_id == 'preview' and resources %} 
                             <li> 
                                 <a href="#{{tab_id}}" class="header_small" data-toggle="tab" onclick="showCanvas(event)">{{ label }}</a> 
                             </li>
+                            {% elif tab_id == 'preview-ods' and config.PREVIEW_MODE and resources %}
+                            <li> 
+                                <a href="#{{tab_id}}" class="header_small" data-toggle="tab">{{ label }}</a> 
+                            </li>
+                                {% if dataset.extras['ods:geo'] %}
+                                <li> 
+                                    <a href="#preview-map" class="header_small" data-toggle="tab">{{ _("Map") }}</a> 
+                                </li>                                
+                                {% endif %}
                             {% endif %} 
                         {% endfor %}
                     </ul> 
@@ -124,88 +133,24 @@
                     <div class="tab-content">
                         {% for tab_id, label, resources, kwargs in resource_tabs %} 
                         {% if tab_id == 'resources' %} 
-                        <div class="tab-pane active" id="{{tab_id}}"> 
-                            {% set grouped_resources = dataset.resources|group_resources_by_type %}
-                            {% set nb_groups = grouped_resources.keys()|length %}
-                            {% set max_resources = config.DATASET_MAX_RESOURCES_UNCOLLAPSED %}
-                            {% for (type, type_label), resources in grouped_resources.items() %}
-                                {% if nb_groups > 1 %}<h4 class="resource-type">{{ type_label }}</h4>{% endif %}
-                                {% for resource in resources %}
-                                    {% if loop.index0 == max_resources %}
-                                    <div v-if="isTypeListVisible('{{ type }}')" id="collapsed-resources-{{ type }}" class="collapse">
-                                    {% endif %}
-                                    {% include theme('dataset/resource/card.html') %}
-                                {% endfor %}
-                                {% if resources|length > max_resources %}
-                                    </div>
-                                    <p class="text-center expander">
-                                        <button type="button" class="btn btn-default"
-                                            data-toggle="collapse" href="#collapsed-resources-{{ type }}"
-                                            @click.prevent="expandResources($event, '{{ type }}')">
-                                            <span class="fa fa-list" ></span>
-                                            {{ _('See the %(nb)d resources of type %(type)s', nb=resources|length, type=type_label) }}
-                                        </button>
-                                    </p>
-                                {% endif %}
-                            {% else %}
-                            <p class="text-center">{{ _('No resources') }}</p>
-                            {% endfor %}
-                        
-                            {% if can_edit %}
-                            <a class="card resource-card add"
-                                href="{{ url_for('admin.index', path='dataset/{id}/'.format(id=dataset.id), **{'new_resource': ''}) }}">
-                                <div class="card-logo"><span>+</span></div>
-                                <div class="card-body">
-                                    <h4>{{ _('Add a resource') }}</h4>
-                                </div>
-                            </a>
+                            <div class="tab-pane active" id="{{tab_id}}"> 
+                                {% include theme('dataset/resources.html') %}
+                            </div>
+                        {% elif tab_id == 'preview' and resources %}
+                            <div class="tab-pane" id="{{tab_id}}"> 
+                                {% include theme('dataset/resources-preview.html') %}
+                            </div>
+                        {% elif tab_id == 'preview-ods' and config.PREVIEW_MODE and resources %}
+                            <div class="tab-pane" id="{{tab_id}}">
+                                    <iframe width="100%" height="500px" src="{{ resources.preview_url }}"></iframe>
+                            </div>
+                            {% if dataset.extras['ods:geo'] %}
+                                {% set iframe_map = dataset.extras['ods:url']|replace('/explore/','/explore/embed/') + 'map/?location=6,40,-9'  %}
+                                <div class="tab-pane" id="preview-map">  
+                                        <iframe width="100%" height="500px" src="{{ iframe_map }}"></iframe>
+                                </div>                               
                             {% endif %}
-                            {% if dataset.community_resources|length %}
-                            <span class="community-resources-anchor">
-                                    <small><a href="#community-resources">{{ _('See also: community resources') }}</a></small> 
-                            </span>
-                            {% endif %}
-                        </div>
-                        {% elif resources %}
-                        <div class="tab-pane" id="{{tab_id}}"> 
-                            <div class="row opinion"> 
-                                <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
-                                    <div class="select-wrapper styled-select">
-                                        <label for="select-resource">Em pré-visualização:</label>
-                                        <select id="select-resource" onchange="changeFile()"> 
-                                        {% for resource in resources %} 
-                                        <option value="{{ resource.url }}" label="{{ resource.title }}" {% if loop.first %}selected="selected"{% endif %} >( {{ resource.format|upper() }} ) {{ resource.title }}</option> 
-                                        {% endfor %} 
-                                        </select>
-                                    </div>
-                                </div> 
-                                <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12"> 
-                                    <div class="btn-toolbar pull-right"> 
-                                            <button class="btn btn-success" onclick="exportFile('')"><i class="fa fa-download"></i></button> 
-                                            <button class="btn btn-success" onclick="exportFile('JSON')"><i class="fa fa-download"></i> JSON</button> 
-                                            <button class="btn btn-success" onclick="exportFile('XML')"><i class="fa fa-download"></i> XML</button> 
-                                    </div> 
-                                </div>
-                                <div class="note pull-left">
-                                    <ul class="list-unstyled infos-list">  
-                                        <li>
-                                            <span class="fa fa-fw fa-info-circle"></span>
-                                            <i>Os ficheiros JSON e XML descarregados a partir deste painel de pré-visualização são gerados a partir do ficheiro selecionado e podem não corresponder aos recursos originais alojados na plataforma com o mesmo formato.</i>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div> 
-                            <div class="grid-loader"></div> 
-                            <div id="grid"></div> 
-                            <div class="leaflet-right"> 
-                                <div class="leaflet-control-attribution leaflet-control"> 
-                                    <a href="https://sheetjs.com/" title="Spreadsheets simplified in browser" target="_blank">SheetJS</a> | 
-                                    <a href="https://github.com/TonyGermaneri/canvas-datagrid" target="_blank">Canvas Datagrid</a> 
-                                </div> 
-                            </div> 
-                        </div> 
-                        <br> 
-                        {% endif %} 
+                        {% endif %}
                         {% endfor %} 
                     </div>
                 </div>

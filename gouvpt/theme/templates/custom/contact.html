@@ -7,7 +7,7 @@
             <div class="maniFluid" id="formServicesWrapper">
                 <div class="headerForm">
                     <h2>{{_('Contact')|upper}}</h2>
-                    <p>A Agência para a Modernização Administrativa, I.P. disponibiliza um serviço de esclarecimento de dúvidas acerca do Dados.gov, através do preenchimento do seguinte formulário:</p>
+                    <p>{{ _("Use this form to get in touch with us in case of doubts or need of assistance. You can also contact us to request for additional datasets or info that you’d like to see available on this portal. To interact with data suppliers, i.e. ask for more data or specific improvements, use the \"Contact\" option on each dataset page, to start a new discussion thread.") }}</p>
                 </div>
                 <div class="form-wrapper">
                     <form action="{{ url_for('gouvpt.contact') }}" method=post>

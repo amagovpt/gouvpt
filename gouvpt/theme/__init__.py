@@ -10,6 +10,7 @@ import logging
 
 from udata import theme
 from udata.app import nav
+from udata.core.post.models import Post
 from udata.i18n import lazy_gettext as _
 
 log = logging.getLogger(__name__)
@@ -43,3 +44,9 @@ gouvpt_menu = nav.Bar('gouvpt_menu', [
 ])
 
 theme.menu(gouvpt_menu)
+
+@theme.context('home')
+def home_context(context):
+    context['banner_posts'] = Post.objects(private=False, tags='banner')
+    context['featured_post'] = Post.objects(private=False, tags='destaque').first()
+    return context

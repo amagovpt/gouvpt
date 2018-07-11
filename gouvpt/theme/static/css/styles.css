@@ -1391,7 +1391,6 @@ html #wrapper footer .social-media-wrapper li {
     color: #2a2a2a;
 }
 #formServicesWrapper .headerForm {
-    max-width: 765px;
     margin: 0 auto 80px auto;
 }
 #formServicesWrapper .headerForm p {
@@ -2600,7 +2599,7 @@ a:focus {
     text-decoration: none;
 }
 section.breadcrumb-bar .toolbar .btn-toolbar .text {
-    padding-top: 5px;
+    padding-top: 11px;
 }
 .site-search .dropdown-menu.suggestion ul li.active {
     background-color: #949494 !important;
@@ -2869,4 +2868,8 @@ section.default {
 }
 .card-body .hidden-xs{
     padding-left: 0;
+}
+
+.btn.btn-default.btn-xs{
+    margin-top: 8px;
 }
