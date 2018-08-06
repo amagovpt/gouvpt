@@ -222,18 +222,20 @@ class CkanPTBackend(BaseBackend):
                 continue
             dataset.extras[extra['key']] = extra['value']
 
-        if spatial_geom:
-            dataset.spatial = SpatialCoverage()
-            if spatial_geom['type'] == 'Polygon':
-                coordinates = [spatial_geom['coordinates']]
-            elif spatial_geom['type'] == 'MultiPolygon':
-                coordinates = spatial_geom['coordinates']
-            else:
-                HarvestException('Unsupported spatial geometry')
-            dataset.spatial.geom = {
-                'type': 'MultiPolygon',
-                'coordinates': coordinates
-            }
+        # We don't want spatial to be added on harvester
+        #
+        # if spatial_geom:
+        #     dataset.spatial = SpatialCoverage()
+        #     if spatial_geom['type'] == 'Polygon':
+        #         coordinates = [spatial_geom['coordinates']]
+        #     elif spatial_geom['type'] == 'MultiPolygon':
+        #         coordinates = spatial_geom['coordinates']
+        #     else:
+        #         HarvestException('Unsupported spatial geometry')
+        #     dataset.spatial.geom = {
+        #         'type': 'MultiPolygon',
+        #         'coordinates': coordinates
+        #     }
 
         if temporal_start and temporal_end:
             dataset.temporal_coverage = db.DateRange(
