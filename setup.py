@@ -120,7 +120,8 @@ setup(
             'dadosGov = gouvpt.harvesters.dadosgov:DGBackend',
             'apambiente = gouvpt.harvesters.apambiente:PortalAmbienteBackend',
             'ine = gouvpt.harvesters.ine:INEBackend',
-            'odspt = gouvpt.harvesters.odspt:OdsBackendPT'
+            'odspt = gouvpt.harvesters.odspt:OdsBackendPT',
+            'dgt = gouvpt.harvesters.dgt:DGTBackend'
         ],
         'udata.views': [
             'gouvpt_faqs = gouvpt.faqs_plugin',
