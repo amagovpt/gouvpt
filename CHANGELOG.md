@@ -1,7 +1,10 @@
-
 # Changelog
 
 ## Current (in progress)
+
+## Version 1.2.5 (2018-08-09)
+- Fix Ckan issue
+- Harvester DGT
 
 ## Version 1.2.4 (2018-07-10)
 - Move home context to theme

@@ -4,5 +4,5 @@ Official udata theme and extensions of the Open Data Portal of Portugal
 '''
 from __future__ import unicode_literals
 
-__version__ = '1.2.4'
+__version__ = '1.2.5'
 __description__ = 'Official udata theme and extensions of the Open Data Portal of Portugal'
