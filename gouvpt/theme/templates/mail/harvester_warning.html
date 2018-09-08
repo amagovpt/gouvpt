@@ -10,7 +10,7 @@
 <body>
 <h1>{{ _('Relatório de harvesting, %(harvester)s!', harvester=harvester) }}</h1>
 <p>
-    {{ _('O dados.gov detectou que os seguintes datasets foram apagados na fonte, reveja os mesmos e proceda à sua correcção!') }}
+    {{ _('O dados.gov detectou que os seguintes datasets foram apagados na fonte ("%(harvester_url)s"), reveja os mesmos e proceda à sua correcção!', harvester_url=harvester.url) }}
 </p>
 <br/>
 
@@ -22,8 +22,8 @@
     {% endfor %}
 </table>
 
-<p>{{ _('See you soon on the platform') }}</p>
-<p><i>{{ _('The dados.gov team') }}</i></p>
+<p>{{ _('Até em breve na plataforma.') }}</p>
+<p><i>{{ _('A equipa do dados.gov') }}</i></p>
 
 </body>
 </html>
