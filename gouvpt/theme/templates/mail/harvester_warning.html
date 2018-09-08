@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<h1>{{ _('Alerta de Harvesting, %(harvester)s!', harvester=harvester) }}</h1>
+<h1>{{ _('Relatório de harvesting, %(harvester)s!', harvester=harvester) }}</h1>
 <p>
     {{ _('O dados.gov detectou que os seguintes datasets foram apagados na fonte, reveja os mesmos e proceda à sua correcção!') }}
 </p>
@@ -18,9 +18,12 @@
     {% for dataset in datasets %}
     <tr>
         <td><a href="{{ dataset.display_url }}">{{ dataset.title }}</a></td>
-        <td>{{ dataset.extras.remote_url }}</td>
     </tr>
     {% endfor %}
 </table>
+
+<p>{{ _('See you soon on the platform') }}</p>
+<p><i>{{ _('The dados.gov team') }}</i></p>
+
 </body>
 </html>
