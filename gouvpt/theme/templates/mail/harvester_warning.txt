@@ -1,0 +1,8 @@
+    {{ _('Alerta de Harvesting, %(harvester)s!', harvester=harvester) }}
+
+    {{ _('O dados.gov detectou que os seguintes datasets foram apagados na fonte, reveja os mesmos e proceda à sua correcção!') }}
+
+    {% for dataset in datasets %}
+        {{ dataset.title }}, {{ dataset.extras.remote_url }}
+
+    {% endfor %}

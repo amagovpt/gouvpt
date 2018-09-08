@@ -4,16 +4,12 @@ from __future__ import unicode_literals
 import json
 import logging
 
-from datetime import datetime
 from uuid import UUID
 from urlparse import urljoin, urlparse
 
 from voluptuous import (
     Schema, All, Any, Lower, Coerce, DefaultTo
 )
-
-from flask import current_app
-from flask_mail import Message
 
 from udata import uris
 from udata.i18n import lazy_gettext as _
@@ -23,6 +19,8 @@ from udata.models import (
     UPDATE_FREQUENCIES, Dataset, User, Role
 )
 from udata.utils import get_by, daterange_start, daterange_end
+
+from tools.harvester_utils import missing_datasets_warning
 
 from udata.harvest.backends.base import BaseBackend, HarvestFilter
 from udata.harvest.exceptions import HarvestException, HarvestSkipException
@@ -282,7 +280,7 @@ class CkanPTBackend(BaseBackend):
             else:
                 dataset.extras['remote_url'] = url
         
-        dataset.extras['remote_url'] = self.source.url
+        #dataset.extras['remote_url'] = self.source.url
 
         # Resources
         for res in data['resources']:
@@ -315,39 +313,4 @@ class CkanPTBackend(BaseBackend):
 
         # Check if datasets removed in origin
         if not self.dryrun:
-            harvested_datasets = [item.dataset.id for item in self.job.items]
-
-            domain_harvested_datasets = Dataset.objects(__raw__={
-                'extras.harvest:domain': self.source.domain
-            }).all()
-            
-            missing_datasets = []
-            for dataset in domain_harvested_datasets:
-                if dataset.id not in harvested_datasets:
-                    missing_datasets.append(dataset)
-            
-            org_recipients = [ member.user.email for member in self.source.organization.members if member.role == 'admin' ]
-            admin_role = Role.objects.filter(name='admin').first()
-            recipients = [ user.email for user in User.objects.filter(roles=admin_role).all() ]
-
-            recipients = list(set(org_recipients + recipients))
-
-            subject = 'Dados.gov - Relatório do harvester {} '.format(self.source)
-
-            recipients = ['micael.grilo@babel.es']
-
-            msg = Message(subject=subject.encode('utf-8'), sender=current_app.config.get('MAIL_DEFAULT_SENDER'), recipients=recipients)
-            msg.body = """
-            <h3>O dados.gov detectou que os seguintes datasets foram apagados na fonte do harvester, reveja os mesmos e proceda à sua correcção!</h3><br>
-            """
-
-            for dataset in missing_datasets:
-                msg.body += "<p><a href='{}'>{}</a></p>".format(current_app.config['SERVER_NAME']+dataset.display_url, dataset.title)
-            
-            msg.body += "<br>"
-
-            mail = current_app.extensions.get('mail')
-            try:
-                mail.send(msg)
-            except:
-                pass
+            missing_datasets_warning(job_items=self.job.items, source=self.source)

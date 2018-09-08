@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <!-- If you delete this meta tag, Half Life 3 will never be released. -->
+    <meta name="viewport" content="width=device-width">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+<h1>{{ _('Alerta de Harvesting, %(harvester)s!', harvester=harvester) }}</h1>
+<p>
+    {{ _('O dados.gov detectou que os seguintes datasets foram apagados na fonte, reveja os mesmos e proceda à sua correcção!') }}
+</p>
+<br/>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    {% for dataset in datasets %}
+    <tr>
+        <td><a href="{{ dataset.display_url }}">{{ dataset.title }}</a></td>
+        <td>{{ dataset.extras.remote_url }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
