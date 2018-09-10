@@ -15,11 +15,15 @@
 <br/>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-    {% for dataset in datasets %}
     <tr>
-        <td><a href="{{ dataset.display_url }}">{{ dataset.title }}</a></td>
+        <td>
+            <ul>
+            {% for dataset in datasets %}
+                <li> <a href="{{ dataset.display_url }}">{{ dataset.title }}</a> </li>
+            {% endfor %}
+            </ul>
+        </td>
     </tr>
-    {% endfor %}
 </table>
 
 <p>{{ _('Até em breve na plataforma.') }}</p>
