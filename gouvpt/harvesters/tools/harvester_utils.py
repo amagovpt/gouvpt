@@ -21,7 +21,8 @@ def missing_datasets_warning(job_items, source):
     job_datasets = [item.dataset.id for item in job_items]
 
     domain_harvested_datasets = Dataset.objects(__raw__={
-        'extras.harvest:domain': source.domain
+        'extras.harvest:domain': source.domain,
+        'deleted': None
     }).all()
     
     missing_datasets = []
@@ -42,10 +43,10 @@ def missing_datasets_warning(job_items, source):
             'subject': subject,
             'harvester': source,
             'datasets': missing_datasets,
-            'config': current_app.config
+            'server': current_app.config.get('SERVER_NAME')
         }
 
-        msg = Message(subject=subject, sender=current_app.config.get('MAIL_DEFAULT_SENDER'), recipients=recipients)
+        msg = Message(subject=subject, sender='dados@ama.pt', recipients=recipients)
         msg.body = theme.render('mail/harvester_warning.txt', **context)
         msg.html = theme.render('mail/harvester_warning.html', **context)
 
