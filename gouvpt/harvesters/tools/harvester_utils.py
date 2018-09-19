@@ -37,7 +37,7 @@ def missing_datasets_warning(job_items, source):
 
         recipients = list(set(org_recipients + recipients))
 
-        subject = 'Dados.gov - Relatório de harvesting, {}.'.format(source)
+        subject = 'Relatório harvesting dados.gov - {}.'.format(source)
 
         context = {
             'subject': subject,

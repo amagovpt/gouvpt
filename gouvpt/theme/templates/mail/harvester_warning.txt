@@ -1,15 +1,15 @@
-{{ _('Relatório de harvesting dados.gov, %(organization)s!', organization = harvester.organization.name ) }}
+{{ _('Relatório harvesting dados.gov, %(organization)s', organization = harvester.organization.name ) }}
 
- {{ _('O processo de harvesting %(harvester)s, detectou que os seguintes datasets foram apagados em "%(harvester_url)s" :', harvester=harvester, harvester_url=harvester.url) }}
+ {{ _('O processo de harvesting "%(harvester)s", detectou que os seguintes datasets foram apagados em "%(harvester_url)s" :', harvester=harvester, harvester_url=harvester.url) }}
 
 {% for dataset in datasets %}
     {{ dataset.title }}, {{ dataset.extras.remote_url }}, {{ dataset.id }}
 
 {% endfor %}
 
-{{ _('O(s) dataset(s) acima referidos continua(m) a estar referenciados em dados.gov.') }}
+{{ _('Atenção que o(s) dataset(s) acima referidos continua(m) a estar referenciados em dados.gov.') }}
 {{ _('Caso pretenda removê-los, pode efetuá-lo a partir da sua área de administração') }}
-{{ _('No caso de um elevado número de datasets, pode utilizar a API ou solicitar à AMA a sua remoção respondendo a este e-mail.') }}
+{{ _('No caso de um elevado número de datasets, recomendamos a utilização da API ou que solicite à AMA a sua remoção, respondendo a este e-mail.') }}
 
-{{ _('Até em breve na plataforma.') }}
+{{ _('Até breve na plataforma.') }}
 {{ _('A equipa do dados.gov') }}
