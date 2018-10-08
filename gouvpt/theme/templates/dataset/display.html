@@ -55,6 +55,14 @@
                                     <strong>{{ _('This dataset comes from a certified public service') }}</strong><br/>
                                     {% endif %}
                                 </small>
+                                    {% if dataset.extras['harvest:domain'] %}
+                                    {% set harvest_source = dataset.extras['harvest:name'] or dataset.extras['harvest:domain'] %}
+                                    <i class="fa fa-hdd-o"></i>
+                                    <b>{{ _('Source') }}:</b>
+                                    <strong> 
+                                        <a href="//{{ dataset.extras['harvest:domain'] }}">{{ harvest_source }}</a>
+                                    </strong><br/>
+                                    {% endif %}
                             {% elif dataset.owner %}
                                 <small>
                                     {% trans
@@ -248,6 +256,17 @@
                                 {% if dataset.license.url %}</a>{% endif %}
                             </li>
                             {% endif %}
+
+                            {# Harvest source #}
+                            {% if dataset.extras['harvest:domain'] %}
+                            {% set harvest_source = dataset.extras['harvest:name'] or dataset.extras['harvest:domain'] %}
+                            <li>
+                                <a href v-tooltip title="{{ _('Source') }}">
+                                    <span class="fa fa-fw fa-hdd-o"></span>
+                                </a>
+                                <a href="//{{ dataset.extras['harvest:domain'] }}" style="color: inherit">{{ harvest_source }}</a>
+                            </li>
+                            {% endif %}                           
 
                             {# Temporal coverage #}
                             {% if dataset.temporal_coverage %}

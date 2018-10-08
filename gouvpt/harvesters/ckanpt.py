@@ -11,11 +11,18 @@ from voluptuous import (
     Schema, All, Any, Lower, Coerce, DefaultTo
 )
 
-
-from udata.models import db, Resource, License, SpatialCoverage, Organization
+from udata import uris
+from udata.i18n import lazy_gettext as _
+from udata.core.dataset.rdf import frequency_from_rdf
+from udata.models import (
+    db, Resource, License, SpatialCoverage, Organization, 
+    UPDATE_FREQUENCIES, Dataset, User, Role
+)
 from udata.utils import get_by, daterange_start, daterange_end
 
-from udata.harvest.backends.base import BaseBackend
+from tools.harvester_utils import missing_datasets_warning
+
+from udata.harvest.backends.base import BaseBackend, HarvestFilter
 from udata.harvest.exceptions import HarvestException, HarvestSkipException
 from udata.harvest.filters import (
     boolean, email, to_date, slug, normalize_tag, normalize_string,
@@ -40,7 +47,7 @@ resource = {
     'hash': Any(All(basestring, hash), None),
     'created': All(basestring, to_date),
     'last_modified': Any(All(basestring, to_date), None),
-    'url': All(basestring, is_url(full=True)),
+    'url': All(basestring, is_url()),
     'resource_type': All(empty_none,
                          DefaultTo('file'),
                          basestring,
@@ -101,6 +108,11 @@ schema = Schema({
 
 class CkanPTBackend(BaseBackend):
     display_name = 'CKAN PT'
+    filters = (
+        HarvestFilter(_('Organization'), 'organization', str,
+                      _('A CKAN Organization name')),
+        HarvestFilter(_('Tag'), 'tags', str, _('A CKAN tag name')),
+    )
 
     def get_headers(self):
         headers = super(CkanPTBackend, self).get_headers()
@@ -111,6 +123,10 @@ class CkanPTBackend(BaseBackend):
 
     def action_url(self, endpoint):
         path = '/'.join(['api/3/action', endpoint])
+        return urljoin(self.source.url, path)
+
+    def dataset_url(self, name):
+        path = '/'.join(['dataset', name])
         return urljoin(self.source.url, path)
 
     def get_action(self, endpoint, fix=False, **kwargs):
@@ -131,11 +147,22 @@ class CkanPTBackend(BaseBackend):
 
     def initialize(self):
         '''List all datasets for a given ...'''
-        # status = self.get_status()
-        # fix = status['ckan_version'] < '1.8'
-        fix = False
-        response = self.get_action('package_list', fix=fix)
-        names = response['result']
+        fix = False  # Fix should be True for CKAN < '1.8'
+
+        filters = self.config.get('filters', [])
+        if len(filters) > 0:
+            # Build a q search query based on filters
+            # use package_search because package_list doesn't allow filtering
+            # use q parameters because fq is broken with multiple filters
+            params = []
+            for f in filters:
+                params.append('{key}:{value}'.format(**f))
+            q = ' AND '.join(params)
+            response = self.get_action('package_search', fix=fix, q=q)
+            names = [r['name'] for r in response['result']['results']]
+        else:
+            response = self.get_action('package_list', fix=fix)
+            names = response['result']
         if self.max_items:
             names = names[:self.max_items]
         for name in names:
@@ -245,17 +272,23 @@ class CkanPTBackend(BaseBackend):
 
         # Remote URL
         if data.get('url'):
-            dataset.extras['remote'] = data['url']
+            try:
+                url = uris.validate(data['url'])
+            except uris.ValidationError:
+                dataset.extras['remote_url'] = self.dataset_url(data['name'])
+                dataset.extras['ckan:source'] = data['url']
+            else:
+                dataset.extras['remote_url'] = url
         
-        dataset.extras['remote_url'] = self.source.url
+        dataset.extras['harvest:name'] = self.source
 
         # Resources
         for res in data['resources']:
-            if res['resource_type'] not in ALLOWED_RESOURCE_TYPES or not res['url'] or res['url'] == 'http:///':
+            if res['resource_type'] not in ALLOWED_RESOURCE_TYPES:
                 continue
             try:
                 resource = get_by(dataset.resources, 'id', UUID(res['id']))
-            except:
+            except Exception:
                 log.error('Unable to parse resource ID %s', res['id'])
                 continue
             if not resource:
@@ -274,3 +307,10 @@ class CkanPTBackend(BaseBackend):
             resource.published = resource.published or resource.created
 
         return dataset
+
+    def finalize(self):
+        super(CkanPTBackend, self).finalize()
+
+        # Check if datasets removed in origin
+        if not self.dryrun:
+            missing_datasets_warning(job_items=self.job.items, source=self.source)

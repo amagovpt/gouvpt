@@ -2,6 +2,11 @@
 
 ## Current (in progress)
 
+## Version 1.2.6 (2018-10-08)
+- Improve CKANPT
+- Harvester email warnings
+- Add dataset harvester source
+
 ## Version 1.2.5 (2018-08-09)
 - Fix Ckan issue
 - Harvester DGT

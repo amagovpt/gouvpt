@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <!-- If you delete this meta tag, Half Life 3 will never be released. -->
+    <meta name="viewport" content="width=device-width">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+<h1>{{ _('Relatório harvesting dados.gov - %(organization)s', organization = harvester.organization.name ) }}</h1>
+<p>
+    {{ _('O processo de harvesting "%(harvester)s", detectou que os seguintes datasets foram apagados em "%(harvester_url)s" :', harvester=harvester, harvester_url=harvester.url) }}
+</p>
+<br/>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <ul>
+            {% for dataset in datasets %}
+                <li> <a href="{{ dataset.display_url }}">{{ dataset.title }}</a> - {{ dataset.id }} </li>
+            {% endfor %}
+            </ul>
+        </td>
+    </tr>
+</table>
+<p>Atenção que o(s) dataset(s) acima referidos continua(m) a estar referenciados em {{ server }}.</p>
+<p>Caso pretenda removê-los, pode efetuá-lo a partir da sua área de administração - <a href="https://{{ server }}/admin/">https://{{ server }}/admin/</a>.</p>
+<p>No caso de um elevado número de datasets, recomendamos a utilização da API ou que solicite à AMA a sua remoção, respondendo a este e-mail.</p>
+<br>
+<p>{{ _('Até breve na plataforma.') }}</p>
+<p><i>{{ _('A equipa do dados.gov') }}</i></p>
+
+</body>
+</html>
