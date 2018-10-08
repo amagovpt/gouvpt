@@ -105,4 +105,6 @@ class DGTBackend(BaseBackend):
 
         dataset.resources.append(new_resource)
 
+        dataset.extras['harvest:name'] = self.source
+
         return dataset

@@ -56,10 +56,11 @@
                                     {% endif %}
                                 </small>
                                     {% if dataset.extras['harvest:domain'] %}
+                                    {% set harvest_source = dataset.extras['harvest:name'] or dataset.extras['harvest:domain'] %}
                                     <i class="fa fa-hdd-o"></i>
                                     <b>{{ _('Source') }}:</b>
                                     <strong> 
-                                        <a href="//{{ dataset.extras['harvest:domain'] }}">{{ dataset.extras['harvest:domain'] }}</a>
+                                        <a href="//{{ dataset.extras['harvest:domain'] }}">{{ harvest_source }}</a>
                                     </strong><br/>
                                     {% endif %}
                             {% elif dataset.owner %}
@@ -258,11 +259,12 @@
 
                             {# Harvest source #}
                             {% if dataset.extras['harvest:domain'] %}
+                            {% set harvest_source = dataset.extras['harvest:name'] or dataset.extras['harvest:domain'] %}
                             <li>
                                 <a href v-tooltip title="{{ _('Source') }}">
                                     <span class="fa fa-fw fa-hdd-o"></span>
                                 </a>
-                                <a href="//{{ dataset.extras['harvest:domain'] }}" style="color: inherit">{{ dataset.extras['harvest:domain'] }}</a>
+                                <a href="//{{ dataset.extras['harvest:domain'] }}" style="color: inherit">{{ harvest_source }}</a>
                             </li>
                             {% endif %}                           
 
