@@ -280,7 +280,7 @@ class CkanPTBackend(BaseBackend):
             else:
                 dataset.extras['remote_url'] = url
         
-        dataset.extras['harvest:name'] = self.source
+        dataset.extras['harvest:name'] = self.source.name
 
         # Resources
         for res in data['resources']:
