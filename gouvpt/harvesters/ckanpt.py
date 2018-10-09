@@ -114,6 +114,8 @@ class CkanPTBackend(BaseBackend):
         HarvestFilter(_('Tag'), 'tags', str, _('A CKAN tag name')),
     )
 
+    harvest_config = {}
+
     def get_headers(self):
         headers = super(CkanPTBackend, self).get_headers()
         headers['content-type'] = 'application/json'
@@ -146,6 +148,15 @@ class CkanPTBackend(BaseBackend):
         return response.json()
 
     def initialize(self):
+
+        try:
+            self.harvest_config = json.loads(str(self.source.description))
+        except ValueError, e:
+            if self.dryrun:
+                raise e
+            else:
+                pass
+
         '''List all datasets for a given ...'''
         fix = False  # Fix should be True for CKAN < '1.8'
 
@@ -206,7 +217,7 @@ class CkanPTBackend(BaseBackend):
 
 
         # Detect license
-        default_license = dataset.license or License.default()
+        default_license = self.harvest_config.get('license', License.default())
         dataset.license = License.guess(data['license_id'],
                                         data['license_title'],
                                         default=default_license)
@@ -215,8 +226,13 @@ class CkanPTBackend(BaseBackend):
 
 
         dataset.tags.append(urlparse(self.source.url).hostname)
-        
 
+        #Ignore dataset if contains this tags
+        if self.harvest_config.get('tags-exclude', False):
+            for tag in self.harvest_config.get('tags-exclude'):
+                if tag in dataset.tags:
+                    return
+        
         dataset.created_at = data['metadata_created']
         dataset.last_modified = data['metadata_modified']
 
@@ -250,6 +266,10 @@ class CkanPTBackend(BaseBackend):
             dataset.extras[extra['key']] = extra['value']
 
         # We don't want spatial to be added on harvester
+        if self.harvest_config.get('geozones', False):
+            dataset.spatial = SpatialCoverage()
+            dataset.spatial.zones = self.harvest_config.get('geozone')
+            dataset.spatial.granularity = "other"
         #
         # if spatial_geom:
         #     dataset.spatial = SpatialCoverage()
