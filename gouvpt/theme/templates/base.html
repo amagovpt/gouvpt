@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block theme_css %}
+{{ super() }}
+<link href="{{ theme_static('theme.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% macro notification_zone() %}
           <notification-zone></notification-zone>
           {% with messages = get_flashed_messages(with_categories=true) %}
