@@ -16,7 +16,7 @@ from udata.i18n import lazy_gettext as _
 from udata.core.dataset.rdf import frequency_from_rdf
 from udata.models import (
     db, Resource, License, SpatialCoverage, Organization, 
-    UPDATE_FREQUENCIES, Dataset, User, Role
+    UPDATE_FREQUENCIES, Dataset, User, Role, GeoZone
 )
 from udata.utils import get_by, daterange_start, daterange_end
 
@@ -115,6 +115,13 @@ class CkanPTBackend(BaseBackend):
     )
 
     harvest_config = {}
+
+    def __init__(self, source, job=None, dryrun=False, max_items=None):
+        super(CkanPTBackend, self).__init__(source=source, job=job, dryrun=dryrun, max_items=max_items)
+        try:
+            self.harvest_config = json.loads(str(self.source.description))
+        except ValueError, e:
+                pass
 
     def get_headers(self):
         headers = super(CkanPTBackend, self).get_headers()
@@ -226,12 +233,6 @@ class CkanPTBackend(BaseBackend):
 
 
         dataset.tags.append(urlparse(self.source.url).hostname)
-
-        #Ignore dataset if contains this tags
-        if self.harvest_config.get('tags-exclude', False):
-            for tag in self.harvest_config.get('tags-exclude'):
-                if tag in dataset.tags:
-                    return
         
         dataset.created_at = data['metadata_created']
         dataset.last_modified = data['metadata_modified']
@@ -268,8 +269,10 @@ class CkanPTBackend(BaseBackend):
         # We don't want spatial to be added on harvester
         if self.harvest_config.get('geozones', False):
             dataset.spatial = SpatialCoverage()
-            dataset.spatial.zones = self.harvest_config.get('geozone')
-            dataset.spatial.granularity = "other"
+            dataset.spatial.zones = []
+            for zone in self.harvest_config.get('geozones'):
+                geo_zone = GeoZone.objects.get(id=zone)
+                dataset.spatial.zones.append(geo_zone)
         #
         # if spatial_geom:
         #     dataset.spatial = SpatialCoverage()
