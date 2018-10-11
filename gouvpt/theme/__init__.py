@@ -47,6 +47,6 @@ theme.menu(gouvpt_menu)
 
 @theme.context('home')
 def home_context(context):
-    context['banner_posts'] = Post.objects(private=False, tags='banner')
-    context['featured_post'] = Post.objects(private=False, tags='destaque').first()
+    context['banner_posts'] = Post.objects(tags='banner').published()
+    context['featured_post'] = Post.objects(tags='destaque').published().first()
     return context
