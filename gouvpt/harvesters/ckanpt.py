@@ -19,7 +19,7 @@ from udata.models import (
     db, Resource, License, SpatialCoverage, GeoZone, Organization, 
     UPDATE_FREQUENCIES,
 )
-from udata.utils import get_by, daterange_start, daterange_end
+from udata.utils import get_by, daterange_start, daterange_end, safe_unicode
 
 from tools.harvester_utils import missing_datasets_warning
 
@@ -120,7 +120,7 @@ class CkanPTBackend(BaseBackend):
     def __init__(self, source, job=None, dryrun=False, max_items=None):
         super(CkanPTBackend, self).__init__(source=source, job=job, dryrun=dryrun, max_items=max_items)
         try:
-            self.harvest_config = json.loads(str(self.source.description))
+            self.harvest_config = json.loads(safe_unicode(self.source.description))
         except ValueError, e:
                 pass
 
@@ -183,7 +183,7 @@ class CkanPTBackend(BaseBackend):
     def initialize(self):
 
         try:
-            self.harvest_config = json.loads(str(self.source.description))
+            self.harvest_config = json.loads(safe_unicode(self.source.description))
         except ValueError, e:
             if self.dryrun:
                 raise e
@@ -205,7 +205,7 @@ class CkanPTBackend(BaseBackend):
                     param = '-' + param
                 params.append(param)
             q = ' AND '.join(params)
-            response = self.get_action('package_search', fix=fix, q=q)
+            response = self.get_action('package_search', fix=fix, q=q, rows=1000)
             names = [r['name'] for r in response['result']['results']]
         else:
             response = self.get_action('package_list', fix=fix)
