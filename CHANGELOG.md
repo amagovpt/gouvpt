@@ -2,6 +2,13 @@
 
 ## Current (in progress)
 
+## Version 1.2.7 (2018-11-08)
+- Implement harvest settings
+- Update theme
+- Upgrade to uData 1.6.1
+- Update odspt to ods v1.2.1
+- Update requirements
+
 ## Version 1.2.6 (2018-10-08)
 - Improve CKANPT
 - Harvester email warnings

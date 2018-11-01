@@ -1,25 +1,61 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from mimetypes import guess_extension
+import mimetypes
+import os
 
-import html2text
 from dateutil.parser import parse as parse_date
 
-from flask import url_for
-
-from udata.i18n import lazy_gettext as _
-from udata.harvest.backends.base import BaseBackend
+from udata.frontend.markdown import parse_html
+from udata.i18n import gettext as _
+from udata.harvest.backends.base import BaseBackend, HarvestFilter, HarvestFeature
 from udata.harvest.exceptions import HarvestSkipException
 from udata.models import License, Resource, Organization
 from udata.utils import get_by
 
 from urlparse import urlparse
 
+def guess_format(mimetype, url=None):
+    '''
+    Guess a file format given a MIME type and/or an url
+    '''
+    # TODO: factorize in udata
+    ext = mimetypes.guess_extension(mimetype)
+    if not ext and url:
+        parts = os.path.splitext(url)
+        ext = parts[1] if parts[1] else None
+    return ext[1:] if ext and ext.startswith('.') else ext
+
+
+def guess_mimetype(mimetype, url=None):
+    '''
+    Guess a MIME type given a string or and URL
+    '''
+    # TODO: factorize in udata
+    if mimetype in mimetypes.types_map.values():
+        return mimetype
+    elif url:
+        mime, encoding = mimetypes.guess_type(url)
+        return mime
+
 
 class OdsBackendPT(BaseBackend):
     display_name = 'OpenDataSoft PT'
     verify_ssl = False
+    filters = (
+        HarvestFilter(_('Tag'), 'tags', basestring, _('A tag name')),
+        HarvestFilter(_('Publisher'), 'publisher', basestring, _('A publisher name')),
+    )
+    features = (
+        HarvestFeature('inspire', _('Harvest Inspire datasets'),
+                       _('Whether this harvester should import datasets coming from Inspire')),
+    )
+
+    # Map filters key to ODS facets
+    FILTERS = {
+        'tags': 'keyword',
+        'publisher': 'publisher',
+    }
 
     # above this records count limit, shapefile export will be disabled
     # since it would be a partial export
@@ -51,9 +87,10 @@ class OdsBackendPT(BaseBackend):
     def explore_url(self, dataset_id):
         return '{0}/explore/dataset/{1}/'.format(self.source_url, dataset_id)
 
-    def alternative_export_url(self, dataset_id, export_id):
-        return '{0}/api/datasets/1.0/{1}/alternative_exports/{2}'.format(
-            self.source_url, dataset_id, export_id)
+    def extra_file_url(self, dataset_id, file_id, plural_type):
+        return '{0}/api/datasets/1.0/{1}/{2}/{3}'.format(
+            self.source_url, dataset_id, plural_type, file_id
+        )
 
     def download_url(self, dataset_id, format):
         return ('{0}download?format={1}&timezone=Europe/Berlin'
@@ -74,11 +111,19 @@ class OdsBackendPT(BaseBackend):
             return count < max_value
 
         while should_fetch():
-            response = self.get(self.api_url, params={
+            params = {
                 'start': count,
                 'rows': 50,
                 'interopmetas': 'true',
-            })
+            }
+            for f in self.get_filters():
+                ods_key = self.FILTERS.get(f['key'], f['key'])
+                op = 'exclude' if f.get('type') == 'exclude' else 'refine'
+                key = '.'.join((op, ods_key))
+                param = params.get(key, set())
+                param.add(f['value'])
+                params[key] = param
+            response = self.get(self.api_url, params=params)
             response.raise_for_status()
             data = response.json()
             nhits = data['nhits']
@@ -96,8 +141,7 @@ class OdsBackendPT(BaseBackend):
             msg = 'Dataset {datasetid} has no record'.format(**ods_dataset)
             raise HarvestSkipException(msg)
 
-        # TODO: This behavior should be enabled with an option
-        if 'inspire' in ods_interopmetas:
+        if 'inspire' in ods_interopmetas and not self.has_feature('inspire'):
             msg = 'Dataset {datasetid} has INSPIRE metadata'
             raise HarvestSkipException(msg.format(**ods_dataset))
 
@@ -106,9 +150,7 @@ class OdsBackendPT(BaseBackend):
         dataset.title = ods_metadata['title']
         dataset.frequency = 'unknown'
         description = ods_metadata.get('description', '').strip()
-        description = html2text.html2text(description.strip('\n').strip(),
-                                          bodywidth=0)
-        dataset.description = description.strip().strip('\n').strip()
+        dataset.description = parse_html(description)
         dataset.private = False
 
         # Detect Organization
@@ -119,7 +161,6 @@ class OdsBackendPT(BaseBackend):
         else:
             orgObj = Organization.objects(acronym=organization_acronym).first()
             if orgObj:
-                print 'Found %s' % orgObj.acronym
                 dataset.organization = orgObj.id
             else:
                 orgObj = Organization()
@@ -127,11 +168,9 @@ class OdsBackendPT(BaseBackend):
                 orgObj.name = organization_acronym
                 orgObj.description = organization_acronym
                 orgObj.save()
-                print 'Created %s' % orgObj.acronym
 
                 dataset.organization = orgObj.id
 
-        
         tags = set()
         if 'keyword' in ods_metadata:
             if isinstance(ods_metadata['keyword'], list):
@@ -165,10 +204,12 @@ class OdsBackendPT(BaseBackend):
                 exports.append('shp')
             self.process_resources(dataset, ods_dataset, exports)
 
-        if 'alternative_exports' in ods_dataset:
-            self.process_alternative_exports(dataset, ods_dataset)
+        self.process_extra_files(dataset, ods_dataset, 'alternative_export')
+        self.process_extra_files(dataset, ods_dataset, 'attachment')
 
         dataset.extras['ods:url'] = self.explore_url(dataset_id)
+        dataset.extras['harvest:name'] = self.source.name
+        
         if 'references' in ods_metadata:
             dataset.extras['ods:references'] = ods_metadata['references']
         dataset.extras['ods:has_records'] = ods_dataset['has_records']
@@ -176,19 +217,21 @@ class OdsBackendPT(BaseBackend):
 
         return dataset
 
-    def process_alternative_exports(self, dataset, data):
+    def process_extra_files(self, dataset, data, data_type):
         dataset_id = data['datasetid']
         modified_at = self.parse_date(data['metas']['modified'])
-        for export in data['alternative_exports']:
-            url = self.alternative_export_url(dataset_id, export['id'])
+        plural_type = '{0}s'.format(data_type)
+        for export in data.get(plural_type, []):
+            url = self.extra_file_url(dataset_id, export['id'], plural_type)
             created, resource = self.get_resource(dataset, url)
             resource.title = export.get('title', 'No title')
-            if 'description' in export:
-                resource.description = export['description']
-            if 'mimetype' in export:
-                resource.mime = export['mimetype']
-                resource.format = self.guess_format(export['mimetype'])
+            resource.description = export.get('description')
+            resource.format = guess_format(export.get('mimetype'),
+                                           export['url'])
+            resource.mime = guess_mimetype(export.get('mimetype'),
+                                           export['url'])
             resource.modified = modified_at
+            resource.extras['ods:type'] = data_type
             if created:
                 dataset.resources.append(resource)
 
@@ -213,13 +256,7 @@ class OdsBackendPT(BaseBackend):
             resource.format = udata_format
             resource.mime = mime
             resource.modified = modified_at
-            if hasattr(resource, 'preview_url'):
-                # Add preview with backward compatibility
-                resource.preview_url = url_for('ods.preview',
-                                               domain=self.source.domain,
-                                               id=dataset_id,
-                                               _external=True,
-                                               _scheme='')
+            resource.extras['ods:type'] = 'api'
             if created:
                 dataset.resources.append(resource)
 
@@ -241,9 +278,3 @@ class OdsBackendPT(BaseBackend):
             return parse_date(date_str)
         except ValueError:
             pass
-
-    def guess_format(self, mimetype):
-        ext = guess_extension(mimetype)
-        if ext:
-            ext = ext.replace('.', '')
-        return ext

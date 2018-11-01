@@ -4,21 +4,22 @@ from __future__ import unicode_literals
 import json
 import logging
 
+from datetime import datetime
 from uuid import UUID
 from urlparse import urljoin, urlparse
 
 from voluptuous import (
-    Schema, All, Any, Lower, Coerce, DefaultTo
+    Schema, All, Any, Lower, Coerce, DefaultTo, Optional
 )
 
 from udata import uris
 from udata.i18n import lazy_gettext as _
 from udata.core.dataset.rdf import frequency_from_rdf
 from udata.models import (
-    db, Resource, License, SpatialCoverage, Organization, 
-    UPDATE_FREQUENCIES, Dataset, User, Role
+    db, Resource, License, SpatialCoverage, GeoZone, Organization, 
+    UPDATE_FREQUENCIES,
 )
-from udata.utils import get_by, daterange_start, daterange_end
+from udata.utils import get_by, daterange_start, daterange_end, safe_unicode
 
 from tools.harvester_utils import missing_datasets_warning
 
@@ -92,7 +93,7 @@ schema = Schema({
     'organization': Any(organization, None),
     'resources': [resource],
     'revision_id': basestring,
-    'extras': [{
+    Optional('extras', default=list): [{
         'key': basestring,
         'value': Any(basestring, int, float, boolean, dict, list),
     }],
@@ -113,6 +114,15 @@ class CkanPTBackend(BaseBackend):
                       _('A CKAN Organization name')),
         HarvestFilter(_('Tag'), 'tags', str, _('A CKAN tag name')),
     )
+
+    harvest_config = {}
+
+    def __init__(self, source, job=None, dryrun=False, max_items=None):
+        super(CkanPTBackend, self).__init__(source=source, job=job, dryrun=dryrun, max_items=max_items)
+        try:
+            self.harvest_config = json.loads(safe_unicode(self.source.description))
+        except ValueError, e:
+                pass
 
     def get_headers(self):
         headers = super(CkanPTBackend, self).get_headers()
@@ -135,10 +145,35 @@ class CkanPTBackend(BaseBackend):
             response = self.post(url, '{}', params=kwargs)
         else:
             response = self.get(url, params=kwargs)
-        if response.status_code != 200:
+
+        content_type = response.headers.get('Content-Type', '')
+        mime_type = content_type.split(';', 1)[0]
+
+        if mime_type == 'application/json':  # Standard API JSON response
+            data = response.json()
+            # CKAN API always returns 200 even on errors
+            # Only the `success` property allows to detect errors
+            if data.get('success', False):
+                return data
+            else:
+                error = data.get('error')
+                if isinstance(error, dict):
+                    # Error object with message
+                    msg = error.get('message', 'Unknown error')
+                    if '__type' in error:
+                        # Typed error
+                        msg = ': '.join((error['__type'], msg))
+                else:
+                    # Error only contains a message
+                    msg = error
+                raise HarvestException(msg)
+
+        elif mime_type == 'text/html':  # Standard html error page
+            raise HarvestException('Unknown Error: {} returned HTML'.format(url))
+        else:
+            # If it's not HTML, CKAN respond with raw quoted text
             msg = response.text.strip('"')
             raise HarvestException(msg)
-        return response.json()
 
     def get_status(self):
         url = urljoin(self.source.url, '/api/util/status')
@@ -146,6 +181,15 @@ class CkanPTBackend(BaseBackend):
         return response.json()
 
     def initialize(self):
+
+        try:
+            self.harvest_config = json.loads(safe_unicode(self.source.description))
+        except ValueError, e:
+            if self.dryrun:
+                raise e
+            else:
+                pass
+
         '''List all datasets for a given ...'''
         fix = False  # Fix should be True for CKAN < '1.8'
 
@@ -156,9 +200,12 @@ class CkanPTBackend(BaseBackend):
             # use q parameters because fq is broken with multiple filters
             params = []
             for f in filters:
-                params.append('{key}:{value}'.format(**f))
+                param = '{key}:{value}'.format(**f)
+                if f.get('type') == 'exclude':
+                    param = '-' + param
+                params.append(param)
             q = ' AND '.join(params)
-            response = self.get_action('package_search', fix=fix, q=q)
+            response = self.get_action('package_search', fix=fix, q=q, rows=1000)
             names = [r['name'] for r in response['result']['results']]
         else:
             response = self.get_action('package_list', fix=fix)
@@ -206,7 +253,7 @@ class CkanPTBackend(BaseBackend):
 
 
         # Detect license
-        default_license = dataset.license or License.default()
+        default_license = self.harvest_config.get('license', License.default())
         dataset.license = License.guess(data['license_id'],
                                         data['license_title'],
                                         default=default_license)
@@ -216,7 +263,6 @@ class CkanPTBackend(BaseBackend):
 
         dataset.tags.append(urlparse(self.source.url).hostname)
         
-
         dataset.created_at = data['metadata_created']
         dataset.last_modified = data['metadata_modified']
 
@@ -250,6 +296,12 @@ class CkanPTBackend(BaseBackend):
             dataset.extras[extra['key']] = extra['value']
 
         # We don't want spatial to be added on harvester
+        if self.harvest_config.get('geozones', False):
+            dataset.spatial = SpatialCoverage()
+            dataset.spatial.zones = []
+            for zone in self.harvest_config.get('geozones'):
+                geo_zone = GeoZone.objects.get(id=zone)
+                dataset.spatial.zones.append(geo_zone)
         #
         # if spatial_geom:
         #     dataset.spatial = SpatialCoverage()
