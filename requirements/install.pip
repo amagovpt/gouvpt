@@ -4,4 +4,4 @@ markdown>=2.6.11
 wtforms>=2.2.1
 udata-ods>=1.1.0
 bs4==0.0.1
-raven[flask] >= 5.8.0
+raven >= 5.8.0
