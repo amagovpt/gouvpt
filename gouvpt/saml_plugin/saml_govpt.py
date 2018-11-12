@@ -161,6 +161,10 @@ def idp_initiated():
         do_flash(*get_message('CONFIRMATION_REQUIRED'))
         return redirect(url_for('security.login'))      
     
+    elif userUdata.deleted:
+        do_flash(*get_message('DISABLED_ACCOUNT'))
+        return redirect(url_for('site.home'))        
+
     else:
         login_user(userUdata)
         #do_flash(*get_message('PASSWORDLESS_LOGIN_SUCCESSFUL'))
