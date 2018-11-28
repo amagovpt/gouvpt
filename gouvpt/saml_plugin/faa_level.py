@@ -36,3 +36,9 @@ class FAAALevel(SamlBase):
         self.publisher = publisher
         self.creation_instant = creation_instant
         self.publication_id = publication_id
+
+
+
+class LogoutUrl(SamlBase):
+    c_tag = 'LogoutUrl'
+    c_namespace = 'http://autenticacao.cartaodecidadao.pt/logout'
