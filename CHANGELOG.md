@@ -2,6 +2,14 @@
 
 ## Current (in progress)
 
+## Version 1.2.8 (2018-12-01)
+- Update x509 public certificate
+- Change email recipients
+- Inform user if account was deleted.
+- Implement SAML Logout request
+- Implement initial tests
+- Implement Linkchecker
+
 ## Version 1.2.7 (2018-11-08)
 - Implement harvest settings
 - Update theme
