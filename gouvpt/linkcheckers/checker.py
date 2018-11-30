@@ -15,7 +15,7 @@ class Linkchecker(object):
     def check(self, resource):
         
         try:
-            resp = requests.head(resource.url, timeout=1)
+            resp = requests.head(resource.url, timeout=5)
         except requests.exceptions.ConnectionError:
             code = 503
         except requests.exceptions.Timeout:
