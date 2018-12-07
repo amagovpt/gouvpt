@@ -18,7 +18,7 @@ from saml2.config import Config as Saml2Config
 from saml2.saml import NameID, NAMEID_FORMAT_UNSPECIFIED
 from saml2.pack import http_form_post_message
 
-import xml.etree.ElementTree as ET 
+import xml.etree.ElementTree as ET
 
 from .faa_level import FAAALevel, LogoutUrl
 from .requested_atributes import RequestedAttributes, RequestedAttribute
@@ -26,22 +26,25 @@ from .requested_atributes import RequestedAttributes, RequestedAttribute
 autenticacao_gov = Blueprint('saml', __name__)
 
 #################################################################
-##    Given the name of an IdP, return a configuation.
-##    
+# Given the name of an IdP, return a configuation.
+##
 #################################################################
+
+
 def saml_client_for(metadata_file):
 
-    acs_url = url_for("saml.idp_initiated",_external=True)
+    acs_url = url_for("saml.idp_initiated", _external=True)
     out_url = url_for("saml.saml_logout_postback", _external=True)
 
     settings = {
-        'entityid' : current_app.config.get('SECURITY_SAML_ENTITY_ID'),
-        'name' : current_app.config.get('SECURITY_SAML_ENTITY_NAME'),
-        'key_file' : current_app.config.get('SECURITY_SAML_KEY_FILE'),
-        'cert_file' : current_app.config.get('SECURITY_SAML_CERT_FILE'),
+        'entityid': current_app.config.get('SECURITY_SAML_ENTITY_ID'),
+        'name': current_app.config.get('SECURITY_SAML_ENTITY_NAME'),
+        'key_file': current_app.config.get('SECURITY_SAML_KEY_FILE'),
+        'cert_file': current_app.config.get('SECURITY_SAML_CERT_FILE'),
         'metadata': {
             "local": [metadata_file]
-            },
+        },
+        'accepted_time_diff': 60,
         'service': {
             'sp': {
                 'endpoints': {
@@ -72,26 +75,32 @@ def saml_client_for(metadata_file):
 
 
 #################################################################
-##    Prepares and sends SAML Auth Request.
-##    
+# Prepares and sends SAML Auth Request.
+##
 #################################################################
 @autenticacao_gov.route('/saml/login')
 @anonymous_user_required
 def sp_initiated():
-    saml_client = saml_client_for(current_app.config.get('SECURITY_SAML_IDP_METADATA').split(',')[0])
+    saml_client = saml_client_for(current_app.config.get(
+        'SECURITY_SAML_IDP_METADATA').split(',')[0])
 
     faa = FAAALevel(text=str(current_app.config.get('SECURITY_SAML_FAAALEVEL')))
 
     spcertenc = RequestedAttributes([
-        RequestedAttribute(name="http://interop.gov.pt/MDC/Cidadao/CorreioElectronico", name_format="urn:oasis:names:tc:SAML:2.0:attrname-format:uri", is_required='True'),
-        RequestedAttribute(name="http://interop.gov.pt/MDC/Cidadao/NICCifrado", name_format="urn:oasis:names:tc:SAML:2.0:attrname-format:uri", is_required='False'),
-        RequestedAttribute(name="http://interop.gov.pt/MDC/Cidadao/NomeProprio", name_format="urn:oasis:names:tc:SAML:2.0:attrname-format:uri", is_required='False'),
-        RequestedAttribute(name="http://interop.gov.pt/MDC/Cidadao/NomeApelido", name_format="urn:oasis:names:tc:SAML:2.0:attrname-format:uri", is_required='False')
-        ])
-    
+        RequestedAttribute(name="http://interop.gov.pt/MDC/Cidadao/CorreioElectronico",
+                           name_format="urn:oasis:names:tc:SAML:2.0:attrname-format:uri", is_required='True'),
+        RequestedAttribute(name="http://interop.gov.pt/MDC/Cidadao/NICCifrado",
+                           name_format="urn:oasis:names:tc:SAML:2.0:attrname-format:uri", is_required='False'),
+        RequestedAttribute(name="http://interop.gov.pt/MDC/Cidadao/NomeProprio",
+                           name_format="urn:oasis:names:tc:SAML:2.0:attrname-format:uri", is_required='False'),
+        RequestedAttribute(name="http://interop.gov.pt/MDC/Cidadao/NomeApelido",
+                           name_format="urn:oasis:names:tc:SAML:2.0:attrname-format:uri", is_required='False')
+    ])
+
     extensions = Extensions(
-        extension_elements=[element_to_extension_element(faa), element_to_extension_element(spcertenc)]
-        )
+        extension_elements=[element_to_extension_element(
+            faa), element_to_extension_element(spcertenc)]
+    )
 
     args = {
         'binding': BINDING_HTTP_POST,
@@ -108,9 +117,11 @@ def sp_initiated():
     return response
 
 #################################################################
-##    Receives SAML Response.
-##    
+# Receives SAML Response.
+##
 #################################################################
+
+
 @autenticacao_gov.route('/saml/sso', methods=['POST'])
 @csrf.exempt
 def idp_initiated():
@@ -134,30 +145,30 @@ def idp_initiated():
             break
 
     root = ET.fromstring(str(authn_response))
-    ns = {  'assertion': 'urn:oasis:names:tc:SAML:2.0:assertion',
-            'atributos': 'http://autenticacao.cartaodecidadao.pt/atributos'}
+    ns = {'assertion': 'urn:oasis:names:tc:SAML:2.0:assertion',
+          'atributos': 'http://autenticacao.cartaodecidadao.pt/atributos'}
 
     for child in root.find('assertion:Assertion', ns).find('assertion:AttributeStatement', ns):
         try:
             if child.attrib['Name'] == 'http://interop.gov.pt/MDC/Cidadao/CorreioElectronico':
-                user_email = child.find('assertion:AttributeValue',ns).text
+                user_email = child.find('assertion:AttributeValue', ns).text
             elif child.attrib['Name'] == 'http://interop.gov.pt/MDC/Cidadao/NICCifrado':
-                user_nic = child.find('assertion:AttributeValue',ns).text
+                user_nic = child.find('assertion:AttributeValue', ns).text
             elif child.attrib['Name'] == 'http://interop.gov.pt/MDC/Cidadao/NomeProprio':
-                first_name = child.find('assertion:AttributeValue',ns).text
+                first_name = child.find('assertion:AttributeValue', ns).text
             elif child.attrib['Name'] == 'http://interop.gov.pt/MDC/Cidadao/NomeApelido':
-                last_name = child.find('assertion:AttributeValue',ns).text      
+                last_name = child.find('assertion:AttributeValue', ns).text
             else:
                 pass
         except AttributeError:
             pass
 
-    data = { 'email' : user_email }
-    extras = { 'extras' : { 'auth_nic' : user_nic }}
+    data = {'email': user_email}
+    extras = {'extras': {'auth_nic': user_nic}}
     userUdata = datastore.find_user(**extras) or datastore.find_user(**data)
 
     if not userUdata:
-        #Redirects to new custom registration form
+        # Redirects to new custom registration form
         session['user_email'] = user_email
         session['user_nic'] = user_nic
         session['first_name'] = first_name
@@ -166,21 +177,21 @@ def idp_initiated():
 
     elif requires_confirmation(userUdata):
         do_flash(*get_message('CONFIRMATION_REQUIRED'))
-        return redirect(url_for('security.login'))      
-    
+        return redirect(url_for('security.login'))
+
     elif userUdata.deleted:
         do_flash(*get_message('DISABLED_ACCOUNT'))
-        return redirect(url_for('site.home'))        
+        return redirect(url_for('site.home'))
 
     else:
         login_user(userUdata)
         session['saml_login'] = True
-        #do_flash(*get_message('PASSWORDLESS_LOGIN_SUCCESSFUL'))
+        # do_flash(*get_message('PASSWORDLESS_LOGIN_SUCCESSFUL'))
         return redirect(url_for('site.home'))
 
 
 #################################################################
-##    Receives SAML Logout    
+# Receives SAML Logout
 #################################################################
 @autenticacao_gov.route('/saml/sso_logout', methods=['POST'])
 @csrf.exempt
@@ -191,7 +202,8 @@ def saml_logout_postback():
     for server in auth_servers:
         saml_client = saml_client_for(server)
         try:
-            authn_response = saml_client.parse_logout_request_response(request.form['SAMLResponse'], entity.BINDING_HTTP_POST)
+            authn_response = saml_client.parse_logout_request_response(
+                request.form['SAMLResponse'], entity.BINDING_HTTP_POST)
         except sigver.MissingKey:
             continue
         else:
@@ -203,26 +215,28 @@ def saml_logout_postback():
 
 
 #################################################################
-##    Sends SAML Logout    
+# Sends SAML Logout
 #################################################################
 @autenticacao_gov.route('/saml/logout')
 def saml_logout():
-    saml_client = saml_client_for(current_app.config.get('SECURITY_SAML_IDP_METADATA').split(',')[0])
-    nid = NameID(format=NAMEID_FORMAT_UNSPECIFIED, text="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified")
+    saml_client = saml_client_for(current_app.config.get(
+        'SECURITY_SAML_IDP_METADATA').split(',')[0])
+    nid = NameID(format=NAMEID_FORMAT_UNSPECIFIED,
+                 text="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified")
 
-    logout_url = LogoutUrl(text = url_for("saml.saml_logout_postback", _external=True))
+    logout_url = LogoutUrl(text=url_for("saml.saml_logout_postback", _external=True))
     destination = current_app.config.get('SECURITY_SAML_FA_URL')
 
     extensions = Extensions(extension_elements=[logout_url])
 
     req_id, logout_request = saml_client.create_logout_request(
-        name_id = nid,
-        destination = destination,
-        issuer_entity_id = current_app.config.get('SECURITY_SAML_ENTITY_ID'),
-        sign = True,
-        consent = "urn:oasis:names:tc:SAML:2.0:logout:user",
-        extensions = extensions
-        )
+        name_id=nid,
+        destination=destination,
+        issuer_entity_id=current_app.config.get('SECURITY_SAML_ENTITY_ID'),
+        sign=True,
+        consent="urn:oasis:names:tc:SAML:2.0:logout:user",
+        extensions=extensions
+    )
 
     post_message = http_form_post_message(message=logout_request, location=destination)
     return post_message['data']
