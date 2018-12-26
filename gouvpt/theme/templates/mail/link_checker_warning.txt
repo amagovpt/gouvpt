@@ -1,0 +1,17 @@
+{{ _('Relatório de verificação de recursos do dados.gov') }}
+
+{{ _('O processo de verificação de recursos "Dados.gov Link Checker", detectou que os seguintes recursos não se encontram disponiveis:') }}
+
+{% for dataset, group in resources %}
+    {{ dataset.title }}
+    {% for item in group %}
+        {{ item.resource.title }} - {{ item.resource.url }}
+    {% endfor %}
+{% endfor %}
+
+{{ _('Atenção que o(s) recurso(s) e respectivos dataset(s) acima referidos continua(m) a estar referenciados em dados.gov.') }}
+{{ _('Caso pretenda removê-los, pode efetuá-lo a partir da sua área de administração') }}
+{{ _('No caso de um elevado número de datasets, recomendamos a utilização da API ou que solicite à AMA a sua remoção, respondendo a este e-mail.') }}
+
+{{ _('Até breve na plataforma.') }}
+{{ _('A equipa do dados.gov') }}

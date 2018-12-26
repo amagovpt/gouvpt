@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <!-- If you delete this meta tag, Half Life 3 will never be released. -->
+    <meta name="viewport" content="width=device-width">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+<h1>{{ _('Relatório de verificação de recursos do dados.gov') }}</h1>
+<p>
+    {{ _('O processo de verificação de recursos "Dados.gov Link Checker", detectou que os seguintes recursos não se encontram disponiveis:') }}
+</p>
+<br/>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            {% for dataset, group in resources %}
+                <h3><a href="{{ dataset.display_url }}">{{ dataset.title }}</a></h3>
+                <ul>
+                {% for item in group %}
+                    <li> <a href="{{ item.resource.url }}">{{ item.resource.title }}</a> - {{ item.resource.id }} </li>
+                {% endfor %}
+                </ul>
+            {% endfor %}
+        </td>
+    </tr>
+</table>
+<p>Atenção que o(s) recurso(s) e respectivos dataset(s) acima referidos continua(m) a estar referenciados em {{ server }}.</p>
+<p>Caso pretenda removê-los, pode efetuá-lo a partir da sua área de administração - <a href="https://{{ server }}/admin/">https://{{ server }}/admin/</a>.</p>
+<p>No caso de um elevado número de datasets, recomendamos a utilização da API ou que solicite à AMA a sua remoção, respondendo a este e-mail.</p>
+<br>
+<p>{{ _('Até breve na plataforma.') }}</p>
+<p><i>{{ _('A equipa do dados.gov') }}</i></p>
+
+</body>
+</html>

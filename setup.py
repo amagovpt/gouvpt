@@ -126,6 +126,12 @@ setup(
         'udata.views': [
             'gouvpt_faqs = gouvpt.faqs_plugin',
             'gouvpt_saml = gouvpt.saml_plugin',
+        ],
+        'udata.linkcheckers': [
+            'gouvpt_checker = gouvpt.linkcheckers.checker:Linkchecker'
+        ],
+        'udata.tasks': [
+            'gouvpt_tasks = gouvpt.linkcheckers.tasks'
         ]
     },
     license='AGPL',

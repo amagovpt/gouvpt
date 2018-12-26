@@ -35,7 +35,7 @@ def missing_datasets_warning(job_items, source):
         admin_role = Role.objects.filter(name='admin').first()
         recipients = [ user.email for user in User.objects.filter(roles=admin_role).all() ]
 
-        recipients = list(set(org_recipients + recipients))
+        #recipients = list(set(org_recipients + recipients))
 
         subject = 'Relatório harvesting dados.gov - {}.'.format(source)
 
@@ -46,7 +46,7 @@ def missing_datasets_warning(job_items, source):
             'server': current_app.config.get('SERVER_NAME')
         }
 
-        msg = Message(subject=subject, sender='dados@ama.pt', recipients=recipients)
+        msg = Message(subject=subject, sender='dados@ama.pt', recipients=org_recipients, cc=['dados@ama.pt'], bcc=recipients)
         msg.body = theme.render('mail/harvester_warning.txt', **context)
         msg.html = theme.render('mail/harvester_warning.html', **context)
 

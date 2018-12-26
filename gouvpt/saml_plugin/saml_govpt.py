@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from flask import current_app, Blueprint, url_for, request, redirect, session
-from flask_login import login_user
+from flask_login import login_user, logout_user
 from flask_security.utils import get_message, do_flash
 from flask_security.decorators import anonymous_user_required
 from flask_security.confirmable import requires_confirmation
@@ -15,10 +15,12 @@ from saml2 import entity, element_to_extension_element, sigver
 from saml2.samlp import Extensions
 from saml2.client import Saml2Client
 from saml2.config import Config as Saml2Config
+from saml2.saml import NameID, NAMEID_FORMAT_UNSPECIFIED
+from saml2.pack import http_form_post_message
 
 import xml.etree.ElementTree as ET 
 
-from .faa_level import FAAALevel
+from .faa_level import FAAALevel, LogoutUrl
 from .requested_atributes import RequestedAttributes, RequestedAttribute
 
 autenticacao_gov = Blueprint('saml', __name__)
@@ -30,6 +32,7 @@ autenticacao_gov = Blueprint('saml', __name__)
 def saml_client_for(metadata_file):
 
     acs_url = url_for("saml.idp_initiated",_external=True)
+    out_url = url_for("saml.saml_logout_postback", _external=True)
 
     settings = {
         'entityid' : current_app.config.get('SECURITY_SAML_ENTITY_ID'),
@@ -45,6 +48,10 @@ def saml_client_for(metadata_file):
                     'assertion_consumer_service': [
                         (acs_url, BINDING_HTTP_REDIRECT),
                         (acs_url, BINDING_HTTP_POST)
+                    ],
+                    'single_logout_service': [
+                        (out_url, BINDING_HTTP_REDIRECT),
+                        (out_url, BINDING_HTTP_POST),
                     ],
                 },
                 # Don't verify that the incoming requests originate from us via
@@ -161,8 +168,61 @@ def idp_initiated():
         do_flash(*get_message('CONFIRMATION_REQUIRED'))
         return redirect(url_for('security.login'))      
     
+    elif userUdata.deleted:
+        do_flash(*get_message('DISABLED_ACCOUNT'))
+        return redirect(url_for('site.home'))        
+
     else:
         login_user(userUdata)
+        session['saml_login'] = True
         #do_flash(*get_message('PASSWORDLESS_LOGIN_SUCCESSFUL'))
         return redirect(url_for('site.home'))
 
+
+#################################################################
+##    Receives SAML Logout    
+#################################################################
+@autenticacao_gov.route('/saml/sso_logout', methods=['POST'])
+@csrf.exempt
+def saml_logout_postback():
+
+    auth_servers = current_app.config.get('SECURITY_SAML_IDP_METADATA').split(',')
+
+    for server in auth_servers:
+        saml_client = saml_client_for(server)
+        try:
+            authn_response = saml_client.parse_logout_request_response(request.form['SAMLResponse'], entity.BINDING_HTTP_POST)
+        except sigver.MissingKey:
+            continue
+        else:
+            break
+
+    session.pop('saml_login', None)
+    logout_user()
+    return redirect(url_for('site.home'))
+
+
+#################################################################
+##    Sends SAML Logout    
+#################################################################
+@autenticacao_gov.route('/saml/logout')
+def saml_logout():
+    saml_client = saml_client_for(current_app.config.get('SECURITY_SAML_IDP_METADATA').split(',')[0])
+    nid = NameID(format=NAMEID_FORMAT_UNSPECIFIED, text="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified")
+
+    logout_url = LogoutUrl(text = url_for("saml.saml_logout_postback", _external=True))
+    destination = current_app.config.get('SECURITY_SAML_FA_URL')
+
+    extensions = Extensions(extension_elements=[logout_url])
+
+    req_id, logout_request = saml_client.create_logout_request(
+        name_id = nid,
+        destination = destination,
+        issuer_entity_id = current_app.config.get('SECURITY_SAML_ENTITY_ID'),
+        sign = True,
+        consent = "urn:oasis:names:tc:SAML:2.0:logout:user",
+        extensions = extensions
+        )
+
+    post_message = http_form_post_message(message=logout_request, location=destination)
+    return post_message['data']
