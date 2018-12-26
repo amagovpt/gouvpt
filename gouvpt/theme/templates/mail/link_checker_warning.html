@@ -20,7 +20,7 @@
                 <h3><a href="{{ dataset.display_url }}">{{ dataset.title }}</a></h3>
                 <ul>
                 {% for item in group %}
-                    <li> <a href="{{ item.resource.url }}">{{ item.resource.title }}</a> - {{ item.resource.id }} </li>
+                    <li> <a href="{{ item.resource.url }}">{{ item.resource.title }} ({{ item.resource.format|upper }}) </a> - {{ item.resource.id }} </li>
                 {% endfor %}
                 </ul>
             {% endfor %}
