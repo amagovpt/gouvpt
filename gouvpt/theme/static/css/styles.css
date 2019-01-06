@@ -2843,7 +2843,7 @@ section.default {
 }
 .resource-card-description {
     overflow: hidden;
-    max-width: 75%;
+    max-width: 65%;
     max-height: 60%;
     font-family: "latoregular";
 }

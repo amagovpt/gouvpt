@@ -5,7 +5,7 @@
 {% for dataset, group in resources %}
     {{ dataset.title }}
     {% for item in group %}
-        {{ item.resource.title }} - {{ item.resource.url }}
+        {{ item.resource.title }} ({{ item.resource.format }}) - {{ item.resource.url }}
     {% endfor %}
 {% endfor %}
 

@@ -89,7 +89,7 @@ def check_resources(self, number=5000):
         }
 
         msg = Message(subject=subject, sender='dados@ama.pt', recipients=recipients)
-        msg.body = theme.render('mail/link_checker_warning.txt', **context)
+        #msg.body = theme.render('mail/link_checker_warning.txt', **context)
         msg.html = theme.render('mail/link_checker_warning.html', **context)
 
         mail = current_app.extensions.get('mail')

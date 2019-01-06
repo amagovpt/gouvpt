@@ -24,8 +24,8 @@
 {% endblock %}
 
 {% block after_head %} 
-<script type="text/javascript" src="//unpkg.com/xlsx@0.12.12/dist/xlsx.full.min.js"></script> 
-<script type="text/javascript" src="//unpkg.com/canvas-datagrid/dist/canvas-datagrid.js"></script> 
+<script type="text/javascript" src="{{ theme_static('js/xlsx.full.min.js') }}"></script> 
+<script type="text/javascript" src="{{ theme_static('js/canvas-datagrid.js') }}"></script> 
 <script type="text/javascript" src="{{ theme_static('js/datasets.js') }}"></script> 
 {% endblock %} 
 
@@ -60,7 +60,7 @@
                                     <i class="fa fa-hdd-o"></i>
                                     <b>{{ _('Source') }}:</b>
                                     <strong> 
-                                        <a href="//{{ dataset.extras['harvest:domain'] }}">{{ harvest_source }}</a>
+                                        <a href="http://{{ dataset.extras['harvest:domain'] }}">{{ harvest_source }}</a>
                                     </strong><br/>
                                     {% endif %}
                             {% elif dataset.owner %}
