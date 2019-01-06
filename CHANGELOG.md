@@ -2,6 +2,9 @@
 
 ## Current (in progress)
 
+## Version 1.2.9 (2019-01-07)
+- Update theme
+
 ## Version 1.2.8 (2018-12-01)
 - Update x509 public certificate
 - Change email recipients

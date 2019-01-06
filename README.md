@@ -1,6 +1,6 @@
 # gouvpt
 
-Official uData 1.4.1 theme for the Open Data Portal of Portugal
+Official uData 1.6.2 theme for the Open Data Portal of Portugal
 
 ## Usage
 
