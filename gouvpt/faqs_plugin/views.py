@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from udata import theme, mail, i18n
 from udata.i18n import I18nBlueprint
-from flask import url_for, redirect, abort, Markup, render_template, request, current_app
+from flask import url_for, redirect, abort, Markup, render_template, request, current_app, g
 from jinja2.exceptions import TemplateNotFound
 import markdown, urllib2
 import redis
@@ -40,12 +40,14 @@ blueprint = I18nBlueprint('gouvpt', __name__,
 @blueprint.route('/docs/<string:section>/')
 def faq(section):
     r = get_redis_connection()
+    lang_code = g.get('lang_code', current_app.config['DEFAULT_LANGUAGE'])
+    lang = lang_code if lang_code == current_app.config['DEFAULT_LANGUAGE'] else 'en'
     try:
-        giturl = "https://raw.githubusercontent.com/amagovpt/docs.dados.gov.pt/master/faqs/{0}.md".format(section)
+        giturl = "https://raw.githubusercontent.com/amagovpt/docs.dados.gov.pt/master/faqs_{0}/{1}.md".format(lang,section)
         response = urllib2.urlopen(giturl, timeout = 2).read().decode('utf-8')
         content = Markup(markdown.markdown(response))
     except urllib2.URLError:
-        cached_page = r.get(section)
+        cached_page = r.get(section+lang)
         if cached_page:
             response = cached_page.decode('utf-8')
             content = Markup(markdown.markdown(response))
@@ -54,7 +56,7 @@ def faq(section):
         else:
             abort(404)
     else:
-        r.set(section, response.encode('utf-8'))
+        r.set(section+lang, response.encode('utf-8'))
         return theme.render('faqs.html', page_name=section, content=content)
 
 #Credits page
