@@ -22,13 +22,16 @@ def missing_datasets_warning(job_items, source):
 
     domain_harvested_datasets = Dataset.objects(__raw__={
         'extras.harvest:domain': source.domain,
+        'private': False,
         'deleted': None
     }).all()
     
     missing_datasets = []
     for dataset in domain_harvested_datasets:
         if dataset.id not in job_datasets:
+            dataset.private = True
             missing_datasets.append(dataset)
+            dataset.save()
     
     if missing_datasets:
         org_recipients = [ member.user.email for member in source.organization.members if member.role == 'admin' ]
