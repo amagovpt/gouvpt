@@ -2,6 +2,9 @@
 
 ## Current (in progress)
 
+## Version 1.2.10 (2019-02-15)
+- Add testsS
+
 ## Version 1.2.9 (2019-01-07)
 - Update theme
 
