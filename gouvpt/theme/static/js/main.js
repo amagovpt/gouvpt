@@ -247,30 +247,30 @@ $w.scroll(function() {
 
 function scrollDown(e) {
     e.preventDefault();
-    if(jQuery('.new-discussion').is(':visible')) {
-        var scrollTo=jQuery('.new-discussion');
+    if(jQuery('.discussion-card').is(':visible')) {
+        var scrollTo=jQuery('.discussion-card');
     }
     else {
         var scrollTo=jQuery('#discussion-create');
     }
     jQuery('html,body').animate({
     scrollTop: scrollTo.offset().top - jQuery('#banner').height() - 10},'slow');
-    jQuery('.new-discussion')[0].click();
+    jQuery('.discussion-card')[0].click();
     jQuery('#title-new-discussion').val('');
     jQuery('#comment-new-discussion').val('');
 };
 
 function scrollDownTag(e) {
     e.preventDefault();
-    if(jQuery('.new-discussion').is(':visible')) {
-        var scrollTo=jQuery('.new-discussion');
+    if(jQuery('.discussion-card').is(':visible')) {
+        var scrollTo=jQuery('.discussion-card');
     }
     else {
         var scrollTo=jQuery('#discussion-create');
     }
     jQuery('html,body').animate({
     scrollTop: scrollTo.offset().top - jQuery('#banner').height() - 10},'slow');
-    jQuery('.new-discussion')[0].click();
+    jQuery('.discussion-card')[0].click();
     jQuery('#title-new-discussion').val('Nova sugestão de tag para melhorar metadados');
     jQuery('#comment-new-discussion').val('Olá,\n\nEu proponho esta nova etiqueta:'); 
 };
