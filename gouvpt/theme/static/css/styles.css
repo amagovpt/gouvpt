@@ -2847,8 +2847,10 @@ section.default {
 }
 .resource-card-description {
     overflow: hidden;
-    max-width: 65%;
-    max-height: 60%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80%;
+    max-height: 30%;
     font-family: "latoregular";
 }
 .resource-card.add .card-body h4 {
@@ -2876,4 +2878,8 @@ section.default {
 
 .btn.btn-default.btn-xs{
     margin-top: 8px;
+}
+
+.resource-card footer .card-footer{
+    margin-top: auto;
 }

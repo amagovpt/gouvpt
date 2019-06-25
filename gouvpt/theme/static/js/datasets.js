@@ -145,7 +145,7 @@ function download(data, filename, type) {
 function exportFile(format) {
     var selectBox = document.getElementById("select-resource");
     var url = selectBox.options[selectBox.selectedIndex].value;
-    var filename = selectBox.options[selectBox.selectedIndex].label;
+    var filename = (selectBox.options[selectBox.selectedIndex].label).replace(/\.[^/.]+$/, "");
 
     if (!format) {
         window.location.href = url;
