@@ -2792,6 +2792,10 @@ section.default {
     height: 2.9em;
 }
 
+.card-list.card-list--columned {
+    justify-content: unset;
+}
+
 .card-list.card-list--columned .card-footer {
     background: transparent;
 }
