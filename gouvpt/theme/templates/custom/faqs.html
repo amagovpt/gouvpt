@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-9">
                 <article class="markdown-body">
-                {% cache cache_duration*3, 'faqs', page_name %}
+                {% cache cache_duration*3, 'faqs', page_name, g.lang_code %}
                     {{ content }}
                 {% endcache %}
                 </article>  
