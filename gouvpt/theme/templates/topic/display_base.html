@@ -17,7 +17,7 @@
     <div class="container">
         <div class="page-header">
             <h1 class="text-center"><img src="{{ theme_static('img/topics/') + topic.slug + ".svg" }}" title="{{ topic }}" style="width:300px;"></h1>
-            {# <h2 class="text-center">{{ topic.name }}</h2> #}
+            <h2 class="text-center">{{ topic.name }}</h2>
         </div>    
         {{ topic.description | markdown | truncate(450)  }}
     </div>
