@@ -48,7 +48,7 @@ resource = {
     'hash': Any(All(basestring, hash), None),
     'created': All(basestring, to_date),
     'last_modified': Any(All(basestring, to_date), None),
-    'url': All(basestring, is_url()),
+    'url': All(basestring),
     'resource_type': All(empty_none,
                          DefaultTo('file'),
                          basestring,
@@ -117,8 +117,8 @@ class CkanPTBackend(BaseBackend):
 
     harvest_config = {}
 
-    def __init__(self, source, job=None, dryrun=False, max_items=None):
-        super(CkanPTBackend, self).__init__(source=source, job=job, dryrun=dryrun, max_items=max_items)
+    def __init__(self, source_or_job, dryrun=False, max_items=None):
+        super(CkanPTBackend, self).__init__(source_or_job, dryrun=dryrun, max_items=max_items)
         try:
             self.harvest_config = json.loads(safe_unicode(self.source.description))
         except ValueError, e:
@@ -338,6 +338,13 @@ class CkanPTBackend(BaseBackend):
         for res in data['resources']:
             if res['resource_type'] not in ALLOWED_RESOURCE_TYPES:
                 continue
+            
+            #Ignore invalid Resources
+            try:
+                url = uris.validate(res['url'])
+            except uris.ValidationError:
+                continue            
+
             try:
                 resource = get_by(dataset.resources, 'id', UUID(res['id']))
             except Exception:
