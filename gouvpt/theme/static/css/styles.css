@@ -2890,4 +2890,18 @@ section.default {
 .block-wrapper .col-md-1{
     width: 9%;
     padding: 0 5px 0 5px;
+    text-align: center;
+    line-height: normal;
+}
+
+.block-wrapper .col-md-1 a{
+    color: #494949;
+    text-decoration: none;
+}
+
+.block-wrapper .topics h2 {
+    max-width: unset;
+    text-align: left;
+    margin-bottom: 0px;
+    text-transform: uppercase;
 }

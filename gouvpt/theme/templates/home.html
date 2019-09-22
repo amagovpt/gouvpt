@@ -9,15 +9,23 @@
 {{ notification_zone() }}
 
 <div class="block-wrapper">
-	<div class="topics row">
-	    {% for topic in g.featured_topics %}
-			<span class="col-md-1 col-xs-2">
-            	<a href="{{ url_for('topics.display', topic=topic) }}">
-					<img src="{{ theme_static('img/topics/') + topic.slug + ".svg" }}" title="{{ topic }}">
-				</a>
-        	</span>
-		{% endfor %}
-	</div>
+	<section class="default">
+		<div class="container">
+			<div class="topics row">
+				<div class="col-md-12">
+				<h2 class="header_big topics">{{ _('Topics') }}</h2>
+				{% for topic in g.featured_topics %}
+					<span class="col-md-1 col-xs-2">
+						<a href="{{ url_for('topics.display', topic=topic) }}">
+							<img src="{{ theme_static('img/topics/') + topic.slug + ".svg" }}" title="{{ topic }}">
+							<span class="hidden-xs">{{ topic }}</span>
+						</a>
+					</span>
+				{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
 </div>
 
 <div class="block-wrapper reuses">
