@@ -2894,6 +2894,10 @@ section.default {
     line-height: normal;
 }
 
+.block-wrapper .col-md-1:hover {
+    transform: scale(1.1, 1.1);
+}
+
 .block-wrapper .col-md-1 a{
     color: #494949;
     text-decoration: none;
