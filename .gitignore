@@ -102,4 +102,4 @@ ENV/
 AMA.pem
 private.pem
 udata.cfg
-
+/public/

@@ -1,6 +1,6 @@
 # gouvpt
 
-Official uData 1.6.2 theme for the Open Data Portal of Portugal
+Official uData 1.6.11 theme for the Open Data Portal of Portugal
 
 ## Usage
 
@@ -75,4 +75,10 @@ Return to udata directory and run:
 
 ```bash
 udata serve
+```
+
+Run tests with:
+
+```bash
+pytest
 ```
