@@ -17,7 +17,7 @@
 				{% for topic in g.featured_topics %}
 					<span class="col-md-1 col-xs-2">
 						<a href="{{ url_for('topics.display', topic=topic) }}">
-							<img src="{{ theme_static('img/topics/') + topic.slug + ".svg" }}" title="{{ topic }}">
+							<img src="{{ theme_static('img/topics/') + topic.slug + ".svg" }}"alt="{{ topic }}"  title="{{ topic }}">
 							<span class="hidden-xs">{{ topic }}</span>
 						</a>
 					</span>
