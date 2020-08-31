@@ -13,11 +13,11 @@
 		<div class="container">
 			<div class="topics row">
 				<div class="col-md-12">
-				<h2 class="header_big topics">{{ _('Topics') }}</h2>
+				<h2 id="dadoswrapper" class="header_big topics">{{ _('Topics') }}</h2>
 				{% for topic in g.featured_topics %}
 					<span class="col-md-1 col-xs-2">
 						<a href="{{ url_for('topics.display', topic=topic) }}">
-							<img src="{{ theme_static('img/topics/') + topic.slug + ".svg" }}"alt="{{ topic }}"  title="{{ topic }}">
+							<img src="{{ theme_static('img/topics/') + topic.slug + ".svg" }}" alt="{{ topic }}"  title="Ver {{ topic }}">
 							<span class="hidden-xs">{{ topic }}</span>
 						</a>
 					</span>

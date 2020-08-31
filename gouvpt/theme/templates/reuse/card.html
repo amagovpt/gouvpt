@@ -14,7 +14,7 @@
 
     <div class="card-body">
         <h4>
-            <a href="{{ url_for('reuses.show', reuse=reuse) }}" title="{{ reuse.title }}">
+            <a href="{{ url_for('reuses.show', reuse=reuse) }}" title="Ver {{ reuse.title }}">
                 {{ reuse.title|truncate(50) }}
             </a>
         </h4>
@@ -24,7 +24,7 @@
     <footer>
         <div class="author">
             {{ reuse|owner_avatar(20) }}
-            <a class="user" href="{{ reuse|owner_url }}" title="{{ reuse|owner_name }}">
+            <a class="user" href="{{ reuse|owner_url }}" title="Ver {{ reuse|owner_name }}">
                 {{ reuse|owner_name|truncate(25) }}
             </a>
             <span class="date">{{ reuse.created_at|dateformat('long') }}</span>
@@ -35,7 +35,7 @@
         </span>
     </footer>
 
-    <a class="rollover fade in" href="{{url_for('reuses.show', reuse=reuse)}}" title="{{ reuse.title }}">
+    <a class="rollover fade in" href="{{url_for('reuses.show', reuse=reuse)}}" title="Ver {{ reuse.title }}">
         {{ reuse.description|mdstrip(180) }}
     </a>
 

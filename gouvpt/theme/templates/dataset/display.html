@@ -83,13 +83,13 @@
                             {% if dataset.private %}
                             <small class="private"
                                 v-popover.literal="{{ _('This dataset is private and will not be visible by other users') }}"
-                                popover-title="{{ _('Private') }}" popover-trigger="hover" popover-placement="top"
+                                popover-title="Ver {{ _('Private') }}" popover-trigger="hover" popover-placement="top"
                                 >{{ _('Private') }}</small>
                             {% endif %}
                             {% if dataset.deleted %}
                             <small class="deleted"
                                 v-popover.literal="{{ _('This dataset has been deleted. This will be permanent in the next 24 hours') }}"
-                                popover-title="{{ _('Deleted') }}" popover-trigger="hover" popover-placement="top"
+                                popover-title="Ver {{ _('Deleted') }}" popover-trigger="hover" popover-placement="top"
                                 >{{ _('Deleted') }}</small>
                             {% endif %}
                         </p>
@@ -216,7 +216,7 @@
                             {% if organization.public_service %} 
                                 <img src="{{ theme_static('img/certified-stamp.png') }}" alt="certified" class="certified" 
                                     v-popover.literal="{{ _('The identity of this public service is certified by %(certifier)s', certifier=config.SITE_AUTHOR) }}" 
-                                    popover-title="{{ _('Certified public service') }}" 
+                                    popover-title="Ver {{ _('Certified public service') }}" 
                                     popover-placement="left" popover-trigger="hover"/> 
                             {% endif %}    
                             {% include theme('organization/sidebar-producer.html') %}
@@ -330,7 +330,7 @@
                             <li>
                                 <a href="{{ url_for('search.index', tag=tag) }}"
                                 class="label label-default"
-                                title="{{ tag }}">
+                                title="Ver {{ tag }}">
                                     {{ tag|truncate(14, True) }}
                                 </a>
                             </li>
@@ -347,7 +347,7 @@
 
                         <button type="button" @click="showDetails"
                             class="btn btn-primary btn-extras btn-block btn-sm btn-left"
-                            title="{{ _('Details') }}">
+                            title="Ver {{ _('Details') }}">
                             <span class="fa fa-info-circle"></span>
                             {{ _('Details') }}
                         </button>
@@ -380,7 +380,7 @@
                         <h3>{{ _('Territories')}}</h3>
                         {% for territory in dataset.spatial.handled_zones %}
                             {% set level = " ("+territory.level.split(':')[1].title()+")" %}
-                            <a href="/datasets/?geozone={{ territory.id }}" title="{{ territory.name + level }}"><img src="{{ territory.dbpedia or theme_static('img/placeholders/placeholder_territory_mini.png')  }}" alt="{{ territory.name }}" class="float-left" width="25px" /> {{ territory.name + level }}</a><br>
+                            <a href="/datasets/?geozone={{ territory.id }}" title="Ver {{ territory.name + level }}"><img src="{{ territory.dbpedia or theme_static('img/placeholders/placeholder_territory_mini.png')  }}" alt="{{ territory.name }}" class="float-left" width="25px" /> {{ territory.name + level }}</a><br>
                         {% endfor %}
                     </div>
                 </div>

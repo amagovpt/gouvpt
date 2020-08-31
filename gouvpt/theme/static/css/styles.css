@@ -211,16 +211,16 @@ html #wrapper footer .social-media-wrapper ul li div {
     font-family: "latoregular";
     height: 40px;
 }
-.lang-wrapper i.icon-globe {
+.lang-wrapper span.icon-globe {
 	height: 19px;
     line-height: 19px;
-	color: #808080;
+	color: #595959;
 	vertical-align: middle;
 	margin-right: 9px;
 	display: inline-block;
 	width: 14px;
 }
-.lang-wrapper i.icone-search {
+.lang-wrapper span.icone-search {
     font-size: 29px;
     margin-right: unset;
 }
@@ -249,7 +249,7 @@ html #wrapper footer .social-media-wrapper ul li div {
     height: 100% !important;
 }
 .lang-wrapper .select2-container .select2-selection--single .select2-selection__rendered {
-    color: #808080 !important;
+    color: #595959 !important;
     font-family: "latoregular" !important;
     padding: 0 !important;
     font-size: 12px !important;
@@ -261,7 +261,7 @@ html #wrapper footer .social-media-wrapper ul li div {
     left: 10px;
 }
 .lang-wrapper .select2-container .select2-selection--single .select2-selection__arrow b {
-	border-color: #808080 transparent transparent transparent !important;
+	border-color: #595959 transparent transparent transparent !important;
 	border-width: 5px 4px 0 4px !important;
 	margin-left: 2px !important;
 	margin-top: -3px !important;
@@ -274,7 +274,7 @@ html #wrapper footer .social-media-wrapper ul li div {
     box-shadow: inset 0 7px 13px -10px grey, 0px 3px 6px 0 rgba(0,0,0,0.15);
 }
 .select2-container--open .select2-dropdown.select2LangOptions .select2-results__option {
-    color: #808080 !important;
+    color: #595959 !important;
     line-height: 12px!important;
     font-family: "latoregular"!important;
     padding: 10px 5px 10px 5px!important;
@@ -421,7 +421,7 @@ body.homepage #breadcrumbs{
     -o-transition: opacity 0.5s linear;
     transition: opacity 0.5s linear;
 }
-.toTop i{
+.toTop span{
 	height: 22px !important;
     width: auto !important;
     font-size: 22px;
@@ -546,7 +546,7 @@ body.homepage #breadcrumbs{
     font-size: 34px!important;
     padding-top: 5.5vh;
 }
-.top-banner #homepage-slider .text-area h3{
+.top-banner #homepage-slider .text-area h2{
 	font-family: "latolight" !important;
     font-size: 26px !important;
     text-transform: initial;
@@ -721,7 +721,7 @@ body.homepage #wrapper #banner .horizontal-menu{
 	color: #2A2A2A;
 }
 .news-wrapper .span4:hover .p2{
-	color: #9D9D9C;
+	color: #575757;
 }
 .news-wrapper .span4:hover .blue-overlay{
 	display: block;
@@ -808,7 +808,7 @@ body.homepage #wrapper #banner .horizontal-menu{
 	color: #fff;	
 }
 .block-wrapper.variations-wrapper .row-fluid:nth-child(2) .span4:first-child .p2{
-	color: #9D9D9C;	
+	color: #575757;	
 }
 .block-wrapper.variations-wrapper .row-fluid:nth-child(2) .span4:first-child a.button{
 	color: #fff;
@@ -822,7 +822,7 @@ body.homepage #wrapper #banner .horizontal-menu{
 	text-decoration: none;
 }
 .block-wrapper.variations-wrapper .row-fluid:nth-child(2) .span4:nth-child(2){
-	background: #9D9D9C;	
+	background: #575757;	
 }
 .block-wrapper.variations-wrapper .row-fluid:nth-child(2) .span4:nth-child(2) i,
 .block-wrapper.variations-wrapper .row-fluid:nth-child(2) .span4:nth-child(2) .lead2,
@@ -835,8 +835,8 @@ body.homepage #wrapper #banner .horizontal-menu{
 	text-decoration: none;
 }
 .block-wrapper.variations-wrapper .row-fluid:nth-child(2) .span4:nth-child(2) a.button:hover{
-	color: #9D9D9C;
-	border-color: #9D9D9C;	
+	color: #575757;
+	border-color: #575757;	
 	background: #2A2A2A;
 	text-decoration: none;
 }
@@ -974,13 +974,13 @@ body.homepage #wrapper #banner .horizontal-menu{
 .search-box > div{
 	position: relative;
 }
-.search-box i.icon-remove, 
-.search-wrapper i.icone-search{
+.search-box span.icon-remove, 
+.search-wrapper span.icone-search{
     margin-bottom: 20px;
     margin-top: 10px;
     display: inline-block;
 }
-.search-box i.icon-remove {
+.search-box span.icon-remove {
     margin-right: 19px;
 }
 
@@ -1006,7 +1006,7 @@ body.homepage #wrapper #banner .horizontal-menu{
 	margin-left: 18px;
 	margin-right: 18px;
 }
-#footer .social-media-wrapper ul li i{
+#footer .social-media-wrapper ul li span{
 	color: #2A2A2A;
 	font-size: 22px;
 }
@@ -1180,7 +1180,7 @@ html #wrapper footer .social-media-wrapper li {
     margin-bottom: 45px;
 }
 #menuLateralWrapper .right-wrapper .img-content {
-	border-bottom: 1px solid #9D9D9C;
+	border-bottom: 1px solid #575757;
     margin-bottom: 50px;
     padding-bottom: 20px;
 }
@@ -1197,7 +1197,7 @@ html #wrapper footer .social-media-wrapper li {
     margin: 10px 0 0 15px !important;
 }
 #menuLateralWrapper .right-wrapper .links-content {
-	border-bottom: 1px solid #9D9D9C;
+	border-bottom: 1px solid #575757;
 	padding-bottom: 10px;
 }
 #menuLateralWrapper .right-wrapper .links-content .lead3 {
@@ -1433,7 +1433,7 @@ html #wrapper footer .social-media-wrapper li {
     background-color: #3498db;
 }
 #formServicesWrapper .navBulletsForm .sectionStep .textStep {
-    color: #9d9d9c;
+    color: #575757;
     font-size: 16px;
     line-height: 23px;
     font-family: 'latobold';
@@ -1503,19 +1503,19 @@ html #wrapper footer .social-media-wrapper li {
     margin-right: 20px;
 }
 #formServicesWrapper .form-wrapper .radio-button .radio-button-wrapper {
-    border: 2px solid #9d9d9c;
+    border: 2px solid #575757;
 }
 #formServicesWrapper .form-wrapper .radio-button input[type="radio"]:checked+.radio-button-wrapper {
     border: 2px solid #2980b9!important;
 }
 #formServicesWrapper .form-wrapper .radio-button label {
-    color: #9d9d9c;
+    color: #575757;
 }
 #formServicesWrapper .form-wrapper .radio-button input[type="radio"]:checked+.radio-button-wrapper+label {
     color: #2980b9!important;
 }
 #formServicesWrapper .form-wrapper .labelInfoObrig {
-    color: #9d9d9c;
+    color: #575757;
     font-size: 16px;
     line-height: 22px;
     font-family: "latoregular";
@@ -1617,7 +1617,7 @@ html #wrapper footer .social-media-wrapper li {
     color: #2a2a2a;
 }
 #listNoticiasWrapper .span4:hover .p2 {
-    color: #9d9d9c;
+    color: #575757;
 }
 
 /* Details News */
@@ -1844,7 +1844,7 @@ html #wrapper footer .social-media-wrapper li {
     text-align: left;
 }
 #contactFormWrapper .form-wrapper .labelInfoObrig {
-    color: #9D9D9C;
+    color: #575757;
     font-size: 16px;
     line-height: 22px;
     font-family: "latoregular";
@@ -2031,7 +2031,7 @@ html #wrapper footer .social-media-wrapper li {
     text-transform: uppercase;
     font-family: "latoregular" !important;
     font-size: 14px;
-    color: #808080;
+    color: #595959;
 }
 .modal-header {
     padding: 5px 15px;
@@ -2082,6 +2082,8 @@ ul.search-results .search-result h4 {
 }
 .lang-wrapper .search-icon{
     cursor: pointer;
+    padding-right: 20px;
+    font-size: 25px;
 }
 .lang-wrapper button{
     padding: 0px 30px 0px 10px;
@@ -2517,11 +2519,11 @@ code {
 #heading .menu-wrapper .top-section .top-button {
     height: 43px;
     line-height: 43px;
-    border: 1px solid #9d9d9c;
+    border: 1px solid #575757;
     padding: 0 25px;
     display: inline-block;
     min-width: 162px;
-    color: #9d9d9c;
+    color: #575757;
     text-align: center;
     border-radius: 30px;
     -webkit-box-sizing: border-box;
@@ -2534,9 +2536,9 @@ code {
 	font-size: 25px;
 }
 #heading .menu-wrapper .top-section .top-button:hover {
-    border: 1px solid #9d9d9c;
+    border: 1px solid #575757;
     color: #fff;
-    background-color: #9d9d9c;
+    background-color: #575757;
 }
 .panel-body .certified{
     position: absolute;
@@ -2566,17 +2568,17 @@ code {
 .btn-login,
 .btn-login:active,
 .btn-login:focus {
-    color: #808080;
+    color: #595959;
     background-color: #fff;
-    border-color: #808080;
+    border-color: #595959;
     min-height: 45px;
 }
 .btn-login:hover, 
 .btn-login:active:hover, 
 .btn-login:active:focus {
     color: #fff;
-    background-color: #808080;
-    border-color: #808080;
+    background-color: #595959;
+    border-color: #595959;
 }
 .timeline-body .card-body h4 {
     white-space: nowrap;
@@ -2643,11 +2645,11 @@ section.default {
 .btn-submit{
     height: 43px;
     line-height: 43px;
-    border: 1px solid #9d9d9c;
+    border: 1px solid #575757;
     padding: 0 25px;
     display: inline-block;
     min-width: 162px;
-    color: #9d9d9c;
+    color: #575757;
     text-align: center;
     border-radius: 30px;
     box-sizing: border-box;  

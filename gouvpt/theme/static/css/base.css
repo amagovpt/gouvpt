@@ -1329,7 +1329,7 @@ h6{
 	color: #808184;
 }
 .color-block-wrapper .color-wrapper .code .lead4:last-child{
-	color: #9D9D9C
+	color: #575757
 }
 .color-block-wrapper .opacity{
 	display: inline-block;
@@ -1354,7 +1354,7 @@ h6{
 }
 .complete-color-block{
 	padding-bottom: 50px;
-	border-bottom: 1px solid #9D9D9C;
+	border-bottom: 1px solid #575757;
 	margin-bottom: 80px;
 }
 /*Componente Barra Navega��o principal*/
@@ -1388,7 +1388,7 @@ h6{
     line-height: 16px !important;
 }
 .horizontal-menu > div > ul > li a{
-	color: #808080;
+	color: #595959;
 	font-size: 14px;
     font-family: 'latobold';
     text-decoration: none !important;
@@ -1565,7 +1565,7 @@ h6{
 	margin-left: 5px;
     vertical-align: super;
 }
-.lang-wrapper i.icon-globe, i.icon-user, i.icon-plus{
+.lang-wrapper span.icon-globe, i.icon-user, i.icon-plus{
 	height: 19px;
 	font-size: 19px;
 	color: #3498DB;
@@ -1593,7 +1593,7 @@ nav.side-menu > ul > li > a,
 nav.side-menu > ul > li{
 	font-size: 14px;
 	font-family: "latobold";
-	color: #808080;
+	color: #595959;
 	text-decoration: none;
 }
 nav.side-menu > ul > li:hover > a{
@@ -2381,7 +2381,7 @@ label.animateInput {
 }
 .ui-datepicker .ui-button.ui-state-disabled:hover, 
 .ui-datepicker .ui-button.ui-state-disabled{
-	background: #9D9D9C !important;
+	background: #575757 !important;
 }
 .ui-datepicker .ui-state-default:hover,
 .ui-datepicker .ui-state-default:active{
@@ -2624,7 +2624,7 @@ label.animateInput {
 	content: initial;
 }
 .simple-list-wrapper.hyperlink li a{
-	color: #9D9D9C;
+	color: #575757;
 	display: block;
 }
 .simple-list-wrapper.hyperlink li i{
@@ -2659,7 +2659,7 @@ label.animateInput {
 }
 .group-list-wrapper .span6 p{
 	margin-bottom: 10px;
-	color: #9D9D9C;
+	color: #575757;
 }
 .group-list-wrapper .span6{
 	margin-bottom: 30px;
@@ -2733,7 +2733,7 @@ label.animateInput {
     box-sizing: border-box;     
     float: left;       
     cursor: pointer;
-    color: #9D9D9C;
+    color: #575757;
 }
 .tabs-wrapper .tab.active{
 	color: #3498DB;
@@ -3319,7 +3319,7 @@ label.animateInput {
 	font-size: 34px !important;
     font-family: "latoblack" !important;
 }
-.search-box i:not(.icon-remove){
+.search-box span:not(.icon-remove){
 	position: absolute;
     right: 20px;
     bottom: 10px;
@@ -3328,15 +3328,15 @@ label.animateInput {
     height: auto!important;
     cursor: pointer;
 }
-.search-box i.icon-remove,
-.search-wrapper i.icone-search{
+.search-box span.icon-remove,
+.search-wrapper span.icone-search{
 	font-size: 0px;
    	height: auto !important;
    	cursor: pointer;
 	margin-bottom: 60px;
     width: auto;
 }
-.search-box i.icon-remove{
+.search-box span.icon-remove{
 	margin-right: 15px;
 }
 .search-box i:hover{
@@ -3346,17 +3346,17 @@ label.animateInput {
     font-size: 40px;
     line-height: 20px;
 }
-.search-box i.icon-remove:before{
+.search-box span.icon-remove:before{
 	font-size: 26px;
 }
 .search-wrapper{
 	text-align: right;
 }
-.search-wrapper i.icone-search{
+.search-wrapper span.icone-search{
 	margin-bottom: 0px;
     margin-right: 1px;
 }
-.search-wrapper i.icone-search:before{
+.search-wrapper span.icone-search:before{
 	font-size: 28px;
 }
 /*Componente Icones*/
@@ -3534,7 +3534,7 @@ label.animateInput {
 		display: block !important;
 		margin-top: 20px;
 	}
-	.horizontal-menu i.icone-burguer{
+	.horizontal-menu span.icone-burguer{
 		display: none !important;
 	}
 	.horizontal-menu > div  > ul > li:hover .sub-menu{
@@ -3556,7 +3556,8 @@ label.animateInput {
 	.horizontal-menu.type2{
 		padding: 20px 28px 90px 28px;
 	}
-	.horizontal-menu i.icone-burguer {
+	.horizontal-menu span.icone-burguer {
+		font-family: 'fontawesome' !important;
 	    position: absolute;
 	    top: 43px;
 	    right: 31px;
@@ -3606,7 +3607,7 @@ label.animateInput {
 	.horizontal-menu.type2 > div>ul>li:hover .megamenu-wrapper{
 		display: none;
 	}
-	.horizontal-menu.type2 i.icone-burguer{
+	.horizontal-menu.type2 span.icone-burguer{
 		top: 65px;
 		left: auto;
 		right: auto;
@@ -3880,7 +3881,7 @@ label.animateInput {
 	.horizontal-menu>img{
 		width: 160px;
 	}
-	.horizontal-menu i.icone-burguer{
+	.horizontal-menu span.icone-burguer{
 		top: 34px;
 	}
 	.search-box input{
