@@ -1980,14 +1980,13 @@ label.animateInput {
     color: transparent!important
 }
 
-.animateInput input:focus~span,
-.animateInput input.populated~span,
-.animateInput textarea:focus~span,.animateInput textarea.populated~span {
+.animateInput input:focus~span,.animateInput input.populated~span,.animateInput textarea:focus~span,.animateInput textarea.populated~span {
     opacity: 1;
     top: 5px
 }
+
 .animateInput span {
-    color: #F08322;
+    color: #F7931E;
     font-size: 14px;
     font-family: "latobold";
     position: absolute;
@@ -1996,6 +1995,31 @@ label.animateInput {
     opacity: 0;
     transition: all .2s ease-in-out
 }
+
+.form-wrapper{
+    background: #F1F1F2;
+    padding: 80px 95px;
+}
+.form-wrapper input,
+.form-wrapper textarea{
+    width: 100%;
+    border: 2px solid #fff;
+    box-shadow: none;
+    height: 60px;
+    line-height: 18px;
+    color: #808184;
+    font-size: 18px;
+    font-family: 'latolight';
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 0;
+    padding-left: 33.5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
 /*Componente Formul�rio -> Bot�es de Op��o*/
 .radio-button{
 	position: relative;

@@ -12,10 +12,22 @@
                 <div class="form-wrapper">
                     <form action="{{ url_for('gouvpt.contact') }}" method=post>
                         {{ form.hidden_tag() }} 
-                        {{ form.name(placeholder='*'+_("Name")) }} 
+                        <label class="animateInput">
+                        {{ form.name(placeholder='*'+_("Name"))  }}
+                        <span> Nome: </span>
+                        </label> 
+                        <label class="animateInput">
                         {{ form.email(placeholder='*'+_("Email")) }} 
+                         <span> Email: </span>
+                        </label> 
+                        <label class="animateInput">
                         {{ form.subject(placeholder='*'+_("Subject"))}} 
+                        <span> Assunto: </span>
+                         </label> 
+                         <label class="animateInput">
                         {{ form.message(placeholder='*'+_("Message")) }}
+                        <span> Mensagem: </span>
+                        </label> 
                         <div class="labelInfoObrig">
                             <br> *{{ _("required fields")|title }} </div>
                         <center>
@@ -42,5 +54,6 @@
     function enableBtn(){
         document.getElementById("submit").disabled = false;
     }
+    
 </script>
 {% endblock %}
