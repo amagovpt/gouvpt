@@ -105,3 +105,8 @@ def dadosGovOld_API(org_slug, file_id):
 def redirect_organizations(org):
     '''Route legacy CKAN organizations'''
     return redirect(url_for('organizations.show', org=org))
+
+#Add Acessibilidade page
+@blueprint.route('/acessibilidade/')
+def redirect_acessibilidade():
+    return redirect(url_for('gouvpt.faq', section='acessibilidade'))
