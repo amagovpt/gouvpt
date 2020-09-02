@@ -72,6 +72,7 @@ p {
 	font-family: "latoregular";
 	font-size: 16px;
 	line-height: 22px;
+    max-width: 100ch;
 	/* margin: 0 0 15px 0 !important; */
 }
 a {
