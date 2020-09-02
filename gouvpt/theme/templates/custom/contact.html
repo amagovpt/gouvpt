@@ -13,20 +13,20 @@
                     <form action="{{ url_for('gouvpt.contact') }}" method=post>
                         {{ form.hidden_tag() }} 
                         <label class="animateInput">
-                        {{ form.name(placeholder='*'+_("Name"))  }}
-                        <span> Nome: </span>
+                        {{ form.name(placeholder='*'+_("Name"))}}
+                        <span>  {{ _("Name") }} </span>
                         </label> 
                         <label class="animateInput">
                         {{ form.email(placeholder='*'+_("Email")) }} 
-                         <span> Email: </span>
+                         <span> {{ _("Email") }} </span>
                         </label> 
                         <label class="animateInput">
                         {{ form.subject(placeholder='*'+_("Subject"))}} 
-                        <span> Assunto: </span>
+                        <span>  {{ _("Subject") }} </span>
                          </label> 
                          <label class="animateInput">
                         {{ form.message(placeholder='*'+_("Message")) }}
-                        <span> Mensagem: </span>
+                        <span> {{ _("Message") }} </span>
                         </label> 
                         <div class="labelInfoObrig">
                             <br> *{{ _("required fields")|title }} </div>
