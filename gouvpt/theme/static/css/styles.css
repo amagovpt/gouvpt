@@ -73,6 +73,8 @@ p {
 	font-size: 16px;
 	line-height: 22px;
     max-width: 100ch;
+    margin-left: auto;
+    margin-right: auto;
 	/* margin: 0 0 15px 0 !important; */
 }
 a {
@@ -1092,7 +1094,7 @@ body.homepage #wrapper #banner .horizontal-menu{
 	margin-bottom: 2px;
 	color: rgba(42,42,42,0.5);
 	font-family: 'latobold';
-	font-size: 11px;
+    font-size: 11px;
 }
 #copyright .row-fluid:last-child p strong{
 	color: #2A2A2A;	
