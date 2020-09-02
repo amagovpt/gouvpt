@@ -114,7 +114,9 @@ img {
 	max-width: 100%;
 	height: auto;
 	vertical-align: middle;
-	border: 0;
+    border: 0;
+    min-width: 44px;
+    min-height: 44px;
 }
 button{
 	cursor: pointer;
