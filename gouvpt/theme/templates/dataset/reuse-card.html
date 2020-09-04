@@ -5,13 +5,13 @@
         </a>
         <div class="caption">
             <h4 class="clamp-2">
-                <a href="{{ url_for('reuses.show', reuse=reuse) }}" title="{{ reuse.title }}">
+                <a href="{{ url_for('reuses.show', reuse=reuse) }}" title="Ver {{ reuse.title }}">
                     {{ reuse.title }}
                 </a>
             </h4>
             <div class="author">
                 {{ reuse|owner_avatar(25) }}
-                <a class="user" href="{{ reuse|owner_url }}" title="{{ reuse|owner_name }}">
+                <a class="user" href="{{ reuse|owner_url }}" title="Ver {{ reuse|owner_name }}">
                 {{ reuse|owner_name }}
                 </a>
                 <br>

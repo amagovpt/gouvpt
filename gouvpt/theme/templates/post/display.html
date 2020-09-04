@@ -30,7 +30,7 @@
 
     {% if post.credit_to %}
         {{ _('Photo credit') }} to
-        {% if post.credit_url %}<a href="{{ post.credit_url }}" title="{{ post.credit_to }}">{% endif %}
+        {% if post.credit_url %}<a href="{{ post.credit_url }}" title="Ver {{ post.credit_to }}">{% endif %}
         {{ post.credit_to }}
         {% if post.credit_url %}</a>{% endif %}
     {% endif %}
@@ -62,14 +62,14 @@
 
                     {% if post.private %}
                     <br>
-                    <small class="private" title="{{ _('Private') }}"
+                    <small class="private" title="Ver {{ _('Private') }}"
                         v.popover.literal="{{ _('This post is private and will not be visible by other users') }}"
                         popover-trigger="hover" popover-placement="top"
                         >{{ _('Private') }}</small>
                     {% endif %}
                     {% if post.deleted %}
                     <br>
-                    <small class="deleted" title="{{ _('Deleted') }}"
+                    <small class="deleted" title="Ver {{ _('Deleted') }}"
                         v-popover.literal="{{ _('This post has been deleted. This will be permanent in the next 24 hours') }}"
                         popover-trigger="hover" popover-placement="top"
                         >{{ _('Deleted') }}</small>
@@ -88,7 +88,7 @@
                         <div class="credit">
                             {{ _('Photo credit') }}
                             {% if post.credit_url %}<a href="{{ post.credit_url }}"
-                                title="{{ post.credit_to }}"
+                                title="Ver {{ post.credit_to }}"
                                 class="credit-link"
                                 >{% endif %}
                             {{ post.credit_to }}
@@ -169,7 +169,7 @@
     <div class="container">
         <div class="col-sm-4 col-xs-4 text-left">
             {% if previous_post %}
-            <a href="{{ previous_post.display_url }}" title="{{ _('Previous post') }}" class="btn btn-primary">
+            <a href="{{ previous_post.display_url }}" title="Ver {{ _('Previous post') }}" class="btn btn-primary">
                 <span class="fa fa-chevron-left"></span>
                 {{ _('Previous post') }}
             </a>
@@ -183,7 +183,7 @@
         </div>
         <div class="col-sm-4 col-xs-4 text-right">
             {% if next_post %}
-            <a href="{{ next_post.display_url }}" title="{{ _('Next post') }}" class="btn btn-primary">
+            <a href="{{ next_post.display_url }}" title="Ver {{ _('Next post') }}" class="btn btn-primary">
                 {{ _('Next post') }}
                 <span class="fa fa-chevron-right"></span>
             </a>
