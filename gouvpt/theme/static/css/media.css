@@ -27,16 +27,16 @@
 			margin: auto;
     		float: none;
 		}
-	.search-box i.icon-remove{
+	.search-box span.icon-remove{
     	margin-right: 5px;
 	}
-	.search-box i.icon-remove:before{
+	.search-box span.icon-remove:before{
 		font-size: 34px;
 	}
-	#banner.open .horizontal-menu i.icone-burguer{
+	#banner.open .horizontal-menu span.icone-burguer{
 		line-height: 30px !important;
 	}
-	#banner.open .horizontal-menu i.icone-burguer:before{
+	#banner.open .horizontal-menu span.icone-burguer:before{
 		font-family: 'fontawesome' !important;
 		content: "\f00d";
 		font-size: 50px;

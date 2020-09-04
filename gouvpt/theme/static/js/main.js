@@ -29,7 +29,7 @@ $j(document).ready(function($) {
         $('html, body').animate({ scrollTop: $('.block-wrapper.reuses').offset().top - 95 }, 'slow');
     }); 
 
-    $(document).on("click", ".search-box i:not(.icon-remove)", function(){
+    $(document).on("click", ".search-box span:not(.icon-remove)", function(){
         window.location = "search";
     });
 
@@ -68,7 +68,7 @@ $j(document).ready(function($) {
         prevText: '<i class="fa fa-angle-left"></i>'
     });
 
-    $(document).on("click", ".search-box i.icon-remove", function(){
+    $(document).on("click", ".search-box span.icon-remove", function(){
         $(this).parents('.search-box').removeClass('visible');
     });
     
@@ -76,7 +76,7 @@ $j(document).ready(function($) {
         $('html, body').animate({ scrollTop: 0 }, 700);
     });
     
-    $(document).on("click", ".search-icon i.icone-search", function(){
+    $(document).on("click", ".search-icon span.icone-search", function(){
         $('.search-box').addClass('visible');
         $('.form-control').focus();
     });
@@ -98,7 +98,7 @@ $j(document).ready(function($) {
         }
     });
 
-    $(document).on("click", ".horizontal-menu i.icone-burguer", function(e){
+    $(document).on("click", ".horizontal-menu span.icone-burguer", function(e){
         e.preventDefault();
         e.stopPropagation();
         $(this).parents('#banner').toggleClass('open');

@@ -17,7 +17,7 @@
             <div class="black-home-overlay"></div>
             <div class="text-area">
                 <h1>{{ post.name|mdstrip(40) }}</h1>
-                <h3>{{(post.headline or post.content)|mdstrip(55)}}</h3>
+                <h2>{{(post.headline or post.content)|mdstrip(55)}}</h2>
                 <div class="description">
                     <br>
                     <p> {{ post.content| truncate(700) | markdown }} </p>
