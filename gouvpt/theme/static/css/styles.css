@@ -2142,7 +2142,7 @@ ul.search-results .search-result .result-infos{
     padding-top: 10px;
 }
 .membership, .btn-warning{
-    height: 30px;
+    height: 44px;
     font-size: 14px !important;
     font-family: 'latoregular' !important;
     text-transform: uppercase;
@@ -2520,7 +2520,7 @@ code {
     z-index: 1;
 }
 #heading .menu-wrapper .top-section .top-button {
-    height: 43px;
+    height: 44px;
     line-height: 43px;
     border: 1px solid #575757;
     padding: 0 25px;
