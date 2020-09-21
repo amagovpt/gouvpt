@@ -70,11 +70,12 @@ i[class^="icon-"] {
 }
 p {
 	font-family: "latoregular";
-	font-size: 16px;
+    font-size: 17.1px;
 	line-height: 22px;
     max-width: 100ch;
     margin-left: auto;
     margin-right: auto;
+    letter-spacing: 1px;
 	/* margin: 0 0 15px 0 !important; */
 }
 a {
