@@ -2284,7 +2284,8 @@ section.breadcrumb-bar .breadcrumb {
     border-radius: 3px;
     flex-wrap: unset;
     padding:8px;
-    zoom:1
+    zoom:1;
+    height: 100px;
 }
 .card .card-logo{
     float:left!important;
