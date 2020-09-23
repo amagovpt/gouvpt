@@ -1429,7 +1429,7 @@ h6{
 	display: block;
 }
 .horizontal-menu > div > ul > li .sub-menu li a{
-	color: #808184 !important;
+	color: #333 !important;
 	font-family: "latoregular";
 	text-transform: none;
 	padding-bottom: 20px;

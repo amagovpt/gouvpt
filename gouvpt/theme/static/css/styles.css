@@ -2162,7 +2162,7 @@ ul.search-results .search-result .result-infos{
     border-bottom: 2px solid;
 }
 .nav-pills > li > a {
-    color: lightgray;
+    color: #333;
     font-weight: bold;
     border-bottom: 8px solid;
     border-radius: unset;
