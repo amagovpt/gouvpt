@@ -16,7 +16,7 @@
     {% endif %}
     <div class="card-body">
         <h4>
-            <a href="{{ dataset_url }}" title="{{dataset.title}}">
+            <a href="{{ dataset_url }}" title="Ver {{dataset.title}}">
                 {{ dataset.title|truncate(120) }}
             </a>
         </h4>
@@ -62,7 +62,7 @@
 
 
     <a class="rollover fade in" href="{{url_for('datasets.show', dataset=dataset)}}"
-        title="{{ dataset.title }}">
+        title="Ver {{ dataset.title }}">
         {{ dataset.description|mdstrip(180) }}
     </a>
     <footer class="rollover fade in">

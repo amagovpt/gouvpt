@@ -16,7 +16,7 @@
                     <a href="{{ url_for('posts.list') }}">{{ _('News in data') }}</a>
                 </h3>
                 <h3 class="title">
-                    <a href="{{ url_for('posts.show', post=post) }}" title="{{ post.name }}">
+                    <a href="{{ url_for('posts.show', post=post) }}" title="Ver {{ post.name }}">
                         {{ post.name }}
                     </a>
                 </h3>

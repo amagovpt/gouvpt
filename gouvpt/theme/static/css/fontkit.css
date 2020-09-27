@@ -324,9 +324,7 @@ i[class^="icone-"]{
 .icone-loaders:before {
   content: "\e925";
 }
-.icone-search:before {
-  content: "\e926";
-}
+
 .icone-more:before {
   content: "\e927";
 }
