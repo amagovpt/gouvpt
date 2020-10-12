@@ -70,11 +70,12 @@ i[class^="icon-"] {
 }
 p {
 	font-family: "latoregular";
-	font-size: 16px;
+    font-size: 17.1px;
 	line-height: 22px;
     max-width: 100ch;
     margin-left: auto;
     margin-right: auto;
+    letter-spacing: 1px;
 	/* margin: 0 0 15px 0 !important; */
 }
 a {
@@ -575,7 +576,7 @@ body.homepage #breadcrumbs{
 	min-width: 164px;
     padding: 0 20px;
     border-radius: 30px;
-    height: 43px;
+    height: 44px;
     font-size: 13px!important;
     font-family: "latoregular"!important;
     text-transform: uppercase;
@@ -2118,6 +2119,7 @@ footer .span12 a{
 .card.reuse-card .btn {
     display: block;
     font-size: 10px;
+    min-height: 22px;
     float: right;
     margin-right: 5px;
     position: relative;
@@ -2142,7 +2144,7 @@ ul.search-results .search-result .result-infos{
     padding-top: 10px;
 }
 .membership, .btn-warning{
-    height: 30px;
+    height: 44px;
     font-size: 14px !important;
     font-family: 'latoregular' !important;
     text-transform: uppercase;
@@ -2162,7 +2164,7 @@ ul.search-results .search-result .result-infos{
     border-bottom: 2px solid;
 }
 .nav-pills > li > a {
-    color: lightgray;
+    color: #4c4c4c;
     font-weight: bold;
     border-bottom: 8px solid;
     border-radius: unset;
@@ -2282,7 +2284,8 @@ section.breadcrumb-bar .breadcrumb {
     border-radius: 3px;
     flex-wrap: unset;
     padding:8px;
-    zoom:1
+    zoom:1;
+    height: 100px;
 }
 .card .card-logo{
     float:left!important;
@@ -2313,12 +2316,12 @@ section.breadcrumb-bar .breadcrumb {
     color:#4f4f4f;
     font-size:14px;
     line-height:1.3em;
-    height:70px;
+    height:40px;
     width: 100%;
     max-width: unset;
     min-height: unset;
     margin-left: unset;
-    flex: unset !important;    
+    flex: unset !important;  
 }
 .card footer{
     width:100%;
@@ -2345,7 +2348,8 @@ section.breadcrumb-bar .breadcrumb {
 .card footer ul .btn{
     color:#7e7e7e;
     text-transform:none;
-    padding:1px 5px 1px 0
+    padding:1px 5px 1px 0;
+    min-height: 22px;
 }
 .card footer ul .btn .fa{
     background:none!important;
@@ -2520,7 +2524,7 @@ code {
     z-index: 1;
 }
 #heading .menu-wrapper .top-section .top-button {
-    height: 43px;
+    height: 44px;
     line-height: 43px;
     border: 1px solid #575757;
     padding: 0 25px;
@@ -2711,6 +2715,7 @@ section.default {
 }
 .links-content{
     margin-bottom: 30px;
+    min-height: 44px;
 }
 .block-wrapper .photo img {
     max-height: 175px;
@@ -2913,4 +2918,20 @@ section.default {
     text-align: left;
     margin-bottom: 0px;
     text-transform: uppercase;
+}
+
+.btn{
+    min-height: 44px;
+    min-width: 44px;
+    line-height: 30px;
+}
+
+.btn-left.btn-sm .fa {
+    line-height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+ul.search-results .search-result .result-body .result-description.clamp-2 {
+    white-space: nowrap;
 }
