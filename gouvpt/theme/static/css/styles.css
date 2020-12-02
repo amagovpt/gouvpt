@@ -1021,7 +1021,7 @@ body.homepage #wrapper #banner .horizontal-menu{
 	text-align: center;
 }
 #footer .nav-menu .container-fluid a{
-	font-size: 12px;
+	font-size: 14px;
 	font-family: 'latobold';
 	color: #F08322;
 	text-transform: uppercase;
@@ -1036,7 +1036,7 @@ body.homepage #wrapper #banner .horizontal-menu{
 	text-align: left;
 } 
 #footer .nav-menu .container-fluid .layouts li a{
-	font-size: 12px;
+	font-size: 14px;
 	color: #2A2A2A;
 	font-family: 'latoregular';
 	text-transform: none;
@@ -1048,6 +1048,9 @@ body.homepage #wrapper #banner .horizontal-menu{
 	padding-bottom: 50px;
 }
 #sitemap .nav-menu .span2{
+	text-align: left;
+}
+#sitemap .nav-menu .span3{
 	text-align: left;
 }
 #sitemapSubMenu {
@@ -2934,4 +2937,23 @@ section.default {
 
 ul.search-results .search-result .result-body .result-description.clamp-2 {
     white-space: nowrap;
+}
+
+#sitemapSubMenu .span3 {
+    text-align: left;
+    margin-left: unset;
+    margin-right: 23px;
+    font-weight: bold;
+}
+
+#sitemapSubMenu .span3 a{
+    color: #4c4c4c !important;
+}
+#sitemapSubMenu .span2{
+    margin-left: unset;
+}
+#sitemapSubMenu .span2 a{
+    font-size: 20px;
+    letter-spacing: 5px;
+    color: #4c4c4c !important;
 }
