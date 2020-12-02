@@ -3,34 +3,12 @@
     <span class="fa fa-angle-up"></span>
 </div>
 <footer id="footer">
-	<div class="social-media-wrapper">
-		<ul>
-			<li>
-				<a href="http://www.facebook.com/234090453288739/" target="_blank">
-					<span class="fa fa-facebook"></span>
-				</a>
-			</li>
-			<li>
-				<a href="https://www.linkedin.com/company/ama---ag-ncia-para-a-moderniza-o-administrativa-ip/" target="_blank">
-					<span class="fa fa-linkedin"></span>
-				</a>
-			</li>
-			<li>
-				<a href="https://twitter.com/Dadosgov" target="_blank">
-					<span class="fa fa-twitter"></span>
-				</a>
-			</li>
-		</ul>
-	</div>
 	<div id="sitemap">
 		<div class="nav-menu">
 			<div class="container-fluid">
 				<div class="row-fluid">
-					<div class="span2 offset1">
-						<a href="#">&nbsp;</a>
-					</div>
                     {% for item in nav.gouvpt_menu %}
-                    <div class="span2">
+                    <div class="span3">
                         <a href="{{ 'javascript:void(0)' if item.items else item.url }}">{{ item.label }}</a>
                         {% if item.items %}
                         <ul class="layouts level-1">
@@ -47,21 +25,25 @@
 	</div>
 	<div id="sitemapSubMenu">
 		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="span3">&nbsp;</div>
-				<div class="span1">
-					<a href="{{ url_for('apidoc.swaggerui') }}">{{ _('API')|upper }}</a>
-				</div>
-				<div class="span2">
+				<div class="span3">
 					<a href="{{ url_for('site.terms') }}">{{ _('Terms of use')|upper }}</a>
 				</div>
-				<div class="span2">
+				<div class="span3">
 					<a href="{{ url_for('gouvpt.faq', section='publish') }}">{{ _('Publish data')|upper }}</a>
 				</div>
-				<div class="span2">
+				<div class="span3">
 					<a href="{{ url_for('gouvpt.faq', section='licenses') }}">{{ _('Licenses')|upper }}</a>
 				</div>
-				<div class="span2">&nbsp;</div>
+				<div class="span2">
+					<a href="http://www.facebook.com/234090453288739/" target="_blank">
+						<span class="fa fa-facebook"></span>
+					</a>
+
+					<a href="https://www.linkedin.com/company/ama---ag-ncia-para-a-moderniza-o-administrativa-ip/" target="_blank">
+						<span class="fa fa-linkedin"></span>
+					</a>
+					<a href="https://twitter.com/Dadosgov" target="_blank">
+						<span class="fa fa-twitter"></span></a>
 			</div>
 		</div>
 	</div>
@@ -69,15 +51,35 @@
 		<div class="container-fluid">
 			<div class="row-fluid footer-images-wrapper">
 				<div class="span2">
-					<img alt="República Portuguesa" src="{{ theme_static('images/republica.png') }}"> </div>
+				<a target="_blank" href="https://www.portugal.gov.pt">
+					<img alt="República Portuguesa" src="{{ theme_static('images/republica.png') }}">
+				</a>
+				</div>
 				<div class="span2">
-					<img alt="AMA" src="{{ theme_static('images/ama.png') }}"> </div>
+				<a target="_blank" href="https://www.ama.gov.pt/">
+					<img alt="AMA" src="{{ theme_static('images/ama.png') }}">
+				</a>
+				</div>
 				<div class="span2">
-					<img alt="Compete" src="{{ theme_static('images/compete.png') }}"> </div>
+				<a target="_blank" href="http://www.poci-compete2020.pt/">
+					<img alt="Compete" src="{{ theme_static('images/compete.png') }}">
+				</a>
+				</div>
 				<div class="span2">
-					<img alt="Portugal 2020" src="{{ theme_static('images/pt2020.png') }}"> </div>
+				<a target="_blank" href="https://www.portugal2020.pt/">
+					<img alt="Portugal 2020" src="{{ theme_static('images/pt2020.png') }}">
+				</a>
+				</div>
 				<div class="span2">
-					<img alt="União Europeia" src="{{ theme_static('images/ue.png') }}"> </div>
+				<a target="_blank" href="https://ec.europa.eu/info/funding-tenders/funding-opportunities/funding-programmes/overview-funding-programmes/european-structural-and-investment-funds_pt">
+					<img alt="União Europeia" src="{{ theme_static('images/ue.png') }}">
+				</a>
+				</div>
+				<div class="span2">
+				<a target="_blank" href="https://selo.usabilidade.gov.pt/">
+					<img alt="Selo Prata" src="{{ theme_static('images/selo_prata.png') }}" style="opacity: 0.7;">
+				</a>
+				</div>
 			</div>
 			<!--footer images -->
 			<div class="row-fluid">
