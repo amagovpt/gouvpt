@@ -139,3 +139,88 @@ msgstr ""
 
 msgid "Use this form to get in touch with us in case of doubts or need of assistance. You can also contact us to request for additional datasets or info that you’d like to see available on this portal. To interact with data suppliers, i.e. ask for more data or specific improvements, use the \"Contact\" option on each dataset page, to start a new discussion thread."
 msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:4
+msgid "API Documentation"
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:5
+#, python-format
+msgid "%(site)s dynamic API documentation"
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:39
+msgid "This page describe this website's free and open RESTful API's behavior"
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:43
+msgid "Authentication"
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:48
+msgid "In order to be able to execute write operations,"
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:50
+#, python-format
+msgid "you first need to obtain an %(apikey)s in your profile settings."
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:54
+msgid "API Key"
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:57
+msgid "you first need to authenticate and obtain an API Key in your profile settings."
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:60
+msgid ""
+"This key should be provided on each call in the <code>X-API-KEY</code> HTTP "
+"header."
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:64
+msgid "Authorizations"
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:68
+msgid "API calls are subject to the same permissions than the web interface."
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:69
+msgid ""
+"By example, you need to be part of the organization to modify one of its "
+"datasets."
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:73
+msgid "Pagination"
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:77
+msgid ""
+"Some method are paginated and always follow the same pattern.\n"
+"                        The object list is wrapped in a <code>Page</code> "
+"object.\n"
+"                        "
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:81
+msgid ""
+"You don't have to compute yourself the previous and next pages\n"
+"                        because the URLs are available in the response under "
+"the\n"
+"                        <code>previous_page</code> and <code>next_page</code>"
+" attributes.\n"
+"                        They will be set to <code>null</code> if there is no "
+"previous and/or next page."
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:86
+msgid "Example"
+msgstr ""
+
+#: gouvpt/theme/templates/custom/api.html:99
+msgid "Reference"
+msgstr ""
