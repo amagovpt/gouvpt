@@ -6,4 +6,5 @@ udata-ods>=1.2.1
 udata-ckan>=1.2.0
 bs4==0.0.1
 requests>=2.19.1
-raven >= 6.9.0
+raven>=6.9.0
+owslib==0.18.0
