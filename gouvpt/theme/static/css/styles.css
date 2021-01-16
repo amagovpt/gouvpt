@@ -2957,3 +2957,7 @@ ul.search-results .search-result .result-body .result-description.clamp-2 {
     letter-spacing: 5px;
     color: #4c4c4c !important;
 }
+
+.swagger-ui .info .title small pre {
+	background-color: initial;
+}
