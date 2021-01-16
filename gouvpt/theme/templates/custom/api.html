@@ -1,0 +1,138 @@
+{% extends theme("base.html") %}
+
+{% set meta = {
+    'title': _('API Documentation'),
+    'description': _('%(site)s dynamic API documentation', site=config['SITE_TITLE']),
+    'keywords': ['API', 'documentation', 'swagger'],
+} %}
+
+{% set main_org = organizations | first %}
+
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.24.2/swagger-ui.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+{% endblock %}
+
+{% block content %}
+{% set side_menu = (nav.gouvpt_menu|list)|first %}
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 left-wrapper">
+                <nav class="side-menu">
+                    <ul>
+                    <h3 class="text-center">{{ side_menu.label }}</h3>
+                    {% for item in side_menu.items %}
+                        <li class="{% if item.url in request.path %} active{% endif %}">
+                            <a href="{{ item.url }}">{{ item.label }}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-9">
+                <div class="page-header">
+                    <h1>{{ meta.title }}</h1>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>{{ _("This page describe this website's free and open RESTful API's behavior") }}</p>
+                    </div>
+                </div>
+                <div class="page-header">
+                    <h2>{{ _('Authentication') }}</h2>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>
+                            {{ _('In order to be able to execute write operations,') }}
+                            {% if current_user.is_authenticated %}
+                                {{ _(
+                                    'you first need to obtain an %(apikey)s in your profile settings.',
+                                    apikey='<a href="%s#apikey">%s</a>'|format(
+                                        url_for('admin.index', path='me/'),
+                                        _('API Key')
+                                )|safe) }}
+                            {% else %}
+                                {{ _('you first need to authenticate and obtain an API Key in your profile settings.') }}
+                            {% endif %}
+                        </p>
+                        <p>{{ _('This key should be provided on each call in the <code>X-API-KEY</code> HTTP header.') }}</p>
+                    </div>
+                </div>
+                <div class="page-header">
+                    <h2>{{ _('Authorizations') }}</h2>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>{{ _('API calls are subject to the same permissions than the web interface.') }}</p>
+                        <p>{{ _('By example, you need to be part of the organization to modify one of its datasets.') }}</p>
+                    </div>
+                </div>
+                <div class="page-header">
+                    <h2>{{ _('Pagination') }}</h2>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>{% trans %}Some method are paginated and always follow the same pattern.
+                        The object list is wrapped in a <code>Page</code> object.
+                        {% endtrans %}</p>
+
+                        <p>{% trans %}You don't have to compute yourself the previous and next pages
+                        because the URLs are available in the response under the
+                        <code>previous_page</code> and <code>next_page</code> attributes.
+                        They will be set to <code>null</code> if there is no previous and/or next page.{% endtrans %}</p>
+
+                        <p><u>{{ _('Example') }}</u>:
+                    <pre><code class="json">
+                    {
+                        "data": [{...}, {...}],
+                        "page": 1,
+                        "page_size": 20,
+                        "total": {{ organizations|count }},
+                        "next_page": "https://{{config.SERVER_NAME}}/api/endpoint/?page=2",
+                        "previous_page": null
+                    }
+                    </code></pre>
+                    </div>
+                </div>
+                <div class="page-header">
+                    <h2>{{ _('Reference') }}</h2>
+                </div>
+                <div class="row">
+                    <div id="swagger-ui"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.24.2/swagger-ui-bundle.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.24.2/swagger-ui-standalone-preset.js"> </script>
+<script>
+    window.onload = function() {
+    // Begin Swagger UI call region
+    const ui = SwaggerUIBundle({
+        url: "/api/1/swagger.json",
+        dom_id: '#swagger-ui',
+        docExpansion: 'none',
+        deepLinking: false,
+        presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIStandalonePreset.slice(1)
+        ],
+        plugins: [
+            SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout"
+    })
+    // End Swagger UI call region
+
+    window.ui = ui
+    }
+</script>
+{% endblock %}

@@ -1,42 +1,37 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
-from udata.harvest.backends.base import BaseBackend
-from udata.models import Resource, Dataset, License
-from urllib import urlencode
 from datetime import datetime
 import requests
 import urlparse
 
-#backend = 'https://sniambgeoportal.apambiente.pt/geoportal/rest/find/document?max=5000&f=pjson'
+from udata.harvest.backends.base import BaseBackend
+from udata.models import Resource, Dataset, License
+from urllib import urlencode
+from owslib.csw import CatalogueServiceWeb
+
+#backend = 'https://sniambgeoportal.apambiente.pt/geoportal/csw'
 class PortalAmbienteBackend(BaseBackend):
     display_name = 'Harvester Portal do Ambiente'
 
     def initialize(self):
-        self.items = []
-        r = requests.get(self.source.url).json()
-        items = r['records']
-        for item in items:
-            try:
-                item_datetime = datetime.strptime(item['updated'], "%Y-%m-%dT%H:%M:%SZ")
-            except ValueError:
-                continue
-                
-            try:
-                dataset_lastdate = self.get_modifiedDate(item['id']).last_modified
-            except AttributeError:
-                self.add_item(item['id'], title=item['title'], date=item_datetime, item=item)
-            else:
-                if item_datetime > dataset_lastdate:
-                    self.add_item(item['id'], title=item['title'], date=None, item=item)
-                else:
-                    continue
+        startposition = 0
+        csw = CatalogueServiceWeb(self.source.url)
+        csw.getrecords2(maxrecords=1)
+        matches = csw.results.get("matches")
 
-    def get_modifiedDate(self, remote_id):
-        return Dataset.objects(__raw__={
-            'extras.harvest:remote_id': remote_id,
-            'extras.harvest:domain': self.source.domain
-        }).first()
+        while startposition <= matches:
+            csw.getrecords2(maxrecords=100, startposition=startposition)
+            startposition = csw.results.get('nextrecord')
+            for rec in csw.records:
+                item = {}
+                record = csw.records[rec]
+                item["id"] = record.identifier
+                item["title"] = record.title
+                item["description"] = record.abstract
+                item["url"] = record.references[0].get('url')
+                item["type"] = record.type
+                self.add_item(record.identifier, title=record.title, date=None, item=item)
+
 
     def process(self, item):
         dataset = self.get_dataset(item.remote_id)
@@ -53,31 +48,29 @@ class PortalAmbienteBackend(BaseBackend):
         dataset.tags = ["apambiente.pt"]
         item = kwargs['item']
 
-        dataset.description = item['summary']
+        dataset.description = item.get('description')
 
         if kwargs['date']:
             dataset.created_at = kwargs['date']
 
         # Force recreation of all resources
         dataset.resources = []
-        for resource in item['links']:
-            url = resource['href'].replace('\\','').replace (' ' ,'%20')
-            type = resource['type']
 
-            if type == 'details':
-                dataset.description += "<br>"
-                dataset.description += "<br>Mais detalhes : <a href=\"%s\" target=\"_blank\">%s</a>" % (url, dataset.title) 
+        url = item.get('url')
 
-            if type == 'open':
-                url_parts = list(urlparse.urlparse(url))
-                parts = url_parts[2].split('.')
-                format = parts[-1] if len(parts)>1 else 'wms'
-                new_resource = Resource(
-                    title = dataset.title,
-                    url = url,
-                    filetype = 'remote',
-                    format = format.lower()
-                )
-                dataset.resources.append(new_resource)
+        if item.get('type') == "liveData":
+            type = "wms"
+        else:
+            type = url.split('.')[-1].lower()
+            if len(type)>3:
+                type = "wms"
+
+        new_resource = Resource(
+            title = dataset.title,
+            url = url,
+            filetype = 'remote',
+            format = type
+        )
+        dataset.resources.append(new_resource) 
 
         return dataset

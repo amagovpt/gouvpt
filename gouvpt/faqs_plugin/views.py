@@ -15,7 +15,7 @@ from udata.forms import fields, validators
 from flask_mail import Message
 from flask_security.utils import do_flash
 
-from udata.models import Dataset
+from udata.models import Dataset, Organization
 
 class ContactForm(FlaskForm):
     name = fields.StringField("Name", [validators.Required()])
@@ -110,3 +110,9 @@ def redirect_organizations(org):
 @blueprint.route('/acessibilidade/')
 def redirect_acessibilidade():
     return redirect(url_for('gouvpt.faq', section='acessibilidade'))
+
+#Add docapi
+@blueprint.route('/docapi/')
+def docapi():
+    organizations = Organization.objects.all()
+    return theme.render('api.html', organizations=organizations)
