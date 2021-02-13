@@ -2961,3 +2961,9 @@ ul.search-results .search-result .result-body .result-description.clamp-2 {
 .swagger-ui .info .title small pre {
 	background-color: initial;
 }
+
+#analysis_output {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}

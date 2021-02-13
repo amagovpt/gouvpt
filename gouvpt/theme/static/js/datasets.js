@@ -1,8 +1,11 @@
 /*! Script by Micael Grilo >> http://micael.eu */
 
+$ = jQuery;
 var onetimeclick = false;
+var onetimeclickanalysis = false;
 var file_cache = {};
 var grid;
+var file_data;
 
 function process_wb(wb) {
     var ws = wb.Sheets[wb.SheetNames[0]];
@@ -16,13 +19,16 @@ function changeFile() {
     fileRequest(url);
 }
 
-function fileRequest(url) {
+function fileRequest(url, _callback=null) {
 
     var loader = document.getElementsByClassName("grid-loader")[0]
 
     if (url in file_cache) {
         console.log("File cached");
-        grid.data = process_wb(file_cache[url]);
+        file_data = process_wb(file_cache[url]);
+        if(grid!=undefined){
+            grid.data = file_data;
+        }
     }
     else {
         loader.style.display = 'block';
@@ -42,7 +48,10 @@ function fileRequest(url) {
                 var data = new Uint8Array(arraybuffer);
                 var wb = XLSX.read(data, { type: "array" });
                 file_cache[url] = wb;
-                grid.data = process_wb(wb);
+                file_data = process_wb(wb);
+                if(grid!=undefined){
+                    grid.data = file_data;
+                }
                 loader.style.display = 'none';
             };
         } else {
@@ -53,13 +62,21 @@ function fileRequest(url) {
                     if (typeof console !== 'undefined') console.log("onload", new Date());
                     var wb = XLSX.read(ff, { type: "binary" });
                     file_cache[url] = wb;
-                    grid.data = process_wb(wb);
+                    file_data = process_wb(wb);
+                    if(grid!=undefined){
+                        grid.data = file_data;
+                    }
                     loader.style.display = 'none';
                 }
             };
         }
         oReq.send();
     }
+
+    if(_callback){
+        _callback();
+    }
+
 }
 
 function showCanvas(event) {
@@ -158,4 +175,29 @@ function exportFile(format) {
         var output = to_xml(file_cache[url]);
         download(output, filename + '.xml', 'xml');
     }
+}
+
+function showAnalysisCanvas(event) {
+    var selectBox = document.getElementById("select-resource");
+    var url = selectBox.options[selectBox.selectedIndex].value;
+
+    function renderPivotTable(){
+        if (file_data == undefined){
+            setTimeout(function(){
+                return renderPivotTable()
+            }, 500);
+        } 
+
+        $("#analysis_output").pivotUI(
+            file_data,
+            {
+                renderers: $.extend(
+                    $.pivotUtilities.renderers, 
+                    $.pivotUtilities.plotly_renderers
+                )
+            }
+        );   
+    }
+
+    fileRequest(url, renderPivotTable);
 }

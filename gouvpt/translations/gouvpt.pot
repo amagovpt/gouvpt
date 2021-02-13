@@ -224,3 +224,7 @@ msgstr ""
 #: gouvpt/theme/templates/custom/api.html:99
 msgid "Reference"
 msgstr ""
+
+#: gouvpt/theme/templates/dataset/display.html:121
+msgid "Analysis"
+msgstr "Análise"

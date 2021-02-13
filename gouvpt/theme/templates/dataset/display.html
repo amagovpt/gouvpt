@@ -24,7 +24,13 @@
 
 {% block after_head %} 
 <script type="text/javascript" src="{{ theme_static('js/xlsx.full.min.js') }}"></script> 
-<script type="text/javascript" src="{{ theme_static('js/canvas-datagrid.js') }}"></script> 
+<script type="text/javascript" src="{{ theme_static('js/canvas-datagrid.js') }}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.13.0/pivot.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="https://cdn.plot.ly/plotly-basic-latest.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.13.0/pivot.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.22.0/plotly_renderers.min.js"></script>
 <script type="text/javascript" src="{{ theme_static('js/datasets.js') }}"></script> 
 {% endblock %} 
 
@@ -112,6 +118,11 @@
                         dataset.resources|selectattr('format', 'equalto', 'xls')|list
                         )|selectattr('filetype', 'equalto', 'file')|list,{}),   
                     ('preview-ods', _('Preview'), dataset.resources|selectattr('preview_url')|first,{}),
+                    ('online-analysis', _('Analysis'), ( 
+                        dataset.resources|selectattr('format', 'equalto', 'csv')|list + 
+                        dataset.resources|selectattr('format', 'equalto', 'xlsx')|list +
+                        dataset.resources|selectattr('format', 'equalto', 'xls')|list
+                        )|selectattr('filetype', 'equalto', 'file')|list,{}), 
                 )%} 
                 <div class="list-group resources-list">
                     <ul class="nav nav-pills" data-tabs="tabs"> 
@@ -133,6 +144,10 @@
                                     <a href="#preview-map" class="header_small" data-toggle="tab">{{ _("Map") }}</a> 
                                 </li>                                
                                 {% endif %}
+                            {% elif tab_id == 'online-analysis' and resources %} 
+                            <li> 
+                                <a href="#{{tab_id}}" class="header_small" data-toggle="tab" onclick="showAnalysisCanvas(event)">{{ label }}</a> 
+                            </li>
                             {% endif %} 
                         {% endfor %}
                     </ul> 
@@ -157,6 +172,10 @@
                                         <iframe width="100%" height="500px" src="{{ iframe_map }}"></iframe>
                                 </div>                               
                             {% endif %}
+                        {% elif tab_id == 'online-analysis' and resources %}
+                            <div class="tab-pane" id="{{tab_id}}"> 
+                                {% include theme('dataset/resources-analysis.html') %}
+                            </div>
                         {% endif %}
                         {% endfor %} 
                     </div>

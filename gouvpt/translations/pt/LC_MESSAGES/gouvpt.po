@@ -224,3 +224,7 @@ msgstr "Exemplo"
 #: gouvpt/theme/templates/custom/api.html:99
 msgid "Reference"
 msgstr "Referência"
+
+#: gouvpt/theme/templates/dataset/display.html:121
+msgid "Analysis"
+msgstr "Análise"

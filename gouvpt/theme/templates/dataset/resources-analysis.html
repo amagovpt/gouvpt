@@ -1,0 +1,37 @@
+
+<div class="row opinion">
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
+        <div class="select-wrapper styled-select">
+            <label for="select-resource">Em análise:</label>
+            <select id="select-resource" onchange="changeFile()">
+                {% for resource in resources %}
+                <option value="{{ resource.url }}" label="{{ resource.title }}" {% if loop.first %}selected="selected" {% endif %}>( {{ resource.format|upper() }} ) {{ resource.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
+        <div class="btn-toolbar pull-right">
+            <button class="btn btn-success" onclick="exportFile('JSON')">
+                <i class="fa fa-area-chart"></i> Visualização automatica
+            </button>
+        </div>
+    </div>
+    <div class="note pull-left">
+        <ul class="list-unstyled infos-list">
+            <li>
+                <span class="fa fa-fw fa-info-circle"></span>
+                <i>Utilize este painel para gerar as suas análises com base nos dados deste dataset. No final publique como reutilização a sua análise.</i>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="analysis_output"></div>
+
+<div class="leaflet-right">
+    <div class="leaflet-control-attribution leaflet-control">
+        <a href="https://sheetjs.com/" title="Spreadsheets simplified in browser" target="_blank">SheetJS</a> |
+        <a href="https://pivottable.js.org/" title="Javascript Pivot Table library" target="_blank">PivotTable</a>
+    </div>
+</div>
