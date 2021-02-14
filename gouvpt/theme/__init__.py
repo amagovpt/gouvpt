@@ -31,6 +31,7 @@ gouvpt_menu = nav.Bar('gouvpt_menu', [
     nav.Item(_('Open Data'), None, url='#', items=[
         nav.Item(_('Datasets'), 'datasets.list'),
         nav.Item(_('Reuses'), 'reuses.list'),
+        nav.Item(_('Visualizations'), 'reuses.list', {'type': 'visualization'}),
         nav.Item(_('Organizations'), 'organizations.list'),
         nav.Item(_('Dashboard'), 'site.dashboard'),
         nav.Item(_('Map'), 'site.map'),

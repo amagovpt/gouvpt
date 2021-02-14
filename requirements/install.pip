@@ -1,5 +1,6 @@
 udata==1.6.20
-pysaml2>=4.5.0
+pysaml2==4.5.0
+pyOpenSSL==17.5.0
 markdown>=2.6.11
 wtforms>=2.2.1
 udata-ods>=1.2.1
