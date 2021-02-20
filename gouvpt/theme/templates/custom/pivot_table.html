@@ -1,0 +1,151 @@
+{% set meta = {
+    'title': 'Dados.gov - Análise de dados com PivotTable',
+    'description': 'Análise de dados com PivotTable',
+    'keywords': [
+        'análise de dados',
+        'pivot table',
+        'open data',
+    ],
+} %}
+
+{% block extra_head %}
+    <meta charset="UTF-8">
+    <!-- external libs from cdnjs -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-basic-latest.min.js"></script>
+
+    <!-- PivotTable.js libs from ../static -->
+    <link rel="stylesheet" type="text/css" href="{{ theme_static('css/pivot.css') }}">
+    <script type="text/javascript" src="{{ theme_static('js/pivot.js') }}"></script>
+    <script type="text/javascript" src="{{ theme_static('js/d3_renderers.js') }}"></script>
+    <script type="text/javascript" src="{{ theme_static('js/plotly_renderers.js') }}"></script>
+    <script type="text/javascript" src="{{ theme_static('js/export_renderers.js') }}"></script>
+
+    <style>
+        #filechooser {
+            color: #555;
+            text-decoration: underline;;
+            cursor: pointer; /* "hand" cursor */
+        }
+        .node {
+            border: solid 1px white;
+            font: 10px sans-serif;
+            line-height: 12px;
+            overflow: hidden;
+            position: absolute;
+            text-indent: 2px;
+        }
+        #output{
+            display: table;
+            margin: 0 auto
+        }
+        .leaflet-right{
+            float: right;
+        }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <section class="content">
+        <div class="container">
+            <div class="row">
+                {% if not request.args.get('file') %}
+                <p align="center" style="line-height: 1.5">
+                    Drop a CSV file on this page or
+                    <label id="filechooser">click here to choose one<input id="csv" type="file" style="display:none"/></label>
+                    <br /><br />
+                    <textarea placeholder="or type or paste CSV text here" style="width: 300px;" id="textarea"></textarea>
+                    <br />
+                    <em><small>note: the data never leaves your browser!</small></em>
+                </p>
+                {% endif %}
+                <div id="output"></div>
+                <div class="leaflet-right">
+                    <div class="leaflet-control-attribution leaflet-control">
+                        <a href="https://sheetjs.com/" title="Spreadsheets simplified in browser" target="_blank">SheetJS</a> |
+                        <a href="https://pivottable.js.org/" title="Javascript Pivot Table library" target="_blank">PivotTable</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        $(function(){
+            var file_url = "{{ request.args.get('file', 'null') }}";
+
+            var renderers = $.extend(
+                $.pivotUtilities.renderers,
+                $.pivotUtilities.plotly_renderers,
+                $.pivotUtilities.d3_renderers,
+                $.pivotUtilities.export_renderers
+                );
+
+            var parseAndPivot = function(f) {
+                $("#output").html("<p align='center' style='color:grey;'>(processing...)</p>")
+                Papa.parse(f, {
+                    skipEmptyLines: true,
+                    error: function(e){ alert(e) },
+                    complete: function(parsed){
+                        $("#output").pivotUI(parsed.data, { renderers: renderers }, true);
+                    }
+                });
+            };
+            var readFromUrlAndPivot = function(url) {
+                $("#output").html("<p align='center' style='color:grey;'>(loading...)</p>");
+                Papa.parse(url, {
+                    download: true,
+                    header: true,
+                    encoding: "UTF-8",
+                    skipEmptyLines: true,
+                    error: function(e){ alert(e) },
+                    complete: function(results) {
+                        $("#output").pivotUI(results.data, { renderers: renderers }, true);
+                    }
+                });
+            };
+
+            $("#csv").bind("change", function(event){
+                parseAndPivot(event.target.files[0]);
+            });
+
+            $("#textarea").bind("input change", function(){
+                parseAndPivot($("#textarea").val());
+            });
+
+            var dragging = function(evt) {
+                evt.stopPropagation();
+                evt.preventDefault();
+                evt.originalEvent.dataTransfer.dropEffect = 'copy';
+            };
+
+            var endDrag = function(evt) {
+                evt.stopPropagation();
+                evt.preventDefault();
+                evt.originalEvent.dataTransfer.dropEffect = 'copy';
+            };
+
+            var dropped = function(evt) {
+                evt.stopPropagation();
+                evt.preventDefault();
+                parseAndPivot(evt.originalEvent.dataTransfer.files[0]);
+            };
+
+            if(file_url!="null"){
+                console.log(file_url);
+                readFromUrlAndPivot(file_url);
+            }
+
+            $("html")
+                .on("dragover", dragging)
+                .on("dragend", endDrag)
+                .on("dragexit", endDrag)
+                .on("dragleave", endDrag)
+                .on("drop", dropped);
+        });
+    </script>
+{% endblock %}

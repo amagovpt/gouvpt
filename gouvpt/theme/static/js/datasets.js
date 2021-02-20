@@ -177,27 +177,12 @@ function exportFile(format) {
     }
 }
 
-function showAnalysisCanvas(event) {
+function showIframeCanvas(event) {
     var selectBox = document.getElementById("select-resource");
     var url = selectBox.options[selectBox.selectedIndex].value;
+    console.log(url);
 
-    function renderPivotTable(){
-        if (file_data == undefined){
-            setTimeout(function(){
-                return renderPivotTable()
-            }, 500);
-        } 
-
-        $("#analysis_output").pivotUI(
-            file_data,
-            {
-                renderers: $.extend(
-                    $.pivotUtilities.renderers, 
-                    $.pivotUtilities.plotly_renderers
-                )
-            }
-        );   
-    }
-
-    fileRequest(url, renderPivotTable);
+    var iFrameTarget = document.getElementById("analysis_output");
+    iFrameTarget.height = window.innerHeight*0.75;
+    iFrameTarget.setAttribute("src", "/pivot_table/?file="+url);
 }
