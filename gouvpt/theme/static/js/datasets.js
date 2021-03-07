@@ -177,12 +177,20 @@ function exportFile(format) {
     }
 }
 
-function showIframeCanvas(event) {
+function showIframeCanvasPivotTable(event) {
     var selectBox = document.getElementById("select-resource");
     var url = selectBox.options[selectBox.selectedIndex].value;
-    console.log(url);
 
     var iFrameTarget = document.getElementById("analysis_output");
     iFrameTarget.height = window.innerHeight*0.75;
     iFrameTarget.setAttribute("src", "/pivot_table/?file="+url);
+}
+
+function showIframeCanvasRawGraphs(event) {
+    var selectBox = document.getElementById("select-resource");
+    var url = selectBox.options[selectBox.selectedIndex].value;
+
+    var iFrameTarget = document.getElementById("analysis_output");
+    iFrameTarget.height = window.innerHeight*0.75;
+    iFrameTarget.setAttribute("src", "/rawgraphs/?url="+url); 
 }

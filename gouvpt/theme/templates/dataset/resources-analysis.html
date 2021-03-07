@@ -31,13 +31,18 @@
     <img src="{{ theme_static('images/graphs.jpg') }}" alt="Exemplo de visualizações" />
 </div>
 <div class="col-md-6 col-lg-6 col-xs-12">
-    <button class="btn btn-success btn-lg btn-block" onclick="alert('Visualização Automática')">
+    {#<button class="btn btn-dark btn-lg btn-block" onclick="alert('Visualização Automática')">
         <i class="fa fa-pie-chart fa-large"></i> Visualização automática
+    </button>#}
+
+    <button class="btn btn-dark btn-lg btn-block" data-toggle="modal" onclick="showIframeCanvasPivotTable(event)" data-target="#analysisModal">
+        <i class="fa fa-area-chart fa-large"></i> Visualização com Pivotable
     </button>
 
-    <button class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#analysisModal">
-        <i class="fa fa-area-chart fa-large"></i> Visualização em PivotTable
+    <button class="btn btn-dark btn-lg btn-block" data-toggle="modal" onclick="showIframeCanvasRawGraphs(event)" data-target="#analysisModal">
+        <i class="fa fa-area-chart fa-large"></i> Visualização com Rawgraphs
     </button>
+
 </div>
 
 <div class="modal fade" id="analysisModal" tabindex="-1" role="dialog" aria-labelledby="analysisModalLabel" aria-hidden="true">
