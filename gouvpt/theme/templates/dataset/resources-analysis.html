@@ -1,0 +1,63 @@
+
+<div class="row opinion">
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
+        <div class="select-wrapper styled-select">
+            <label for="select-resource">Em análise:</label>
+            <select id="select-resource" onchange="changeFile()">
+                {% for resource in resources %}
+                <option value="{{ resource.url }}" label="{{ resource.title }}" {% if loop.first %}selected="selected" {% endif %}>( {{ resource.format|upper() }} ) {{ resource.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
+        <div class="btn-toolbar pull-right">
+        </div>
+    </div>
+    </br>
+    <div class="note pull-left">
+        <ul class="list-unstyled infos-list">
+            <li>
+                <span class="fa fa-fw fa-info-circle"></span>
+                <i>Utilize este painel para gerar as suas análises com base nos dados deste dataset. No final publique a sua análise como uma reutilização.</i>
+            </li>
+        </ul>
+    </div>
+    </br>
+    </br>
+</div>
+
+<div class="col-md-6 col-lg-6 col-xs-12">
+    <img src="{{ theme_static('images/graphs.jpg') }}" alt="Exemplo de visualizações" />
+</div>
+<div class="col-md-6 col-lg-6 col-xs-12">
+    {#<button class="btn btn-dark btn-lg btn-block" onclick="alert('Visualização Automática')">
+        <i class="fa fa-pie-chart fa-large"></i> Visualização automática
+    </button>#}
+
+    <button class="btn btn-dark btn-lg btn-block" data-toggle="modal" onclick="showIframeCanvasPivotTable(event)" data-target="#analysisModal">
+        <i class="fa fa-area-chart fa-large"></i> Visualização com Pivotable
+    </button>
+
+    <button class="btn btn-dark btn-lg btn-block" data-toggle="modal" onclick="showIframeCanvasRawGraphs(event)" data-target="#analysisModal">
+        <i class="fa fa-area-chart fa-large"></i> Visualização com Rawgraphs
+    </button>
+
+</div>
+
+<div class="modal fade" id="analysisModal" tabindex="-1" role="dialog" aria-labelledby="analysisModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title">{{ dataset.title }}</h3>
+      </div>
+      <div class="modal-body">
+          <iframe id="analysis_output" src="" width="100%" frameborder="0" allowtransparency="true"></iframe>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{ _("Close") }}</button>
+      </div>
+    </div>
+  </div>
+</div>

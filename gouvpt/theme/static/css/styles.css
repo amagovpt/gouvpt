@@ -2961,3 +2961,14 @@ ul.search-results .search-result .result-body .result-description.clamp-2 {
 .swagger-ui .info .title small pre {
 	background-color: initial;
 }
+
+#analysisModal .modal-dialog {
+    width: 90%;
+    height: 90%;
+    display: block !important;
+}
+
+.fa.fa-large {
+    width: 100px;
+    font-size: x-large;
+}

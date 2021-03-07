@@ -116,3 +116,13 @@ def redirect_acessibilidade():
 def docapi():
     organizations = Organization.objects.all()
     return theme.render('api.html', organizations=organizations)
+
+#Data Analysis with PivotTable page
+@blueprint.route('/pivot_table/')
+def pivot_table():
+    return theme.render('pivot_table.html')
+
+#Data Analysis with rawgraphs page
+@blueprint.route('/rawgraphs/')
+def rawgraphs():
+    return theme.render('rawgraphs.html')
