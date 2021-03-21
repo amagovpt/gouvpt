@@ -161,7 +161,7 @@ class OdsBackendPT(BaseBackend):
         else:
             orgObj = Organization.objects(acronym=organization_acronym).first()
             if orgObj:
-                dataset.organization = orgObj.id
+                dataset.organization = orgObj
             else:
                 orgObj = Organization()
                 orgObj.acronym = organization_acronym
@@ -169,7 +169,7 @@ class OdsBackendPT(BaseBackend):
                 orgObj.description = organization_acronym
                 orgObj.save()
 
-                dataset.organization = orgObj.id
+                dataset.organization = orgObj
 
         tags = set()
         if 'keyword' in ods_metadata:
