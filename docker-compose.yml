@@ -26,3 +26,14 @@ services:
           - "9200"
         ports:
           - "9200:9200"
+
+    flower:
+      image: mher/flower
+      environment:
+        - CELERY_BROKER_API=redis://broker:6379/0
+        - CELERY_BROKER_URL=redis://broker:6379/0
+        - FLOWER_PORT=7070
+      ports:
+        - 7070:7070
+      depends_on:
+        - broker
