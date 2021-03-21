@@ -71,10 +71,6 @@
                         </p>
                     </div>
                 </div>
-
-                {{ reuse.description|markdown }}
-                </br>
-
                 {% if reuse.type == "visualization" %}        
                     <iframe width="100%" height="840px" src="{{ reuse.url }}" frameborder="0" allowfullscreen="true"></iframe>
                 {% else %}
@@ -90,7 +86,12 @@
                         </a>
                     </div>
                 {% endif %}
-
+                </br>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="markdown-body">{{ reuse.description|markdown }}</div> 
+                    </div>
+                </div>
                 <div class="row main-toolbar"><div class="col-xs-12">
                     <div class="btn-toolbar pull-right">
                         <div class="btn-group btn-group-sm">

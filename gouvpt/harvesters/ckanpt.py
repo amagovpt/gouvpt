@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+# Base: udata-ckan
+# Version: 1.3.0
+# Summary: CKAN integration for udata
+# Home-page: https://github.com/opendatateam/udata-ckan
+
 from __future__ import unicode_literals
 
 import json
@@ -15,6 +20,7 @@ from voluptuous import (
 from udata import uris
 from udata.i18n import lazy_gettext as _
 from udata.core.dataset.rdf import frequency_from_rdf
+from udata.frontend.markdown import parse_html
 from udata.models import (
     db, Resource, License, SpatialCoverage, GeoZone, Organization, 
     UPDATE_FREQUENCIES,
@@ -30,81 +36,12 @@ from udata.harvest.filters import (
     is_url, empty_none, hash
 )
 
+from .schemas.ckan import schema as ckan_schema
+
 log = logging.getLogger(__name__)
 
-RESOURCE_TYPES = ('file', 'file.upload', 'api', 'documentation',
-                  'image', 'visualization')
 
-ALLOWED_RESOURCE_TYPES = ('file', 'file.upload', 'api', 'metadata')
-
-resource = {
-    'id': basestring,
-    'position': int,
-    'name': All(DefaultTo(''), basestring),
-    'description': All(basestring, normalize_string),
-    'format': All(basestring, Lower),
-    'mimetype': Any(All(basestring, Lower), None),
-    'size': Any(Coerce(int), None),
-    'hash': Any(All(basestring, hash), None),
-    'created': All(basestring, to_date),
-    'last_modified': Any(All(basestring, to_date), None),
-    'url': All(basestring),
-    'resource_type': All(empty_none,
-                         DefaultTo('file'),
-                         basestring,
-                         Any(*RESOURCE_TYPES)
-                         ),
-}
-
-tag = {
-    'id': basestring,
-    'vocabulary_id': Any(basestring, None),
-    'display_name': basestring,
-    'name': All(basestring, normalize_tag),
-    'state': basestring,
-}
-
-organization = {
-    'id': basestring,
-    'description': basestring,
-    'created': All(basestring, to_date),
-    'title': basestring,
-    'name': All(basestring, slug),
-    'revision_timestamp': All(basestring, to_date),
-    'is_organization': boolean,
-    'state': basestring,
-    'image_url': basestring,
-    'revision_id': basestring,
-    'type': 'organization',
-    'approval_status': 'approved'
-}
-
-schema = Schema({
-    'id': basestring,
-    'name': basestring,
-    'title': basestring,
-    'notes': Any(All(basestring, normalize_string), None),
-    'license_id': All(DefaultTo('not-specified'), basestring),
-    'license_title': Any(basestring, None),
-    'tags': [tag],
-
-    'metadata_created': All(basestring, to_date),
-    'metadata_modified': All(basestring, to_date),
-    'organization': Any(organization, None),
-    'resources': [resource],
-    'revision_id': basestring,
-    Optional('extras', default=list): [{
-        'key': basestring,
-        'value': Any(basestring, int, float, boolean, dict, list),
-    }],
-    'private': boolean,
-    'type': 'dataset',
-    'author': Any(basestring, None),
-    'author_email': All(empty_none, Any(All(basestring, email), None)),
-    'maintainer': Any(basestring, None),
-    'maintainer_email': All(empty_none, Any(All(basestring, email), None)),
-    'state': Any(basestring, None),
-}, required=True, extra=True)
+ALLOWED_RESOURCE_TYPES = ('dkan', 'file', 'file.upload', 'api', 'metadata')
 
 
 class CkanPTBackend(BaseBackend):
@@ -114,6 +51,7 @@ class CkanPTBackend(BaseBackend):
                       _('A CKAN Organization name')),
         HarvestFilter(_('Tag'), 'tags', str, _('A CKAN tag name')),
     )
+    schema = ckan_schema
 
     harvest_config = {}
 
@@ -217,7 +155,10 @@ class CkanPTBackend(BaseBackend):
 
     def process(self, item):
         response = self.get_action('package_show', id=item.remote_id)
-        data = self.validate(response['result'], schema)
+        data = self.validate(response['result'], self.schema)
+
+        if type(data) == list:
+            data = data[0]
 
         # Fix the remote_id: use real ID instead of not stable name
         item.remote_id = data['id']
@@ -233,14 +174,14 @@ class CkanPTBackend(BaseBackend):
         if not dataset.slug:
             dataset.slug = data['name']
         dataset.title = data['title']
-        dataset.description = data['notes']
+        dataset.description = parse_html(data['notes'])
 
         # Detect Org
         organization_acronym = data['organization']['name']
         orgObj = Organization.objects(acronym=organization_acronym).first()
         if orgObj:
             #print 'Found %s' % orgObj.acronym
-            dataset.organization = orgObj.id
+            dataset.organization = orgObj
         else:
             orgObj = Organization()
             orgObj.acronym = organization_acronym
@@ -249,7 +190,7 @@ class CkanPTBackend(BaseBackend):
             orgObj.save()
             #print 'Created %s' % orgObj.acronym
 
-            dataset.organization = orgObj.id
+            dataset.organization = orgObj
 
 
         # Detect license
@@ -334,6 +275,8 @@ class CkanPTBackend(BaseBackend):
         
         dataset.extras['harvest:name'] = self.source.name
 
+        current_resources = [str(resource.id) for resource in dataset.resources]
+        fetched_resources = []
         # Resources
         for res in data['resources']:
             if res['resource_type'] not in ALLOWED_RESOURCE_TYPES:
@@ -350,20 +293,33 @@ class CkanPTBackend(BaseBackend):
             except Exception:
                 log.error('Unable to parse resource ID %s', res['id'])
                 continue
+            
+            fetched_resources.append(str(res['id']))
             if not resource:
                 resource = Resource(id=res['id'])
                 dataset.resources.append(resource)
             resource.title = res.get('name', '') or ''
-            resource.description = res.get('description')
+            resource.description = parse_html(res.get('description'))
             resource.url = res['url']
-            resource.filetype = ('api' if res['resource_type'] == 'api'
-                                 else 'remote')
+            resource.filetype = 'remote'
             resource.format = res.get('format')
             resource.mime = res.get('mimetype')
             resource.hash = res.get('hash')
             resource.created = res['created']
             resource.modified = res['last_modified']
             resource.published = resource.published or resource.created
+
+        # Clean up old resources removed from source
+        for resource_id in current_resources:
+            if resource_id not in fetched_resources:
+                try:
+                    resource = get_by(dataset.resources, 'id', UUID(resource_id))
+                except Exception:
+                    log.error('Unable to parse resource ID %s', resource_id)
+                    continue
+                else:
+                    if resource and not self.dryrun:
+                        dataset.resources.remove(resource)
 
         return dataset
 
