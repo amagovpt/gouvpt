@@ -13,7 +13,7 @@ function process_wb(wb) {
     return data;
 }
 
-function changeFile() {
+function changeFile(event) {
     var selectBox = document.getElementById("select-resource");
     var url = selectBox.options[selectBox.selectedIndex].value;
     fileRequest(url);
@@ -178,7 +178,7 @@ function exportFile(format) {
 }
 
 function showIframeCanvasPivotTable(event) {
-    var selectBox = document.getElementById("select-resource");
+    var selectBox = document.getElementById("select-resource-analysis");
     var url = selectBox.options[selectBox.selectedIndex].value;
 
     var iFrameTarget = document.getElementById("analysis_output");
@@ -187,10 +187,14 @@ function showIframeCanvasPivotTable(event) {
 }
 
 function showIframeCanvasRawGraphs(event) {
-    var selectBox = document.getElementById("select-resource");
+    var selectBox = document.getElementById("select-resource-analysis");
     var url = selectBox.options[selectBox.selectedIndex].value;
 
     var iFrameTarget = document.getElementById("analysis_output");
     iFrameTarget.height = window.innerHeight*0.75;
     iFrameTarget.setAttribute("src", "/rawgraphs/?url="+url); 
+}
+
+function goExternal(url){
+    window.open(url,'_blank');      
 }

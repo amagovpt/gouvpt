@@ -1,10 +1,10 @@
 <div class="row opinion">
     <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
         <div class="select-wrapper styled-select">
-            <label for="select-resource">Em pré-visualização:</label>
-            <select id="select-resource" onchange="changeFile()">
+            <label for="select-resource">Recurso em pré-visualização:</label>
+            <select id="select-resource" onchange="changeFile(event)">
                 {% for resource in resources %}
-                <option value="{{ resource.url }}" label="{{ resource.title }}" {% if loop.first %}selected="selected" {% endif %}>( {{ resource.format|upper() }} ) {{ resource.title }}</option>
+                <option value="/resources/{{ resource.id }}" label="{{ resource.title }}" {% if loop.first %}selected="selected" {% endif %}>( {{ resource.format|upper() }} ) {{ resource.title }}</option>
                 {% endfor %}
             </select>
         </div>

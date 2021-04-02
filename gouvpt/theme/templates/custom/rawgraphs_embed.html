@@ -1,0 +1,19 @@
+{% extends theme("base.html") %} 
+{% set meta = {
+    'title': 'Dados.gov - Análise de dados com RawGraphs',
+    'description': 'Análise de dados com RawGraphs',
+    'keywords': [
+        'análise de dados',
+        'raw graphs',
+        'open data',
+    ],
+} %}
+{% block content %}
+    <section class="content">
+        <div class="container">
+            <center>
+            <iframe width="100%" height="900px" frameborder="0" src="/rawgraphs/"></iframe>
+            </center>
+        </div>
+    </section>
+{% endblock %}

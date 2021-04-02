@@ -2,16 +2,19 @@
 <div class="row opinion">
     <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
         <div class="select-wrapper styled-select">
-            <label for="select-resource">Em análise:</label>
-            <select id="select-resource" onchange="changeFile()">
+            <label for="select-resource-analysis">Recurso em análise:</label>
+            <select id="select-resource-analysis">
                 {% for resource in resources %}
-                <option value="{{ resource.url }}" label="{{ resource.title }}" {% if loop.first %}selected="selected" {% endif %}>( {{ resource.format|upper() }} ) {{ resource.title }}</option>
+                <option value="/resources/{{ resource.id }}" label="{{ resource.title }}" {% if loop.first %}selected="selected" {% endif %}>( {{ resource.format|upper() }} ) {{ resource.title }}</option>
                 {% endfor %}
             </select>
         </div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12">
         <div class="btn-toolbar pull-right">
+            <button class="btn btn-success" onclick="exportFile('')">
+                <i class="fa fa-download"></i>
+            </button>
         </div>
     </div>
     </br>
@@ -19,7 +22,8 @@
         <ul class="list-unstyled infos-list">
             <li>
                 <span class="fa fa-fw fa-info-circle"></span>
-                <i>Utilize este painel para gerar as suas análises com base nos dados deste dataset. No final publique a sua análise como uma reutilização.</i>
+                <i>Selecione a seguir uma das ferramentas recomendadas pelo dados.gov para gerar as suas análises/visualizações. 
+                No final partilhe a sua análise com a comunidade carregando a mesma como uma reutilização.</i>
             </li>
         </ul>
     </div>
@@ -28,21 +32,27 @@
 </div>
 
 <div class="col-md-6 col-lg-6 col-xs-12">
-    <img src="{{ theme_static('images/graphs.jpg') }}" alt="Exemplo de visualizações" />
+    <img src="{{ theme_static('images/analytics.gif') }}" alt="Exemplo de visualizações" />
 </div>
 <div class="col-md-6 col-lg-6 col-xs-12">
+    <br/>
+    <br/>
+    <br/>
     {#<button class="btn btn-dark btn-lg btn-block" onclick="alert('Visualização Automática')">
         <i class="fa fa-pie-chart fa-large"></i> Visualização automática
     </button>#}
-
-    <button class="btn btn-dark btn-lg btn-block" data-toggle="modal" onclick="showIframeCanvasPivotTable(event)" data-target="#analysisModal">
-        <i class="fa fa-area-chart fa-large"></i> Visualização com Pivotable
+    <button class="btn btn-success btn-lg btn-block" data-toggle="modal" onclick="showIframeCanvasPivotTable(event)" data-target="#analysisModal">
+        <i class="fa fa-table fa-large"></i> Pivotable
     </button>
-
-    <button class="btn btn-dark btn-lg btn-block" data-toggle="modal" onclick="showIframeCanvasRawGraphs(event)" data-target="#analysisModal">
-        <i class="fa fa-area-chart fa-large"></i> Visualização com Rawgraphs
+    <button class="btn btn-success btn-lg btn-block" data-toggle="modal" onclick="showIframeCanvasRawGraphs(event)" data-target="#analysisModal">
+        <i class="fa fa-pie-chart fa-large"></i> Rawgraphs
     </button>
-
+    <button class="btn btn-info btn-lg btn-block" onclick="goExternal('https://powerbi.microsoft.com/pt-pt/get-started/')">
+        <i class="fa fa-windows fa-large"></i> PowerBI
+    </button>
+    <button class="btn btn-info btn-lg btn-block" onclick="goExternal('https://datastudio.google.com/overview')">
+        <i class="fa fa-google fa-large"></i> Data Studio
+    </button>
 </div>
 
 <div class="modal fade" id="analysisModal" tabindex="-1" role="dialog" aria-labelledby="analysisModalLabel" aria-hidden="true">

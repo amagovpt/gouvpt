@@ -110,11 +110,11 @@
                         dataset.resources|selectattr('format', 'equalto', 'csv')|list + 
                         dataset.resources|selectattr('format', 'equalto', 'xlsx')|list +
                         dataset.resources|selectattr('format', 'equalto', 'xls')|list
-                        )|selectattr('filetype', 'equalto', 'file')|list,{}),   
+                        )|selectattr('preview_url', 'none')|list,{}),   
                     ('preview-ods', _('Preview'), dataset.resources|selectattr('preview_url')|first,{}),
-                    ('online-analysis', _('Visualizations'), ( 
-                        dataset.resources|selectattr('format', 'equalto', 'csv')|list
-                        )|selectattr('filetype', 'equalto', 'file')|list,{}), 
+                    ('reuses', _('Reuses'), reuses|first,{}),
+                    ('online-analysis', _('Analyse'), ( 
+                        dataset.resources|selectattr('format', 'equalto', 'csv')|list),{}),
                 )%}
                 <div class="list-group resources-list">
                     <ul class="nav nav-pills" data-tabs="tabs"> 
@@ -140,7 +140,11 @@
                             <li> 
                                 <a href="#{{tab_id}}" class="header_small" data-toggle="tab">{{ label }}</a> 
                             </li>
-                            {% endif %} 
+                            {% elif tab_id == 'reuses' and reuses %} 
+                            <li> 
+                                <a href="#{{tab_id}}" class="header_small" data-toggle="tab">{{ label }}</a> 
+                            </li>
+                            {% endif %}
                         {% endfor %}
                     </ul> 
                     
@@ -167,6 +171,10 @@
                         {% elif tab_id == 'online-analysis' and resources %}
                             <div class="tab-pane" id="{{tab_id}}"> 
                                 {% include theme('dataset/resources-analysis.html') %}
+                            </div>
+                        {% elif tab_id == 'reuses' and reuses %}
+                            <div class="tab-pane" id="{{tab_id}}"> 
+                                {% include theme('dataset/dataset-reuses.html') %}
                             </div>
                         {% endif %}
                         {% endfor %} 
