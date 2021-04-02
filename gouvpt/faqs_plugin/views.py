@@ -147,13 +147,13 @@ def rawgraphs():
 @blueprint.route('/resources/<uuid:id>', cors=False)
 def fetch_resource(id):
     if not session:
-        abort(404)
+        return abort(404)
     resource = get_resource(id)
     if resource:
         if resource.filetype == 'file':
             # Local file
             try:
-                redirect(resource.url.strip())
+                return redirect(resource.url.strip())
             except:
                 pass
         else:
@@ -168,4 +168,4 @@ def fetch_resource(id):
             except:
                 pass
     # 404 if all fails
-    abort(404)
+    return abort(404)
