@@ -7,13 +7,53 @@ var file_cache = {};
 var grid;
 var file_data;
 
+function decodeUtf8(arrayBuffer) {
+    var result = "";
+    var i = 0;
+    var c = 0;
+    var c1 = 0;
+    var c2 = 0;
+  
+    var data = new Uint8Array(arrayBuffer);
+  
+    // If we have a BOM skip it
+    if (data.length >= 3 && data[0] === 0xef && data[1] === 0xbb && data[2] === 0xbf) {
+      i = 3;
+    }
+  
+    while (i < data.length) {
+      c = data[i];
+  
+      if (c < 128) {
+        result += String.fromCharCode(c);
+        i++;
+      } else if (c > 191 && c < 224) {
+        if( i+1 >= data.length ) {
+          throw "UTF-8 Decode failed. Two byte character was truncated.";
+        }
+        c2 = data[i+1];
+        result += String.fromCharCode( ((c&31)<<6) | (c2&63) );
+        i += 2;
+      } else {
+        if (i+2 >= data.length) {
+          throw "UTF-8 Decode failed. Multi byte character was truncated.";
+        }
+        c2 = data[i+1];
+        c3 = data[i+2];
+        result += String.fromCharCode( ((c&15)<<12) | ((c2&63)<<6) | (c3&63) );
+        i += 3;
+      }
+    }
+    return result;
+}
+
 function process_wb(wb) {
     var ws = wb.Sheets[wb.SheetNames[0]];
     var data = XLSX.utils.sheet_to_json(ws);
     return data;
 }
 
-function changeFile() {
+function changeFile(event) {
     var selectBox = document.getElementById("select-resource");
     var url = selectBox.options[selectBox.selectedIndex].value;
     fileRequest(url);
@@ -39,37 +79,22 @@ function fileRequest(url, _callback=null) {
         else throw "XHR unavailable for your browser";
 
         oReq.open("GET", url, true);
+        oReq.responseType = "arraybuffer";
 
-        if (typeof Uint8Array !== 'undefined') {
-            oReq.responseType = "arraybuffer";
-            oReq.onload = function (e) {
-                if (typeof console !== 'undefined') console.log("onload", new Date());
-                var arraybuffer = oReq.response;
-                var data = new Uint8Array(arraybuffer);
-                var wb = XLSX.read(data, { type: "array" });
-                file_cache[url] = wb;
-                file_data = process_wb(wb);
-                if(grid!=undefined){
-                    grid.data = file_data;
-                }
-                loader.style.display = 'none';
-            };
-        } else {
-            oReq.setRequestHeader("Accept-Charset", "x-user-defined");
-            oReq.onreadystatechange = function () {
-                if (oReq.readyState == 4 && oReq.status == 200) {
-                    var ff = convertResponseBodyToText(oReq.responseBody);
-                    if (typeof console !== 'undefined') console.log("onload", new Date());
-                    var wb = XLSX.read(ff, { type: "binary" });
-                    file_cache[url] = wb;
-                    file_data = process_wb(wb);
-                    if(grid!=undefined){
-                        grid.data = file_data;
-                    }
-                    loader.style.display = 'none';
-                }
-            };
-        }
+        oReq.onload = function (e) {
+            var data = oReq.response;
+            var type = "array";
+            const contenttype = oReq.getResponseHeader("content-type");
+            const charset = contenttype.substring(contenttype.indexOf("charset=") + 8);
+            console.log(oReq.getResponseHeader('content-type'), charset);
+            var wb = XLSX.read(data, { type: type });  
+            file_cache[url] = wb;
+            file_data = process_wb(wb);
+            if(grid!=undefined){
+                grid.data = file_data;
+            }
+            loader.style.display = 'none';
+        };   
         oReq.send();
     }
 
@@ -178,7 +203,7 @@ function exportFile(format) {
 }
 
 function showIframeCanvasPivotTable(event) {
-    var selectBox = document.getElementById("select-resource");
+    var selectBox = document.getElementById("select-resource-analysis");
     var url = selectBox.options[selectBox.selectedIndex].value;
 
     var iFrameTarget = document.getElementById("analysis_output");
@@ -187,10 +212,14 @@ function showIframeCanvasPivotTable(event) {
 }
 
 function showIframeCanvasRawGraphs(event) {
-    var selectBox = document.getElementById("select-resource");
+    var selectBox = document.getElementById("select-resource-analysis");
     var url = selectBox.options[selectBox.selectedIndex].value;
 
     var iFrameTarget = document.getElementById("analysis_output");
     iFrameTarget.height = window.innerHeight*0.75;
     iFrameTarget.setAttribute("src", "/rawgraphs/?url="+url); 
+}
+
+function goExternal(url){
+    window.open(url,'_blank');      
 }

@@ -1,0 +1,28 @@
+<div class="row opinion">
+    {% for reuse in reuses %}
+        {% if reuse.type == "visualization" %}
+            <center>   
+            <iframe width="95%" height="600px" src="{{ reuse.url }}" frameborder="0" allowfullscreen="true"></iframe>
+            </center>
+        {% else %}
+            <div class="reuse-image">
+                <a href="{{ reuse.url }}" rel="nofollow">
+                    <img src="{{ reuse.image|placeholder('reuse') }}" alt="{{ reuse.title }}" class="scalable" />
+                    <br/>
+                    <span class="reuse-link">
+                        <span class="fa fa-fw fa-external-link-square"></span>
+                        {{ _('See the reuse') }}
+                    </span>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor %}
+    <div class="note pull-left">
+        <ul class="list-unstyled infos-list">
+            <li>
+                <span class="fa fa-fw fa-info-circle"></span>
+                <i>Reutilização gerada a partir deste dataset. Crie também a sua na tab "Analisar".</i>
+            </li>
+        </ul>
+    </div>
+</div>

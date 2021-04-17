@@ -226,9 +226,13 @@ msgid "Reference"
 msgstr ""
 
 #: gouvpt/theme/templates/dataset/display.html:121
-msgid "Analysis"
-msgstr "Análise"
+msgid "Analyse"
+msgstr "Analisar"
 
 #: gouvpt/theme/__init__.py:34
 msgid "Visualizations"
 msgstr "Visualizações"
+
+#: gouvpt/theme/__init__.py:33
+msgid "Data Analysis"
+msgstr "Análise de dados"

@@ -41,7 +41,7 @@
                                 <i class="fa fa-history fa-fw"></i><span>{{ post.created_at|dateformat(format='long') }}</span>
                             </div>
                             <div class="lead3">{{ post.name }}</div>
-                            <div class="p2">{{ post.headline|mdstrip(120) }}</div>
+                            <div class="p2">{{ post.headline|mdstrip(80) }}</div>
                         </a>
                     </div>
                     {% endfor %}

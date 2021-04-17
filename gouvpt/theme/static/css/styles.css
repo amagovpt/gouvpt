@@ -2971,4 +2971,6 @@ ul.search-results .search-result .result-body .result-description.clamp-2 {
 .fa.fa-large {
     width: 100px;
     font-size: x-large;
+    left: 10px;
+    position: absolute;
 }

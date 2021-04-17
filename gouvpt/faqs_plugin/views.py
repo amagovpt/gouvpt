@@ -3,8 +3,22 @@ from __future__ import unicode_literals
 
 from udata import theme, mail, i18n
 from udata.i18n import I18nBlueprint
-from flask import url_for, redirect, abort, Markup, render_template, request, current_app, g
+from flask import (
+    url_for, 
+    redirect, 
+    abort, 
+    Markup, 
+    render_template, 
+    request, 
+    session, 
+    current_app, 
+    g, 
+    Response, 
+    stream_with_context
+)
+from werkzeug.datastructures import Headers
 from jinja2.exceptions import TemplateNotFound
+from requests import get
 import markdown, urllib2
 import redis
 
@@ -16,6 +30,7 @@ from flask_mail import Message
 from flask_security.utils import do_flash
 
 from udata.models import Dataset, Organization
+from udata.core.dataset.models import get_resource
 
 class ContactForm(FlaskForm):
     name = fields.StringField("Name", [validators.Required()])
@@ -125,4 +140,32 @@ def pivot_table():
 #Data Analysis with rawgraphs page
 @blueprint.route('/rawgraphs/')
 def rawgraphs():
-    return theme.render('rawgraphs.html')
+    template = 'rawgraphs_embed.html' if request.args.get('embed') else 'rawgraphs.html'
+    return theme.render(template)
+
+# Fetch resources for analysis tool
+@blueprint.route('/resources/<uuid:id>', cors=False)
+def fetch_resource(id):
+    if not session:
+        return abort(404)
+    resource = get_resource(id)
+    if resource:
+        if resource.filetype == 'file':
+            # Local file
+            try:
+                return redirect(resource.url.strip())
+            except:
+                pass
+        else:
+            # Remote file
+            try:
+                req = get(resource.url.strip(), stream=True, timeout=5)
+                filename = 'attachment; filename="{0}"'.format(resource.title)
+                headers = Headers()
+                headers.add('Content-Type', req.headers["content-type"])
+                headers.add('Content-Disposition', filename)
+                return Response(stream_with_context(req.iter_content(chunk_size=2048)), headers=headers)
+            except:
+                pass
+    # 404 if all fails
+    return abort(404)
