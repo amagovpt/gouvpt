@@ -84,12 +84,10 @@ function fileRequest(url, _callback=null) {
         oReq.onload = function (e) {
             var data = oReq.response;
             var type = "array";
-            if (oReq.getResponseHeader('content-type').includes("text/csv")){ 
-                // CSV
-                type = "binary";
-                data = decodeUtf8(data);
-            }
-            var wb = XLSX.read(data, { type: type});  
+            const contenttype = oReq.getResponseHeader("content-type");
+            const charset = contenttype.substring(contenttype.indexOf("charset=") + 8);
+            console.log(oReq.getResponseHeader('content-type'), charset);
+            var wb = XLSX.read(data, { type: type });  
             file_cache[url] = wb;
             file_data = process_wb(wb);
             if(grid!=undefined){
