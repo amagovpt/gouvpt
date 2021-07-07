@@ -236,3 +236,15 @@ msgstr "Visualizações"
 #: gouvpt/theme/__init__.py:33
 msgid "Data Analysis"
 msgstr "Análise de dados"
+
+#: udata.cfg
+msgid "Your username and password do not match."
+msgstr "As suas credênciais de acesso não coincidem."
+
+#: udata.cfg
+msgid "Instructions to reset your password have been sent."
+msgstr "Instruções para restaurar a sua password foram enviadas."
+
+#: udata.cfg
+msgid "Invalid credentials."
+msgstr "Credênciais inválidas."
