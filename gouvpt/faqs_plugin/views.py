@@ -19,10 +19,11 @@ from flask import (
 from werkzeug.datastructures import Headers
 from jinja2.exceptions import TemplateNotFound
 from requests import get
-import markdown, urllib2
+import markdown
+from urllib.request import urlopen, URLError
 import redis
 
-from urlparse import urlparse
+from urllib.parse import urlparse
 from flask_wtf import FlaskForm, recaptcha
 from wtforms.fields.html5 import EmailField
 from udata.forms import fields, validators
@@ -59,9 +60,9 @@ def faq(section):
     lang = lang_code if lang_code == current_app.config['DEFAULT_LANGUAGE'] else 'en'
     try:
         giturl = "https://raw.githubusercontent.com/amagovpt/docs.dados.gov.pt/master/faqs_{0}/{1}.md".format(lang,section)
-        response = urllib2.urlopen(giturl, timeout = 2).read().decode('utf-8')
+        response = urlopen(giturl, timeout = 2).read().decode('utf-8')
         content = Markup(markdown.markdown(response))
-    except urllib2.URLError:
+    except URLError:
         cached_page = r.get(section+lang)
         if cached_page:
             response = cached_page.decode('utf-8')
@@ -97,7 +98,7 @@ def contact():
             try:
                 mail = current_app.extensions.get('mail')
                 mail.send(msg)
-            except Exception, e:
+            except Exception as e:
                 do_flash("Server Error : " + str(e), 'danger')
             else:
                 do_flash(i18n.gettext(u"Thank you for your message. We'll get back to you shortly."), 'success')

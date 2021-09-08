@@ -48,7 +48,7 @@ class INEBackend(BaseBackend):
         )
 
         returnedData = req.content
-        print 'Get metadata for %s' % (item.remote_id)
+        print('Get metadata for %s' % (item.remote_id))
 
         keywordSet = set()
         dataset.license = License.guess('cc-by')

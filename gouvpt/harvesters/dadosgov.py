@@ -4,14 +4,13 @@ from __future__ import unicode_literals
 from udata.models import db, Resource, License
 from udata.utils import faker
 
-from dadosgovBackend import DGBaseBackend
+from .dadosgovBackend import DGBaseBackend
 from udata.core.organization.models import Organization
 
 from flask import url_for, current_app
 
 from xml.dom import minidom, Node
-import urllib2
-import urllib
+from urllib.request import urlopen, quote
 import requests
 import csv
 import sys
@@ -32,9 +31,9 @@ class DGBackend(DGBaseBackend):
         '''Get the datasets and corresponding organization ids'''
         global REPORT_FILE_PATH, DOWNLOADFILEPATH, DADOSGOVURL
 
-        print '------------------------------------'
-        print 'Initializing dados gov harvester'
-        print '------------------------------------'
+        print('------------------------------------')
+        print('Initializing dados gov harvester')
+        print('------------------------------------')
 
         with open(REPORT_FILE_PATH, 'wb') as csvResFile:
             writer = csv.writer(csvResFile, delimiter=chr(9), quotechar=chr(34), quoting=csv.QUOTE_MINIMAL)
@@ -92,14 +91,14 @@ class DGBackend(DGBaseBackend):
         # ******************************************************************************
         # associate api datasets and organizations with its organization
         rootUrl = "http://%s/v1/" % (DADOSGOVURL)
-        xmlRootData = urllib2.urlopen(rootUrl).read()
+        xmlRootData = urlopen(rootUrl).read()
         organizationDoc = minidom.parseString(xmlRootData)
         organizationElements = organizationDoc.getElementsByTagName('collection')
 
         for orgElement in organizationElements:
             orgName = orgElement.attributes['href'].value
             datasetUrl = "http://%s/v1/%s" % (DADOSGOVURL, orgName)
-            xmlDatasetData = urllib2.urlopen(datasetUrl).read()
+            xmlDatasetData = urlopen(datasetUrl).read()
             datasetDoc = minidom.parseString(xmlDatasetData)
             datasetElements = datasetDoc.getElementsByTagName('collection')
 
@@ -110,19 +109,19 @@ class DGBackend(DGBaseBackend):
                 orgData = { 'name': orgName, 'description': orgName, 'acronym': orgName }
 
 
-            print '------------------------------------'
-            print 'Adding datasets for organization "%s"' % orgName
+            print('------------------------------------')
+            print(f"Adding datasets for organization '{orgName}'")
             # if there are any elements in the organization
             if datasetElements:
                 # check if the current organization exists in the db, if not create it
                 orgObj = Organization.objects(acronym=orgData['acronym']).first()
 
                 if not orgObj:
-                    print '--'
+                    print('--')
                     orgObj = Organization()
                     orgObj.acronym = orgData['acronym']
-                    print 'Created %s' % orgObj.acronym
-                    print '--'
+                    print(f'Created {orgObj.acronym}')
+                    print('--')
 
                 orgObj.name = orgData['name']
                 orgObj.description = orgData['description']
@@ -164,8 +163,8 @@ class DGBackend(DGBaseBackend):
         # get the organization object, no check necessary, it should always exist
         orgObj = Organization.objects(id=item.kwargs['orgId']).first()
 
-        print '------------------------------------'
-        print 'Processing %s (%s)' % (dataset.title, item.remote_id)
+        print('------------------------------------')
+        print('Processing %s (%s)' % (dataset.title, item.remote_id))
         # print item.kwargs
         # print '--'
 
@@ -242,7 +241,7 @@ class DGBackend(DGBaseBackend):
 
             # filenameXml = '%s.xml' % (filename[0])
             filenameXml = '%s.xml' % (item.remote_id)
-            u = urllib2.urlopen("http://%s/v1/%s/%s" % (DADOSGOVURL, item.kwargs['orgAcronym'], item.remote_id))
+            u = urlopen("http://%s/v1/%s/%s" % (DADOSGOVURL, item.kwargs['orgAcronym'], item.remote_id))
             # create/open the local file to be written
             with open('%s/%s' % (DOWNLOADFILEPATH, filenameXml), 'wb') as f:
                 # write file data
@@ -252,7 +251,7 @@ class DGBackend(DGBaseBackend):
                 meta = u.info()
                 fileSize = int(meta.getheaders("Content-Length")[0])
                 fullPath = '%s/%s' % (fixedUrl, filenameXml)
-                print fullPath
+                print(fullPath)
 
                 # set the resource data for the dataset
                 dataset.resources.append(Resource(
@@ -270,7 +269,7 @@ class DGBackend(DGBaseBackend):
             # get json by api and set the dataset resource field:
 
             filenameJson = '%s.json' % (item.remote_id)
-            u = urllib2.urlopen("http://%s/v1/%s/%s?format=json" % (DADOSGOVURL, item.kwargs['orgAcronym'], item.remote_id))
+            u = urlopen("http://%s/v1/%s/%s?format=json" % (DADOSGOVURL, item.kwargs['orgAcronym'], item.remote_id))
             # create/open the local file to be written
             with open('%s/%s' % (DOWNLOADFILEPATH, filenameJson), 'wb') as f:
                 # write file data
@@ -280,7 +279,7 @@ class DGBackend(DGBaseBackend):
                 meta = u.info()
                 fileSize = int(meta.getheaders("Content-Length")[0])
                 fullPath = '%s/%s' % (fixedUrl, filenameJson)
-                print fullPath
+                print(fullPath)
 
                 # set the resource data for the dataset
                 dataset.resources.append(Resource(
@@ -300,11 +299,11 @@ class DGBackend(DGBaseBackend):
             if item.kwargs['filePath']:
                 try:
                     # https://dadosgovstorage.blob.core.windows.net/datasetsfiles/Acesso%20a%20Consultas%20M%C3%A9dicas%20pela%20Popula%C3%A7%C3%A3o%20Inscrita_636046701023924396.xlsx
-                    print '-- ** filePath ** --> %s' % item.kwargs['filePath']
+                    print('-- ** filePath ** --> %s' % item.kwargs['filePath'])
                     try:
-                        urlSafe = urllib.quote(item.kwargs['filePath'])
-                        print "https://dadosgovstorage.blob.core.windows.net/datasetsfiles/%s" % (urlSafe)
-                        u = urllib2.urlopen("https://dadosgovstorage.blob.core.windows.net/datasetsfiles/%s" % (urlSafe))
+                        urlSafe = quote(item.kwargs['filePath'])
+                        print("https://dadosgovstorage.blob.core.windows.net/datasetsfiles/%s" % (urlSafe))
+                        u = urlopen("https://dadosgovstorage.blob.core.windows.net/datasetsfiles/%s" % (urlSafe))
 
                         # create/open the local file to be written
                         with open('%s/%s%s' % (DOWNLOADFILEPATH, item.remote_id, filename[1]), 'wb') as f:
@@ -315,7 +314,7 @@ class DGBackend(DGBaseBackend):
                             meta = u.info()
                             fileSize = int(meta.getheaders("Content-Length")[0])
                             fullPath = '%s/%s%s' % (fixedUrl, item.remote_id, filename[1])
-                            print fullPath
+                            print(fullPath)
 
                             # set the resource data for the dataset
                             dataset.resources.append(Resource(
@@ -328,20 +327,20 @@ class DGBackend(DGBaseBackend):
                                 , created_at = item.kwargs['createdOn']
                             ))
                     except KeyError:
-                        print '************ Error ************'
-                        print traceback.format_exc()
-                        print '*******************************'
+                        print('************ Error ************')
+                        print(traceback.format_exc())
+                        print('*******************************')
 
                 # file not found exception
                 except IOError as ex:
-                    print 'Original file not found:'
-                    print ex
+                    print('Original file not found:')
+                    print(ex)
             
             # ********************************************************
 
-            print '--'
-            print 'Returning %s' % dataset.title
-            print '------------------------------------'
+            print('--')
+            print('Returning %s' % dataset.title)
+            print('------------------------------------')
             with open(REPORT_FILE_PATH, 'a') as csvResFile:
                 writer = csv.writer(csvResFile, delimiter=chr(9), quotechar=chr(34), quoting=csv.QUOTE_MINIMAL)
                 writer.writerow([
@@ -361,7 +360,7 @@ class DGBackend(DGBaseBackend):
 
             return dataset
 
-        print 'No data returned from the API for the dataset %s' % (item.remote_id)
+        print('No data returned from the API for the dataset %s' % (item.remote_id))
         with open(REPORT_FILE_PATH, 'a') as csvResFile:
             writer = csv.writer(csvResFile, delimiter=chr(9), quotechar=chr(34), quoting=csv.QUOTE_MINIMAL)
             writer.writerow([

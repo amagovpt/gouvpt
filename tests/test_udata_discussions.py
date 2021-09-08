@@ -155,7 +155,6 @@ class DiscussionsTest(APITestCase):
         self.assertIsNotNone(data['discussion'][0]['posted_on'])
         
 
-
 class DiscussionsNotificationsTest(TestCase, DBTestMixin):
     def test_notify_user_discussions(self):
         owner = UserFactory()

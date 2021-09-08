@@ -2,11 +2,10 @@
 from __future__ import unicode_literals
 from datetime import datetime
 import requests
-import urlparse
+from urllib.parse import urlparse, urlencode
 
 from udata.harvest.backends.base import BaseBackend
 from udata.models import Resource, Dataset, License
-from urllib import urlencode
 from owslib.csw import CatalogueServiceWeb
 
 #backend = 'https://sniambgeoportal.apambiente.pt/geoportal/csw'

@@ -13,7 +13,7 @@ from udata.harvest.exceptions import HarvestSkipException
 from udata.models import License, Resource, Organization
 from udata.utils import get_by
 
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 def guess_format(mimetype, url=None):
     '''
@@ -43,8 +43,8 @@ class OdsBackendPT(BaseBackend):
     display_name = 'OpenDataSoft PT'
     verify_ssl = False
     filters = (
-        HarvestFilter(_('Tag'), 'tags', basestring, _('A tag name')),
-        HarvestFilter(_('Publisher'), 'publisher', basestring, _('A publisher name')),
+        HarvestFilter(_('Tag'), 'tags', str, _('A tag name')),
+        HarvestFilter(_('Publisher'), 'publisher', str, _('A publisher name')),
     )
     features = (
         HarvestFeature('inspire', _('Harvest Inspire datasets'),

@@ -3,7 +3,8 @@ from __future__ import unicode_literals
 
 from udata.harvest.backends.base import BaseBackend
 from udata.models import Resource, Dataset, License
-import requests, urlparse
+import requests
+from urllib.parse import urlparse
 from datetime import datetime
 
 
