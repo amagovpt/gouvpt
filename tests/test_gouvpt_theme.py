@@ -10,7 +10,7 @@ from udata.core.reuse.factories import ReuseFactory
 
 pytestmark = [
     pytest.mark.usefixtures('clean_db'),
-    pytest.mark.options(THEME='gouvpt', PLUGINS=['gouvpt_saml','gouvpt_faqs']),
+    pytest.mark.options(THEME='gouvpt', PLUGINS=['gouvpt_saml', 'gouvpt_faqs']),
     pytest.mark.frontend,
 ]
 

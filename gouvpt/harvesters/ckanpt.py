@@ -1,17 +1,14 @@
-# -*- coding: utf-8 -*-
 # Base: udata-ckan
 # Version: 1.3.0
 # Summary: CKAN integration for udata
 # Home-page: https://github.com/opendatateam/udata-ckan
-
-from __future__ import unicode_literals
 
 import json
 import logging
 
 from datetime import datetime
 from uuid import UUID
-from urlparse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse
 
 from voluptuous import (
     Schema, All, Any, Lower, Coerce, DefaultTo, Optional
@@ -27,7 +24,7 @@ from udata.models import (
 )
 from udata.utils import get_by, daterange_start, daterange_end, safe_unicode
 
-from tools.harvester_utils import missing_datasets_warning
+from .tools.harvester_utils import missing_datasets_warning
 
 from udata.harvest.backends.base import BaseBackend, HarvestFilter
 from udata.harvest.exceptions import HarvestException, HarvestSkipException
@@ -59,7 +56,7 @@ class CkanPTBackend(BaseBackend):
         super(CkanPTBackend, self).__init__(source_or_job, dryrun=dryrun, max_items=max_items)
         try:
             self.harvest_config = json.loads(safe_unicode(self.source.description))
-        except ValueError, e:
+        except ValueError as e:
                 pass
 
     def get_headers(self):
@@ -122,7 +119,7 @@ class CkanPTBackend(BaseBackend):
 
         try:
             self.harvest_config = json.loads(safe_unicode(self.source.description))
-        except ValueError, e:
+        except ValueError as e:
             if self.dryrun:
                 raise e
             else:
@@ -225,7 +222,7 @@ class CkanPTBackend(BaseBackend):
                 log.debug('spatial-uri value not handled')
             # Update frequency
             elif extra['key'] == 'frequency':
-                print 'frequency', extra['value']
+                print('frequency', extra['value'])
             # Temporal coverage start
             elif extra['key'] == 'temporal_start':
                 temporal_start = daterange_start(extra['value'])

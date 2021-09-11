@@ -1,6 +1,6 @@
 #!/bin/bash
 docker-compose up -d
-source venv/bin/activate
+source venv3/bin/activate
 export FLASK_DEBUG=True
-#udata worker start &
+udata worker start &
 udata serve

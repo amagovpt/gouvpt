@@ -16,7 +16,7 @@ from udata.forms import fields, validators
 from udata.models import datastore
 from udata import theme
 
-from saml_govpt import autenticacao_gov
+from .saml_govpt import autenticacao_gov
 
 def unique_user_email(form, field):
     if datastore.get_user(field.data) is not None:

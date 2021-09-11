@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals, absolute_import
-
 import os
 import sys
 
@@ -12,6 +9,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 LANGUAGES = ['pt']
 
 I18N_ROOT = 'gouvpt/translations'
+THEME_ROOT = os.path.join(ROOT, 'gouvpt')
 
 I18N_DOMAIN = 'gouvpt'
 
@@ -152,8 +150,15 @@ def i18n(ctx):
 def i18nc(ctx):
     '''Compile translations'''
     header(i18nc.__doc__)
+    # Plugin translations (harvesters, views...)
+    info('Compile plugin translations')
     with ctx.cd(ROOT):
         ctx.run('python setup.py compile_catalog')
+
+    # Theme translations
+    info('Compile theme translations')
+    with ctx.cd(THEME_ROOT):
+        ctx.run('pybabel compile -D {0} -d translations --statistics'.format(I18N_DOMAIN))
 
 
 @task

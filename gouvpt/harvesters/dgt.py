@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from udata.harvest.backends.base import BaseBackend
 from udata.models import Resource, Dataset, License
-import requests, urlparse
+import requests
+from urllib.parse import urlparse
 from datetime import datetime
 
 
@@ -44,7 +42,7 @@ class DGTBackend(BaseBackend):
                     inner_link['format'] = url_parts[4]
                     links.append(inner_link)
 
-            elif isinstance(resources, unicode):
+            elif isinstance(resources, str):
                 url_parts = resources.split('|')
                 inner_link = {}
                 inner_link['url'] = url_parts[2]
