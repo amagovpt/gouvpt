@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
 # Base: udata-ckan
 # Version: 1.3.0
 # Summary: CKAN integration for udata
 # Home-page: https://github.com/opendatateam/udata-ckan
-
-from __future__ import unicode_literals
 
 import json
 import logging
