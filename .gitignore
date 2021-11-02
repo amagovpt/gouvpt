@@ -104,3 +104,5 @@ AMA.pem
 private.pem
 udata.cfg
 /public/
+/uwsgi/
+/udata-fs/
