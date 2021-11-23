@@ -41,9 +41,9 @@ VOLUME /udata/fs
 
 ENV UDATA_SETTINGS /udata/udata.cfg
 
-EXPOSE 80
+EXPOSE 7000
 
-HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail http://localhost/ || exit 1
+HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail http://localhost:7000/ || exit 1
 
 ENTRYPOINT ["/udata/entrypoint.sh"]
 CMD ["uwsgi"]
