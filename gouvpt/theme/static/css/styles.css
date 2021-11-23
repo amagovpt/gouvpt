@@ -2977,3 +2977,14 @@ ul.search-results .search-result .result-body .result-description.clamp-2 {
     left: 10px;
     position: absolute;
 }
+
+.container embed{
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+}
+
+.container embed:hover {
+    cursor: pointer;
+}
