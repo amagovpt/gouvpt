@@ -20,6 +20,7 @@ LABEL "org.opencontainers.image.created"=$CREATED
 RUN apt-get update && apt-get install -y --no-install-recommends \
     # uWSGI rooting features
     libpcre3-dev \
+    mime-support \
     # Clean up
     && apt-get autoremove\
     && apt-get clean\
