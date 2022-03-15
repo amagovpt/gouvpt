@@ -1,0 +1,31 @@
+version: '3.4'
+services:
+  db:
+      image: mongo:3.2
+      volumes:
+        - ./data/db:/data/db
+      ports:
+      - "27017:27017"
+
+  broker:
+      image: redis
+      volumes:
+        - ./data/broker:/data
+      ports:
+        - "6379:6379"
+
+  search:
+      image: udata/elasticsearch
+      volumes:
+        - ./data/search/data:/usr/share/elasticsearch/data
+      ports:
+        - "9200:9200"
+
+    # flower:
+    #   image: mher/flower
+    #   environment:
+    #     - CELERY_BROKER_API=redis://broker:6379/0
+    #     - CELERY_BROKER_URL=redis://broker:6379/0
+    #     - FLOWER_PORT=7070
+    #   depends_on:
+    #     - broker

@@ -1,6 +1,7 @@
--e .[test]
+-r test.pip
+wheel==0.37.1
 flake8==3.7.8
 invoke==1.3.0
 pytest-cov==2.6.1
-readme-renderer>=17.2
-flask-debugtoolbar>=0.10.1
+readme-renderer==17.2
+flask-debugtoolbar==0.10.1
