@@ -34,10 +34,10 @@ from udata.models import Dataset, Organization
 from udata.core.dataset.models import get_resource
 
 class ContactForm(FlaskForm):
-    name = fields.StringField("Name", [validators.Required()])
-    email = EmailField("Email", [validators.Required(), validators.Email()])
-    subject = fields.StringField("Subject", [validators.Required()])
-    message = fields.TextAreaField("Message", [validators.Required()])
+    name = fields.StringField("Name", [validators.DataRequired()])
+    email = EmailField("Email", [validators.DataRequired(), validators.Email()])
+    subject = fields.StringField("Subject", [validators.DataRequired()])
+    message = fields.TextAreaField("Message", [validators.DataRequired()])
     recaptcha = recaptcha.RecaptchaField()
 
 def get_redis_connection():

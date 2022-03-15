@@ -26,7 +26,12 @@ Portuguese uData portal provides authentication with SmartIdCards and Autenticac
 Install dependencies: 
 
 ```bash
-apt-get install xmlsec1-openssl
+apt-get install xmlsec1
+```
+
+Generate private/public key:
+```bash
+openssl req -nodes -new -x509 -keyout saml/private.pem -keyform PEM -out saml/AMA.pem -outform PEM
 ```
 
 Set your `udata.cfg` with the following parameters
@@ -47,7 +52,7 @@ See autenticacao.gov.pt and SAML2 protocol docs for feature information.
 If you want to execute some development tasks like extracting the translations or running the test suite, you need to install the dependencies localy (in a virtualenv).
 
 ```bash
-virtualenv --python=python2.7 venv 
+python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements/develop.pip
 ```
@@ -55,26 +60,21 @@ pip install -r requirements/develop.pip
 Ok, you are ready, you can now execute some Development commands.
 
 ```bash
-inv -l
+udata -?
 Available tasks:
 
-  all            Run tests, reports and packaging
-  assets-build   Build static assets
-  assets-watch   Build assets on change
-  clean          Cleanup all build artifacts
-  cover          Run tests suite with coverage
-  dist           Package for distribution
-  i18n           Extract translatable strings
-  i18nc          Compile translations
-  pydist         Perform python packaging (without compiling assets)
-  qa             Run a quality report
-  test           Run tests suite
+  init                Initialize your udata instance (search index, user, etc... )
+  generate-fixtures   Build sample fixture data (users, datasets, etc... )
+  serve               Runs a development server.
+  test                Runs the test suite.
+  shell               Run a shell in the app context.
+
 ```
 
 Return to udata directory and run:
 
 ```bash
-udata serve
+./run.sh
 ```
 
 Run tests with:
