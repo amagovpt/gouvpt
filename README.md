@@ -26,7 +26,12 @@ Portuguese uData portal provides authentication with SmartIdCards and Autenticac
 Install dependencies: 
 
 ```bash
-apt-get install xmlsec1-openssl
+apt-get install xmlsec1
+```
+
+Generate private/public key:
+```bash
+openssl req -nodes -new -x509 -keyout saml/private.pem -keyform PEM -out saml/AMA.pem -outform PEM
 ```
 
 Set your `udata.cfg` with the following parameters

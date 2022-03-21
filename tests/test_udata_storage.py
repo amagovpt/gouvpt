@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 import pytest
 
 from datetime import datetime, timedelta
-from StringIO import StringIO
+from io import StringIO
 from uuid import uuid4
 
 from flask import url_for, json

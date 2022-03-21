@@ -25,11 +25,11 @@ def unique_user_email(form, field):
 
 class UserCustomForm(Form):
     email = fields.StringField(
-        'Email Address', [validators.Required('Email is required'), unique_user_email])
+        'Email Address', [validators.DataRequired('Email is required'), unique_user_email])
     first_name = fields.StringField(
-        'First Name', [validators.Required('First name is required')])
+        'First Name', [validators.DataRequired('First name is required')])
     last_name = fields.StringField(
-        'Last Name', [validators.Required('Last name is required')])
+        'Last Name', [validators.DataRequired('Last name is required')])
     user_nic = fields.HiddenField('NIC')
 
 

@@ -1,11 +1,6 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import json
 
 from datetime import datetime
-from StringIO import StringIO
-from uuid import uuid4
 
 from flask import url_for
 from udata.tests.api import APITestCase
