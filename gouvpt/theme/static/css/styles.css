@@ -2988,3 +2988,65 @@ ul.search-results .search-result .result-body .result-description.clamp-2 {
 .container embed:hover {
     cursor: pointer;
 }
+
+#videoModal1 .modal-dialog {
+    width: 60%;
+    height: 50%;
+    display: block !important;
+}
+
+#videoModal2 .modal-dialog {
+    width: 60%;
+    height: 50%;
+    display: block;
+}
+
+#videoModal3 .modal-dialog {
+    width: 60% !important;
+    height: 50% !important;
+    display: block !important;
+}
+
+.block-wrapper-videos > div{
+	margin: auto;
+	text-align: center;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background: #E6E7E8;
+}
+
+.block-wrapper-videos{
+	padding: 25px 0px 0px 0px;
+	width: 100%;
+}
+
+.block-wrapper-videos > div:not(.row-fluid):not(.container-fluid){
+	padding-left: 18%;
+    padding-right: 18%;
+}
+
+.block-wrapper-videos h2{
+	max-width: 550px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.block-wrapper-videos .p1 a {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.block-wrapper-videos .button1{
+	background: transparent;
+	margin-top: 55px;
+}
+
+.block-wrapper-videos .button1:hover{
+	background: #2980b9;
+}
+
+.embed-video-picture{
+    cursor:pointer;
+}
