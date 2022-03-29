@@ -1,0 +1,88 @@
+{% block modals %}
+
+<div class="row">
+  <div class="col-sm-4">
+    <a data-toggle="modal" data-target="#videoModal1">
+      <img class="embed-video-picture" src="{{ theme_static('images/registration.png') }}" width="320" height="160">
+    </a>
+  </div>
+  <div class="col-sm-4">
+    <a data-toggle="modal" data-target="#videoModal2">
+      <img class="embed-video-picture" src="{{ theme_static('images/publish.png') }}" width="320" height="160">
+    </a>
+  </div>
+  <div class="col-sm-4">
+    <a data-toggle="modal" data-target="#videoModal3">
+      <img class="embed-video-picture" src="{{ theme_static('images/reuse.png') }}" width="320" height="160">
+    </a>
+  </div>
+</div>
+
+
+<div class="bs-tutorial">
+  <div class="modal fade" id="videoModal1" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel1"
+    aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close closeYt" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item ytVideo"
+              src="https://www.youtube.com/embed/tvccaRmz9UQ?enablejsapi=1&version=3&playerapiid=ytplayer"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="videoModal2" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel2"
+    aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close closeYt" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item ytVideo"
+              src="https://www.youtube.com/embed/G7-qftX_org?enablejsapi=1&version=3&playerapiid=ytplayer"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="videoModal3" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel3"
+    aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close closeYt" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item ytVideo"
+              src="https://www.youtube.com/embed/jCVfKgQQTZE?enablejsapi=1&version=3&playerapiid=ytplayer"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

@@ -200,6 +200,10 @@ $j(document).ready(function($) {
         }
     });
 
+    $j('.closeYt').on('click', function(){
+        stopVideo();
+    });
+
 });
 
 function scrollBannerTop() {
@@ -274,3 +278,9 @@ function scrollDownTag(e) {
     jQuery('#title-new-discussion').val('Nova sugestão de tag para melhorar metadados');
     jQuery('#comment-new-discussion').val('Olá,\n\nEu proponho esta nova etiqueta:'); 
 };
+
+function stopVideo(){
+    $j('.ytVideo').each(function(){
+        this.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
+    });
+}
