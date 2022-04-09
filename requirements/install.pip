@@ -9,7 +9,7 @@ udata==2.0.4
 pyOpenSSL==17.5.0
 pysaml2==4.5.0
 markdown==2.6.11
-markupsafe==1.0
+markupsafe==1.1
 bs4==0.0.1
 
 udata-piwik==2.0.0
