@@ -112,6 +112,7 @@
                         dataset.resources|selectattr('format', 'equalto', 'xls')|list
                         )|selectattr('preview_url', 'none')|list,{}),   
                     ('preview-ods', _('Preview'), dataset.resources|selectattr('preview_url')|first,{}),
+                    ('preview-geojson', _('Preview-geojson'), dataset.resources|selectattr('format', 'equalto', 'geojson')|list,{}),
                     ('reuses', _('Reuses'), reuses|first,{}),
                     ('online-analysis', _('Analyse'), ( 
                         dataset.resources|selectattr('format', 'equalto', 'csv')|list),{}),
@@ -126,6 +127,10 @@
                             {% elif tab_id == 'preview' and resources %} 
                             <li> 
                                 <a href="#{{tab_id}}" class="header_small" data-toggle="tab" onclick="showCanvas(event)">{{ label }}</a> 
+                            </li>
+                            {% elif tab_id == 'preview-geojson' and harvest_source|length<=0 %}
+                            <li>
+                                <a href="#{{tab_id}}" class="header_small" data-toggle="tab">{{ _("Map") }}</a>
                             </li>
                             {% elif tab_id == 'preview-ods' and config.PREVIEW_MODE and resources %}
                             <li> 
@@ -158,6 +163,14 @@
                             <div class="tab-pane" id="{{tab_id}}"> 
                                 {% include theme('dataset/resources-preview.html') %}
                             </div>
+                        {% elif tab_id == 'preview-geojson' and harvest_source|length<=0  %}
+                        <div class="tab-pane" id="{{tab_id}}">
+                            {% set geojson = dataset.resources|selectattr('format', 'equalto', 'geojson')|map(attribute='url')|first %}
+                            <iframe width="100%" height="500px" src="https://geojson.tools/?url={{ geojson }}&maponly=true"></iframe>
+                            <div class="geojson-right">
+                                <a href="https://geojson.tools/" title="Preview geojson files in browser" target="_blank">HereXYZ</a>
+                            </div>
+                        </div>
                         {% elif tab_id == 'preview-ods' and config.PREVIEW_MODE and resources %}
                             <div class="tab-pane" id="{{tab_id}}">
                                     <iframe width="100%" height="500px" src="{{ resources.preview_url }}"></iframe>

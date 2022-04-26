@@ -3050,3 +3050,17 @@ ul.search-results .search-result .result-body .result-description.clamp-2 {
 .embed-video-picture{
     cursor:pointer;
 }
+
+.geojson-right {
+
+
+  margin-right: 10px;
+  float: right;
+  padding: 0 5px;
+
+  font-size: 15px;
+  font-family: "latoregular";
+  display: block;
+
+
+}
