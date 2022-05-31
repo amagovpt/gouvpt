@@ -145,7 +145,7 @@ def rawgraphs():
     return theme.render(template)
 
 # Fetch resources for analysis tool
-@blueprint.route('/resources/<uuid:id>', cors=False)
+@blueprint.route('/resources/<uuid:id>')
 def fetch_resource(id):
     if not session:
         return abort(404)

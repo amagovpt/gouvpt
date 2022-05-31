@@ -5,12 +5,16 @@ vine==1.3.0
 greenlet==0.4.16
 idna==2.8
 
-udata==2.0.4
+udata==2.7.1
 pyOpenSSL==17.5.0
 pysaml2==4.5.0
 markdown==2.6.11
 markupsafe==1.1
 bs4==0.0.1
+
+wheel==0.37.1
+werkzeug==0.14.1
+urllib3==1.21.1
 
 udata-piwik==2.0.0
 udata-ods==2.0.0

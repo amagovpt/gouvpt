@@ -2,6 +2,38 @@
 
 ## Current (in progress)
 
+## Version 2.7.1 (2021-05-31)
+- Add migration to roolback on resource's schema's name to None
+- Upgrade to uData 2.7.1
+- Update theme
+
+## Version 2.0.4 (2020-05-04)
+- Fix export-csv command (py3 compat)
+- Add tutorial videos functionality
+- Add functionality geojson preview
+
+## Version 2.0.0 (2020-03-11)
+- Migration to Python 3.7
+- The new migration system uses a new python based format. Pre-2.0 migrations are not compatible so you might need to upgrade to the latest udata version <2.0.0, execute migrations and then upgrade to udata 2+.
+- The targeted mongo version is now Mongo 3.6. Backward support is not guaranteed
+- Deprecated celery tasks have been removed, please ensure all old-style tasks (pre 1.6.20) have been consumed before migrating
+- New migration system:
+  - Use python based migrations instead of relying on mongo internal and deprecated js_exec
+  - Handle rollback (optionnal)
+  - Detailled history
+- Template hooks generalization: allows to dynamically extend template with widgets and snippets from extensions. 
+- Markdown now supports
+
+## Version 1.6.20 (2020-01-21)
+- New Crowdin translations
+- Fix territory routing
+- Refactor Celery: py2/py3 compatibility
+- Automatically archive dangling harvested datasets :warning: this is enabled
+- Refactor celery tasks to avoid models/documents in the transport layer
+
+## Version 1.6.17 (2019-10-28)
+- Disallow URLs in first and last names
+
 ## Version 1.2.10 (2019-02-15)
 - Add testsS
 
