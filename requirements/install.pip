@@ -15,10 +15,13 @@ bs4==0.0.1
 wheel==0.37.1
 werkzeug==0.14.1
 urllib3==1.21.1
+cryptography==2.8
+python-dateutil==2.8.1
+pytz==2019.3
+requests==2.24.0
 
 udata-piwik==2.0.0
 udata-ods==2.0.0
 udata-ckan==2.0.0
 
 owslib==0.18.0
-flask-debugtoolbar==0.10.1
