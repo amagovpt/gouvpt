@@ -27,7 +27,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install udata and all known plugins
-COPY ./requirements/install.pip /tmp/requirements.pip
+COPY ./requirements/install.pip /tmp/requirements/install.pip
+COPY requirements.pip /tmp/requirements.pip
+RUN pip install --upgrade pip
 RUN pip install -r /tmp/requirements.pip && pip check || pip install -r /tmp/requirements.pip
 RUN rm -r /root/.cache
 

@@ -7,7 +7,6 @@ idna==2.8
 
 udata==2.7.1
 pyOpenSSL==17.5.0
-pysaml2==4.5.0
 markdown==2.6.11
 markupsafe==1.1
 bs4==0.0.1
@@ -25,3 +24,4 @@ udata-ods==2.0.0
 udata-ckan==2.0.0
 
 owslib==0.18.0
+flask-debugtoolbar==0.10.1
