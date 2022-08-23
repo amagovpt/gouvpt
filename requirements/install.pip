@@ -19,7 +19,7 @@ python-dateutil==2.8.1
 pytz==2019.3
 requests==2.24.0
 
-udata-piwik==2.0.0
+udata-piwik==2.1.4
 udata-ods==2.0.0
 udata-ckan==2.0.0
 
