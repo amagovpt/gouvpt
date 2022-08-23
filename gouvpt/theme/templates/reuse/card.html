@@ -23,7 +23,7 @@
     {% if 'footer' in features or 'no-footer' not in features %}  
     <footer>
         <div class="author">
-            {{ reuse|owner_avatar(20) }}
+            <img src="{{ reuse.owner|avatar_url(500) }}" width="20px" height="20px"/>
             <a class="user" href="{{ reuse|owner_url }}" title="Ver {{ reuse|owner_name }}">
                 {{ reuse|owner_name|truncate(25) }}
             </a>
