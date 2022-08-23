@@ -15,7 +15,11 @@
                             <img class="slide" src="{{ reuse.image|placeholder('reuse') }}" alt="{{ reuse.title }}">
                             <div class="carousel-caption">
                                 <div class="slide-logo pull-left">
+                                    {% if reuse.organization %}
+                                    <img src="{{ reuse.organization.logo|placeholder('organization') }}" class="avatar" alt="{{ reuse.organization.name }}" width="40" height="40">
+                                    {% else %}
                                     <img src="{{ reuse.owner|avatar_url(500) }}" class="avatar" alt="{{ reuse.owner.fullname }}" width="40" height="40"/>
+                                    {% endif %}
                                 </div>
                                 <span class="author">{{ reuse|owner_name}}</span>
                                 <h4 class="title">
