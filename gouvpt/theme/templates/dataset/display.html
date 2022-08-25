@@ -164,7 +164,7 @@
                             <div class="tab-pane" id="{{tab_id}}"> 
                                 {% include theme('dataset/resources-preview.html') %}
                             </div>
-                        {% elif tab_id == 'preview-geojson' and harvest_source|length<=0  %}
+                        {% elif tab_id == 'preview-geojson' %}
                         <div class="tab-pane" id="{{tab_id}}">
                             <iframe id="geojson-iframe" width="100%" height="500px" src=""></iframe>
                             <div class="geojson-right">

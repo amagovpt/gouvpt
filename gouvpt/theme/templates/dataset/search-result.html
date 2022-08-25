@@ -95,6 +95,14 @@
 
             <li>
                 <a class="btn btn-xs maincolor" v-tooltip tooltip-placement="top"
+                    title="{{ _('Views number') }}">
+                    <span class="{{ ficon('fa-eye') }} fa-fw maincolor"></span>
+                    {{ dataset.metrics.views or 0 }}
+                </a>
+            </li>
+
+            <li>
+                <a class="btn btn-xs maincolor" v-tooltip tooltip-placement="top"
                     title="{{ _('Reuse number') }}">
                     <span class="{{ ficon('fa-retweet') }} fa-fw maincolor"></span>
                     {{ dataset.metrics.reuses or 0 }}

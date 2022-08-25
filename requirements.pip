@@ -1,3 +1,2 @@
--r ./requirements/install.pip
+-r requirements/install.pip
 https://github.com/amagovpt/gouvpt/blob/master/requirements/pysaml2.zip?raw=true
-git+https://github.com/amagovpt/udata.git@udata-2.0.4
